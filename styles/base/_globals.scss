@@ -1,0 +1,72 @@
+@import '../config/variables';
+
+body {
+  background: $color-content;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 200;
+  padding-top: $header-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $color-titles;
+  font-weight: 200;
+}
+
+h1 {
+  font-size: 24px;
+  color: $color-title;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 22px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: 3px;
+  margin-top: 6px;
+}
+
+a {
+  color: $color-link;
+
+  &:hover {
+    color: $color-link-hover;
+  }
+}
+
+textarea,
+select,
+input[type=date],
+input[type=number],
+input[type=email],
+input[type=password],
+input[type=search],
+input[type=text] {
+  width: 100%;
+  padding: 8px 15px;
+  color: $color-text;
+  border: 1px solid $color-border;
+  border-radius: 5px;
+
+  &:focus {
+    outline: none;
+    border-color: darken($color-border, 10%);
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+label {
+  display: inline-block;
+}

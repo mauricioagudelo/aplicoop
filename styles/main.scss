@@ -1,0 +1,29 @@
+/*****************************************************
+/* VENDORS
+/*****************************************************/
+
+
+// BOOTSTRAP
+@import "vendor/bootstrap";
+
+
+/*****************************************************
+/* CONFIG
+/*****************************************************/
+
+// Definition of variables to use across the project.
+// Do not import in this file!
+//"config/variables"
+
+/*****************************************************
+/* BASE STYLES
+/*****************************************************/
+
+// Cross-browser reset by Nicolas Gallagher (http://necolas.github.io/normalize.css/)
+@import "base/normalize";
+
+// Custom reset
+@import "base/custom-normalize";
+
+// Contains rules that are global to the site. Things like html font size, body background color, headings and link defaults, etc. are defined here.
+@import "base/globals";

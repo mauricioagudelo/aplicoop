@@ -131,11 +131,11 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
             if ($numcmda1 != "") {
                 $nota11 = $proces . ': tens la comanda numero ' . $numcmda1 . '
-				<a href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis" target="cos"
+				<a href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis"
 				title="clica per editar aquesta comanda">Edita-la</a> fins el dia ' . $ver_dataf . ' (inclòs).';
             } else {
                 $nota11 = $proces . ': fins ' . $ver_dataf . ' (inclòs).
-				<a href="cmda2.php?id=' . $proces . '&id4=create" target="cos"
+				<a href="cmda2.php?id=' . $proces . '&id4=create"
 				title="clicka para realizar un nuevo pedido">Nuevo pedido</a>';
             }
             $nota1 .= ' <p class="cos_majus" style="margin: 5px 10px 0px 10px;">' . $nota11 . '</p> ';
@@ -196,11 +196,11 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
             if ($numcmda1 != "") {
                 $nota11 = $proces . ': tens la comanda numero ' . $numcmda1 . ' per recollir el ' . $ver_diare . '.
-				<a href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis" target="cos"
+				<a href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis"
 				title="clicka para editar este pedido">Edita-la</a> fins ' . $ver_diats;
             } else {
                 $nota11 = $proces . ': hasta ' . $ver_diats . '
-				<a href="cmda2.php?id=' . $proces . '&id4=create" target="cos"
+				<a href="cmda2.php?id=' . $proces . '&id4=create"
 				title="clicka para realizar un nuevo pedido">Nuevo pedido<img src="imatges/boton_pedido.png" alt="Realiza un pedido" WIDTH="xxx" HEIGHT="xxx" border="0"></a>';
             }
             $nota1 .= ' <p class="cos_majus" style="margin: 5px 10px 0px 10px;">' . $nota11 . '</p>';
@@ -308,53 +308,13 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="coope.css"/>
-        <meta http-equiv="content-type" content="nt=" text
-        /; charset=UTF-8" >
         <title>escriptori ::: la coope</title>
-        <style type="text/css">
+        <?php include 'head.php'; ?>
 
-            #correu {
-                BACKGROUND-COLOR: #FFFFFF;
-                BORDER: blue 2px solid;
-                PADDING: 5px 5px 5px 5px;
-                OVERFLOW: scroll;
-                overflow-x: hidden;
-                overflow-y: scroll;
-                width: 90%;
-                margin-left: auto;
-                margin-right: auto;
-                height: 300px;
-            }
-
-            #correu_f1 {
-                BACKGROUND-COLOR: #3399FF;
-                color: #FFFFFF;
-                padding: 2px 2px 2px 2px;
-            }
-
-            #correu_f2 {
-                color: grey;
-                padding: 4px 2px 2px 4px;
-                text-align: justify;
-            }
-
-            #correu_f2 a:link {
-                color: #000;
-                text-decoration: underline;
-            }
-
-            #correu_f2 a:visited {
-                color: orange;
-                text-decoration: underline;
-            }
-
-
-        </style>
     </head>
 
     <body>
-    <?php include 'menu.php';?>
+    <?php include 'menu.php'; ?>
     <div class="pagina" style="margin-top: 10px;">
 
         <div class="contenidor_2" style="float: right;">

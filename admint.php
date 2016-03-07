@@ -158,7 +158,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
         </body>
         </html>
 
-        <<?php
+        <?php
         include 'config/disconect.php';
     } else {
         header("Location: escriptori2.php");

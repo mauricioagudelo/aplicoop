@@ -2,8 +2,7 @@
 
 session_start();
 
-if ($_SESSION['image_is_logged_in'] == 'true' ) 
-{
+if ($_SESSION['image_is_logged_in'] == 'true') {
 	$user = $_SESSION['user'];
 	$_SESSION['codi_cistella']='off';
 
@@ -159,6 +158,7 @@ function tradueixData2($d)
 </head>
 
 <body>
+ <?php include 'menu.php'; ?>
 <div class="pagina" style="margin-top: 10px;">
 
 <div class="contenidor_1" style="border: 1px solid green;">
@@ -330,9 +330,7 @@ function tradueixData2($d)
 <?php
 include 'config/disconect.php';
 	}
-} 
-else 
-{
-	header("Location: index.php"); 
+} else {
+    header("Location: index.php");
 }
 ?>
