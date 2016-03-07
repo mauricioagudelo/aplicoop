@@ -56,7 +56,7 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
            $_SESSION['sessionid']=$sessionid;
           
          // after login we move to the main page
-         header('Location: portada.php');
+         header('Location: main.php');
          exit;
   
       }

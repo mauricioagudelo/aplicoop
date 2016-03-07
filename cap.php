@@ -10,7 +10,7 @@ include 'config/configuracio.php';
 
 date_default_timezone_set('Europe/Madrid');
 function tradueixData($d)
-{ 
+{
 				$angles = array(    "/Monday/",
                                 "/Tuesday/",
                                 "/Wednesday/",
@@ -90,7 +90,7 @@ function tradueixData($d)
                                 "Dic");
 
 		$ret1 = preg_replace($angles, $catala, $d);
-		return $ret1; 
+		return $ret1;
 }
 
 $data = getdate();
@@ -110,35 +110,35 @@ $data = getdate();
   overflow: visible;
   text-align: center;
   margin: auto;}
-  
+
 </style>
 
 <body>
 <div class="cap">
 	<div class="contenidor_1">
 		<div class="contenidor_4" style="float:left;">
-			<img id="fig" style="width:175px; height:85px; padding: 10px 0px 20px 0px ;" src="<?php echo $logo_menu; ?>"> 
+			<img id="fig" style="width:175px; height:85px; padding: 10px 0px 20px 0px ;" src="<?php echo $logo_menu; ?>">
 		</div>
 		<div class="contenidor_4_3" style="float:right;">
 			<div>
 				<p class="h2" style="text-align: right; margin-right:25px; margin-top:8px;">
 				Família: <span style="text-transform: uppercase; color: red;"><?php echo $superuser; ?></span>
 				<br/>
-				<?php print (tradueixData($data['weekday']). ", " .$data['mday']. " de " .tradueixData($data['month']). " de " .$data['year']." ".$data['hours'].":".date('i')); ?> 
+				<?php print (tradueixData($data['weekday']). ", " .$data['mday']. " de " .tradueixData($data['month']). " de " .$data['year']." ".$data['hours'].":".date('i')); ?>
 				</p>
 			</div>
 			<div class="menu">
   			 <a target="_parent" href="logout.php" style="margin-right: 25px;"><span>Salir</span></a>
-   		 <a target="cos" href="ajuda.php"><span>Ayuda</span></a> 
-  			  <a target="cos" href="admint.php"><span>Administar</span></a>  
- 		 	  <a target="cos" href="comptes.php?id3=<?php echo $user; ?>"><span>Mis Cuentas</span></a>        
+   		 <a target="cos" href="ajuda.php"><span>Ayuda</span></a>
+  			  <a target="cos" href="admint.php"><span>Administar</span></a>
+ 		 	  <a target="cos" href="comptes.php?id3=<?php echo $user; ?>"><span>Mis Cuentas</span></a>
  		 	  <a target="cos" href="vis_user.php?id=<?php echo $user; ?>"><span>Mis Datos</span></a>
-  			  <a target="cos" href="comandes.php?id3=<?php echo $user; ?>"><span>Mis pedidos</span></a> 
+  			  <a target="cos" href="comandes.php?id3=<?php echo $user; ?>"><span>Mis pedidos</span></a>
  		 	  <a target="cos" href="escriptori2.php"><span>Inicio</span></a>
  	 		 </div>
-		</div>	
+		</div>
 	</div>
-	<div class="contenidor_1" style=""> 
+	<div class="contenidor_1" style="">
 			<img style="width:956px;height:10px" src="imatges/senefa.jpg">
 	</div>
 </div>
