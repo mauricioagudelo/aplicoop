@@ -34,13 +34,14 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="coope.css"/>
         <title>lista de pedidos ::: la coope</title>
+        <?php include 'head.php'; ?>
         <!-- calendar stylesheet -->
         <link rel="stylesheet" type="text/css" media="all" href="calendar/calendar-green.css" title="win2k-1"/>
         <!-- main calendar program -->
         <script type="text/javascript" src="calendar/calendar.js"></script>
 
         <!-- language for the calendar -->
-        <script type="text/javascript" src="calendar/lang/calendar-cat.js"></script>
+        <script type="text/javascript" src="calendar/lang/calendar-es.js"></script>
 
         <!-- the following script defines the Calendar.setup helper function, which makes
              adding a calendar a matter of 1 or 2 lines of code. -->

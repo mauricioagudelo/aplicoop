@@ -92,32 +92,39 @@ $data = getdate();
 
 ?>
 
-<header class="navbar navbar-default navbar-fixed-top">
+<header class="navbar navbar-fixed-top">
 
     <div class="container-fluid">
 
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu"
+                    aria-expanded="false">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">aplicoop</a>
+            <a href="escriptori2.php" class="pull-left">
+                <img class="navbar-logo" src="imatges/logo_menu.png" title="applicop">
+            </a>
+            <span class="navbar-info">
+                <div class="navbar-family"><?php echo $superuser; ?></div>
+                <div class="navbar-time">
+                    <?php print (tradueixData($data['weekday']) . ", " . $data['mday'] . " de " . tradueixData($data['month']) . " de " . $data['year'] . " " . $data['hours'] . ":" . date('i')); ?>
+                </div>
+            </span>
+
         </div>
 
         <div id="menu" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="escriptori2.php">inicio</a>
+                    <a href="comandes.php?id3=<?php /*echo $user; */ ?>">mis pedidos</a>
                 </li>
                 <li>
-                    <a href="comandes.php?id3=<?php /*echo $user; */?>">mis pedidos</a>
+                    <a href="vis_user.php?id=<?php /*echo $user; */ ?>">mis datos</a>
                 </li>
                 <li>
-                    <a href="vis_user.php?id=<?php /*echo $user; */?>">mis datos</a>
-                </li>
-                <li>
-                    <a href="comptes.php?id3=<?php /*echo $user; */?>">mis cuentas</a>
+                    <a href="comptes.php?id3=<?php /*echo $user; */ ?>">mis cuentas</a>
                 </li>
                 <li>
                     <a href="admint.php">administrar</a>
@@ -133,13 +140,13 @@ $data = getdate();
         </div>
     </div>
 
-   <!-- <nav>
+    <!-- <nav>
         <ul>
 
         </ul>
         <div>
-            <span><?php /*print (tradueixdata($data['weekday']) . ", " . $data['mday'] . " de " . tradueixdata($data['month']) . " de " . $data['year'] . " " . $data['hours'] . ":" . date('i')); */?></span>
-            <span style="text-transform: uppercase; color: red;"><?php /*echo $superuser; */?></span>
+            <span><?php /*print (tradueixdata($data['weekday']) . ", " . $data['mday'] . " de " . tradueixdata($data['month']) . " de " . $data['year'] . " " . $data['hours'] . ":" . date('i')); */ ?></span>
+            <span style="text-transform: uppercase; color: red;"><?php /*echo $superuser; */ ?></span>
         </div>
     </nav>-->
 </header>

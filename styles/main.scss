@@ -7,6 +7,8 @@
 @import "vendor/bootstrap";
 
 
+
+
 /*****************************************************
 /* CONFIG
 /*****************************************************/
@@ -27,3 +29,11 @@
 
 // Contains rules that are global to the site. Things like html font size, body background color, headings and link defaults, etc. are defined here.
 @import "base/globals";
+
+
+/*****************************************************
+/* COMPONENTS
+/*****************************************************/
+
+// BOOTSTRAP - OVERWRITE
+@import "components/overwrite/bootstrap/navbar";

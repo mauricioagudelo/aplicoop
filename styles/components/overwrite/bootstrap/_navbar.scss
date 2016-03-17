@@ -1,0 +1,68 @@
+@import '../../../config/variables';
+
+.navbar {
+  height: $header-height;
+  background: $color-header;
+  border-bottom: 3px solid darken($color-header, 10%);
+  .navbar-nav {
+    > li {
+      > a,
+      > a:focus {
+        color: #f4f4f4;
+        text-transform: uppercase;
+        font-size: .8rem;
+        background-color: transparent;
+        &:hover {
+          color: #FFF;
+          background: inherit;
+        }
+      }
+    }
+  }
+}
+
+.navbar-toggle {
+  border: 0;
+  padding: 7px 0;
+  .icon-bar {
+    height: 3px;
+    background: darken($color-header, 10%);
+    border-radius: 0;
+  }
+}
+
+.navbar-logo {
+  height: $header-height;
+  width: auto;
+  padding: 3px 0;
+}
+
+.navbar-collapse {
+  background: $color-menu-mobile;
+  border-bottom: 3px solid darken($color-menu-mobile, 10%);
+}
+
+@media (min-width: $screen-sm-min) {
+  .navbar-collapse {
+    background: transparent;
+    border-bottom: none;
+  }
+}
+
+.navbar-info {
+  display: inline-block;
+  padding: 10px 20px 0;
+  color: #101010;
+}
+
+.navbar-family {
+  font-weight: 800;
+  font-size: .9rem;
+  color: inherit;
+}
+
+.navbar-time {
+  font-weight: 200;
+  font-size: .9rem;
+  color: inherit;
+}
