@@ -2372,30 +2372,43 @@ label {
 .navbar {
   height: 50px;
   background: #1ABC9C;
-  border-bottom: 3px solid #148f77; }
+  border-bottom: 3px solid #1a1a1a; }
   .navbar .navbar-nav > li > a,
   .navbar .navbar-nav > li > a:focus {
-    color: #f4f4f4;
+    color: #FFF;
+    font-weight: 400;
     text-transform: uppercase;
-    font-size: .8rem;
-    background-color: transparent; }
-    .navbar .navbar-nav > li > a:hover,
-    .navbar .navbar-nav > li > a:focus:hover {
-      color: #FFF;
-      background: inherit; }
+    font-size: .9rem;
+    background-color: transparent;
+    text-align: center; }
+    @media (min-width: 768px) {
+      .navbar .navbar-nav > li > a,
+      .navbar .navbar-nav > li > a:focus {
+        font-size: .78rem;
+        color: #f4f4f4; }
+        .navbar .navbar-nav > li > a:hover,
+        .navbar .navbar-nav > li > a:focus:hover {
+          color: #FFF;
+          background: inherit; } }
+    @media (min-width: 992px) {
+      .navbar .navbar-nav > li > a,
+      .navbar .navbar-nav > li > a:focus {
+        font-size: .9rem; } }
 
 .navbar-toggle {
   border: 0;
   padding: 7px 0; }
   .navbar-toggle .icon-bar {
     height: 3px;
-    background: #148f77;
+    background: #1a1a1a;
     border-radius: 0; }
 
 .navbar-logo {
-  height: 50px;
-  width: auto;
-  padding: 3px 0; }
+  height: 50px; }
+  .navbar-logo > img {
+    height: 100%;
+    width: auto;
+    padding: 3px 0; }
 
 .navbar-collapse {
   background: #1abcb6;
@@ -2407,17 +2420,20 @@ label {
     border-bottom: none; } }
 .navbar-info {
   display: inline-block;
-  padding: 10px 20px 0;
-  color: #101010; }
+  padding: 6px 20px 0;
+  color: #1a1a1a; }
 
 .navbar-family {
   font-weight: 800;
-  font-size: .9rem;
-  color: inherit; }
+  font-size: 1rem; }
 
 .navbar-time {
-  font-weight: 200;
-  font-size: .9rem;
-  color: inherit; }
+  font-size: .9rem; }
+
+.navbar-hour {
+  font-weight: 600; }
+
+.navbar-date {
+  font-weight: 200; }
 
 /*# sourceMappingURL=main.css.map */

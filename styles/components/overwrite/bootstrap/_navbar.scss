@@ -1,21 +1,35 @@
 @import '../../../config/variables';
 
+$navbar-color-black: #1a1a1a;
+
 .navbar {
   height: $header-height;
   background: $color-header;
-  border-bottom: 3px solid darken($color-header, 10%);
+  border-bottom: 3px solid $navbar-color-black;
   .navbar-nav {
     > li {
       > a,
       > a:focus {
-        color: #f4f4f4;
+        color: #FFF;
+        font-weight: 400;
         text-transform: uppercase;
-        font-size: .8rem;
+        font-size: .9rem;
         background-color: transparent;
-        &:hover {
-          color: #FFF;
-          background: inherit;
+        text-align: center;
+
+        @media (min-width: $screen-sm-min) {
+          font-size: .78rem;
+          color: #f4f4f4;
+          &:hover {
+            color: #FFF;
+            background: inherit;
+          }
         }
+        @media (min-width: $screen-md-min) {
+          font-size: .9rem;
+
+        }
+
       }
     }
   }
@@ -26,15 +40,19 @@
   padding: 7px 0;
   .icon-bar {
     height: 3px;
-    background: darken($color-header, 10%);
+    background: $navbar-color-black;
     border-radius: 0;
   }
 }
 
 .navbar-logo {
   height: $header-height;
-  width: auto;
-  padding: 3px 0;
+  > img {
+    height: 100%;
+    width: auto;
+    padding: 3px 0;
+  }
+
 }
 
 .navbar-collapse {
@@ -51,18 +69,23 @@
 
 .navbar-info {
   display: inline-block;
-  padding: 10px 20px 0;
-  color: #101010;
+  padding: 6px 20px 0;
+  color: $navbar-color-black;
 }
 
 .navbar-family {
   font-weight: 800;
-  font-size: .9rem;
-  color: inherit;
+  font-size: 1rem;
 }
 
 .navbar-time {
-  font-weight: 200;
   font-size: .9rem;
-  color: inherit;
+}
+
+.navbar-hour {
+  font-weight: 600;
+}
+
+.navbar-date {
+  font-weight: 200;
 }

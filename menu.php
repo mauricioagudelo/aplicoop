@@ -1,95 +1,6 @@
 <?php
-
 $user = $_SESSION['user'];
 $superuser = strtoupper($_SESSION['user']);
-
-date_default_timezone_set('Europe/Madrid');
-function tradueixData($d)
-{
-    $angles = array("/Monday/",
-        "/Tuesday/",
-        "/Wednesday/",
-        "/Thursday/",
-        "/Friday/",
-        "/Saturday/",
-        "/Sunday/",
-        "/Mon/",
-        "/Tue/",
-        "/Wed/",
-        "/Thu/",
-        "/Fri/",
-        "/Sat/",
-        "/Sun/",
-        "/January/",
-        "/February/",
-        "/March/",
-        "/April/",
-        "/May/",
-        "/June/",
-        "/July/",
-        "/August/",
-        "/September/",
-        "/October/",
-        "/November/",
-        "/December/",
-        "/Jan/",
-        "/Feb/",
-        "/Mar/",
-        "/Apr/",
-        "/May/",
-        "/Jun/",
-        "/Jul/",
-        "/Aug/",
-        "/Sep/",
-        "/Oct/",
-        "/Nov/",
-        "/Dec/");
-
-    $catala = array("Lunes",
-        "Martes",
-        "Miércoles",
-        "Jueves",
-        "Viernes",
-        "Sábado",
-        "Domingo",
-        "Lun",
-        "Mar",
-        "Mie",
-        "Jue",
-        "Vie",
-        "Sab",
-        "Dom",
-        "Enero",
-        "Febrero",
-        "Marzo",
-        "Abril",
-        "Mayo",
-        "Junio",
-        "Julio",
-        "Agosto",
-        "Septiembre",
-        "Octubre",
-        "Noviembre",
-        "Diciembre",
-        "En",
-        "Feb",
-        "Mar",
-        "Abr",
-        "May",
-        "Jun",
-        "Jul",
-        "Ago",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dic");
-
-    $ret1 = preg_replace($angles, $catala, $d);
-    return $ret1;
-}
-
-$data = getdate();
-
 ?>
 
 <header class="navbar navbar-fixed-top">
@@ -103,15 +14,16 @@ $data = getdate();
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="escriptori2.php" class="pull-left">
-                <img class="navbar-logo" src="imatges/logo_menu.png" title="applicop">
+            <a href="escriptori2.php" class="navbar-logo pull-left">
+                <img  src="imatges/logo_menu.png" title="applicop">
             </a>
-            <span class="navbar-info">
+            <div class="navbar-info visible-lg-inline-block">
                 <div class="navbar-family"><?php echo $superuser; ?></div>
                 <div class="navbar-time">
-                    <?php print (tradueixData($data['weekday']) . ", " . $data['mday'] . " de " . tradueixData($data['month']) . " de " . $data['year'] . " " . $data['hours'] . ":" . date('i')); ?>
+                    <span id="hour" class="navbar-hour"></span>
+                    <span id="date" class="navbar-date"></span>
                 </div>
-            </span>
+            </div>
 
         </div>
 
@@ -150,3 +62,20 @@ $data = getdate();
         </div>
     </nav>-->
 </header>
+
+<script>
+
+    var $date = $('#date');
+    var $hour = $('#hour');
+
+    var setHour = function () {
+        var now = moment();
+        $hour.text(now.format("HH:mm"));
+        $date.text(now.format("dddd, DD/MM/YYYY"));
+        setTimeout(setHour, 1000 * 60);
+    };
+
+    setHour();
+
+
+</script>
