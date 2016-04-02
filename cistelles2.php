@@ -146,7 +146,7 @@ $user = $_SESSION['user'];
 			
 			
 			/// Calculem el pvp sense iva. Preu*marge ///
-			$select10= "SELECT preusi, iva, marge, descompte FROM productes WHERE ref='$pref'";
+			$select10= "SELECT preusi, iva, marge, descompte FROM productes WHERE ref='$post_ref[$i]'";
 			$result10 = mysql_query($select10);
 			if (!$result10) { die('Invalid query select10: ' . mysql_error());}
 			list($spreusi,$siva,$smarge,$sdescompte)= mysql_fetch_row($result10);
@@ -166,7 +166,7 @@ $user = $_SESSION['user'];
 			{
 				$query7= "UPDATE productes 
 				SET estoc=estoc-'$post_cistella[$i]'
-				WHERE ref='$pref'";
+				WHERE ref='$post_ref[$i]'";
 				mysql_query($query7) or die('Error, insert query7 failed');
 			}	
 		}
