@@ -109,28 +109,9 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     <html>
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="coope.css"/>
+        <?php include 'head.php'; ?>
         <title>crear/editar pedido ::: la coope</title>
     </head>
-    <style type="text/css">
-        a#color:link, a#color:visited {
-            color: white;
-            border: 1px solid #9cff00;
-        }
-
-        a#color:hover {
-            color: black;
-            border: 3px solid #9cff00;
-            -moz-border-radius: 10%;
-        }
-
-        a#color:active {
-            color: white;
-            border: 3px solid #9cff00;
-            -moz-border-radius: 10%;
-        }
-    </style>
 
     <style type="text/css" media="print">
         .NonPrintable {
@@ -289,11 +270,9 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 die('Invalid query2: ' . mysql_error());
                             }
 
-                            print ('<table align="centre" width="100%" class="cos"
-			style="padding-left: 30; padding-right: 30; ">
-			<tr>');
+                            print ('<ul class="row">');
 
-                            $contador = 0;
+
                             while (list($ref, $nomprod, $unitat, $prov, $categ, $ctg_estoc, $subcat, $preu, $iva, $marge, $descompte, $pr_estoc) = mysql_fetch_row($result2)) {
                                 //// En els productes d'estoc, apareix l'estoc ////
                                 //// Si l'estoc es negatiu apareix en gris ////
@@ -357,27 +336,18 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                     $w_desc = "<span style='color:red; text-decoration:blink' > descompte:" . $descompte . "%</span>";
                                 }
 
-                                print('<td width="6%">
-		      <input align="right" name="num[]" id="num' . $id . '" type="TEXT" value="' . $qdec . '" maxlength="5" size="3">
-				</td>
-				<td width="26%" style="' . $color_cos . '">
-            ' . $nomprod . ' (' . $pvp . ' &#8364;/' . $unitat . ') ' . $w_estoc . ' ' . $w_desc . '
-            <input type=hidden name="ref[]" id="ref' . $id . '" value="' . $ref . '">
-            <input type=hidden name="nom[]" id="nom' . $id . '" value="' . $nomprod . '">
-             <input type=hidden name="uni[]" value="' . $unitat . '">
-            </td>');
-
-                                $contador++;
+                                print('
+                <li class="col-lg-6">
+                    <input align="right" name="num[]" id="num' . $id . '" type="number" value="' . $qdec . '" maxlength="5" size="3">
+				    <label for="num' . $id . '" style="' . $color_cos . '">' . $nomprod . ' (' . $pvp . ' &#8364;/' . $unitat . ') ' . $w_estoc . ' ' . $w_desc . '</label>
+                    <input type=hidden name="ref[]" id="ref' . $id . '" value="' . $ref . '">
+                    <input type=hidden name="nom[]" id="nom' . $id . '" value="' . $nomprod . '">
+                    <input type=hidden name="uni[]" value="' . $unitat . '">
+                </li>');
                                 $id++;
-
-                                if ($contador == 3) {
-                                    print ('</tr><tr>');
-                                    $contador = 0;
-                                }
-
                             }
 
-                            print ('</tr></table>');
+                            print ('</ul>');
                         }
 
                         ?>
