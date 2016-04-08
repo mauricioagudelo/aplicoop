@@ -30,6 +30,9 @@
 // Contains rules that are global to the site. Things like html font size, body background color, headings and link defaults, etc. are defined here.
 @import "base/globals";
 
+// layout
+@import "base/layout";
+
 
 /*****************************************************
 /* COMPONENTS
@@ -37,3 +40,14 @@
 
 // BOOTSTRAP - OVERWRITE
 @import "components/overwrite/bootstrap/navbar";
+
+
+@import "components/product";
+
+
+/*****************************************************
+/* PAGES
+/*****************************************************/
+
+// ORDER
+@import "pages/order";

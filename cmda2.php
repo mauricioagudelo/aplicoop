@@ -126,7 +126,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             var x = new Array();
             var nom = new Array();
 
-            for (i = 0; i < this.document.frmComanda.elements['num[]'].length; i++) {
+            for (var i = 0; i < this.document.frmComanda.elements['num[]'].length; i++) {
                 x[i] = document.getElementById("num" + i).value;
                 nom[i] = document.getElementById("nom" + i).value;
 
@@ -153,8 +153,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     <body>
 
     <?php include 'menu.php'; ?>
-    <div class="pagina" style="margin-top: 10px;">
-        <div class="contenidor_1" style="border: 1px solid #9cff00;">
+    <div class="page" >
+        <div class="contenidor_1 container">
 
             <?php
             $sel5 = "SELECT dia FROM usuaris WHERE nom='$user'";
@@ -198,8 +198,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 }
                 ?>
 
-                <p class="h1" style="background: #000000; text-align: left; padding-left: 20px;">
-                    <?php echo $cap; ?></p>
+                <h1><?php echo $cap; ?></h1>
 
                 <div class="cat">
                     <?php
@@ -235,7 +234,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                 </div>
 
-                <div id="contenidor_1" style="height: 350px; clear: both; overflow: scroll; overflow-x: hidden; ">
+                <div id="contenidor_1">
 
                     <form action="<?php echo $goto; ?>" method="post" name="frmComanda" id="frmComanda"
                           onSubmit="return validate_form()" target="cos">
@@ -333,16 +332,22 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 $w_desc = "";
                                 if ($descompte != 0) {
                                     $descompte = $descompte * 100;
-                                    $w_desc = "<span style='color:red; text-decoration:blink' > descompte:" . $descompte . "%</span>";
+                                    $w_desc = "<span > descompte:" . $descompte . "%</span>";
                                 }
 
                                 print('
                 <li class="col-lg-6">
-                    <input align="right" name="num[]" id="num' . $id . '" type="number" value="' . $qdec . '" maxlength="5" size="3">
-				    <label for="num' . $id . '" style="' . $color_cos . '">' . $nomprod . ' (' . $pvp . ' &#8364;/' . $unitat . ') ' . $w_estoc . ' ' . $w_desc . '</label>
-                    <input type=hidden name="ref[]" id="ref' . $id . '" value="' . $ref . '">
-                    <input type=hidden name="nom[]" id="nom' . $id . '" value="' . $nomprod . '">
-                    <input type=hidden name="uni[]" value="' . $unitat . '">
+                    <div class="form-group product">
+                        <label for="num' . $id . '"style="' . $color_cos . '">
+                            <span class="product-name">' . $nomprod . '</span>
+                            <span class="product-price">' . $pvp . ' &#8364;/' . $unitat . '</span>
+                            <span>' . $w_estoc . ' ' . $w_desc . '</span>
+                        </label>
+                        <input class="form-control" name="num[]" id="num' . $id . '" type="number" value="' . $qdec . '" maxlength="5" size="3">
+                        <input type=hidden name="ref[]" id="ref' . $id . '" value="' . $ref . '">
+                        <input type=hidden name="nom[]" id="nom' . $id . '" value="' . $nomprod . '">
+                        <input type=hidden name="uni[]" value="' . $unitat . '">
+                     </div>
                 </li>');
                                 $id++;
                             }
@@ -353,7 +358,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         ?>
 
                 </div>
-                <p class="linia_button2" style="background: #9cff00; text-align: center; vertical-align: middle;">
+                <p class="linia_button2">
                     <input class="button2" name="acceptar" type="submit" id="btnComanda" value="Aceptar">
                     <input class="button2" type="button" value="Salir" onClick="javascript:history.go(-1);">
                 </p>

@@ -1,5 +1,12 @@
 @import '../config/variables';
 
+html{
+  font-size: 16px;
+  @media (min-width: $screen-md-min) {
+    font-size: 120%;
+  }
+}
+
 body {
   background: $color-content;
   font-family: 'Open Sans', sans-serif;
@@ -18,21 +25,23 @@ h6 {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 1.6rem;
   color: $color-title;
   font-weight: 400;
+  margin-top: .5em;
+  margin-bottom: 1em;
 }
 
 h2 {
-  font-size: 22px;
-  margin-bottom: 5px;
-  margin-top: 10px;
+  font-size: 1.4rem;
+  margin-top: .4em;
+  margin-bottom: .8em;
 }
 
 h3 {
-  font-size: 20px;
-  margin-bottom: 3px;
-  margin-top: 6px;
+  font-size: 1.2rem;
+  margin-top: .3em;
+  margin-bottom: .6em;
 }
 
 a {
@@ -52,14 +61,15 @@ input[type=password],
 input[type=search],
 input[type=text] {
   width: 100%;
-  padding: 8px 15px;
+  padding: 5px 15px;
   color: $color-text;
-  border: 1px solid $color-border;
+  border: 2px solid $color-border;
   border-radius: 5px;
 
   &:focus {
     outline: none;
     border-color: darken($color-border, 10%);
+    box-shadow: inset 0 1px 1px rgba(14, 14, 14, 0.07), 0 0 8px rgba(51, 51, 51, 0.6);;
   }
 }
 
@@ -69,4 +79,6 @@ textarea {
 
 label {
   display: inline-block;
+  font-weight: 400;
+  font-size: 1rem;
 }

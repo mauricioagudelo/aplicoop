@@ -1,0 +1,20 @@
+@import '../config/variables';
+
+.product {
+  margin-bottom: 1.1rem;
+}
+
+.product-name {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.product-price {
+  display: block;
+  width: 100%;
+  font-size: .9rem;
+  font-weight: 800;
+  color: #202020;
+}

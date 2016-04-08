@@ -18,7 +18,7 @@ $navbar-color-black: #1a1a1a;
         text-align: center;
 
         @media (min-width: $screen-sm-min) {
-          font-size: .78rem;
+          font-size: .7rem;
           color: #f4f4f4;
           &:hover {
             color: #FFF;
@@ -26,7 +26,7 @@ $navbar-color-black: #1a1a1a;
           }
         }
         @media (min-width: $screen-md-min) {
-          font-size: .9rem;
+          font-size: .7.7rem;
         }
       }
     }
@@ -73,11 +73,11 @@ $navbar-color-black: #1a1a1a;
 
 .navbar-family {
   font-weight: 800;
-  font-size: 1rem;
+  font-size: .9rem;
 }
 
 .navbar-time {
-  font-size: .9rem;
+  font-size: .7rem;
 }
 
 .navbar-hour {
