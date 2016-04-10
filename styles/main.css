@@ -2540,21 +2540,23 @@ label {
   opacity: 1;
   transform: translate(0, 0);
   z-index: 2;
-  transition: all 500ms ease; }
+  transition: all 500ms ease;
+  max-height: 10000px; }
 
 .accordion-icon {
   position: absolute;
   transform: translate(-6px, 0);
-  margin-top: 9px;
+  margin-top: .95rem;
   right: 0; }
   .accordion-icon::before, .accordion-icon::after {
     content: "";
     position: absolute;
-    background-color: #000;
+    background-color: #ff6873;
     width: 3px;
-    height: 16px; }
+    height: 9px;
+    transition: all 0.25s ease-in-out; }
   .accordion-icon::before {
-    transform: translate(2px, 0) rotate(45deg); }
+    transform: translate(-2px, 0) rotate(45deg); }
   .accordion-icon::after {
     transform: translate(2px, 0) rotate(-45deg); }
 
@@ -2571,15 +2573,9 @@ label {
   max-height: 0;
   opacity: 0;
   transform: translate(0, 50%); }
-
-.accordion-check:checked ~ .accordion-icon:before {
-  margin-top: 9px;
-  height: 9px;
+.accordion-check:checked ~ .accordion-icon::before {
   transform: translate(2px, 0) rotate(45deg); }
-
-.accordion-check:checked ~ .accordion-icon:after {
-  margin-top: 9px;
-  height: 9px;
+.accordion-check:checked ~ .accordion-icon::after {
   transform: translate(-2px, 0) rotate(-45deg); }
 
 .box {

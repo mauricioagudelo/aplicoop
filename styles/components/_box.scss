@@ -1,6 +1,6 @@
 @import '../config/variables';
 
-$box-color: #ff6873;
+$box-color: $color-pink;
 
 .box {
   box-shadow: 0 10px 0 0 $box-color inset;
