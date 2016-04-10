@@ -43,11 +43,20 @@
 
 
 @import "components/product";
+@import "components/button";
+@import "components/accordion";
+@import "components/box";
 
 
 /*****************************************************
 /* PAGES
 /*****************************************************/
 
-// ORDER
 @import "pages/order";
+
+
+/*****************************************************
+/* UTILITIES
+/*****************************************************/
+
+@import "utils/text";

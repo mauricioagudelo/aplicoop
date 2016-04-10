@@ -2308,7 +2308,7 @@ html {
       font-size: 120%; } }
 
 body {
-  background: #ffffff;
+  background: #DCE7EB;
   font-family: 'Open Sans', sans-serif;
   font-weight: 200;
   padding-top: 50px; }
@@ -2330,14 +2330,14 @@ h1 {
   margin-bottom: 1em; }
 
 h2 {
-  font-size: 1.4rem;
-  margin-top: .4em;
-  margin-bottom: .8em; }
+  font-size: 1.25rem;
+  margin-top: .2em;
+  margin-bottom: .4em; }
 
 h3 {
-  font-size: 1.2rem;
-  margin-top: .3em;
-  margin-bottom: .6em; }
+  font-size: 1.1rem;
+  margin-top: .15em;
+  margin-bottom: .3em; }
 
 a {
   color: #000000; }
@@ -2355,8 +2355,9 @@ input[type=text] {
   width: 100%;
   padding: 5px 15px;
   color: #000000;
-  border: 2px solid #101010;
-  border-radius: 5px; }
+  border: 2px solid #1e1e1e;
+  border-radius: 5px;
+  background: #fefffa; }
   textarea:focus,
   select:focus,
   input[type=date]:focus,
@@ -2366,7 +2367,7 @@ input[type=text] {
   input[type=search]:focus,
   input[type=text]:focus {
     outline: none;
-    border-color: black;
+    border-color: #040404;
     box-shadow: inset 0 1px 1px rgba(14, 14, 14, 0.07), 0 0 8px rgba(51, 51, 51, 0.6); }
 
 textarea {
@@ -2378,7 +2379,7 @@ label {
   font-size: 1rem; }
 
 .page {
-  padding: 1rem 0; }
+  padding: 2rem 0 1rem; }
 
 /*****************************************************
 /* COMPONENTS
@@ -2466,8 +2467,139 @@ label {
   font-weight: 800;
   color: #202020; }
 
+.button {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background: transparent;
+  background-image: none;
+  border: 2px solid #1e1e1e;
+  white-space: nowrap;
+  border-radius: 5px;
+  padding: .3rem 1.2rem;
+  position: relative; }
+  .button:focus, .button.focus, .button:active:focus, .button:active.focus, .button.active:focus, .button.active.focus {
+    box-shadow: none;
+    outline: 0; }
+  .button:hover, .button:focus, .button.focus {
+    text-decoration: none; }
+  .button:active, .button.active {
+    outline: 0;
+    background-image: none; }
+  .button.disabled, .button[disabled] {
+    cursor: not-allowed;
+    opacity: .65; }
+
+.button--animated {
+  transition: color 0.4s; }
+
+.button--animated::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #1e1e1e;
+  z-index: -1;
+  opacity: 0;
+  transform: scale3d(0.7, 1, 1);
+  transition: transform 0.4s, opacity 0.4s; }
+
+.button--animated,
+.button--animated::before {
+  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1); }
+
+.button--animated:hover {
+  color: #ffffff; }
+
+.button--animated:hover::before {
+  opacity: 1;
+  transform: translate3d(0, 0, 0); }
+
+.button--save {
+  color: #1ABC9C;
+  border-color: #1ABC9C; }
+
+.button--save::before {
+  background: #1ABC9C; }
+
+.accordion-item {
+  position: relative; }
+
+.accordion-title {
+  cursor: pointer; }
+
+.accordion-section {
+  position: relative;
+  overflow: hidden;
+  opacity: 1;
+  transform: translate(0, 0);
+  z-index: 2;
+  transition: all 500ms ease; }
+
+.accordion-icon {
+  position: absolute;
+  transform: translate(-6px, 0);
+  margin-top: 9px;
+  right: 0; }
+  .accordion-icon::before, .accordion-icon::after {
+    content: "";
+    position: absolute;
+    background-color: #000;
+    width: 3px;
+    height: 16px; }
+  .accordion-icon::before {
+    transform: translate(2px, 0) rotate(45deg); }
+  .accordion-icon::after {
+    transform: translate(2px, 0) rotate(-45deg); }
+
+.accordion-check {
+  position: absolute;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0; }
+
+.accordion-check:checked ~ .accordion-section {
+  margin-top: 0;
+  max-height: 0;
+  opacity: 0;
+  transform: translate(0, 50%); }
+
+.accordion-check:checked ~ .accordion-icon:before {
+  margin-top: 9px;
+  height: 9px;
+  transform: translate(2px, 0) rotate(45deg); }
+
+.accordion-check:checked ~ .accordion-icon:after {
+  margin-top: 9px;
+  height: 9px;
+  transform: translate(-2px, 0) rotate(-45deg); }
+
+.box {
+  box-shadow: 0 10px 0 0 #ff6873 inset;
+  background-color: #fefffa;
+  padding: 30px 30px 10px; }
+
+.box-title {
+  color: #ff6873; }
+
+.box-subtitle {
+  border-top: 1px dotted #dce7eb; }
+
 /*****************************************************
 /* PAGES
 /*****************************************************/
+/*****************************************************
+/* UTILITIES
+/*****************************************************/
+.u-text-center {
+  text-align: center; }
 
 /*# sourceMappingURL=main.css.map */

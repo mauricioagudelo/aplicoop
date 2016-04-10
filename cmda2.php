@@ -153,7 +153,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     <body>
 
     <?php include 'menu.php'; ?>
-    <div class="page" >
+    <div class="page">
         <div class="contenidor_1 container">
 
             <?php
@@ -198,46 +198,14 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 }
                 ?>
 
-                <h1><?php echo $cap; ?></h1>
 
-                <div class="cat">
-                    <?php
 
-                    $color = array("#C0C000", "#00b2ff", "orange", "#b20000", "#14e500", "red", "#8524ba", "green");
+                <form class="box" action="<?php echo $goto; ?>" method="post" name="frmComanda" id="frmComanda"
+                      onSubmit="return validate_form()" target="cos">
 
-                    $sel = "SELECT categoria FROM proces_linia
-		WHERE proces='$proces' AND grup='$grup' AND actiu='activat'
-		ORDER BY ordre";
-                    $result = mysql_query($sel);
-                    if (!$result) {
-                        die('Invalid query: ' . mysql_error());
-                    }
+                    <h1 class="box-title"><?php echo $cap; ?></h1>
 
-                    $cc = 0;
-                    $slc = 0;
-                    while (list($cat) = mysql_fetch_row($result)) {
-                        print ('<a href="#' . $cat . '" id="color" style="background: ' . $color[$slc] . '; "><span>' . $cat . '</span></a>');
-                        $cc++;
-                        $slc++;
-                        if ($cc == 7) {
-                            print ('</div><div class="cat">');
-                            $cc = 0;
-                        }
-                        if ($slc == 8) {
-                            $slc = 0;
-                        }
-                    }
-                    $count = count($cat);
-                    mysql_free_result($result);
-
-                    ?>
-
-                </div>
-
-                <div id="contenidor_1">
-
-                    <form action="<?php echo $goto; ?>" method="post" name="frmComanda" id="frmComanda"
-                          onSubmit="return validate_form()" target="cos">
+                    <ul class="accordion">
 
                         <?php
 
@@ -252,8 +220,10 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         $id = 0;
                         $cc = 0;
                         while (list($cat) = mysql_fetch_row($result)) {
-                            print ('<a name="' . $cat . '"></a>
-					<p class="h1" style="background: ' . $color[$cc] . '; text-align: left; padding-left: 20px;">' . $cat . '</a></p>');
+                            print ('<li class="accordion-item box-subtitle">
+                                        <input type="checkbox"  class="accordion-check" checked>
+                                        <i class="accordion-icon"></i>
+                                        <h2 class="accordion-title">' . $cat . '</h2>');
                             $cc++;
                             if ($cc == 7) {
                                 $cc = 0;
@@ -269,7 +239,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 die('Invalid query2: ' . mysql_error());
                             }
 
-                            print ('<ul class="row">');
+                            print ('<ul class="accordion-section row">');
 
 
                             while (list($ref, $nomprod, $unitat, $prov, $categ, $ctg_estoc, $subcat, $preu, $iva, $marge, $descompte, $pr_estoc) = mysql_fetch_row($result2)) {
@@ -343,7 +313,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             <span class="product-price">' . $pvp . ' &#8364;/' . $unitat . '</span>
                             <span>' . $w_estoc . ' ' . $w_desc . '</span>
                         </label>
-                        <input class="form-control" name="num[]" id="num' . $id . '" type="number" value="' . $qdec . '" maxlength="5" size="3">
+                        <input class="form-control" name="num[]" id="num' . $id . '" type="number" value="' . $qdec . '" maxlength="5" size="3" min="0">
                         <input type=hidden name="ref[]" id="ref' . $id . '" value="' . $ref . '">
                         <input type=hidden name="nom[]" id="nom' . $id . '" value="' . $nomprod . '">
                         <input type=hidden name="uni[]" value="' . $unitat . '">
@@ -353,15 +323,18 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             }
 
                             print ('</ul>');
+                            print ('</li>');
                         }
 
                         ?>
+                    </ul>
+                </form>
 
+                <div class="u-text-center">
+                    <button type="submit" class="button button--animated button--save" name="acceptar" id="btnComanda">
+                        Aceptar
+                    </button>
                 </div>
-                <p class="linia_button2">
-                    <input class="button2" name="acceptar" type="submit" id="btnComanda" value="Aceptar">
-                    <input class="button2" type="button" value="Salir" onClick="javascript:history.go(-1);">
-                </p>
 
                 <?php
             }

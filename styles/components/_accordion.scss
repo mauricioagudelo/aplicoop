@@ -1,0 +1,71 @@
+@import '../config/variables';
+
+.accordion {
+
+}
+
+.accordion-item {
+  position: relative;
+}
+
+.accordion-title {
+  cursor: pointer;
+}
+
+.accordion-section {
+  position: relative;
+  overflow: hidden;
+  opacity: 1;
+  transform: translate(0, 0);
+  z-index: 2;
+  transition: all 500ms ease;
+}
+
+.accordion-icon {
+  position: absolute;
+  transform: translate(-6px, 0);
+  margin-top: 9px;
+  right: 0;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    background-color: #000;
+    width: 3px;
+    height: 16px;
+  }
+
+  &::before {
+    transform: translate(2px, 0) rotate(45deg);
+  }
+  &::after {
+    transform: translate(2px, 0) rotate(-45deg);
+  }
+}
+
+.accordion-check {
+  position: absolute;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+}
+
+.accordion-check:checked ~ .accordion-section {
+  margin-top: 0;
+  max-height: 0;
+  opacity: 0;
+  transform: translate(0, 50%);
+}
+.accordion-check:checked ~ .accordion-icon:before {
+  margin-top: 9px;
+  height: 9px;
+  transform: translate(2px, 0) rotate(45deg);
+}
+.accordion-check:checked ~ .accordion-icon:after {
+  margin-top: 9px;
+  height: 9px;
+  transform: translate(-2px, 0) rotate(-45deg);
+}

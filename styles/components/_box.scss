@@ -1,0 +1,17 @@
+@import '../config/variables';
+
+$box-color: #ff6873;
+
+.box {
+  box-shadow: 0 10px 0 0 $box-color inset;
+  background-color: $color-white;
+  padding: 30px 30px 10px;
+}
+
+.box-title {
+  color: $box-color;
+}
+
+.box-subtitle {
+  border-top: 1px dotted #dce7eb;
+}

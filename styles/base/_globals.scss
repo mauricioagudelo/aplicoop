@@ -33,15 +33,15 @@ h1 {
 }
 
 h2 {
-  font-size: 1.4rem;
-  margin-top: .4em;
-  margin-bottom: .8em;
+  font-size: 1.25rem;
+  margin-top: .2em;
+  margin-bottom: .4em;
 }
 
 h3 {
-  font-size: 1.2rem;
-  margin-top: .3em;
-  margin-bottom: .6em;
+  font-size: 1.1rem;
+  margin-top: .15em;
+  margin-bottom: .3em;
 }
 
 a {
@@ -64,7 +64,8 @@ input[type=text] {
   padding: 5px 15px;
   color: $color-text;
   border: 2px solid $color-border;
-  border-radius: 5px;
+  border-radius: $border-radius;
+  background: $color-white;
 
   &:focus {
     outline: none;

@@ -1,15 +1,23 @@
 @import '../vendor/bootstrap/variables';
 
-$color-content: #ffffff;
-$color-header: #1ABC9C;
-$color-menu-mobile: #1abcb6;
-$color-text: #000000;
-$color-titles : #000000;
-$color-title : #000000;
-$color-link: #000000;
-$color-link-hover: #000000;
-$color-border: #101010;
+$color-green: #1ABC9C;
+$color-green-soft: #1abcb6;
+$color-white: #fefffa;
+$color-black: #000000;
+$color-black-soft: #1e1e1e;
+$color-grey-soft: #DCE7EB;
 
-
+$color-main: $color-green;
+$color-content: $color-grey-soft;
+$color-header: $color-green;
+$color-menu-mobile: $color-green-soft;
+$color-text: $color-black;
+$color-titles: $color-black;
+$color-title: $color-black;
+$color-link: $color-black;
+$color-link-hover: $color-black;
+$color-border: $color-black-soft;
 
 $header-height: 50px;
+
+$border-radius: 5px;
