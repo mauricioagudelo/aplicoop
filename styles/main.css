@@ -2330,7 +2330,7 @@ h1 {
   margin-bottom: 1em; }
 
 h2 {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   margin-top: .2em;
   margin-bottom: .4em; }
 
@@ -2457,13 +2457,13 @@ label {
 .product-name {
   display: block;
   width: 100%;
-  font-size: 1rem;
+  font-size: .9rem;
   font-weight: 400; }
 
 .product-price {
   display: block;
   width: 100%;
-  font-size: .9rem;
+  font-size: .8rem;
   font-weight: 800;
   color: #202020; }
 
@@ -2538,10 +2538,10 @@ label {
   position: relative;
   overflow: hidden;
   opacity: 1;
-  transform: translate(0, 0);
+  transform: translate3d(0, 0, 0);
   z-index: 2;
-  transition: all 500ms ease;
-  max-height: 10000px; }
+  transition: all 300ms ease;
+  max-height: 15000px; }
 
 .accordion-icon {
   position: absolute;
@@ -2551,10 +2551,12 @@ label {
   .accordion-icon::before, .accordion-icon::after {
     content: "";
     position: absolute;
-    background-color: #ff6873;
     width: 3px;
     height: 9px;
-    transition: all 0.25s ease-in-out; }
+    transition: all 0.25s ease-in-out;
+    background-color: #000000; }
+    .box .accordion-icon::before, .box .accordion-icon::after {
+      background-color: #ff6873; }
   .accordion-icon::before {
     transform: translate(-2px, 0) rotate(45deg); }
   .accordion-icon::after {
@@ -2581,7 +2583,8 @@ label {
 .box {
   box-shadow: 0 10px 0 0 #ff6873 inset;
   background-color: #fefffa;
-  padding: 30px 30px 10px; }
+  padding: 1.8rem 1.8rem 0.9rem;
+  margin-bottom: 1.5rem; }
 
 .box-title {
   color: #ff6873; }

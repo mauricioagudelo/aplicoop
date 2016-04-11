@@ -199,117 +199,119 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 ?>
 
 
-
-                <form class="box" action="<?php echo $goto; ?>" method="post" name="frmComanda" id="frmComanda"
+                <form action="<?php echo $goto; ?>" method="post" name="frmComanda" id="frmComanda"
                       onSubmit="return validate_form()" target="cos">
+                    <div class="box">
+                        <h1 class="box-title"><?php echo $cap; ?></h1>
 
-                    <h1 class="box-title"><?php echo $cap; ?></h1>
+                        <ul class="accordion">
 
-                    <ul class="accordion">
+                            <?php
 
-                        <?php
-
-                        $sel = "SELECT categoria FROM proces_linia
+                            $sel = "SELECT categoria FROM proces_linia
 		WHERE proces='$proces' AND grup='$grup' AND actiu='activat'
 		ORDER BY ordre";
-                        $result = mysql_query($sel);
-                        if (!$result) {
-                            die('Invalid query: ' . mysql_error());
-                        }
+                            $result = mysql_query($sel);
+                            if (!$result) {
+                                die('Invalid query: ' . mysql_error());
+                            }
 
-                        $id = 0;
-                        $cc = 0;
-                        while (list($cat) = mysql_fetch_row($result)) {
-                            print ('<li class="accordion-item box-subtitle">
+                            $id = 0;
+                            $cc = 0;
+                            while (list($cat) = mysql_fetch_row($result)) {
+                                print ('<li class="accordion-item box-subtitle">
                                         <input type="checkbox"  class="accordion-check" checked>
                                         <i class="accordion-icon"></i>
                                         <h2 class="accordion-title">' . $cat . '</h2>');
-                            $cc++;
-                            if ($cc == 7) {
-                                $cc = 0;
-                            }
+                                $cc++;
+                                if ($cc == 7) {
+                                    $cc = 0;
+                                }
 
-                            $sel2 = "SELECT pr.ref,pr.nom,pr.unitat,pr.proveidora,ctg.tipus,ctg.estoc,pr.subcategoria,pr.preusi,pr.iva,
+                                $sel2 = "SELECT pr.ref,pr.nom,pr.unitat,pr.proveidora,ctg.tipus,ctg.estoc,pr.subcategoria,pr.preusi,pr.iva,
 			pr.marge, pr.descompte,pr.estoc FROM productes AS pr, categoria AS ctg
 			WHERE pr.categoria=ctg.tipus AND pr.categoria='$cat' AND pr.actiu='actiu'
 			ORDER BY pr.categoria, pr.nom ";
 
-                            $result2 = mysql_query($sel2);
-                            if (!$result2) {
-                                die('Invalid query2: ' . mysql_error());
-                            }
-
-                            print ('<ul class="accordion-section row">');
-
-
-                            while (list($ref, $nomprod, $unitat, $prov, $categ, $ctg_estoc, $subcat, $preu, $iva, $marge, $descompte, $pr_estoc) = mysql_fetch_row($result2)) {
-                                //// En els productes d'estoc, apareix l'estoc ////
-                                //// Si l'estoc es negatiu apareix en gris ////
-                                if ($ctg_estoc == 'si') {
-                                    $rpr_estoc = round($pr_estoc, 1);
-                                    $w_estoc = "[" . $rpr_estoc . "]";
-                                    if ($pr_estoc <= 0) {
-                                        $color_cos = "color: grey;";
-                                    } else {
-                                        $color_cos = "";
-                                    }
-                                } else {
-                                    $w_estoc = "";
+                                $result2 = mysql_query($sel2);
+                                if (!$result2) {
+                                    die('Invalid query2: ' . mysql_error());
                                 }
 
-                                if (!$numcmda) {
-                                    $qdec = "";
-                                } else {
-                                    $sel3 = "SELECT quantitat FROM comanda_linia
+                                print ('<ul class="accordion-section row">');
+
+
+                                while (list($ref, $nomprod, $unitat, $prov, $categ, $ctg_estoc, $subcat, $preu, $iva, $marge, $descompte, $pr_estoc) = mysql_fetch_row($result2)) {
+                                    //// En els productes d'estoc, apareix l'estoc ////
+                                    //// Si l'estoc es negatiu apareix en gris ////
+                                    if ($ctg_estoc == 'si') {
+                                        $rpr_estoc = round($pr_estoc, 1);
+                                        $w_estoc = "[" . $rpr_estoc . "]";
+                                        if ($pr_estoc <= 0) {
+                                            $color_cos = "color: grey;";
+                                        } else {
+                                            $color_cos = "";
+                                        }
+                                    } else {
+                                        $w_estoc = "";
+                                    }
+
+                                    if (!$numcmda) {
+                                        $qdec = "";
+                                    } else {
+                                        $sel3 = "SELECT quantitat FROM comanda_linia
 					WHERE numero='$numcmda' AND ref='$ref'";
 
-                                    $result3 = mysql_query($sel3);
-                                    if (!$result3) {
-                                        die('Invalid query3: ' . mysql_error());
-                                    }
-                                    list ($quantitat) = mysql_fetch_row($result3);
-                                    $qdec = "";
-                                    if ($quantitat != "") {
-                                        /// per veure la quantitat amb els decimals imprescindibles /////
-                                        $r2 = round($quantitat, 2) * 1000;
-                                        $r1 = round($quantitat, 1) * 1000;
-                                        $r0 = round($quantitat) * 1000;
-                                        $rb = $quantitat * 1000;
-                                        if ($rb == $r0) {
-                                            $nd = 0;
-                                        } else {
-                                            if ($rb == $r1) {
-                                                $nd = 1;
+                                        $result3 = mysql_query($sel3);
+                                        if (!$result3) {
+                                            die('Invalid query3: ' . mysql_error());
+                                        }
+                                        list ($quantitat) = mysql_fetch_row($result3);
+                                        $qdec = "";
+                                        if ($quantitat != "") {
+                                            /// per veure la quantitat amb els decimals imprescindibles /////
+                                            $r2 = round($quantitat, 2) * 1000;
+                                            $r1 = round($quantitat, 1) * 1000;
+                                            $r0 = round($quantitat) * 1000;
+                                            $rb = $quantitat * 1000;
+                                            if ($rb == $r0) {
+                                                $nd = 0;
                                             } else {
-                                                if ($rb == $r2) {
-                                                    $nd = 2;
+                                                if ($rb == $r1) {
+                                                    $nd = 1;
                                                 } else {
-                                                    $nd = 3;
+                                                    if ($rb == $r2) {
+                                                        $nd = 2;
+                                                    } else {
+                                                        $nd = 3;
+                                                    }
                                                 }
                                             }
+                                            $qdec = round($quantitat, $nd);
                                         }
-                                        $qdec = round($quantitat, $nd);
+                                        //////////////////////////////////////
                                     }
-                                    //////////////////////////////////////
-                                }
 
-                                //// càlcul del pvp ///
-                                /// inclou iva i marge, però no descompte ////
-                                $pvp = $preu * (1 + $iva) * (1 + $marge);
-                                $pvp = sprintf("%01.2f", $pvp);
+                                    //// càlcul del pvp ///
+                                    /// inclou iva i marge, però no descompte ////
+                                    $pvp = $preu * (1 + $iva) * (1 + $marge);
+                                    $pvp = sprintf("%01.2f", $pvp);
 
-                                //// si existeix un descompte apareix en vermell ////
-                                $w_desc = "";
-                                if ($descompte != 0) {
-                                    $descompte = $descompte * 100;
-                                    $w_desc = "<span > descompte:" . $descompte . "%</span>";
-                                }
+                                    //// si existeix un descompte apareix en vermell ////
+                                    $w_desc = "";
+                                    if ($descompte != 0) {
+                                        $descompte = $descompte * 100;
+                                        $w_desc = "<span > descompte:" . $descompte . "%</span>";
+                                    }
+                                    $prod = htmlentities($nomprod, null, 'utf-8');
+                                    $prodtext = str_replace("&nbsp;", " ", $prod);
+                                    $prodtext = html_entity_decode($prodtext);
 
-                                print('
+                                    print('
                 <li class="col-lg-6">
                     <div class="form-group product">
                         <label for="num' . $id . '"style="' . $color_cos . '">
-                            <span class="product-name">' . $nomprod . '</span>
+                            <span class="product-name">' . $prodtext . '</span>
                             <span class="product-price">' . $pvp . ' &#8364;/' . $unitat . '</span>
                             <span>' . $w_estoc . ' ' . $w_desc . '</span>
                         </label>
@@ -319,22 +321,25 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         <input type=hidden name="uni[]" value="' . $unitat . '">
                      </div>
                 </li>');
-                                $id++;
+                                    $id++;
+                                }
+
+                                print ('</ul>');
+                                print ('</li>');
                             }
 
-                            print ('</ul>');
-                            print ('</li>');
-                        }
+                            ?>
+                        </ul>
+                    </div>
+                    <div class="u-text-center">
+                        <button type="submit" class="button button--animated button--save" name="acceptar"
+                                id="btnComanda">
+                            Aceptar
+                        </button>
+                    </div>
 
-                        ?>
-                    </ul>
                 </form>
 
-                <div class="u-text-center">
-                    <button type="submit" class="button button--animated button--save" name="acceptar" id="btnComanda">
-                        Aceptar
-                    </button>
-                </div>
 
                 <?php
             }
