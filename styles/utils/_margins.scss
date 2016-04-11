@@ -1,0 +1,29 @@
+// ----
+// @author: Quique Fdez Guerra
+// @twitter: @CKGrafico
+// ----
+
+@mixin widthOffsetGenerator($type, $t, $size, $suffix, $jump) {
+  $offsets: '', top, left, bottom, right;
+  $off: '', t, l, b, r;
+  $max: $size/$jump;
+
+  @for $i from 0 through $max {
+    @each $offset in $offsets {
+      $o: nth($off, index($offsets, $offset));
+      $value: if($i == 0, 0, $jump * $i);
+      $uni: if($i == 0, #{''}, rem);
+      $offValue: if($o == '', #{''}, '-'+$offset);
+
+      .u-#{$t}#{$o}-#{$value}{
+        #{$type}#{$offValue}#{$suffix}: $value + $uni;
+      }
+    }
+  }
+}
+
+@mixin generateOffsets($type, $t, $size) {
+  @include widthOffsetGenerator($type, $t, $size, #{''}, 1);
+}
+
+@include generateOffsets(margin, m, 5);

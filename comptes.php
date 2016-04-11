@@ -32,27 +32,18 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     <html>
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="coope.css"/>
-        <title>lista pedidos ::: la coope</title>
-        <!-- calendar stylesheet -->
-        <link rel="stylesheet" type="text/css" media="all" href="calendar/calendar-win2k-1.css" title="win2k-1"/>
+        <?php include 'head.php'; ?>
+        <title>movimientos ::: la coope</title>
 
-        <!-- main calendar program -->
         <script type="text/javascript" src="calendar/calendar.js"></script>
-
-        <!-- language for the calendar -->
-        <script type="text/javascript" src="calendar/lang/calendar-cat.js"></script>
-
-        <!-- the following script defines the Calendar.setup helper function, which makes
-             adding a calendar a matter of 1 or 2 lines of code. -->
+        <script type="text/javascript" src="calendar/lang/calendar-es.js"></script>
         <script type="text/javascript" src="calendar/calendar-setup.js"></script>
 
     </head>
 
     <body>
     <?php include 'menu.php'; ?>
-    <div class="pagina" style="margin-top: 10px;">
+    <div class="page">
 
         <?php
         if ($gfam != "") {
@@ -77,96 +68,105 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
         }
         ?>
 
-        <div class="contenidor_1" style="border: 1px solid grey;">
-            <p class='path'>
-                ><a href='admint.php'>administraci&oacute;n</a>
-                >><a class='Estilo2' href='<?php echo $cap_link; ?>'><?php echo $cap; ?></a>
-            </p>
-            <p class="h1" style="background: black; text-align: left; padding-left: 20px;"><?php echo $title1; ?>
-            </p>
+        <div class="container">
 
-            <table width="80%" align="center">
-                <form action="<?php echo $cap_link; ?>" method="post" name="prod" id="prod">
+            <h1><?php echo $title1; ?></h1>
 
-                    <tr style="padding-top: 10px;">
-                        <td width="33%" align="center" class="form">Socio/a</td>
-                        <td width="33%" align="center" class="form">Superior a la fecha</td>
-                        <td width="33%" align="center" class="form">Inferior a la fecha</td>
-                    </tr>
-
-                    <tr style="padding-bottom: 10px;">
-                        <td align="center">
-
-                            <?php
-                            if ($gfam != "")
-                            {
-                                ?>
-                                <input type="text" value="<?php echo $gfam; ?>" name="fam" id="fam" size="10"
-                                       maxlength="30" readonly/>
+            <form action="<?php echo $cap_link; ?>" method="post" name="prod" id="prod">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="fam">Socio/a</label>
+                            <div>
                                 <?php
-                            }
-                            else
-                            {
-                            ?>
-                            <SELECT name="fam" id="fam" size="1" maxlength="30" onChange="this.form.submit()">
-                                <option value="">elegeix una familia</option>
-                                <?php
-                                $select3 = "SELECT nom FROM usuaris ORDER BY nom";
-                                $query3 = mysql_query($select3);
-                                if (!$query3) {
-                                    die('Invalid query3: ' . mysql_error());
+                                if ($gfam != "")
+                                {
+                                    ?>
+                                    <input type="text" value="<?php echo $gfam; ?>" name="fam" id="fam" size="10"
+                                           maxlength="30" readonly/>
+                                    <?php
                                 }
-                                while (list($sfam) = mysql_fetch_row($query3)) {
-                                    if ($pfam == $sfam) {
-                                        echo '<option value="' . $sfam . '" selected>' . $sfam . '</option>';
-                                        $select = "SELECT SUM(valor) AS total FROM moneder WHERE familia='" . $sfam . "'";
-                                        $query = mysql_query($select);
-                                        if (!$query) {
-                                            die('Invalid query: ' . mysql_error());
-                                        }
-                                        list($mone) = mysql_fetch_row($query);
-                                        $monea = "Monedero actual: " . $mone . "&#8364;";
-                                    } else {
-                                        echo '<option value="' . $sfam . '">' . $sfam . '</option>';
+                                else
+                                {
+                                ?>
+                                <select name="fam" id="fam" size="1" maxlength="30" onChange="this.form.submit()">
+                                    <option value="">-- Seleccionar --</option>
+                                    <?php
+                                    $select3 = "SELECT nom FROM usuaris ORDER BY nom";
+                                    $query3 = mysql_query($select3);
+                                    if (!$query3) {
+                                        die('Invalid query3: ' . mysql_error());
                                     }
-                                }
-                                }
-                                ?>
-                        </td>
-                        <td align="center">
-                            <input type="text" value="<?php echo $pdatas; ?>" name="datas" id="f_date_a" size="8"
-                                   maxlength="10" readonly/>
-                            <button type="text" name="budi" id="f_trigger_a">...</button>
-                            <button type="submit" name="okds" id="okds">ok</button>
-                            <script type="text/javascript">
-                                Calendar.setup({
-                                    inputField: "f_date_a",     // id of the input field
-                                    ifFormat: "%d/%m/%Y",     // format of the input field (even if hidden, this format will be honored)
-                                    button: "f_trigger_a",  // trigger for the calendar (button ID)
-                                    singleClick: true
-                                });
-                            </script>
-                        </td>
+                                    while (list($sfam) = mysql_fetch_row($query3)) {
+                                        if ($pfam == $sfam) {
+                                            echo '<option value="' . $sfam . '" selected>' . $sfam . '</option>';
+                                            $select = "SELECT SUM(valor) AS total FROM moneder WHERE familia='" . $sfam . "'";
+                                            $query = mysql_query($select);
+                                            if (!$query) {
+                                                die('Invalid query: ' . mysql_error());
+                                            }
+                                            list($mone) = mysql_fetch_row($query);
+                                            $monea = "Monedero actual: " . $mone . "&#8364;";
+                                        } else {
+                                            echo '<option value="' . $sfam . '">' . $sfam . '</option>';
+                                        }
+                                    }
+                                    echo '</select>';
+                                    }
+                                    ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Superior a</label>
+                            <div>
+                                <input type="text" value="<?php echo $pdatas; ?>" name="datas" id="f_date_a" size="8"
+                                       maxlength="10" readonly/>
+                                <div class="u-text-right u-mt-1">
+                                    <button type="text" name="budi" id="f_trigger_a" class="button button--calendar"></button>
+                                    <button type="submit" name="okds" id="okds" class="button button--animated">buscar</button>
+                                    <script type="text/javascript">
+                                        Calendar.setup({
+                                            inputField: "f_date_a",     // id of the input field
+                                            ifFormat: "%d/%m/%Y",     // format of the input field (even if hidden, this format will be honored)
+                                            button: "f_trigger_a",  // trigger for the calendar (button ID)
+                                            singleClick: true,
+                                            weekNumbers: false
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Inferior a</label>
+                            <div>
+                                <input type="text" value="<?php echo $pdatai; ?>" name="datai" id="f_date_b" size="8"
+                                       maxlength="10" readonly/>
+                                <div class="u-text-right u-mt-1">
+                                    <button type="text" name="budf" id="f_trigger_b"  class="button button--calendar"></button>
+                                    <button type="submit" name="okdi" id="okdi"  class="button button--animated">buscar</button>
+                                    <script type="text/javascript">
+                                        Calendar.setup({
+                                            inputField: "f_date_b",     // id of the input field
+                                            ifFormat: "%d/%m/%Y",     // format of the input field (even if hidden, this format will be honored)
+                                            button: "f_trigger_b",  // trigger for the calendar (button ID)
+                                            singleClick: true,
+                                            weekNumbers: false
+                                        });
+                                    </script>
+                                </div>
 
-                        <td align="center">
-                            <input type="text" value="<?php echo $pdatai; ?>" name="datai" id="f_date_b" size="8"
-                                   maxlength="10" readonly/>
-                            <button type="text" name="budf" id="f_trigger_b">...</button>
-                            <button type="submit" name="okdi" id="okdi">ok</button>
-                            <script type="text/javascript">
-                                Calendar.setup({
-                                    inputField: "f_date_b",     // id of the input field
-                                    ifFormat: "%d/%m/%Y",     // format of the input field (even if hidden, this format will be honored)
-                                    button: "f_trigger_b",  // trigger for the calendar (button ID)
-                                    singleClick: true
-                                });
-                            </script>
-                        </td>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                </form>
-                </tr></table>
+            </form>
 
-            <div class="contenidor_fac" style="border: 0px solid green; margin-bottom: 20px;">
+            <div class="box">
 
                 <?php
                 if ($pfam != "" OR $pdatas != "" OR $pdatai != "") {
@@ -200,11 +200,11 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                 } else {
                     $where = "";
-                    $title = "Ordernació moviments per data descendent";
+                    $title = "Movimientos ordenados por fecha descendente";
                 }
 
                 print ('<p class="h1"
-		style="background: grey; font-size:14px; text-align: left; 
+		style="background: grey; font-size:14px; text-align: left;
 		height: 20px; padding: 0px 20px;">
 		' . $title . '
 		<span style="display: inline; float: right; text-align: center; vertical-align: middle;">
@@ -214,10 +214,10 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                 print('<table width="100%" align="center" cellspading="5" cellspacing="5">
 		<tr class="cos_majus">
-		<td align="center" width="20%">FECHA</td>
-		<td align="center" width="20%">SOCIO/A</td>
-		<td align="center" width="40%">CONCEPTO</td>
-		<td align="center" width="20%">VALOR</td>');
+		<td align="center" style="font-weight: 600" width="20%">FECHA</td>
+		<td align="center" style="font-weight: 600" width="20%">SOCIO/A</td>
+		<td align="center" style="font-weight: 600" width="40%">CONCEPTO</td>
+		<td align="center" style="font-weight: 600; text-align: right" width="20%">VALOR</td>');
                 print('</tr>');
 
                 $sel = "SELECT data FROM moneder " . $where;
@@ -252,7 +252,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 				<td align="center">' . $datavis . '</td>
 				<td align="center">' . $fam . '</td>
 				<td align="center">' . $concepte . '</td>
-				<td align="center">' . $valor . '</td></tr>');
+				<td align="center" style="text-align:right;">' . $valor . '</td></tr>');
                     $k++;
                 }
 
@@ -260,7 +260,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                 if ($rnum > $cont) {
                     $id = $cont + 30;
-                    echo '<p><input class="button2" type="button" name="mes" value= "30+"
+                    echo '<p class="u-text-center"><input class="button" type="button" name="mes" value= "30+"
 		onClick="javascript:window.location = \'comptes.php?id2=' . $id . '&id4=' . $pfam . '&id5=' . $pdatas . '&id6=' . $pdatai . '\'"></p>';
                 }
 
@@ -269,7 +269,6 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             </div>
         </div>
     </div>
-    </table>
     </body>
     </html>
 

@@ -1,0 +1,11 @@
+@import '../config/variables';
+
+.alert {
+  padding: 1rem;
+  font-size: .9rem;
+}
+
+.alert--error {
+  color: #a94442;
+  background-color: #f2dede;
+}

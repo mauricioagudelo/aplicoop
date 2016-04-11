@@ -1,10 +1,13 @@
+@import "../config/variables";
+
 .login-container {
-  max-width: 300px;
+  max-width: 400px;
   margin: 0 auto;
 }
 
-.login-logo{
-  margin-bottom: 3rem;
+.login-title {
+  font-weight: 800;
+  font-size: 3rem;
 }
 
 .login-captcha {

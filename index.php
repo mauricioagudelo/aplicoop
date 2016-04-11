@@ -59,11 +59,11 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
             exit;
 
         } else {
-            $errorMessage = 'Lo sentimos, el nombre de socio/a o la plave de paso son err&oacute;neas. Prueba otra vez.';
+            $errorMessage = 'Lo sentimos, el usuario y/o password son err&oacute;neos. Prueba otra vez.';
             include 'config/disconect.php';
         }
     } else {
-        $errorMessage = 'Lo sentimos, el n&uacute;mero no es correcto. Prueba otra vez.';
+        $errorMessage = 'Lo sentimos, el captcha no es correcto. Prueba otra vez.';
     }
 }
 
@@ -78,17 +78,9 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
 <body>
 <div class="login-container">
 
-    <?php
-    if ($errorMessage != '') {
-        ?>
-        <p class="error"><?php echo $errorMessage; ?></p>
-
-        <?php
-    }
-    ?>
-
-    <div class="u-text-center login-logo">
+    <div class="u-text-center u-mb-3">
         <img class="img img--responsive" src="imatges/logo_menu.png" title="applicop">
+        <h1 class="login-title">LA COOPE</h1>
     </div>
 
     <form action="" method="post" name="frmLogin" id="frmLogin">
@@ -107,12 +99,19 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
 
             <div class="form-group">
                 <label for="txtNumber">Captcha</label>
-                <input type="number" id="txtNumber" name="txtNumber" class="form-control">
-                <div class="u-text-center">
+                <input type="number" id="txtNumber" name="txtNumber" class="form-control" autocomplete="off">
+                <div class="u-text-center u-mt-1">
                     <img class="login-captcha" src="randomImage.php">
                 </div>
-
             </div>
+
+            <?php
+            if ($errorMessage != '') {
+                ?>
+                <p class="alert alert--error"><?php echo $errorMessage; ?></p>
+                <?php
+            }
+            ?>
 
         </div>
 
@@ -124,11 +123,10 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
 
     </form>
 
-    <div class="contenidor_1" style="padding-top: 60px;">
-        <p class="cos2" style="text-align: center;">
-            Si tienes cualquier problema notif&iacute;calo <a href="incidencia.php" target="_blank">aqu&iacute;</a>
-        </p>
-    </div>
+    <p class="u-text-center u-text-smaller u-mt-3">
+        Si tienes cualquier problema notif&iacute;calo <a href="incidencia.php" target="_blank">aqu&iacute;</a>
+    </p>
+
 </div>
 </body>
 </html>

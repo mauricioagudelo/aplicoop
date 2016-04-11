@@ -1,0 +1,28 @@
+@import '../config/variables';
+
+.calendar {
+  background: $color-green;
+  padding: 0 0 .3rem;
+
+  .title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .day {
+    width: 12%;
+  }
+  .daynames > .day {
+    font-weight: 600;
+    pointer-events: none;
+  }
+  .daysrow > .day {
+    cursor: pointer;
+    &:hover {
+      color: #FFF
+    }
+  }
+  .footrow {
+    display: none;
+  }
+}
