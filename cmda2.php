@@ -113,13 +113,6 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
         <title>crear/editar pedido ::: la coope</title>
     </head>
 
-    <style type="text/css" media="print">
-        .NonPrintable {
-            display: none;
-        }
-    </style>
-
-
     <script language="javascript" type="text/javascript">
 
         function validate_form() {

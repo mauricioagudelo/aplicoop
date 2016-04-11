@@ -48,6 +48,7 @@ a {
   color: $color-link;
 
   &:hover {
+    border-bottom: 1px dotted $color-link-hover;
     color: $color-link-hover;
   }
 }
@@ -83,3 +84,4 @@ label {
   font-weight: 400;
   font-size: 1rem;
 }
+

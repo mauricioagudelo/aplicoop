@@ -2342,6 +2342,7 @@ h3 {
 a {
   color: #000000; }
   a:hover {
+    border-bottom: 1px dotted #000000;
     color: #000000; }
 
 textarea,
@@ -2408,7 +2409,7 @@ label {
     @media (min-width: 992px) {
       .navbar .navbar-nav > li > a,
       .navbar .navbar-nav > li > a:focus {
-        font-size: 0.7 0.7rem; } }
+        font-size: .7rem; } }
 
 .navbar-toggle {
   border: 0;
@@ -2592,9 +2593,24 @@ label {
 .box-subtitle {
   border-top: 1px dotted #dce7eb; }
 
+.img--responsive {
+  max-width: 100%;
+  height: auto; }
+
 /*****************************************************
 /* PAGES
 /*****************************************************/
+.login-container {
+  max-width: 300px;
+  margin: 0 auto; }
+
+.login-logo {
+  margin-bottom: 3rem; }
+
+.login-captcha {
+  width: 64px;
+  height: 32px; }
+
 /*****************************************************
 /* UTILITIES
 /*****************************************************/
