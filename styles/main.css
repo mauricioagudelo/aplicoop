@@ -2390,25 +2390,30 @@ label {
   background: #1ABC9C;
   border-bottom: 3px solid #1a1a1a; }
   .navbar .navbar-nav > li > a,
-  .navbar .navbar-nav > li > a:focus {
+  .navbar .navbar-nav > li > a:focus,
+  .navbar .navbar-nav > li > a:hover {
     color: #FFF;
     font-weight: 400;
     text-transform: uppercase;
     font-size: .9rem;
     background-color: transparent;
-    text-align: center; }
+    text-align: center;
+    border-bottom: none; }
     @media (min-width: 768px) {
       .navbar .navbar-nav > li > a,
-      .navbar .navbar-nav > li > a:focus {
+      .navbar .navbar-nav > li > a:focus,
+      .navbar .navbar-nav > li > a:hover {
         font-size: .7rem;
         color: #f4f4f4; }
         .navbar .navbar-nav > li > a:hover,
-        .navbar .navbar-nav > li > a:focus:hover {
+        .navbar .navbar-nav > li > a:focus:hover,
+        .navbar .navbar-nav > li > a:hover:hover {
           color: #FFF;
           background: inherit; } }
     @media (min-width: 992px) {
       .navbar .navbar-nav > li > a,
-      .navbar .navbar-nav > li > a:focus {
+      .navbar .navbar-nav > li > a:focus,
+      .navbar .navbar-nav > li > a:hover {
         font-size: .7rem; } }
 
 .navbar-toggle {
@@ -2451,6 +2456,25 @@ label {
 
 .navbar-date {
   font-weight: 200; }
+
+.calendar {
+  background: #1ABC9C;
+  padding: 0 0 .3rem; }
+  .calendar .title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem; }
+  .calendar .day {
+    width: 12%; }
+  .calendar .daynames > .day {
+    font-weight: 600;
+    pointer-events: none; }
+  .calendar .daysrow > .day {
+    cursor: pointer; }
+    .calendar .daysrow > .day:hover {
+      color: #FFF; }
+  .calendar .footrow {
+    display: none; }
 
 .product {
   margin-bottom: 1.1rem; }
@@ -2611,25 +2635,6 @@ label {
 .alert--error {
   color: #a94442;
   background-color: #f2dede; }
-
-.calendar {
-  background: #1ABC9C;
-  padding: 0 0 .3rem; }
-  .calendar .title {
-    text-align: center;
-    font-weight: 600;
-    font-size: 1.1rem; }
-  .calendar .day {
-    width: 12%; }
-  .calendar .daynames > .day {
-    font-weight: 600;
-    pointer-events: none; }
-  .calendar .daysrow > .day {
-    cursor: pointer; }
-    .calendar .daysrow > .day:hover {
-      color: #FFF; }
-  .calendar .footrow {
-    display: none; }
 
 /*****************************************************
 /* PAGES
