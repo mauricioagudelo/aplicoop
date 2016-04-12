@@ -31,28 +31,17 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     <html>
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="coope.css"/>
-        <title>lista de pedidos ::: la coope</title>
         <?php include 'head.php'; ?>
-        <!-- calendar stylesheet -->
-        <link rel="stylesheet" type="text/css" media="all" href="calendar/calendar-green.css" title="win2k-1"/>
-        <!-- main calendar program -->
+        <title>aplicoop - pedidos</title>
+
         <script type="text/javascript" src="calendar/calendar.js"></script>
-
-        <!-- language for the calendar -->
         <script type="text/javascript" src="calendar/lang/calendar-es.js"></script>
-
-        <!-- the following script defines the Calendar.setup helper function, which makes
-             adding a calendar a matter of 1 or 2 lines of code. -->
         <script type="text/javascript" src="calendar/calendar-setup.js"></script>
-
     </head>
-
 
     <body>
     <?php include 'menu.php'; ?>
-    <div class="pagina" style="margin-top: 10px;">
+    <div class="page">
 
         <?php
         if ($gfam != "") {
@@ -67,87 +56,107 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
         }
         ?>
 
-        <div class="contenidor_1" style="border: 1px solid green;">
-            <p class='path'>
-                ><a href='admint.php'>administració</a>
-                >><a href='<?php echo $cap_link; ?>'><?php echo $cap; ?></a>
-            </p>
-            <p class="h1" style="background: black; text-align: left; padding-left: 20px;"><?php echo $title1; ?></p>
+        <div class="container">
 
-            <table width="80%" align="center">
-                <form action="<?php echo $cap_link; ?>" method="post" name="prod" id="prod">
-                    <tr style="padding-top: 10px;">
-                        <td width="33%" align="center" class="form">Socio/a</td>
-                        <td width="33%" align="center" class="form">Superior a la fecha</td>
-                        <td width="33%" align="center" class="form">Inferior a la fecha</td>
-                    </tr>
+            <h1><?php echo $title1; ?></h1>
 
-                    <tr style="padding-bottom: 10px;">
-                        <td align="center">
 
-                            <?php
-                            if ($gfam != "")
-                            {
-                                ?>
-                                <input type="text" value="<?php echo $gfam; ?>" name="fam" id="fam" size="10"
-                                       maxlength="30" readonly/>
+            <form action="<?php echo $cap_link; ?>" method="post" name="prod" id="prod">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="fam">Socio/a</label>
+                            <div>
                                 <?php
-                            }
-                            else
-                            {
-                            ?>
-                            <SELECT name="fam" id="fam" size="1" maxlength="30" onChange="this.form.submit()">
-                                <option value="">elegir un socio/a - familia</option>
-                                <?php
-                                $select3 = "SELECT nom FROM usuaris ORDER BY nom";
-                                $query3 = mysql_query($select3);
-                                if (!$query3) {
-                                    die('Invalid query3: ' . mysql_error());
+                                if ($gfam != "")
+                                {
+                                    ?>
+                                    <input type="text" value="<?php echo $gfam; ?>" name="fam" id="fam" size="10"
+                                           maxlength="30" readonly/>
+                                    <?php
                                 }
-                                while (list($sfam) = mysql_fetch_row($query3)) {
-                                    if ($pfam == $sfam) {
-                                        echo '<option value="' . $sfam . '" selected>' . $sfam . '</option>';
-                                    } else {
-                                        echo '<option value="' . $sfam . '">' . $sfam . '</option>';
+                                else
+                                {
+                                ?>
+                                <SELECT name="fam" id="fam" size="1" maxlength="30" onChange="this.form.submit()">
+                                    <option value="">-- Seleccionar --</option>
+                                    <?php
+                                    $select3 = "SELECT nom FROM usuaris ORDER BY nom";
+                                    $query3 = mysql_query($select3);
+                                    if (!$query3) {
+                                        die('Invalid query3: ' . mysql_error());
                                     }
-                                }
-                                }
-                                ?>
-                        </td>
-                        <td align="center">
-                            <input type="text" value="<?php echo $pdatas; ?>" name="datas" id="f_date_a" size="8"
-                                   maxlength="10" readonly/>
-                            <button type="text" name="budi" id="f_trigger_a">...</button>
-                            <button type="submit" name="okds" id="okds">ok</button>
-                            <script type="text/javascript">
-                                Calendar.setup({
-                                    inputField: "f_date_a",     // id of the input field
-                                    ifFormat: "%d/%m/%Y",     // format of the input field (even if hidden, this format will be honored)
-                                    button: "f_trigger_a",  // trigger for the calendar (button ID)
-                                    singleClick: true
-                                });
-                            </script>
-                        </td>
+                                    while (list($sfam) = mysql_fetch_row($query3)) {
+                                        if ($pfam == $sfam) {
+                                            echo '<option value="' . $sfam . '" selected>' . $sfam . '</option>';
+                                        } else {
+                                            echo '<option value="' . $sfam . '">' . $sfam . '</option>';
+                                        }
+                                    }
+                                    echo '</select>';
+                                    }
+                                    ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="fam">Superior a</label>
+                            <div>
+                                <input type="text" value="<?php echo $pdatas; ?>" name="datas" id="f_date_a"
+                                       size="8"
+                                       maxlength="10" readonly/>
+                                <div class="u-text-right u-mt-1">
+                                    <button type="text" name="budi" id="f_trigger_a"
+                                            class="button button--calendar"></button>
+                                    <button type="submit" name="okds" id="okds" class="button button--animated">
+                                        buscar
+                                    </button>
+                                    <script type="text/javascript">
+                                        Calendar.setup({
+                                            inputField: "f_date_a",     // id of the input field
+                                            ifFormat: "%d/%m/%Y",     // format of the input field (even if hidden, this format will be honored)
+                                            button: "f_trigger_a",  // trigger for the calendar (button ID)
+                                            singleClick: true,
+                                            weekNumbers: false
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="fam">Inferior </label>
+                            <div>
+                                <input type="text" value="<?php echo $pdatai; ?>" name="datai" id="f_date_b"
+                                       size="8"
+                                       maxlength="10" readonly/>
+                                <div class="u-text-right u-mt-1">
+                                    <button type="text" name="budf" id="f_trigger_b"
+                                            class="button button--calendar"></button>
+                                    <button type="submit" name="okdi" id="okdi" class="button button--animated">
+                                        buscar
+                                    </button>
+                                    <script type="text/javascript">
+                                        Calendar.setup({
+                                            inputField: "f_date_b",     // id of the input field
+                                            ifFormat: "%d/%m/%Y",     // format of the input field (even if hidden, this format will be honored)
+                                            button: "f_trigger_b",  // trigger for the calendar (button ID)
+                                            singleClick: true,
+                                            weekNumbers: false
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
 
-                        <td align="center">
-                            <input type="text" value="<?php echo $pdatai; ?>" name="datai" id="f_date_b" size="8"
-                                   maxlength="10" readonly/>
-                            <button type="text" name="budf" id="f_trigger_b">...</button>
-                            <button type="submit" name="okdi" id="okdi">ok</button>
-                            <script type="text/javascript">
-                                Calendar.setup({
-                                    inputField: "f_date_b",     // id of the input field
-                                    ifFormat: "%d/%m/%Y",     // format of the input field (even if hidden, this format will be honored)
-                                    button: "f_trigger_b",  // trigger for the calendar (button ID)
-                                    singleClick: true
-                                });
-                            </script>
-                        </td>
-                </form>
-                </tr></table>
 
-
-            <div class="contenidor_fac" style="border: 0px solid green;">
+            <div class="box">
 
                 <?php
                 if ($pfam != "" OR $pdatas != "" OR $pdatai != "") {
@@ -180,27 +189,30 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     }
                 } else {
                     $where = "";
-                    $title = "Ordernació per numero de comanda descendent";
+                    $title = "Ordernado por número de comanda descendente";
                 }
 
-                print ('<p class="h1"
-		style="background: green; font-size:14px; text-align: left; 
-		height: 20px; padding-left: 20px;">
-		' . $title . '
-		</p>');
+                print ('
+        <div class="alert alert--info clearfix u-mb-1">
+            <span>' . $title . '</span>
+		</div>');
 
-                print('<table width="100%" align="center" cellspading="5" cellspacing="5" >
-		<tr class="cos_majus"><td align="center" width="10%">NUMERO</td>
-		<td align="center" width="15%">USUARI</td>
-		<td align="center" width="15%">PROCES-GRUP</td>
-		<td align="center" width="10%">DATA recollida/fi periode</td>');
 
-                print ('<td align="center" width="10%">FACTURA</td>
-		<td align="center" width="10%">DATA cistella</td>
-		<td align="center" width="10%">VALIDA FAMILIA</td>
-		<td align="center" width="10%">VALIDA ECONOMIA</td>');
+                print('
+            <div class="table-responsive ">
+                <table class="table table-condensed table-striped">
+                    <tr>
+                        <td style="font-weight: 600" width="5%">Nº</td>
+                        <td style="font-weight: 600" width="20%">USUARIO</td>
+                        <td style="font-weight: 600" width="20%">FECHA RECOGIDA / FIN PERIODO</td>
+                        <td style="font-weight: 600" width="20%">FACTURA</td>
+                        <td style="font-weight: 600" width="15%">FECHA CESTA</td>
+                        <td style="font-weight: 600" width="10%">VALIDO FAMILIA</td>
+                        <td style="font-weight: 600" width="10%">VALIDO ECONOMIA</td>
+                    </tr>
+                 ');
 
-                print('</tr>');
+
 
                 $sel = "SELECT numero FROM comanda " . $where;
                 $result = mysql_query($sel);
@@ -232,19 +244,22 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     $data_c = explode("-", $data2);
                     $data_c_vis = $data_c[2] . '-' . $data_c[1] . '-' . $data_c[0];
                     if ($data_c_vis == "00/00/0000") $data_c_vis = "";
-                    print('<tr class="cos">
-				<td align="center"><a href="cmda2.php?id=' . $proces . '&id2=' . $numero . '&id4=vis">' . $numero . '</a></td>
-				<td align="center">' . $fam . '</td>
-				<td align="center">' . $proces . '-' . $grup . '</td>
-				<td align="center">' . $datavis . '</td>');
+                    print('
+                <tr>
+                    <td>
+                        <a href="cmda2.php?id=' . $proces . '&id2=' . $numero . '&id4=vis">' . $numero . '</a>
+                    </td>
+                    <td>' . $fam . '</td>
+                    <td>' . $datavis . '</td>
+                   ');
 
                     $accept0 = "";
                     $accept1 = "";
                     $accept2 = "";
                     if ($check0 == 0) {
-                        $accept0 = "Pendent";
+                        $accept0 = "Pendiente";
                     } else {
-                        $accept0 = '<a href="factura.php?id=' . $numero . '">veure</a>';
+                        $accept0 = '<a href="factura.php?id=' . $numero . '">ver</a>';
                         if ($check1 == '0') {
                             if ($fam == $user) {
                                 //$accept1="<a href='factura.php?id=".$numero."&id2=".$report0."&id3=1'>validar</a>";
@@ -254,25 +269,28 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         } else {
                             $accept1 = "ok";
                             if ($check2 == '0') {
-                                $accept2 = "Pendent";
+                                $accept2 = "Pendiente";
                             } else {
                                 $accept2 = "ok";
                             }
                         }
                     }
-                    print('<td align="center">' . $accept0 . '</td>
-				<td align="center">' . $data_c_vis . '</td>
-				<td align="center">' . $accept1 . '</td>
-				<td align="center">' . $accept2 . '</td></tr>');
+                    print('
+                        <td>' . $accept0 . '</td>
+                        <td>' . $data_c_vis . '</td>
+                        <td>' . $accept1 . '</td>
+                        <td>' . $accept2 . '</td>
+                    </tr>
+				    ');
                     $k++;
                 }
-                print ('</table></div></div>');
+                print ('</table></div>');
 
                 if ($rnum > $cont) {
                     $id = $cont + 30;
-                    echo '<p><input class="button2" type="button" name="mes" value= "30+"
+                    echo '<div class="u-text-center"><input class="button" type="button" name="mes" value= "30+"
 			onClick="javascript:window.location = \'comandes.php?id2=' . $id . '&id4=' . $pfam . '&id5=' . $pdatas . '&id6=' . $pdatai . '\'">
-			</p>';
+			</div>';
                 }
 
                 ?>

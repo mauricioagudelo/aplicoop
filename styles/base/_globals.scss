@@ -47,7 +47,7 @@ h3 {
 a {
   color: $color-link;
 
-  &:hover {
+  &:hover:not(.button) {
     border-bottom: 1px dotted $color-link-hover;
     color: $color-link-hover;
   }

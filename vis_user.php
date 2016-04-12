@@ -25,95 +25,87 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     <html>
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="coope.css"/>
-        <title>visualitzar ficha de socio/a ::: la coope</title>
+        <?php include 'head.php'; ?>
+        <title>aplicoop - ficha</title>
     </head>
 
     <body>
     <?php include 'menu.php'; ?>
 
-    <div class="pagina" style="margin-top: 10px;">
-        <div class="contenidor_1" style="border: 1px solid orange;">
+    <div class="page">
+        <div class="container">
 
-            <p class='path'>
-                ><a href='admint.php'>administraci&oacute;n</a>
-                >><a href='families.php'>listado socios/as</a>
-                >>><a href='vis_user.php?id=<?php echo $nom; ?>'>ver socio/a <?php echo $supernom; ?></a>
-            </p>
-            <p class="h1" style="background: black; text-align: left; padding-left: 20px;">
-                Ver Socio/a: <?php echo $nom; ?>
-            </p>
+            <h1>Ver Socio/a: <?php echo $nom; ?></h1>
 
-            <div class="contenidor_fac" style=" width:500px; border: 1px solid orange; margin-bottom:20px;">
+            <div class="box">
 
-                <table style="padding: 10px;" width="100%" align="center" cellspading="5" cellspacing="5">
+                <table class="table table-striped">
                     <tr class="cos_majus">
-                        <td>Nombre:</td>
-                        <td style="color:grey;"><?php echo $nom; ?></td>
-                    </tr>
-                    <tr class="cos_majus">
-                        <td>D&iacute;a de recogida:</td>
-                        <td style="color:grey;"><?php echo $dia; ?></td>
+                        <td width="40%" class="u-text-semibold u-text-right u-text-right">Nombre:</td>
+                        <td width="60%"  ><?php echo $nom; ?></td>
                     </tr>
                     <tr class="cos_majus">
-                        <td>Componentes:</td>
-                        <td style="color:grey;"><?php echo $components; ?></td>
+                        <td class="u-text-semibold u-text-right">D&iacute;a de recogida:</td>
+                        <td ><?php echo $dia; ?></td>
                     </tr>
                     <tr class="cos_majus">
-                        <td>Tel&eacute;fono principal:</td>
-                        <td style="color:grey;"><?php echo $tel1; ?></td>
+                        <td class="u-text-semibold u-text-right">Componentes:</td>
+                        <td ><?php echo $components; ?></td>
                     </tr>
                     <tr class="cos_majus">
-                        <td>Tel&eacute;fono alternativo:</td>
-                        <td style="color:grey;"><?php echo $tel2; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="cos_majus">e-mail principal:</td>
-                        <td class="cos" style="color:grey;"><?php echo $email1; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="cos_majus">e-mail alternativo:</td>
-                        <td class="cos" style="color:grey;"><?php echo $email2; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="cos_majus">Nombre para la factura:</td>
-                        <td class="cos" style="color:grey;"><?php echo $nomf; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="cos_majus">Direcci&oacute;n para la factura:</td>
-                        <td class="cos" style="color:grey;"><?php echo $adressf; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="cos_majus">NIF para la factura:</td>
-                        <td class="cos" style="color:grey;"><?php echo $niff; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="cos_majus">Comentarios:</td>
-                        <td class="cos" style="color:grey;"><?php echo $nota; ?></td>
+                        <td class="u-text-semibold u-text-right">Tel&eacute;fono principal:</td>
+                        <td ><?php echo $tel1; ?></td>
                     </tr>
                     <tr class="cos_majus">
+                        <td class="u-text-semibold u-text-right">Tel&eacute;fono alternativo:</td>
+                        <td ><?php echo $tel2; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="u-text-semibold u-text-right">e-mail principal:</td>
+                        <td class="cos" ><?php echo $email1; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="u-text-semibold u-text-right">e-mail alternativo:</td>
+                        <td class="cos" ><?php echo $email2; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="u-text-semibold u-text-right">Nombre para la factura:</td>
+                        <td class="cos" ><?php echo $nomf; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="u-text-semibold u-text-right">Direcci&oacute;n para la factura:</td>
+                        <td class="cos" ><?php echo $adressf; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="u-text-semibold u-text-right">NIF para la factura:</td>
+                        <td class="cos" ><?php echo $niff; ?></td>
+                    </tr>
+                    <tr>
+                        <td class="u-text-semibold u-text-right">Comentarios:</td>
+                        <td class="cos" ><?php echo $nota; ?></td>
+                    </tr>
+                    <tr class="u-text-semibold u-text-right">
                         <td>Permisos:</td>
-                        <td style="color:grey;"><?php echo $tip; ?></td>
+                        <td ><?php echo $tip; ?></td>
                     </tr>
                 </table>
 
-                <?php
-                if ($nom == $user) {
 
-                    ?>
-
-                    <p class="linia_button2" style="background: orange; text-align: center; vertical-align: middle;">
-                        <input class="button2" type="button" value="EDITAR"
-                               onClick="javascript:window.location = 'editdadesp.php';">
-                        <input class="button2" type="button" value="SALIR" onClick="javascript:history.go(-1);">
-                    </p>
-
-                    <?php
-                }
-                ?>
 
             </div>
+
+            <?php
+            if ($nom == $user) {
+
+                ?>
+
+                <div class="u-text-center">
+                    <button class="button button--animated" onClick="javascript:window.location = 'editdadesp.php';">editar</button>
+                </div>
+
+                <?php
+            }
+            ?>
         </div>
     </div>
     </body>

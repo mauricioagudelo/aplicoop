@@ -33,7 +33,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     <html>
     <head>
         <?php include 'head.php'; ?>
-        <title>movimientos ::: la coope</title>
+        <title>aplicoop - mis cuentas</title>
 
         <script type="text/javascript" src="calendar/calendar.js"></script>
         <script type="text/javascript" src="calendar/lang/calendar-es.js"></script>
@@ -124,8 +124,10 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 <input type="text" value="<?php echo $pdatas; ?>" name="datas" id="f_date_a" size="8"
                                        maxlength="10" readonly/>
                                 <div class="u-text-right u-mt-1">
-                                    <button type="text" name="budi" id="f_trigger_a" class="button button--calendar"></button>
-                                    <button type="submit" name="okds" id="okds" class="button button--animated">buscar</button>
+                                    <button type="text" name="budi" id="f_trigger_a"
+                                            class="button button--calendar"></button>
+                                    <button type="submit" name="okds" id="okds" class="button button--animated">buscar
+                                    </button>
                                     <script type="text/javascript">
                                         Calendar.setup({
                                             inputField: "f_date_a",     // id of the input field
@@ -146,8 +148,10 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 <input type="text" value="<?php echo $pdatai; ?>" name="datai" id="f_date_b" size="8"
                                        maxlength="10" readonly/>
                                 <div class="u-text-right u-mt-1">
-                                    <button type="text" name="budf" id="f_trigger_b"  class="button button--calendar"></button>
-                                    <button type="submit" name="okdi" id="okdi"  class="button button--animated">buscar</button>
+                                    <button type="text" name="budf" id="f_trigger_b"
+                                            class="button button--calendar"></button>
+                                    <button type="submit" name="okdi" id="okdi" class="button button--animated">buscar
+                                    </button>
                                     <script type="text/javascript">
                                         Calendar.setup({
                                             inputField: "f_date_b",     // id of the input field
@@ -203,21 +207,19 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     $title = "Movimientos ordenados por fecha descendente";
                 }
 
-                print ('<p class="h1"
-		style="background: grey; font-size:14px; text-align: left;
-		 padding: .5rem">
-		' . $title . '
-		<span style="display: inline; float: right; text-align: center; vertical-align: middle;">
-		' . $monea . '
-		</span>
-		</p>');
+                print ('
+        <div class="alert alert--info clearfix u-mb-1">
+            <span class="pull-left">' . $title . '</span>
+            <span class="pull-right" style="text-align: right;">' . $monea . '	</span>
+		</div>');
 
-                print('<table width="100%" align="center" cellspading="5" cellspacing="5">
-		<tr class="cos_majus">
-		<td align="center" style="font-weight: 600" width="20%">FECHA</td>
-		<td align="center" style="font-weight: 600" width="20%">SOCIO/A</td>
-		<td align="center" style="font-weight: 600" width="40%">CONCEPTO</td>
-		<td align="center" style="font-weight: 600; text-align: right" width="20%">VALOR</td>');
+                print('<div class="table-responsive ">
+        <table class="table table-condensed">
+		<tr>
+		<td style="font-weight: 600" width="20%">FECHA</td>
+		<td style="font-weight: 600" width="20%">SOCIO/A</td>
+		<td style="font-weight: 600" width="40%">CONCEPTO</td>
+		<td style="font-weight: 600; text-align: right" width="20%">VALOR</td>');
                 print('</tr>');
 
                 $sel = "SELECT data FROM moneder " . $where;
@@ -246,22 +248,22 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     if ($valor > 0) {
                         $colin = "";
                     } else {
-                        $colin = "style='color: red;'";
+                        $colin = " class='danger' ";
                     }
-                    print('<tr class="cos"' . $colin . '>
-				<td align="center"  style="border-bottom: 1px solid">' . $datavis . '</td>
-				<td align="center"  style="border-bottom: 1px solid">' . $fam . '</td>
-				<td align="center"  style="border-bottom: 1px solid">' . $concepte . '</td>
-				<td align="center" style="text-align:right;border-bottom: 1px solid">' . $valor . '</td></tr>');
+                    print('<tr' . $colin . '>
+				<td>' . $datavis . '</td>
+				<td>' . $fam . '</td>
+				<td>' . $concepte . '</td>
+				<td style="text-align:right">' . $valor . '</td></tr>');
                     $k++;
                 }
 
-                echo "</table>";
+                echo "</table></div>";
 
                 if ($rnum > $cont) {
                     $id = $cont + 30;
-                    echo '<p class="u-text-center"><input class="button" type="button" name="mes" value= "30+"
-		onClick="javascript:window.location = \'comptes.php?id2=' . $id . '&id4=' . $pfam . '&id5=' . $pdatas . '&id6=' . $pdatai . '\'"></p>';
+                    echo '<div class="u-text-center"><input class="button" type="button" name="mes" value= "30+"
+		onClick="javascript:window.location = \'comptes.php?id2=' . $id . '&id4=' . $pfam . '&id5=' . $pdatas . '&id6=' . $pdatai . '\'"></div>';
                 }
 
 

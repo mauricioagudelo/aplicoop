@@ -71,7 +71,7 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
 
 <html>
 <head>
-    <title>login ::: la coope</title>
+    <title>aplicoop - login</title>
     <?php include 'head.php'; ?>
 </head>
 
@@ -80,7 +80,7 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
 
     <div class="u-text-center u-mb-3">
         <img class="img img--responsive" src="imatges/logo_menu.png" title="applicop">
-        <h1 class="login-title">LA COOPE</h1>
+        <h1 class="login-title">APLICOOP</h1>
     </div>
 
     <form action="" method="post" name="frmLogin" id="frmLogin">

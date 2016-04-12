@@ -46,6 +46,9 @@ $navbar-color-black: #1a1a1a;
 
 .navbar-logo {
   height: $header-height;
+  &:hover {
+    border: none;
+  }
   > img {
     height: 100%;
     width: auto;

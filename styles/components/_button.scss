@@ -16,6 +16,8 @@ $button-default-border-color: $color-border;
   border-radius: $border-radius;
   padding: .3rem 1.2rem;
   position: relative;
+  z-index: 1;
+
   &,
   &:active,
   &.active {
@@ -43,6 +45,7 @@ $button-default-border-color: $color-border;
     cursor: not-allowed;
     opacity: .65;
   }
+
 }
 
 .button--animated {
