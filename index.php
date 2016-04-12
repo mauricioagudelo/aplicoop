@@ -76,7 +76,7 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
 </head>
 
 <body>
-<div class="login-container">
+<div class="login-container page">
 
     <div class="u-text-center u-mb-3">
         <img class="img img--responsive" src="imatges/logo_menu.png" title="applicop">

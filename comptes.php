@@ -205,7 +205,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                 print ('<p class="h1"
 		style="background: grey; font-size:14px; text-align: left;
-		height: 20px; padding: 0px 20px;">
+		 padding: .5rem">
 		' . $title . '
 		<span style="display: inline; float: right; text-align: center; vertical-align: middle;">
 		' . $monea . '
@@ -248,11 +248,11 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     } else {
                         $colin = "style='color: red;'";
                     }
-                    print('<tr class="cos" ' . $colin . '>
-				<td align="center">' . $datavis . '</td>
-				<td align="center">' . $fam . '</td>
-				<td align="center">' . $concepte . '</td>
-				<td align="center" style="text-align:right;">' . $valor . '</td></tr>');
+                    print('<tr class="cos"' . $colin . '>
+				<td align="center"  style="border-bottom: 1px solid">' . $datavis . '</td>
+				<td align="center"  style="border-bottom: 1px solid">' . $fam . '</td>
+				<td align="center"  style="border-bottom: 1px solid">' . $concepte . '</td>
+				<td align="center" style="text-align:right;border-bottom: 1px solid">' . $valor . '</td></tr>');
                     $k++;
                 }
 
