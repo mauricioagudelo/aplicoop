@@ -259,9 +259,9 @@ if (!$result6) {
     die('Invalid query6: ' . mysql_error());
 }
 list($moneder) = mysql_fetch_row($result6);
-$style = "color: black;";
+$style = 'style="color: black;"';
 if ($moneder <= 0) {
-    $style = 'style="text-decoration: blink; color: red;"';
+    $style = 'style="color: red;"';
 }
 
 //darrers moviments //
@@ -332,9 +332,9 @@ while (list($from, $to, $sub, $tex, $datac, $vis) = mysql_fetch_row($result5)) {
             </div>
             <div class="col-md-6">
                 <div class="box">
-                    <h2 class="box-title">Monedero <span <?php echo $style . ">** " . $moneder; ?>**</span></h2>
+                    <h2 class="box-title clearfix">Monedero <span class="pull-right" <?php echo $style . ">** " . $moneder; ?> **</span></h2>
 
-                    <h3 class="box-subtitle">
+                    <h3 class="u-mb-1 u-mt-1">
                         &Uacute;ltimos movimientos contabilizados
                     </h3>
                     <table class="table table-striped"><?php echo $last; ?></table>

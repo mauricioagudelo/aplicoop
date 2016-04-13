@@ -119,51 +119,16 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>Superior a</label>
-                            <div>
-                                <input type="text" value="<?php echo $pdatas; ?>" name="datas" id="f_date_a" size="8"
-                                       maxlength="10" readonly/>
-                                <div class="u-text-right u-mt-1">
-                                    <button type="text" name="budi" id="f_trigger_a"
-                                            class="button button--calendar"></button>
-                                    <button type="submit" name="okds" id="okds" class="button button--animated">buscar
-                                    </button>
-                                    <script type="text/javascript">
-                                        Calendar.setup({
-                                            inputField: "f_date_a",     // id of the input field
-                                            ifFormat: "%d/%m/%Y",     // format of the input field (even if hidden, this format will be honored)
-                                            button: "f_trigger_a",  // trigger for the calendar (button ID)
-                                            singleClick: true,
-                                            weekNumbers: false
-                                        });
-                                    </script>
-                                </div>
-                            </div>
+                            <label for="f_date_a">Superior a</label>
+                            <input type="date" value="<?php echo $pdatas; ?>" name="datas" id="f_date_a"
+                                   onChange="this.form.submit()" placeholder="dd/mm/aaaa"/>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>Inferior a</label>
-                            <div>
-                                <input type="text" value="<?php echo $pdatai; ?>" name="datai" id="f_date_b" size="8"
-                                       maxlength="10" readonly/>
-                                <div class="u-text-right u-mt-1">
-                                    <button type="text" name="budf" id="f_trigger_b"
-                                            class="button button--calendar"></button>
-                                    <button type="submit" name="okdi" id="okdi" class="button button--animated">buscar
-                                    </button>
-                                    <script type="text/javascript">
-                                        Calendar.setup({
-                                            inputField: "f_date_b",     // id of the input field
-                                            ifFormat: "%d/%m/%Y",     // format of the input field (even if hidden, this format will be honored)
-                                            button: "f_trigger_b",  // trigger for the calendar (button ID)
-                                            singleClick: true,
-                                            weekNumbers: false
-                                        });
-                                    </script>
-                                </div>
-
-                            </div>
+                            <label for="f_date_b">Inferior a</label>
+                            <input type="date" value="<?php echo $pdatai; ?>" name="datai" id="f_date_b"
+                                   onChange="this.form.submit()" placeholder="dd/mm/aaaa"/>
                         </div>
                     </div>
                 </div>
