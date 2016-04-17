@@ -452,7 +452,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     /// o la data de recollida si és un procés continu setmanal ///
                     $query2 = "INSERT INTO `comanda` ( `usuari` , `proces`, `grup`, `sessionid` , `data` )
 				VALUES ('$user', '$proces', '$grup', '$sessionid', '$bd_data')";
-                    mysql_query($query2) or die('Error, insert query2 failed');
+                    mysql_query($query2) or die('Error, insert query2 failed. Values=>[user: '.$user.', proces:'.$proces.', grup:'.$grup.', sessionid:'.$sessionid.', $bd_data:'.$bd_data.']');
                     $numcmda = mysql_insert_id();
                     $ver_datase = date("d-m-Y");
                     $notescmda = "";
