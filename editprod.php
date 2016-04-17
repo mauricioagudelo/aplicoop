@@ -51,9 +51,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     <html>
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="coope.css"/>
-        <title>crear-editar nou producte ::: la coope</title>
+        <?php include 'head.php'; ?>
+        <title>aplicoop - editar producto</title>
 
         <script language="javascript" type="text/javascript">
 
@@ -258,18 +257,18 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     /// Si no existeix anem a CREAR///
 
     $supernom = strtoupper($gnom);
-    $head3 = " >>><a href='editprod.php?id=" . $gref . "'>editar producte " . $gnom . "</a>";
-    $tit = '<p class="h1" style="background: #990000; text-align: left; padding-left: 20px;">Editar producte ' . $supernom . '</p>';
+    $head3 = " >>><a href='editprod.php?id=" . $gref . "'>Editar producto " . $gnom . "</a>";
+    $tit = 'Editar producto ' . $supernom;
     $subtit = 'Per editar un producte realitza els canvis en la fitxa i clica el botó GUARDAR
 	al final per fer-los efectius. Per eliminar un producte clica el boto ELIMINAR.';
     $formact = "editprod.php?id=" . $gref . "&id2=" . $gprov . "&id3=edit";
     $width = "50%";
-    $buteli = '<p class="linia_button2" style="background: #990000; text-align: center; vertical-align: middle;">
-				<input class="button2" type="submit" value="GUARDAR">
-				<input class="button2" name="eliminar" type="button" id="eliminar" value="ELIMINAR" 
+    $buteli = '<div class="u-text-center u-mt-1">
+				<button class="button button--animated button--save" type="submit">Guardar</button>
+				<button class="button button--animated" name="eliminar"  id="eliminar"
      			onClick="var answer = confirm (\'Estas segur de borrar aquest producte!!\')
 				if (answer)
-					{window.location=\'editprod.php?id=' . $gref . '&id3=elim\'}"></p>';
+					{window.location=\'editprod.php?id=' . $gref . '&id3=elim\'}">Eliminar</button></div>';
     if (!$gref) {
         $supernom = strtoupper($pnom);
         $head3 = ">>><a href='editprod.php'>crear nou producte</a>";
@@ -277,23 +276,16 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
         $subtit = 'Per crear un nou producte omple el formulari i clica el botó GUARDAR al final.';
         $formact = "editprod.php?id3=create";
         $width = "100%";
-        $buteli = '<p class="linia_button2" style="background: #990000; padding:4px 0px;
-					height: 20px; text-align: center; vertical-align: middle;">
-					<input class="button2" type="submit" value="GUARDAR"></p>';
+        $buteli = '<div class="u-text-center u-mt-1">
+					<button class="button button--animated button--save" type="submit">Guardar</button></div>';
     }
     ?>
 
     <body>
     <?php include 'menu.php'; ?>
-    <div class="pagina" style="margin-top: 10px;">
-        <div class="contenidor_1" style="border: 1px solid #990000;">
-            <p class='path'>
-                ><a href='admint.php'>administració</a>
-                >><a class='Estilo2' href='productes.php'>editar, crear, eliminar productes</a>
-                <?php echo $head3; ?>
-            </p>
-
-            <?php echo $tit; ?>
+    <div class="page">
+        <div class="container">
+            <h1><?php echo $tit; ?></h1>
 
             <?php
 
@@ -441,8 +433,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
             ?>
 
-            <div class="contenidor_fac" style=" border: 1px solid #990000; margin-bottom:20px;">
-                <table width="80%" align="center">
+            <div class="box">
+                <table align="center" style="border-collapse: collapse;">
                     <form action="<?php echo $formact; ?>" method="post" name="nouprod" id="nouprod"
                           onSubmit="return Validate();">
 
@@ -455,7 +447,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         </tr>
 
                         <tr>
-                            <td class="cos_majus">Nom:</td>
+                            <td class="cos_majus">Nombre:</td>
                             <td class="cos_majus"><input align="right" name="nom" id="nom" type="TEXT" maxlength="50"
                                                          size="50"
                                                          value="<?php echo $nom; ?>" <?php echo $readonly; ?>>
@@ -463,12 +455,12 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         </tr>
 
                         <tr>
-                            <td class="cos_majus">Unitat:</td>
+                            <td class="cos_majus">Unidades:</td>
                             <td><input align="right" name="unitat" id="unitat" type="TEXT" maxlength="20" size="5"
                                        value="<?php echo $unitat; ?>"></td>
                         </tr>
                         <tr>
-                            <td class="cos_majus">Proveidora:</td>
+                            <td class="cos_majus">Proveedor:</td>
 
                             <?php
                             if ($gprov != "") {
@@ -491,7 +483,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         </tr>
 
                         <tr>
-                            <td class="cos_majus">Categoria:</td>
+                            <td class="cos_majus">Categoría:</td>
                             <td><SELECT id="tipus" name="tipus" size="1" maxlenght="30"
                                         onChange="javascript: dropdownlist(this.options[this.selectedIndex].value);">
                                     <option value="">elegeix categoria</option>
@@ -529,7 +521,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         </tr>
 
                         <tr>
-                            <td class="cos_majus">Actiu:</td>
+                            <td class="cos_majus">Activo:</td>
 
                             <?php
                             $checked1 = 'checked';
@@ -546,14 +538,14 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         </tr>
 
                         <tr>
-                            <td class="cos_majus">Preu sense iva:</td>
+                            <td class="cos_majus">Precio sin IVA:</td>
                             <td><input align="right" name="preusi" id="preusi" type="TEXT" maxlength="7" size="5"
                                        value="<?php echo $preusi; ?>">
                             </td>
                         </tr>
 
                         <tr>
-                            <td class="cos_majus">Iva:</td>
+                            <td class="cos_majus">IVA:</td>
                             <td><SELECT name="iva" id="iva" size="1" maxlenght="3">
 
                                     <?php
@@ -585,16 +577,16 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         ?>
 
                         <tr>
-                            <td class="cos_majus">Marge:</td>
+                            <td class="cos_majus">Marge (%):</td>
                             <td><input align="right" name="marge" id="marge" type="TEXT" maxlength="7" size="5"
-                                       value="<?php echo $marge; ?>">%
+                                       value="<?php echo $marge; ?>">
                             </td>
                         </tr>
 
                         <tr>
-                            <td class="cos_majus">Descompte:</td>
+                            <td class="cos_majus">Descuento (%):</td>
                             <td><input align="right" name="descompte" id="descompte" type="TEXT" maxlength="7" size="5"
-                                       value="<?php echo $descompte; ?>">%
+                                       value="<?php echo $descompte; ?>">
                             </td>
                         </tr>
 
@@ -602,7 +594,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         if ($estoc != "") {
                             ?>
                             <tr>
-                                <td class="cos_majus">Estoc:</td>
+                                <td class="cos_majus">Stock:</td>
                                 <td><input align="right" name="estoc" id="estoc" type="TEXT" maxlength="7"
                                            size="5" value="<?php echo $estoc; ?>" readonly>
                                 </td>
@@ -612,7 +604,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         ?>
 
                         <tr>
-                            <td class="cos_majus">Comentaris:</td>
+                            <td class="cos_majus">Comentarios:</td>
                             <td><input align="right" name="notes" id="notes" type="TEXT" maxlength="255" size="35"
                                        value="<?php echo $notes; ?>">
                             </td>
@@ -620,11 +612,13 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 </table>
 
                 <?php echo $buteli; ?>
+
+                <p class="alert alert--info">
+                    <?php echo $subtit; ?>
+                </p>
             </div>
 
-            <p class="cos2" style="clear: both; text-align: center; padding: 0px 100px;">
-                <?php echo $subtit; ?>
-            </p>
+
         </div>
     </div>
     </body>

@@ -34,6 +34,8 @@ $button-default-border-color: $color-border;
   &:focus,
   &.focus {
     text-decoration: none;
+    color: darken($button-default-border-color, 20%);
+    border-color: darken($button-default-border-color, 20%);
   }
 
   &:active,

@@ -16,7 +16,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     <html>
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <?php include 'head.php'; ?>
         <link rel="stylesheet" type="text/css" href="coope.css"/>
         <title>estadística de consum de productes ::: la coope</title>
         <!-- calendar stylesheet -->

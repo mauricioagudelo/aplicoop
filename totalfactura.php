@@ -19,7 +19,7 @@ $bd_data=date("Y-m-d", strtotime ($data));
 
 <html>
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" >
+		<?php include 'head.php'; ?>
 		<link rel="stylesheet" type="text/css" href="coope.css" />
 		<title>total factura x proveïdors amb o sense estoc ::: la coope</title>
 		<style type="text/css">
@@ -30,7 +30,7 @@ $bd_data=date("Y-m-d", strtotime ($data));
 </head>
 
 <body>
-
+<?php include 'menu.php'; ?>
 <div class="pagina" style="margin-top: 10px;">
 
 <div class="contenidor_1" style="border: 1px solid green;">

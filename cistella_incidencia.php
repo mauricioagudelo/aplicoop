@@ -163,7 +163,7 @@ if ($_SESSION['image_is_logged_in']) {
 
     <html>
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <?php include 'head.php'; ?>
         <link rel="stylesheet" type="text/css" href="coope.css"/>
         <title>correu intern::: la coope</title>
     </head>

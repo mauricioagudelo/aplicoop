@@ -100,6 +100,7 @@ function selectNumFact($numero)
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <?php include 'head.php'; ?>
     <link rel="stylesheet" type="text/css" href="coope.css"/>
     <title>crear/editar devolucions o factures fora proces ::: la coope</title>
 </head>

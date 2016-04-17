@@ -159,7 +159,7 @@ if ($_SESSION['image_is_logged_in'] == 'true' )
 
 	<html>
 		<head>
-			<meta http-equiv="content-type" content="text; charset=UTF-8" >
+			<?php include 'head.php'; ?>
 			<link rel="stylesheet" type="text/css" href="coope.css" />			
 			<title>fer la cistella ::: la coope</title>
 			
@@ -221,7 +221,7 @@ if ($_SESSION['image_is_logged_in'] == 'true' )
 	}
 ?>
 <body>
-
+<?php include 'menu.php'; ?>
 <div class="pagina" style="margin-top: 10px;">
 
 <div class="contenidor_1" style="border: 1px solid green;">

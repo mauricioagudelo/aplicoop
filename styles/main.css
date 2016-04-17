@@ -2709,7 +2709,9 @@ label {
     box-shadow: none;
     outline: 0; }
   .button:hover, .button:focus, .button.focus {
-    text-decoration: none; }
+    text-decoration: none;
+    color: black;
+    border-color: black; }
   .button:active, .button.active {
     outline: 0;
     background-image: none; }

@@ -64,7 +64,7 @@ else
 
 <html>
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" >
+		<?php include 'head.php'; ?>
 		<link rel="stylesheet" type="text/css" href="coope.css" />	
 		<title>crear/editar nota ::: la coope</title>
 
@@ -106,6 +106,7 @@ form.submit();
 
 </head>
 <body>
+<?php include 'menu.php'; ?>
 <div class="pagina" style="margin-top: 10px;">
 <div class="contenidor_1" style="border: 1px solid #a74fd7;">
 <p class='path'> 

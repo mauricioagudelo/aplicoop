@@ -25,25 +25,26 @@ mysql_query($query3) or die('Error, insert query failed');
 
 <html>
 	<head>
-		<title>borrar la comanda ::: la coope</title>
-		<link rel="stylesheet" type="text/css" href="coope.css" />
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<?php include 'head.php'; ?>
+		<title>aplicoop - eliminar pedido</title>
 	</head>
 <body>
-<div class="pagina" style="margin-top: 10px;">
-	<div class="contenidor_1" style="border: 1px solid #9cff00;"> 
-		<p class="error" style="padding-top: 50px; font-size: 16px;">
-				La comanda numero <?php echo $numcmda; ?>
-				ha estat borrada completament.
-		</p>
-		<P style="font-size: 14px; color: grey; align-text: center;">
-		[<?php echo $numrows; ?> productes borrats]
-		</p>		
-		</p>
-		<p class="error" style="font-size: 14px; padding-bottom: 50px;">
-		<a href="escriptori2.php" target="cos" title="clica per tornar a l'escriptori">		
-				Torna a l'escriptori</a>
-		</p>
+<?php include 'menu.php'; ?>
+<div class="page">
+	<div class="container">
+		<div class="box">
+			<h2 class="box-title">
+				La comanda número <?php echo $numcmda; ?>
+				ha si borrado completamente
+			</h2>
+			<p class="alert alert--info">
+				<?php echo $numrows; ?> productos borrados
+			</p>
+		</div>
+
+		<div class="u-text-center">
+			<a class="button" href="escriptori2.php" target="cos" title="Volver al escritorio">Volver</a>
+		</div>
 	</div>
 </div>
 </body>

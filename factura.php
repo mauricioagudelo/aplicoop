@@ -19,24 +19,17 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR ($_GET['id'] != "" AND strlen($
 
 <html>
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" >
-		<link rel="stylesheet" type="text/css" href="coope.css" />
-		<title>factura ::: la coope</title>
+		<?php include 'head.php'; ?>
+		<title>aplicoop - factura</title>
 	</head>
-	
-	<style type="text/css" media="print">
-    .NonPrintable
-    {
-      display: none;
-    }
-  </style>
 
-<body> 
-<div class="pagina" style="margin-top: 10px;">
-<div class="contenidor_1" style="border: 1px solid green;">
-<div class="contenidor_fac">
+<body>
+<?php include 'menu.php'; ?>
+<div class="page">
+	<div class="container">
+		<div class="box">
 	
-	<div class="NonPrintable">
+			<div class="hidden-print">
 
 <?php
 	if ($_SESSION['image_is_logged_in'] != 'true')
@@ -98,52 +91,52 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR ($_GET['id'] != "" AND strlen($
 
 ?>
 
-	<p class="linia_button2" style="background: green; text-align: center; vertical-align: middle;">
-	<input class="button2" type="button" name="imprimir" value="IMPRIMIR" onclick="window.print();">
+		<div class="u-text-right  u-mb-2">
+			<button class="button button--animated" name="imprimir" onclick="window.print();">Imprimir</button>
 
-<?php
-		if ($_SESSION['image_is_logged_in'] == 'true')
-		{
-			echo'<input class="button2" type="button" value="ENRERE" onClick="javascript: history.go(-1);">';
-		}
-		//$logo_factura està definida a l'arxiu de configuració
-?>	
-	
-	</p>
+	<?php
+			if ($_SESSION['image_is_logged_in'] == 'true')
+			{
+				echo'<button class="button button--animated" onClick="javascript: history.go(-1);">Volver</button>';
+			}
+			//$logo_factura està definida a l'arxiu de configuració
+	?>
+
+		</div>
 	</div>
-	
-			<div class="contenidor_4" style="float:left;">
-				<img id="fig" style="width:175px; height:85px; padding: 10px 0px 20px 0px ;" 
-				src="<?php echo $logo_factura; ?>"> 
+
+			<div class="row">
+				<div class="col-md-4 u-text-center u-mb-1">
+					<img id="fig" class="img--responsive" style="height:85px;" src="<?php echo $logo_factura; ?>">
+				</div>
+
+				<div class="col-md-8 u-text-right u-mb-1">
+					<span style="color: grey;">Factura nº: </span><span class="u-text-semibold"><?php echo $numfact; ?></span><br/>
+					<span style="color: grey;">Fecha: </span><span class="u-text-semibold"><?php echo $ver_data2; ?></span><br/>
+					<span style="color: grey;">Familia: </span><span class="u-text-semibold"><?php echo $nomf; ?></span><br/>
+					<span style="color: grey;">Dirección: </span><span class="u-text-semibold"><?php echo $adressf; ?></span><br/>
+					<span style="color: grey;">NIF: </span><span class="u-text-semibold"><?php echo $niff; ?></span><br/>
+
+
+				</div>
 			</div>
 
-			<div style="width: 510px; float:right;">
-				<p class="cos16" 
-				style="font-weight: bold; text-align: left; padding-left:40px; padding-right:25px; 
-					 vertical-align: middle;">
-				<span style="color: grey;">Factura nº </span><?php echo $numfact; ?>
-				<br/>
-				<span style="color: grey;">Data: </span><?php echo $ver_data2; ?>
-				<br/>
-				<span style="color: grey;">Nom família: </span><?php echo $nomf; ?>
-				<br/>
-				<span style="color: grey;">Adreça: </span><?php echo $adressf; ?>
-				<br/>
-				<span style="color: grey;">NIF: </span><?php echo $niff; ?>
-				</p>
-			</div>
 			
-			<div style="clear: both; border: 1px solid green;">
-		<table width="100%" align="center" style="padding:15px;">
-			<tr class="cos_majus" valign="baseline">
-				<td width="50%" align="left" style="padding:15px 0px;"><u>Producte</u></td>
-				<td width="15%" align="center"><u>Quant.</u></td>
-				<td width="10%" align="center"><u>Preu</u></td>
-				<td width="10%" align="center"><u>Desc</u></td>
-				<td width="10%" align="center"><u>Iva</u></td>
-				<td width="10%" align="right"><u>Total</u></td>																
-			</tr>
+			<div class="cf u-mt-2 table-responsive u-width-100">
+		<table width="100%"  class="table table-striped">
+			<thead>
+			<tr style="font-size:18px;">
 
+				<td width="50%" align="left" class="u-text-semibold">Producto</u></td>
+				<td width="15%" align="center" class="u-text-semibold">Cantidad</td>
+				<td width="10%" align="center" class="u-text-semibold">PVP</td>
+				<td width="10%" align="center" class="u-text-semibold">Descuento</td>
+				<td width="10%" align="center" class="u-text-semibold">IVA</td>
+				<td width="10%" align="right" class="u-text-semibold">Total</td>
+
+			</tr>
+			</thead>
+			<tbody>
 <?php
 		$sel5="SELECT cl.ref, prod.nom, prod.proveidora, prod.unitat, cl.cistella, cl.preu, cl.descompte, cl.iva
 		FROM comanda_linia AS cl, productes AS prod
@@ -206,13 +199,13 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR ($_GET['id'] != "" AND strlen($
 			$query5=mysql_query($sel5) or die('query5: '.mysql_error());
 			
 		}
-?>
+?></tbody>
 		</table>
 		<table width="100%" align="center">	
 		<tr class="cos_majus" valign="baseline">
-				<td width="33%" align="center" style="padding:15px 0px;"><u>Imp. Brut</u></td>
-				<td width="33%" align="center" style="padding:15px 0px;"><u>Iva</u></td>
-				<td width="33%" align="center"><u>TOTAL</u></td>
+				<td width="33%" class="u-text-semibold" align="center">Imp. Bruto</td>
+				<td width="33%" class="u-text-semibold" align="center">IVA</td>
+				<td width="33%" class="u-text-semibold" align="center">TOTAL</td>
 		</tr>
 		<tr class="cos12" style="font-weight: bold;">
 				<td align="center"><?php echo $total_import_brut; ?>&#8364;</td>
@@ -221,7 +214,7 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR ($_GET['id'] != "" AND strlen($
 		</tr>
 	</table>
 	</div>
-	<p class="cos2" style="clear: both; text-align: left;">
+	<p class="alert alert--info" >
 	Les teves dades procedeixen d’un fitxer del que és propietari i responsable aquesta entitat, 
 	davant la qual poden exercitar els drets d’accés, rectificació, cancel•lació i oposició 
 	reconeguts per la LO 15/1999, de 13 de desembre, de protecció de dades de caràcter personal.

@@ -196,9 +196,9 @@ while (list($proces, $tipus, $datai, $dataf, $periode, $diare, $diat, $horat) = 
         list ($numcmda1) = mysql_fetch_row($result3);
 
         if ($numcmda1 != "") {
-            $nota11 = $proces . ': Tienes la comanda con número ' . $numcmda1 . ' para recoger el ' . $ver_diare . '.
+            $nota11 = $proces . ': Tienes el pedido con número ' . $numcmda1 . ' para recoger el ' . $ver_diare . '.
 				<div><a class="button button--save button--animated  button--save  u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis"
-				title="Editar este pedido">Editar</a></div> Finaliza ' . $ver_diats;
+				title="Editar este pedido">Editar</a></div> Finaliza el ' . $ver_diats;
         } else {
             $nota11 = $proces . ': hasta ' . $ver_diats . '
 				<div><a class="button button--animated button--save u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id4=create"

@@ -452,7 +452,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     /// o la data de recollida si és un procés continu setmanal ///
                     $query2 = "INSERT INTO `comanda` ( `usuari` , `proces`, `grup`, `sessionid` , `data` )
 				VALUES ('$user', '$proces', '$grup', '$sessionid', '$bd_data')";
-                    mysql_query($query2) or die('Error, insert query2 failed. Values=>[user: '.$user.', proces:'.$proces.', grup:'.$grup.', sessionid:'.$sessionid.', $bd_data:'.$bd_data.']');
+                    mysql_query($query2) or die('Error, insert query2 failed.');
                     $numcmda = mysql_insert_id();
                     $ver_datase = date("d-m-Y");
                     $notescmda = "";
@@ -525,19 +525,15 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             }
 
             if ($editar == 0) {
-                $button = '<input class="button" type="button" value="SORTIR"
-		onClick="javascript:history.go(-1);">
-		<input class="button" type="button" name="imprimir" value="IMPRIMIR" onclick="window.print();">';
+                $button = '<button class="button button--animated" onClick="javascript:history.go(-1);">Volver</button>
+		                   <button class="button button--animated" name="imprimir" onclick="window.print();">Imprimir</button>';
             } else {
-                $button = '<input class="button" type="button" value="Confirmar"
-		onClick="javascript:window.location = \'comandes.php?id3=' . $user . ' \';">
-		<input class="button" type="button" value="Editar"
-		onClick="javascript:window.location = \'cmda2.php?id=' . $proces . '&id2=' . $numcmda . '&id4=create \';">
-		<input class="button" type="button" value="Eliminar"
-		onClick="var answer = confirm (\'¿Estás seguro que quieres borrar este pedido?\')
-				if (answer)
-					{window.location=\'delcom.php?id=' . $numcmda . ' \'}">
-		<input class="button" type="button" name="imprimir" value="Imprimir" onclick="window.print();">';
+                $button = '<button class="button button--animated" onClick="javascript:window.location = \'comandes.php?id3=' . $user . ' \';">Confirmar</button>
+		                   <button class="button button--animated" onClick="javascript:window.location = \'cmda2.php?id=' . $proces . '&id2=' . $numcmda . '&id4=create \';">Editar</button>
+		                   <button class="button button--animated" onClick="var answer = confirm (\'¿Estás seguro que quieres borrar este pedido?\')
+				            if (answer)
+					        {window.location=\'delcom.php?id=' . $numcmda . ' \'}">Eliminar</button>
+		                   <button class="button button--animated" name="imprimir" onclick="window.print();">Imprimir</button>';
             }
             ?>
 
@@ -565,7 +561,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 <div class="cf u-mt-2 table-responsive u-width-100">
                     <table width="100%" class="table table-striped">
                         <thead>
-                        <tr class="cos_majus" style="font-size:18px;" valign="baseline">
+                        <tr style="font-size:18px;" valign="baseline">
                             <td width="50%" align="left" class="u-text-semibold">Producto</u></td>
                             <td width="20%" align="center" class="u-text-semibold">Cantidad</td>
                             <td width="10%" align="center" class="u-text-semibold">PVP<sup>*</sup></td>

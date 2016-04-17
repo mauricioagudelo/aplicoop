@@ -152,7 +152,7 @@ function tradueixData2($d)
 
 <html>
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" >
+		<?php include 'head.php'; ?>
 		<link rel="stylesheet" type="text/css" href="coope.css" />
 		<title>grups de comandes i cistelles::: la coope</title>
 </head>
@@ -162,8 +162,8 @@ function tradueixData2($d)
 <div class="pagina" style="margin-top: 10px;">
 
 <div class="contenidor_1" style="border: 1px solid green;">
-<p class='path'> 
-><a href='admint.php'>administració</a> 
+<p class='path'>
+><a href='admint.php'>administració</a>
 >><a href='grups_comandes.php'>grups de comandes i cistelles</a>
 </p>
 <p class="h1" style="background: green; text-align: left; padding-left: 20px;">Grups de comandes i cistelles</p>
