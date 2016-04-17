@@ -42,7 +42,7 @@
 @import "components/overwrite/bootstrap/navbar";
 
 // CALENDAR - OVERWRITE
-@import "components/overwrite/calendar/_calendar";
+@import "components/overwrite/calendar/calendar";
 
 @import "components/product";
 @import "components/button";
@@ -57,6 +57,7 @@
 /*****************************************************/
 
 @import "pages/login";
+@import "pages/desktop";
 
 
 /*****************************************************

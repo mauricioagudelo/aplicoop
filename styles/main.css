@@ -2852,6 +2852,15 @@ label {
   width: 64px;
   height: 32px; }
 
+@media (min-width: 992px) {
+  .desktop-wrapper {
+    display: flex;
+    flex-wrap: wrap; }
+    .desktop-wrapper > [class*='col-'] {
+      display: flex;
+      flex-direction: column; }
+      .desktop-wrapper > [class*='col-'] .box {
+        flex: 1; } }
 /*****************************************************
 /* UTILITIES
 /*****************************************************/

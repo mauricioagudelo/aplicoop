@@ -1,0 +1,17 @@
+@import "../config/variables";
+
+@media (min-width: $screen-md-min) {
+  .desktop-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+    > [class*='col-'] {
+      display: flex;
+      flex-direction: column;
+
+      .box {
+        flex: 1;
+      }
+    }
+  }
+}

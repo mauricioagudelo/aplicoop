@@ -201,7 +201,7 @@ while (list($proces, $tipus, $datai, $dataf, $periode, $diare, $diat, $horat) = 
 				title="Editar este pedido">Editar</a></div> fins ' . $ver_diats;
         } else {
             $nota11 = $proces . ': hasta ' . $ver_diats . '
-				<div><a class="button button--animated button--save u-mt-1" href="cmda2.php?id=' . $proces . '&id4=create"
+				<div><a class="button button--animated button--save u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id4=create"
 				title="Nuevo pedido">Nuevo pedido</a></div>';
         }
         $nota1 .= ' <div class="u-text-center">' . $nota11 . '</div>';
@@ -319,7 +319,7 @@ while (list($from, $to, $sub, $tex, $datac, $vis) = mysql_fetch_row($result5)) {
 <div class="page">
 
     <div class="container">
-        <div class="row">
+        <div class="desktop-wrapper row">
             <div class="col-md-6">
                 <div class="box">
                     <h2 class="box-title">Pedido</h2>
