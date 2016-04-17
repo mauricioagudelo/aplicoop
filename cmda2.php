@@ -329,7 +329,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     <div class="u-text-center">
                         <button type="submit" class="button button--animated button--save" name="acceptar"
                                 id="btnComanda">
-                            Aceptar
+                            Aceptar <i class="fa fa-check" aria-hidden="true"></i
                         </button>
                     </div>
 
@@ -372,8 +372,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         </p>';
 
                     die ('<p class="u-text-center"><a class="button" href="cmda2.php?id=' . $proces . '&id4=create" target="cos"
-				title="Volver a la comanda">
-				Volver a la comanda</a></p>');
+				title="Volver al pedido">
+				Volver al pedido  <i class="fa fa-undo" aria-hidden="true"></i></a></p>');
                 } //////////////////
                 else {
                     date_default_timezone_set("Europe/Madrid");
@@ -525,15 +525,15 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             }
 
             if ($editar == 0) {
-                $button = '<button class="button button--animated" onClick="javascript:history.go(-1);">Volver</button>
-		                   <button class="button button--animated" name="imprimir" onclick="window.print();">Imprimir</button>';
+                $button = '<button class="button button--animated" onClick="javascript:history.go(-1);">Volver <i class="fa fa-undo" aria-hidden="true"></i></button>
+		                   <button class="button button--animated" name="imprimir" onclick="window.print();">Imprimir <i class="fa fa-print" aria-hidden="true"></i></button>';
             } else {
-                $button = '<button class="button button--animated" onClick="javascript:window.location = \'comandes.php?id3=' . $user . ' \';">Confirmar</button>
-		                   <button class="button button--animated" onClick="javascript:window.location = \'cmda2.php?id=' . $proces . '&id2=' . $numcmda . '&id4=create \';">Editar</button>
+                $button = '<button class="button button--animated" onClick="javascript:window.location = \'comandes.php?id3=' . $user . ' \';">Confirmar <i class="fa fa-check" aria-hidden="true"></i></button>
+		                   <button class="button button--animated" onClick="javascript:window.location = \'cmda2.php?id=' . $proces . '&id2=' . $numcmda . '&id4=create \';">Editar <i class="fa fa-pencil" aria-hidden="true"></i></button>
 		                   <button class="button button--animated" onClick="var answer = confirm (\'¿Estás seguro que quieres borrar este pedido?\')
 				            if (answer)
-					        {window.location=\'delcom.php?id=' . $numcmda . ' \'}">Eliminar</button>
-		                   <button class="button button--animated" name="imprimir" onclick="window.print();">Imprimir</button>';
+					        {window.location=\'delcom.php?id=' . $numcmda . ' \'}">Eliminar <i class="fa fa-trash-o" aria-hidden="true"></i></button>
+		                   <button class="button button--animated" name="imprimir" onclick="window.print();">Imprimir <i class="fa fa-print" aria-hidden="true"></i></button>';
             }
             ?>
 

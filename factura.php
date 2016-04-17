@@ -92,12 +92,12 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR ($_GET['id'] != "" AND strlen($
 ?>
 
 		<div class="u-text-right  u-mb-2">
-			<button class="button button--animated" name="imprimir" onclick="window.print();">Imprimir</button>
+			<button class="button button--animated" name="imprimir" onclick="window.print();">Imprimir <i class="fa fa-print" aria-hidden="true"></i></button>
 
 	<?php
 			if ($_SESSION['image_is_logged_in'] == 'true')
 			{
-				echo'<button class="button button--animated" onClick="javascript: history.go(-1);">Volver</button>';
+				echo'<button class="button button--animated" onClick="javascript: history.go(-1);">Volver <i class="fa fa-undo" aria-hidden="true"></i></button>';
 			}
 			//$logo_factura està definida a l'arxiu de configuració
 	?>
@@ -215,9 +215,7 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR ($_GET['id'] != "" AND strlen($
 	</table>
 	</div>
 	<p class="alert alert--info" >
-	Les teves dades procedeixen d’un fitxer del que és propietari i responsable aquesta entitat, 
-	davant la qual poden exercitar els drets d’accés, rectificació, cancel•lació i oposició 
-	reconeguts per la LO 15/1999, de 13 de desembre, de protecció de dades de caràcter personal.
+		Tus datos proceden de un fichero del que es propietaria y responsable esta entidad, ante la cual pueden ejercitar los derechos de acceso, modificación, cancelación y oposición reconocidos por la LO 15/1999, de 13 de septiembre, de protección de datos de carácter personal.
 	</p>
 
 <?php

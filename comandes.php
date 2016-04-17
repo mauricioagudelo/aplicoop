@@ -216,7 +216,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     if ($check0 == 0) {
                         $accept0 = "Pendiente";
                     } else {
-                        $accept0 = '<a href="factura.php?id=' . $numero . '"  class="link">ver</a>';
+                        $accept0 = '<a href="factura.php?id=' . $numero . '"  class="link">ver <i class="fa fa-eye" aria-hidden="true"></i></a>';
                         if ($check1 == '0') {
                             if ($fam == $user) {
                                 //$accept1="<a href='factura.php?id=".$numero."&id2=".$report0."&id3=1'>validar</a>";
@@ -224,11 +224,11 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 //$accept1="Pendent";
                             }
                         } else {
-                            $accept1 = "ok";
+                            $accept1 = "<i class=\"fa fa-check-circle\" aria-hidden=\"true\"></i>";
                             if ($check2 == '0') {
                                 $accept2 = "Pendiente";
                             } else {
-                                $accept2 = "ok";
+                                $accept2 = "<i class=\"fa fa-check-circle\" aria-hidden=\"true\"></i>";
                             }
                         }
                     }

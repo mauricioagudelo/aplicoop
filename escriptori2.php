@@ -198,11 +198,11 @@ while (list($proces, $tipus, $datai, $dataf, $periode, $diare, $diat, $horat) = 
         if ($numcmda1 != "") {
             $nota11 = $proces . ': Tienes el pedido con número ' . $numcmda1 . ' para recoger el ' . $ver_diare . '.
 				<div><a class="button button--save button--animated  button--save  u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis"
-				title="Editar este pedido">Editar</a></div> Finaliza el ' . $ver_diats;
+				title="Editar este pedido">Editar <i class="fa fa-pencil" aria-hidden="true"></i></a></div> Finaliza el ' . $ver_diats;
         } else {
             $nota11 = $proces . ': hasta ' . $ver_diats . '
 				<div><a class="button button--animated button--save u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id4=create"
-				title="Nuevo pedido">Nuevo pedido</a></div>';
+				title="Nuevo pedido">Nuevo pedido <i class="fa fa-plus-circle" aria-hidden="true"></i></a></div>';
         }
         $nota1 .= ' <div class="u-text-center">' . $nota11 . '</div>';
     }

@@ -424,10 +424,8 @@ function selectNumFact($numero)
                             </tr>
                         </table>
                     </div>
-                    <p class="cos2" style="clear: both; text-align: left;">
-                        Les teves dades procedeixen d’un fitxer del que és propietari i responsable aquesta entitat,
-                        davant la qual poden exercitar els drets d’accés, rectificació, cancel•lació i oposició
-                        reconeguts per la LO 15/1999, de 13 de desembre, de protecció de dades de caràcter personal.
+                    <p class="alert alert--info">
+                        Tus datos proceden de un fichero del que es propietaria y responsable esta entidad, ante la cual pueden ejercitar los derechos de acceso, modificación, cancelación y oposición reconocidos por la LO 15/1999, de 13 de septiembre, de protección de datos de carácter personal.
                     </p>
                 </div>
 
