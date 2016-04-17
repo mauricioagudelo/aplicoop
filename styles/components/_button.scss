@@ -95,6 +95,10 @@ $button-save-color: $color-main;
   background: $button-save-color;
 }
 
+.button--save:hover {
+  border-color: $button-save-color;
+}
+
 .button--calendar {
   border: none;
   width: 2rem;

@@ -434,59 +434,68 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             ?>
 
             <div class="box">
-                <table align="center" style="border-collapse: collapse;">
-                    <form action="<?php echo $formact; ?>" method="post" name="nouprod" id="nouprod"
+
+                    <form action="<?php echo $formact; ?>" method="post" name="nouprod" id="nouprod"  class="form-horizontal"
                           onSubmit="return Validate();">
 
-                        <tr style="padding-top: 10px;">
-                            <td class="cos_majus">Referencia:</td>
-                            <td class="cos_majus"><input align="right" name="ref" id="ref" type="TEXT" maxlength="7"
-                                                         size="5"
-                                                         value="<?php echo $ref; ?>" readonly>
-                            </td>
-                        </tr>
+                        <div class="form-group">
+                            <label for="ref" class="col-sm-2 control-label">Referencia</label>
+                            <div class="col-sm-10">
+                                <input align="right" name="ref" id="ref" type="TEXT" maxlength="7"
+                                       size="5"
+                                       value="<?php echo $ref; ?>" readonly>
+                            </div>
+                        </div>
 
-                        <tr>
-                            <td class="cos_majus">Nombre:</td>
-                            <td class="cos_majus"><input align="right" name="nom" id="nom" type="TEXT" maxlength="50"
-                                                         size="50"
-                                                         value="<?php echo $nom; ?>" <?php echo $readonly; ?>>
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <td class="cos_majus">Unidades:</td>
-                            <td><input align="right" name="unitat" id="unitat" type="TEXT" maxlength="20" size="5"
-                                       value="<?php echo $unitat; ?>"></td>
-                        </tr>
-                        <tr>
-                            <td class="cos_majus">Proveedor:</td>
+                        <div class="form-group">
+                            <label for="nom" class="col-sm-2 control-label">Nombre</label>
+                            <div class="col-sm-10">
+                                <input align="right" name="nom" id="nom" type="TEXT" maxlength="50"
+                                       size="50"
+                                       value="<?php echo $nom; ?>" <?php echo $readonly; ?>>
+                            </div>
+                        </div>
 
-                            <?php
-                            if ($gprov != "") {
-                                echo '<td>
+                        <div class="form-group">
+                            <label for="unitat" class="col-sm-2 control-label">Unidades</label>
+                            <div class="col-sm-10">
+                                <input align="right" name="unitat" id="unitat" type="TEXT" maxlength="20" size="5"
+                                       value="<?php echo $unitat; ?>">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prov" class="col-sm-2 control-label">Proveedor</label>
+                            <div class="col-sm-10">
+                                <?php
+                                if ($gprov != "") {
+                                    echo '
 		<input align="right" name="prov" id="prov" type="TEXT" maxlength="30" size="20" value="' . $gprov . '" readonly>
-		</td>';
-                            } else {
-                                echo '<td><SELECT name="prov" id="prov" size="1" maxlenght="30"><option value="">elegeix proveïdora</option>';
-                                $query = "SELECT nom FROM proveidores ORDER BY nom";
-                                $result = mysql_query($query);
-                                if (!$result) {
-                                    die("Query to show fields from table proveidores failed");
+		';
+                                } else {
+                                    echo '<SELECT name="prov" id="prov" size="1" maxlenght="30"><option value="">elegeix proveïdora</option>';
+                                    $query = "SELECT nom FROM proveidores ORDER BY nom";
+                                    $result = mysql_query($query);
+                                    if (!$result) {
+                                        die("Query to show fields from table proveidores failed");
+                                    }
+                                    while (list($sprov) = mysql_fetch_row($result)) {
+                                        echo "<option value='" . $sprov . "'>" . $sprov . "</option>";
+                                    }
+                                    echo "</SELECT>";
                                 }
-                                while (list($sprov) = mysql_fetch_row($result)) {
-                                    echo "<option value='" . $sprov . "'>" . $sprov . "</option>";
-                                }
-                                echo "</SELECT></td>";
-                            }
-                            ?>
-                        </tr>
+                                ?>
+                            </div>
+                        </div>
 
-                        <tr>
-                            <td class="cos_majus">Categoría:</td>
-                            <td><SELECT id="tipus" name="tipus" size="1" maxlenght="30"
+
+                        <div class="form-group">
+                            <label for="tipus" class="col-sm-2 control-label">Categoría</label>
+                            <div class="col-sm-10">
+                                <SELECT id="tipus" name="tipus" size="1" maxlenght="30"
                                         onChange="javascript: dropdownlist(this.options[this.selectedIndex].value);">
-                                    <option value="">elegeix categoria</option>
+                                    <option value="">-- elegir --</option>
 
                                     <?php
 
@@ -503,12 +512,13 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                         }
                                     }
                                     ?>
-                                </SELECT></td>
-                        </tr>
+                                </SELECT>
+                            </div>
+                        </div>
 
-                        <tr>
-                            <td class="cos_majus">Subcategoria:</td>
-                            <td>
+                        <div class="form-group">
+                            <label for="subtipus" class="col-sm-2 control-label">Subcategoria</label>
+                            <div class="col-sm-10">
                                 <script type="text/javascript" language="JavaScript">
                                     document.write('<select name="subtipus" id="subtipus"><option value="">elegeix subcategoria</option></select>')
                                 </script>
@@ -517,12 +527,12 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                         <option value="">elegeix subcategoria</option>
                                     </select>
                                 </noscript>
-                            </td>
-                        </tr>
+                            </div>
+                        </div>
 
-                        <tr>
-                            <td class="cos_majus">Activo:</td>
 
+                        <div class="form-group">
+                            <label for="nom" class="col-sm-2 control-label">Activo</label>
                             <?php
                             $checked1 = 'checked';
                             $checked2 = "";
@@ -531,22 +541,25 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 $checked2 = "checked";
                             }
                             ?>
-                            <td>
+                            <div class="col-sm-10">
                                 <INPUT type='radio' name='actiu' value='actiu' <?php echo $checked1; ?>>si</INPUT>
                                 <INPUT type='radio' name='actiu' value='baixa' <?php echo $checked2; ?>>no</INPUT>
-                            </td>
-                        </tr>
+                            </div>
+                        </div>
 
-                        <tr>
-                            <td class="cos_majus">Precio sin IVA:</td>
-                            <td><input align="right" name="preusi" id="preusi" type="TEXT" maxlength="7" size="5"
+
+                        <div class="form-group">
+                            <label for="preusi" class="col-sm-2 control-label">Precio sin IVA</label>
+                            <div class="col-sm-10">
+                                <input align="right" name="preusi" id="preusi" type="TEXT" maxlength="7" size="5"
                                        value="<?php echo $preusi; ?>">
-                            </td>
-                        </tr>
+                            </div>
+                        </div>
 
-                        <tr>
-                            <td class="cos_majus">IVA:</td>
-                            <td><SELECT name="iva" id="iva" size="1" maxlenght="3">
+                        <div class="form-group">
+                            <label for="iva" class="col-sm-2 control-label">IVA</label>
+                            <div class="col-sm-10">
+                                <SELECT name="iva" id="iva" size="1" maxlenght="3">
 
                                     <?php
                                     $sele0 = "";
@@ -559,13 +572,13 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                     if ($iva == 0.04) $sele3 = "selected";
                                     ?>
 
-                                    <option value="0" <?php echo $sele0; ?>>sense iva</option>
+                                    <option value="0" <?php echo $sele0; ?>>sin IVA</option>
                                     <option value="0.21" <?php echo $sele1; ?>>21%</option>
                                     <option value="0.10" <?php echo $sele2; ?>>10%</option>
                                     <option value="0.04" <?php echo $sele3; ?>>4%</option>
                                 </SELECT>
-                            </td>
-                        </tr>
+                            </div>
+                        </div>
 
                         <?php
                         if ($marge == "") {
@@ -576,40 +589,46 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         }
                         ?>
 
-                        <tr>
-                            <td class="cos_majus">Marge (%):</td>
-                            <td><input align="right" name="marge" id="marge" type="TEXT" maxlength="7" size="5"
-                                       value="<?php echo $marge; ?>">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="cos_majus">Descuento (%):</td>
-                            <td><input align="right" name="descompte" id="descompte" type="TEXT" maxlength="7" size="5"
+                        <div class="form-group">
+                            <label for="descompte" class="col-sm-2 control-label">Marge (%)</label>
+                            <div class="col-sm-10">
+                                <input align="right" name="descompte" id="descompte" type="TEXT" maxlength="7" size="5"
                                        value="<?php echo $descompte; ?>">
-                            </td>
-                        </tr>
+                            </div>
+                        </div>
+
+                         <div class="form-group">
+                            <label for="marge" class="col-sm-2 control-label">Descuento (%)</label>
+                            <div class="col-sm-10">
+                                <input align="right" name="marge" id="marge" type="TEXT" maxlength="7" size="5"
+                                       value="<?php echo $marge; ?>">
+                            </div>
+                        </div>
 
                         <?php
                         if ($estoc != "") {
                             ?>
-                            <tr>
-                                <td class="cos_majus">Stock:</td>
-                                <td><input align="right" name="estoc" id="estoc" type="TEXT" maxlength="7"
+
+                            <div class="form-group">
+                                <label for="estoc" class="col-sm-2 control-label">Stock</label>
+                                <div class="col-sm-10">
+                                    <input align="right" name="estoc" id="estoc" type="TEXT" maxlength="7"
                                            size="5" value="<?php echo $estoc; ?>" readonly>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
                             <?php
                         }
                         ?>
 
-                        <tr>
-                            <td class="cos_majus">Comentarios:</td>
-                            <td><input align="right" name="notes" id="notes" type="TEXT" maxlength="255" size="35"
+
+                        <div class="form-group">
+                            <label for="notes" class="col-sm-2 control-label">Comentarios</label>
+                            <div class="col-sm-10">
+                                <input align="right" name="notes" id="notes" type="TEXT" maxlength="255" size="35"
                                        value="<?php echo $notes; ?>">
-                            </td>
-                        </tr>
-                </table>
+                            </div>
+                        </div>
+
 
                 <?php echo $buteli; ?>
 
