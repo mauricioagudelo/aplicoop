@@ -176,7 +176,7 @@ while (list($proces, $tipus, $datai, $dataf, $periode, $diare, $diat, $horat) = 
         /// data exacta de tall és la data de tall més les hores i minuts de tall///
         /// tall superior ///
         $time_diats = strtotime("+ " . $horat_verb, $diat_0);
-        $ver_diats = date("d-m-Y H:i", $time_diats);
+        $ver_diats = date("d-m-Y, H:i", $time_diats);
         /// tall inferior ///
         $diat_2 = strtotime("- 7 days", $time_diats);
         $time_diati = strtotime("+ 1 second", $diat_2);
@@ -196,9 +196,9 @@ while (list($proces, $tipus, $datai, $dataf, $periode, $diare, $diat, $horat) = 
         list ($numcmda1) = mysql_fetch_row($result3);
 
         if ($numcmda1 != "") {
-            $nota11 = $proces . ': tens la comanda numero ' . $numcmda1 . ' per recollir el ' . $ver_diare . '.
-				<div><a class="button button--save button--animated  button--save u-mt-1" href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis"
-				title="Editar este pedido">Editar</a></div> fins ' . $ver_diats;
+            $nota11 = $proces . ': Tienes la comanda con número ' . $numcmda1 . ' para recoger el ' . $ver_diare . '.
+				<div><a class="button button--save button--animated  button--save  u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis"
+				title="Editar este pedido">Editar</a></div> Finaliza ' . $ver_diats;
         } else {
             $nota11 = $proces . ': hasta ' . $ver_diats . '
 				<div><a class="button button--animated button--save u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id4=create"

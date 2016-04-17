@@ -13,7 +13,9 @@ $box-padding: 1.8rem;
   color: $color-box;
 }
 
-.box-subtitle {
+.box-subtitle:not(:first-child) {
+  margin-top: .5rem;
+  padding-top: .5rem;
   border-top: 1px dotted #dce7eb;
 }
 

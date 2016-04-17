@@ -40,119 +40,98 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
         <html>
         <head>
-            <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-            <link rel="stylesheet" type="text/css" href="coope.css"/>
-            <title>administracio ::: la coope</title>
-
-            <style type="text/css">
-                a:link {
-                    color: black;
-                }
-
-                a:visited {
-                    color: red;
-                }
-
-                a:hover {
-                    color: white;
-                    background-color: orange;
-                    font-weight: bold;
-                    border: 4px solid orange;
-                }
-
-                a:active {
-                    color: white;
-                    background-color: orange;
-                    font-weight: bold;
-                    border: 4px solid orange;
-                }
-            </style>
+            <?php include 'head.php'; ?>
+            <title>aplicoop - admin</title>
         </head>
 
         <body>
         <?php include 'menu.php'; ?>
-        <div class="pagina" style="margin-top: 10px;">
-            <div class="contenidor_1" style="border: 1px solid red;">
-                <p class="h1" style="background: red; text-align: left; padding-left: 20px;">Administraci&oacute;n</p>
+        <div class="page">
+            <div class="container">
+                <h1>Administración</h1>
 
-                <table cellspacing="25" cellpadding="10" style="padding:0 30 0 30;">
-                    <tr>
-                        <td valign="top" align="left" width="33%">
-                            <p class="cos16">Pedidos</p>
+                <div class="box">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h2 class="box-subtitle">Pedidos</h2>
                             <ul type="circle">
-                                <li><a class="cos" href='grups_comandes.php'>Grupos de pedidos y cestas</a></li>
-                                <li><a class="cos" href='comandes.php'>Lista de pedidos y facturas</a></li>
-                                <li><a class="cos" <?php echo $h5; ?>>Devoluciones y facturas fuera de proceso</a></li>
+                                <li><a class="link" href='grups_comandes.php'>Grupos de pedidos y cestas</a></li>
+                                <li><a class="link" href='comandes.php'>Lista de pedidos y facturas</a></li>
+                                <li><a class="link" <?php echo $h5; ?>>Devoluciones y facturas fuera de proceso</a></li>
                             </ul>
-                            <p class="cos16">Socios/as-Fam&iacute;lias</p>
-                            <UL type="circle">
-                                <li><a class="cos" href='families.php'>Lista de Socios/as</a></li>
-                                <li><a class="cos" <?php echo $h2; ?>>Crear y editar Socios/as</a></li>
-                            </UL>
-                            <p class="cos16">Comunicaciones</p>
-                            <UL type="circle">
-                                <li><a class="cos" href='notes.php'>Introducir notas en el escritorio</a></li>
-                                <li><a class="cos" href='cistella_incidencia.php'>Comunicaci&oacute;n de incidencias</a>
-                                </li>
-                            </UL>
-                            <p class="cos16">Monedero</p>
-                            <UL type="circle">
-                                <li><a class="cos" <?php echo $h4; ?>>Introducir línea</a></li>
-                                <li><a class="cos" href="comptes.php">Historia de movimientos</a></li>
-                                <li><a class="cos" href="moneder_usuari.php">Lista monedero de socios/as</a></li>
-                            </UL>
-                        </td>
 
-                        <td valign="top" align="left" width="33%">
-                            <p class="cos16">Procesos (de pedido)</p>
-                            <UL type="circle">
-                                <li><a class="cos" href='editprocessos.php'>Crear, editar, eliminar procesos (de
+                            <h2 class="box-subtitle">Socios/as-Fam&iacute;lias</h2>
+                            <ul type="circle">
+                                <li><a class="link" href='families.php'>Lista de Socios/as</a></li>
+                                <li><a class="link" <?php echo $h2; ?>>Crear y editar Socios/as</a></li>
+                            </ul>
+
+                            <h2 class="box-subtitle">Comunicaciones</h2>
+                            <ul type="circle">
+                                <li><a class="link" href='notes.php'>Introducir notas en el escritorio</a></li>
+                                <li><a class="link" href='cistella_incidencia.php'>Comunicaci&oacute;n de incidencias</a>
+                                </li>
+                            </ul>
+
+                            <h2 class="box-subtitle">Monedero</h2>
+                            <ul type="circle">
+                                <li><a class="link" <?php echo $h4; ?>>Introducir línea</a></li>
+                                <li><a class="link" href="comptes.php">Historia de movimientos</a></li>
+                                <li><a class="link" href="moneder_usuari.php">Lista monedero de socios/as</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h2 class="box-subtitle">Procesos (de pedido)</h2>
+                            <ul type="circle">
+                                <li><a class="link" href='editprocessos.php'>Crear, editar, eliminar procesos (de
                                         pedido)</a></li>
-                                <li><a class="cos" href='associar.php'>Asociar procesos, grupos y categor&iacute;as</a>
+                                <li><a class="link" href='associar.php'>Asociar procesos, grupos y categor&iacute;as</a>
                                 </li>
-                            </UL>
-                            <p class="cos16">Grupos</p>
-                            <UL type="circle">
-                                <li><a class="cos" href='editgrups.php'>Crear, editar, eliminar grupos</a></li>
-                            </UL>
-                            <p class="cos16">Categor&iacute;as y subcategor&iacute;as</p>
-                            <UL type="circle">
-                                <li><a class="cos" href='categories.php'>Crear, editar, eliminar categor&iacute;as y
+                            </ul>
+                            <h2 class="box-subtitle">Grupos</h2>
+                            <ul type="circle">
+                                <li><a class="link" href='editgrups.php'>Crear, editar, eliminar grupos</a></li>
+                            </ul>
+                            <h2 class="box-subtitle">Categor&iacute;as y subcategor&iacute;as</h2>
+                            <ul type="circle">
+                                <li><a class="link" href='categories.php'>Crear, editar, eliminar categor&iacute;as y
                                         subcategor&iacute;as</a></li>
-                            </UL>
-                            <p class="cos16">Estad&iacute;stica</p>
-                            <UL type="circle">
-                                <li><a class="cos" href='estat_consum.php'>Estad&iacute;stica de consumo</a></li>
-                                <li><a class="cos" href='estat_iva.php'>Consumo IVA</a></li>
-                            </UL>
-                        </td>
-
-                        <td valign="top" align="left" width="33%">
-                            <p class="cos16">Productos</p>
-                            <UL type="circle">
-                                <li><a class="cos" href='baixa_productes.php'>Activar/desactivar productos</a></li>
-                                <li><a class="cos" href='productes.php'>Crear, editar, eliminar productos</a></li>
-                                <li><a class="cos" href='canvi_massiu_productes.php'>Cambiar precios, IVA y margen en
+                            </ul>
+                            <h2 class="box-subtitle">Estad&iacute;stica</h2>
+                            <ul type="circle">
+                                <li><a class="link" href='estat_consum.php'>Estad&iacute;stica de consumo</a></li>
+                                <li><a class="link" href='estat_iva.php'>Consumo IVA</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h2 class="box-subtitle">Productos</h2>
+                            <ul type="circle">
+                                <li><a class="link" href='baixa_productes.php'>Activar/desactivar productos</a></li>
+                                <li><a class="link" href='productes.php'>Crear, editar, eliminar productos</a></li>
+                                <li><a class="link" href='canvi_massiu_productes.php'>Cambiar precios, IVA y margen en
                                         listado</a></li>
-                            </UL>
-                            <p class="cos16">Proveedores</p>
-                            <UL type="circle">
-                                <li><a class="cos" href='proveidores.php'>Crear, editar, eliminar proveedores</a></li>
+                            </ul>
+                            <h2 class="box-subtitle">Proveedores</h2>
+                            <ul type="circle">
+                                <li><a class="link" href='proveidores.php'>Crear, editar, eliminar proveedores</a></li>
 
-                            </UL>
-                            <p class="cos16">Albaranes</p>
-                            <UL type="circle">
-                                <li><a class="cos" href='albarans.php'>Crear, editar, eliminar albaranes</a></li>
-                            </UL>
+                            </ul>
+                            <h2 class="box-subtitle">Albaranes</h2>
+                            <ul type="circle">
+                                <li><a class="link" href='albarans.php'>Crear, editar, eliminar albaranes</a></li>
+                            </ul>
 
-                            <p class="cos16">Stock</p>
-                            <UL type="circle">
-                                <li><a class="cos" href='inventari2.php'>Ver stock actual</a></li>
-                            </UL>
+                            <h2 class="box-subtitle">Stock</h2>
+                            <ul type="circle">
+                                <li><a class="link" href='inventari2.php'>Ver stock actual</a></li>
+                            </ul>
+                        </div>
+                    </div>
 
-                        </td>
-                    </tr>
-                </table>
+                </div>
+
+
             </div>
         </div>
         </body>

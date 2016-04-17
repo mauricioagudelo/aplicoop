@@ -3,7 +3,7 @@ $user = $_SESSION['user'];
 $superuser = strtoupper($_SESSION['user']);
 ?>
 
-<header class="navbar navbar-fixed-top">
+<header class="navbar navbar-fixed-top hidden-print">
 
     <div class="container-fluid">
 

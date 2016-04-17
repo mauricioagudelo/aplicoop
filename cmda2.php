@@ -110,7 +110,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     <html>
     <head>
         <?php include 'head.php'; ?>
-        <title>crear/editar pedido ::: la coope</title>
+        <title>aplicoop - crear/editar pedido</title>
     </head>
 
     <script language="javascript" type="text/javascript">
@@ -165,7 +165,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             }
             list($tipus, $datai, $dataf, $periode, $diare, $diat, $horat) = mysql_fetch_row($result6);
 
-            $title = $proces . " / grup " . $grup;
+            $title = $proces . " / grupo " . $grup;
 
             ////////////////////////
             // Això és id4=create //
@@ -194,8 +194,10 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                 <form action="<?php echo $goto; ?>" method="post" name="frmComanda" id="frmComanda"
                       onSubmit="return validate_form()" target="cos">
+
+                    <h1><?php echo $cap; ?></h1>
+
                     <div class="box">
-                        <h1 class="box-title"><?php echo $cap; ?></h1>
 
                         <ul class="accordion">
 
@@ -212,10 +214,10 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             $id = 0;
                             $cc = 0;
                             while (list($cat) = mysql_fetch_row($result)) {
-                                print ('<li class="accordion-item box-subtitle">
+                                print ('<li class="accordion-item">
                                         <input type="checkbox"  class="accordion-check" checked>
                                         <i class="accordion-icon"></i>
-                                        <h2 class="accordion-title">' . $cat . '</h2>');
+                                        <h2 class="accordion-title box-subtitle">' . $cat . '</h2>');
                                 $cc++;
                                 if ($cc == 7) {
                                     $cc = 0;
@@ -344,10 +346,10 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             else
             {
             if ($tipus == 'continu' AND $periode = 'setmanal') {
-                $title1 = "recollida";
+                $title1 = "recogida";
             }
             if ($tipus == 'període concret') {
-                $title1 = "fi periode";
+                $title1 = "fin periodo";
             }
 
             if (!$numcmda) {
@@ -365,13 +367,13 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 if ($count_files == 0) {
                     // Si no hi ha cap quantitat elegida no continua endavant //
 
-                    echo '<p class="error" style="padding-top: 50px;">
-				No has introduït cap quantitat a cap producte!!!!
-				</p>';
+                    echo '<p class="alert alert--error">
+                        ¡No has introducido cantidad a ningun producto!
+                        </p>';
 
-                    die ('<p class="error" style="font-size: 14px; padding-bottom: 50px;"><a href="cmda2.php?id=' . $proces . '&id4=create" target="cos"
-				title="clica per tornar a la comanda">		
-				Torna a la comanda</a></p>');
+                    die ('<p class="u-text-center"><a class="button" href="cmda2.php?id=' . $proces . '&id4=create" target="cos"
+				title="Volver a la comanda">
+				Volver a la comanda</a></p>');
                 } //////////////////
                 else {
                     date_default_timezone_set("Europe/Madrid");
@@ -429,18 +431,20 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     list ($numcmda1) = mysql_fetch_row($result);
 
                     if ($numcmda1 != "") {
-                        echo '<p class="error" style="padding-top: 50px;">
-						PERILL DE DUPLICACIÓ DE COMANDA!!!!
+                        echo '<p class="alert alert--error">
+						¡Peligro de duplicación de pedido!
 						</p>';
                         die ('<p class="error">
-						Ja heu creat una comanda per a un procés ' . $proces . '-' . $grup . ' amb data ' . $data . '.
+						Ya ha creado un pedido para un proceso ' . $proces . '-' . $grup . ' con fecha ' . $data . '.
 						</p>
-						<p class="error" style="font-size: 14px;"> 
-						<a href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis" target="cos"
-						title="clica per editar aquesta comanda">		
-						editar la comanda vigent</a>
+						<p class="u-text-center">
+						<a class="button" href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis" target="cos"
+						title="editar la comanda actual">
+						editar la comanda actual</a>
 						</p>');
                     }
+
+
 
                     /////////////////////////////////////////
 
@@ -521,57 +525,55 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             }
 
             if ($editar == 0) {
-                $button = '<input class="button2" type="button" value="SORTIR"
+                $button = '<input class="button" type="button" value="SORTIR"
 		onClick="javascript:history.go(-1);">
-		<input class="button2" type="button" name="imprimir" value="IMPRIMIR" onclick="window.print();">';
+		<input class="button" type="button" name="imprimir" value="IMPRIMIR" onclick="window.print();">';
             } else {
-                $button = '<input class="button2" type="button" value="D\'ACORD"
+                $button = '<input class="button" type="button" value="Confirmar"
 		onClick="javascript:window.location = \'comandes.php?id3=' . $user . ' \';">
-		<input class="button2" type="button" value="EDITAR" 
+		<input class="button" type="button" value="Editar"
 		onClick="javascript:window.location = \'cmda2.php?id=' . $proces . '&id2=' . $numcmda . '&id4=create \';">
-		<input class="button2" type="button" value="ELIMINAR" 
-		onClick="var answer = confirm (\'Estàs segur que vols borrar aquesta comanda!! \')
+		<input class="button" type="button" value="Eliminar"
+		onClick="var answer = confirm (\'¿Estás seguro que quieres borrar este pedido?\')
 				if (answer)
 					{window.location=\'delcom.php?id=' . $numcmda . ' \'}">
-		<input class="button2" type="button" name="imprimir" value="IMPRIMIR" onclick="window.print();">';
+		<input class="button" type="button" name="imprimir" value="Imprimir" onclick="window.print();">';
             }
             ?>
 
-            <body>
+            <div class="box">
 
-            <div class="contenidor_fac">
-
-                <div class="NonPrintable">
-                    <p class="linia_button2" style="background: #9cff00; text-align: center; vertical-align: middle;">
-                        <?php echo $button; ?>
-                    </p>
-                </div>
-                <div class="contenidor_4" style="float:left;">
-                    <img id="fig" style="width:175px; height:85px; padding: 10px 0px 20px 0px ;"
-                         src="<?php echo $logo_factura; ?>">
+                <div class="hidden-print u-text-right u-mb-2">
+                    <?php echo $button; ?>
                 </div>
 
-                <div style="width: 510px; float:right;">
-                    <p class="h3"
-                       style="font-weight: bold; text-align: left; padding-left:40px; padding-right:25px;
-					 vertical-align: middle;">
-                        <span style="color: grey;">Comanda nº </span><?php echo $numcmda; ?>
-                        <br/>
-                        <span style="color: grey;">Nom família: </span><?php echo $superfam; ?>
-                        <br/>
-                        <span style="color: grey;">Data <?php echo $title1; ?>: </span><?php echo $data; ?>
-                    </p>
+
+                <div class="row">
+                    <div class="col-md-4 u-text-center u-mb-1">
+                        <img id="fig" class="img--responsive" style="height:85px;" src="<?php echo $logo_factura; ?>">
+                    </div>
+
+                    <div class="col-md-8 u-text-right u-mb-1">
+                        <span style="color: grey;">Pedido nº: </span><span class="u-text-semibold"><?php echo $numcmda; ?></span><br/>
+                        <span style="color: grey;">Familia: </span><span class="u-text-semibold"><?php echo $superfam; ?></span><br/>
+                        <span style="color: grey;">Fecha <?php echo $title1; ?>: </span><span class="u-text-semibold"><?php echo $data; ?></span>
+                    </div>
                 </div>
 
-                <div style="clear: both; border-top: 1px solid black; border-bottom: 1px solid black;">
-                    <table width="100%" align="center">
+
+
+                <div class="cf u-mt-2 table-responsive u-width-100">
+                    <table width="100%" class="table table-striped">
+                        <thead>
                         <tr class="cos_majus" style="font-size:18px;" valign="baseline">
-                            <td width="50%" align="left" style="padding:15px 0px;"><u>Producte</u></td>
-                            <td width="20%" align="center"><u>Quantitat</u></td>
-                            <td width="10%" align="center"><u>PVP</u><sup>*</sup></td>
-                            <td width="10%" align="center"><u>Descompte</u></td>
-                            <td width="10%" align="right"><u>Total</u></td>
+                            <td width="50%" align="left" class="u-text-semibold">Producto</u></td>
+                            <td width="20%" align="center" class="u-text-semibold">Cantidad</td>
+                            <td width="10%" align="center" class="u-text-semibold">PVP<sup>*</sup></td>
+                            <td width="10%" align="center" class="u-text-semibold">Descuento</td>
+                            <td width="10%" align="right" class="u-text-semibold">Total</td>
                         </tr>
+                        </thead>
+                        <tbody>
                         <?php
                         if ($files != 0) {
                             //////////////////////////////////////////////////////////////////
@@ -628,17 +630,18 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 				<td align="right">' . $qtot . '&#8364;</td></tr>');
                         }
                         ?>
+                        </tbody>
                     </table>
                     <table width="100%">
-                        <tr class="cos16" style="font-weight: bold;">
+                        <tr style="font-weight: bold;">
                             <td width="80%" align="right" style="padding:15px 0px;">Total</td>
                             <td width="20%" align="right"><?php echo $qtot2; ?>&#8364;</td>
                         </tr>
                     </table>
                 </div>
-                <p class="cos2" style="clear: both; text-align: left;">
-                    Comanda realitzada el <?php echo $ver_datase; ?> dins la sessió nº <?php echo $sessionid; ?>.
-                    (*) Preu de venda aproximat (darrer preu actualitzat). Inclou iva.
+                <p class="alert alert--info">
+                    Pedido realizado el <?php echo $ver_datase; ?> con número de sessión <?php echo $sessionid; ?>.</br>
+                    (*) Precio de venta aproximado (último precio actualizado). Incluye IVA.
                 </p>
             </div>
 

@@ -204,7 +204,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     print('
                 <tr>
                     <td>
-                        <a href="cmda2.php?id=' . $proces . '&id2=' . $numero . '&id4=vis">' . $numero . '</a>
+                        <a href="cmda2.php?id=' . $proces . '&id2=' . $numero . '&id4=vis" class="link">' . $numero . '</a>
                     </td>
                     <td>' . $fam . '</td>
                     <td>' . $datavis . '</td>
@@ -216,7 +216,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     if ($check0 == 0) {
                         $accept0 = "Pendiente";
                     } else {
-                        $accept0 = '<a href="factura.php?id=' . $numero . '">ver</a>';
+                        $accept0 = '<a href="factura.php?id=' . $numero . '"  class="link">ver</a>';
                         if ($check1 == '0') {
                             if ($fam == $user) {
                                 //$accept1="<a href='factura.php?id=".$numero."&id2=".$report0."&id3=1'>validar</a>";

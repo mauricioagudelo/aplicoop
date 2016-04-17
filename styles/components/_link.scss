@@ -1,0 +1,14 @@
+@import '../config/variables';
+
+.link {
+  color: $color-black-soft;
+  &:hover{
+    color: $color-black;
+    border-bottom: 1px dotted $color-black;
+  }
+  &:visited{
+    color: $color-black-soft;
+  }
+}
+
+

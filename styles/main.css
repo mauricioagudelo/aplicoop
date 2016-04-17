@@ -2692,6 +2692,7 @@ label {
   display: inline-block;
   margin-bottom: 0;
   font-weight: 400;
+  color: #1e1e1e;
   text-align: center;
   vertical-align: middle;
   touch-action: manipulation;
@@ -2818,7 +2819,9 @@ label {
 .box-title {
   color: #ff6873; }
 
-.box-subtitle {
+.box-subtitle:not(:first-child) {
+  margin-top: .5rem;
+  padding-top: .5rem;
   border-top: 1px dotted #dce7eb; }
 
 .img--responsive {
@@ -2836,6 +2839,14 @@ label {
 .alert--info {
   color: #31708f;
   background-color: #d9edf7; }
+
+.link {
+  color: #1e1e1e; }
+  .link:hover {
+    color: #000000;
+    border-bottom: 1px dotted #000000; }
+  .link:visited {
+    color: #1e1e1e; }
 
 /*****************************************************
 /* PAGES
@@ -2965,5 +2976,18 @@ label {
 
 .u-mr-5 {
   margin-right: 5rem; }
+
+.u-cf:before,
+.u-cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */ }
+
+.u-cf:after {
+  clear: both; }
+
+.u-width-100 {
+  width: 100%; }
 
 /*# sourceMappingURL=main.css.map */

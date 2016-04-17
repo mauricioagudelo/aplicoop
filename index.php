@@ -124,7 +124,7 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
     </form>
 
     <p class="u-text-center u-text-smaller u-mt-3">
-        Si tienes cualquier problema notif&iacute;calo <a href="incidencia.php" target="_blank">aqu&iacute;</a>
+        Si tienes cualquier problema notif&iacute;calo <a href="incidencia.php"  class="link" target="_blank">aqu&iacute;</a>
     </p>
 
 </div>
