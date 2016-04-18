@@ -2618,7 +2618,14 @@ label {
   .navbar-toggle .icon-bar {
     height: 3px;
     background: #1a1a1a;
-    border-radius: 0; }
+    border-radius: 0;
+    transition: transform .2s; }
+  .navbar-toggle:not(.collapsed) .icon-bar:first-child {
+    transform: rotate(45deg) translate(5px, 5px); }
+  .navbar-toggle:not(.collapsed) .icon-bar:nth-child(3n + 2) {
+    opacity: 0; }
+  .navbar-toggle:not(.collapsed) .icon-bar:last-child {
+    transform: rotate(-45deg) translate(5px, -5px); }
 
 .navbar-logo {
   height: 50px; }
@@ -2723,40 +2730,43 @@ label {
 
 .button--animated {
   transition: color 0.4s; }
+  .button--animated, .button--animated::before {
+    transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1); }
+  .button--animated::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #1e1e1e;
+    z-index: -1;
+    opacity: 0;
+    transform: scale3d(0.7, 1, 1);
+    transition: transform 0.4s, opacity 0.4s; }
+  .button--animated:hover {
+    color: #ffffff; }
+    .button--animated:hover::before {
+      opacity: 1;
+      transform: translate3d(0, 0, 0); }
 
-.button--animated::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #1e1e1e;
-  z-index: -1;
-  opacity: 0;
-  transform: scale3d(0.7, 1, 1);
-  transition: transform 0.4s, opacity 0.4s; }
-
-.button--animated,
-.button--animated::before {
-  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1); }
-
-.button--animated:hover {
-  color: #ffffff; }
-
-.button--animated:hover::before {
-  opacity: 1;
-  transform: translate3d(0, 0, 0); }
+.button--white {
+  background: #fefffa; }
+  .button--white::before {
+    background: #fefffa; }
+  .button--white:hover {
+    color: #fefffa;
+    border-color: #1e1e1e; }
+    .button--white:hover::before {
+      background: #1e1e1e; }
 
 .button--save {
   color: #1ABC9C;
   border-color: #1ABC9C; }
-
-.button--save::before {
-  background: #1ABC9C; }
-
-.button--save:hover {
-  border-color: #1ABC9C; }
+  .button--save::before {
+    background: #1ABC9C; }
+  .button--save:hover {
+    border-color: #1ABC9C; }
 
 .accordion-item {
   position: relative; }
@@ -2850,6 +2860,9 @@ label {
     border-bottom: 1px dotted #000000; }
   .link:visited {
     color: #1e1e1e; }
+
+.link--highlight {
+  font-weight: 600; }
 
 /*****************************************************
 /* PAGES

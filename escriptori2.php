@@ -132,12 +132,12 @@ while (list($proces, $tipus, $datai, $dataf, $periode, $diare, $diat, $horat) = 
 
         if ($numcmda1 != "") {
             $nota11 = $proces . ': tens la comanda numero ' . $numcmda1 . '
-				<a href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis"
-				title="clica per editar aquesta comanda">Edita-la</a> fins el dia ' . $ver_dataf . ' (inclòs).';
+				<div><a class="button--save button--animated  button--save  u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis"
+				title="Editar pedido">Editar <i class="fa fa-pencil" aria-hidden="true"></i></a></div> Finaliza el ' . $ver_dataf . ' (incluido).';
         } else {
             $nota11 = $proces . ': fins ' . $ver_dataf . ' (inclòs).
-				<a href="cmda2.php?id=' . $proces . '&id4=create"
-				title="clicka para realizar un nuevo pedido">Nuevo pedido</a>';
+				<div><a class="button--save button--animated  button--save  u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id4=create"
+				title="Nuevo pedido">Nuevo pedido <i class="fa fa-plus-circle" aria-hidden="true"></i></a></div>';
         }
         $nota1 .= ' <div class="u-text-center">' . $nota11 . '</div> ';
     }

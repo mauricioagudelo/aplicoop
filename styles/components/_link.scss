@@ -2,13 +2,18 @@
 
 .link {
   color: $color-black-soft;
-  &:hover{
+
+  &:hover {
     color: $color-black;
     border-bottom: 1px dotted $color-black;
   }
-  &:visited{
+  &:visited {
     color: $color-black-soft;
   }
+}
+
+.link--highlight {
+  font-weight: 600;
 }
 
 

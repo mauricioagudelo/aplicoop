@@ -41,6 +41,21 @@ $navbar-color-black: #1a1a1a;
     height: 3px;
     background: $navbar-color-black;
     border-radius: 0;
+    transition: transform .2s;
+  }
+
+  &:not(.collapsed) {
+    $offset: 5px;
+    .icon-bar:first-child {
+      transform: rotate(45deg) translate($offset, $offset);
+    }
+    .icon-bar:nth-child(3n + 2) {
+      opacity: 0;
+    }
+    .icon-bar:last-child {
+      transform: rotate(-45deg) translate($offset, -$offset);
+    }
+
   }
 }
 

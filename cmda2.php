@@ -186,7 +186,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     /// Editem una comanda ja realitzada /////
                     //////////////////////////////////////////////////////
 
-                    $cap = 'Comanda numero: ' . $numcmda . ' / ' . $title;
+                    $cap = 'Pedido nº ' . $numcmda . ' - ' . $title;
                     $goto = 'cmda2.php?id=' . $proces . '&id2=' . $numcmda . '&id4=vis';
                 }
                 ?>
@@ -326,13 +326,16 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                             ?>
                         </ul>
+
+                        <div class="u-text-center">
+                            <button type="submit" class="button button--animated button--save u-mt-1" name="acceptar"
+                                    id="btnComanda">
+                                Aceptar <i class="fa fa-check" aria-hidden="true"></i
+                            </button>
+                        </div>
+
                     </div>
-                    <div class="u-text-center">
-                        <button type="submit" class="button button--animated button--save" name="acceptar"
-                                id="btnComanda">
-                            Aceptar <i class="fa fa-check" aria-hidden="true"></i
-                        </button>
-                    </div>
+
 
                 </form>
 

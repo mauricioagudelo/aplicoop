@@ -204,7 +204,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     print('
                 <tr>
                     <td>
-                        <a href="cmda2.php?id=' . $proces . '&id2=' . $numero . '&id4=vis" class="link">' . $numero . '</a>
+                        <a href="cmda2.php?id=' . $proces . '&id2=' . $numero . '&id4=vis" class="link link--highlight">' . $numero . '</a>
                     </td>
                     <td>' . $fam . '</td>
                     <td>' . $datavis . '</td>

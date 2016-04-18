@@ -20,7 +20,6 @@ $button-default-border-color: $color-border;
   position: relative;
   z-index: 1;
 
-
   &,
   &:active,
   &.active {
@@ -55,47 +54,62 @@ $button-default-border-color: $color-border;
 
 .button--animated {
   transition: color 0.4s;
+
+  &,
+  &::before {
+    transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $button-default-border-color;
+    z-index: -1;
+    opacity: 0;
+    transform: scale3d(0.7, 1, 1);
+    transition: transform 0.4s, opacity 0.4s;
+  }
+
+  &:hover {
+    color: #ffffff;
+    &::before {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
 }
 
-.button--animated::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: $button-default-border-color;
-  z-index: -1;
-  opacity: 0;
-  transform: scale3d(0.7, 1, 1);
-  transition: transform 0.4s, opacity 0.4s;
-}
+.button--white {
+  $button-white-color: $color-white;
+  background: $button-white-color;
+  &::before {
+    background: $button-white-color;
+  }
 
-.button--animated,
-.button--animated::before {
-  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  &:hover {
+    color: $button-white-color;
+    border-color: $button-default-border-color;
+    &::before {
+      background: $button-default-border-color;
+    }
+  }
 }
-
-.button--animated:hover {
-  color: #ffffff;
-}
-
-.button--animated:hover::before {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-
-$button-save-color: $color-main;
 
 .button--save {
+  $button-save-color: $color-main;
   color: $button-save-color;
   border-color: $button-save-color;
+
+  &::before {
+    background: $button-save-color;
+  }
+
+  &:hover {
+    border-color: $button-save-color;
+  }
 }
 
-.button--save::before {
-  background: $button-save-color;
-}
-
-.button--save:hover {
-  border-color: $button-save-color;
-}

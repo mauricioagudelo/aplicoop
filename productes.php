@@ -29,7 +29,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 <h1 class="pull-left">Productos </h1>
 
                 <div class="pull-right u-mt-1">
-                    <button class="button button--animated" onClick="javascript:window.location = 'editprod.php'">Crear
+                    <button class="button button--white button--animated" onClick="javascript:window.location = 'editprod.php'">Crear
                         producto  <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     </button>
                 </div>
