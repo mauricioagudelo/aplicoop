@@ -84,13 +84,13 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 }
 
                 if (prov == "") {
-                    alert("No has elegit cap proveïdora");
+                    alert("No has elegido proveedor");
                     document.getElementById("prov").focus();
                     return false;
                 }
 
                 if (cat == "") {
-                    alert("No has elegit cap categoria");
+                    alert("No has elegido categoria");
                     document.getElementById("tipus").focus();
                     return false;
                 }
@@ -266,7 +266,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     $buteli = '<div class="u-text-center u-mt-1">
 				<button class="button button--animated button--save" type="submit">Guardar <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
 				<button class="button button--animated" name="eliminar"  id="eliminar"
-     			onClick="var answer = confirm (\'Estas segur de borrar aquest producte!!\')
+     			onClick="var answer = confirm (\'¿Estás seguro de borrar este producto?\')
 				if (answer)
 					{window.location=\'editprod.php?id=' . $gref . '&id3=elim\'}">Eliminar  <i class="fa fa-trash-o" aria-hidden="true"></i></button></div>';
     if (!$gref) {
@@ -358,21 +358,21 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 	descompte='" . $pdescompte . "',notes='" . $pnotes . "'
 	WHERE ref='" . $pref . "'";
                 mysql_query($query3) or die('Error, insert query3 failed');
-                die ("<p class='comment'>El producte " . $pref . "-" . $supernom . " ha canviat a les següents dades:</p>
-			<p class='cos2'>unitat: " . $punitat . "</p>
-			<p class='cos2'>proveïdora: " . $gprov . "</p>
+                die ("<div class='box'><p class='alert alert--info'>El producto " . $pref . "-" . $supernom . " ha cambiado los siguientes datos:</p>
+			<p class='cos2'>unidades: " . $punitat . "</p>
+			<p class='cos2'>provedor: " . $gprov . "</p>
 			<p class='cos2'>categoria: " . $pcat . "</p>
 			<p class='cos2'>subcategoria: " . $psubcat . "</p>
 			<p class='cos2'>actiu: " . $pactiu . "</p>
-			<p class='cos2'>preu sense iva: " . $ppreusi . "</p>
-			<p class='cos2'>iva: " . $piva . "</p>
-			<p class='cos2'>preu amb iva: " . $ppreu . "</p>
+			<p class='cos2'>precio sin IVA: " . $ppreusi . "</p>
+			<p class='cos2'>IVA: " . $piva . "</p>
+			<p class='cos2'>precio con IVA: " . $ppreu . "</p>
 			<p class='cos2'>marge: " . $pmarge . "</p>
-			<p class='cos2'>descompte: " . $pdescompte . "</p>
-			<p class='cos2'>pvp sense iva: " . $ppvpsi . "</p>
+			<p class='cos2'>descuento: " . $pdescompte . "</p>
+			<p class='cos2'>pvp sin IVA: " . $ppvpsi . "</p>
 			<p class='cos2'>pvp: " . $ppvp . "</p>
-			<p class='cos2'>pvp amb descompte: " . $ppvpdesc . "</p>
-			<p class='cos2'>comentaris: " . $pnotes . "</p>");
+			<p class='cos2'>pvp con descuento: " . $ppvpdesc . "</p>
+			<p class='cos2'>comentarios: " . $pnotes . "</p></div>");
             }
 
             if ($que == 'elim') {
@@ -520,11 +520,11 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             <label for="subtipus" class="col-sm-2 control-label">Subcategoria</label>
                             <div class="col-sm-10">
                                 <script type="text/javascript" language="JavaScript">
-                                    document.write('<select name="subtipus" id="subtipus"><option value="">elegeix subcategoria</option></select>')
+                                    document.write('<select name="subtipus" id="subtipus"><option value="">-- elegir --</option></select>')
                                 </script>
                                 <noscript>
                                     <select name="subtipus" id="subtipus">
-                                        <option value="">elegeix subcategoria</option>
+                                        <option value="">-- elegir --</option>
                                     </select>
                                 </noscript>
                             </div>
