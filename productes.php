@@ -16,7 +16,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     <html>
     <head>
         <?php include 'head.php'; ?>
-        <title>productes ::: la coope</title>
+        <title>aplicoop - productos</title>
     </head>
 
 
@@ -30,7 +30,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                 <div class="pull-right u-mt-1">
                     <button class="button button--animated" onClick="javascript:window.location = 'editprod.php'">Crear
-                        producto
+                        producto  <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -178,9 +178,19 @@ WHERE categoria='" . $pcat . "' ORDER BY subcategoria";
                         }
 
                         $i = 0;
+                        $letter = '';
+                        $prevletter = '';
                         while (list($ref, $nomprod, $nomprov) = mysql_fetch_row($result)) {
+                            $prod = htmlentities($nomprod, null, 'utf-8');
+                            $prodtext = str_replace("&nbsp;", " ", $prod);
+                            $prodtext = html_entity_decode($prodtext);
+                            $letter = $nomprod[0];
+                            if ($letter != $prevletter){
+                                print('<div class="col-lg-12 u-mt-1"><h2 class="box-subtitle box-separator u-text-bold">'.$letter.'</h2></div>');
 
-                            print('<div class="col-lg-6"><a id="color" class="link"  href="editprod.php?id=' . $ref . '">' . $nomprod . '</a></div>');
+                                $prevletter = $letter;
+                            }
+                            print('<div class="col-lg-6"><a id="color" class="link"  href="editprod.php?id=' . $ref . '">' . $prodtext . '</a></div>');
 
                         }
                         print ('</div></div>');
@@ -197,9 +207,19 @@ WHERE categoria='" . $pcat . "' ORDER BY subcategoria";
                         }
 
                         $i = 0;
+                        $letter = '';
+                        $prevletter = '';
                         while (list($ref, $nomprod, $nomprov) = mysql_fetch_row($result)) {
+                            $prod = htmlentities($nomprod, null, 'utf-8');
+                            $prodtext = str_replace("&nbsp;", " ", $prod);
+                            $prodtext = html_entity_decode($prodtext);
+                            $letter = $nomprod[0];
+                            if ($letter != $prevletter){
+                                print('<div class="col-lg-12 u-mt-1"><h2 class="box-subtitle box-separator u-text-bold">'.$letter.'</h2></div>');
 
-                            print('<div class="col-lg-6"><a id="color" class="link" href="editprod.php?id=' . $ref . '">' . $nomprod . '</a></div>');
+                                $prevletter = $letter;
+                            }
+                            print('<div class="col-lg-6"><a id="color" class="link" href="editprod.php?id=' . $ref . '">' . $prodtext . '</a></div>');
 
                         }
                         print ('</div></div>');
@@ -207,11 +227,6 @@ WHERE categoria='" . $pcat . "' ORDER BY subcategoria";
 
                     ?>
 
-                    <p class="alert alert--info">
-                        Per crear un nou producte clica el botó CREAR NOU PRODUCTE. Per editar o eliminar
-                        un producte clica sobre el seu nom i t'apareixerà la seva fitxa. Pots buscar productes
-                        per categoria i/o per proveïdora. Per defecte apareixen tots els productes ordenats per ordre
-                        alfabètic.</p>
             </div>
 
 

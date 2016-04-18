@@ -13,10 +13,14 @@ $box-padding: 1.8rem;
   color: $color-box;
 }
 
-.box-subtitle:not(:first-child) {
+.box-subtitle {
   margin-top: .5rem;
   padding-top: .5rem;
-  border-top: 1px dotted #dce7eb;
+}
+
+.box-separator {
+  border-width: 0;
+  border-bottom: 1px dotted #dce7eb;
 }
 
 

@@ -320,6 +320,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 }
 
                                 print ('</ul>');
+                                print ('<hr class="box-separator"/>');
                                 print ('</li>');
                             }
 

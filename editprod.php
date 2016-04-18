@@ -264,20 +264,20 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     $formact = "editprod.php?id=" . $gref . "&id2=" . $gprov . "&id3=edit";
     $width = "50%";
     $buteli = '<div class="u-text-center u-mt-1">
-				<button class="button button--animated button--save" type="submit">Guardar</button>
+				<button class="button button--animated button--save" type="submit">Guardar <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
 				<button class="button button--animated" name="eliminar"  id="eliminar"
      			onClick="var answer = confirm (\'Estas segur de borrar aquest producte!!\')
 				if (answer)
-					{window.location=\'editprod.php?id=' . $gref . '&id3=elim\'}">Eliminar</button></div>';
+					{window.location=\'editprod.php?id=' . $gref . '&id3=elim\'}">Eliminar  <i class="fa fa-trash-o" aria-hidden="true"></i></button></div>';
     if (!$gref) {
         $supernom = strtoupper($pnom);
         $head3 = ">>><a href='editprod.php'>crear nou producte</a>";
-        $tit = '<p class="h1" style="background: #990000; text-align: left; padding-left: 20px;">Crear nou producte</p>';
-        $subtit = 'Per crear un nou producte omple el formulari i clica el botó GUARDAR al final.';
+        $tit = '<h1>Crear nuevo producto</h1>';
+        $subtit = 'Para crear uner crear un nou producte omple el formulari i clica el botó GUARDAR al final.';
         $formact = "editprod.php?id3=create";
         $width = "100%";
         $buteli = '<div class="u-text-center u-mt-1">
-					<button class="button button--animated button--save" type="submit">Guardar</button></div>';
+					<button class="button button--animated button--save" type="submit">Guardar <i class="fa fa-floppy-o" aria-hidden="true"></i></button></div>';
     }
     ?>
 
@@ -632,9 +632,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                 <?php echo $buteli; ?>
 
-                <p class="alert alert--info">
-                    <?php echo $subtit; ?>
-                </p>
+
             </div>
 
 

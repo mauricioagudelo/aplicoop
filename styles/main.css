@@ -2826,10 +2826,13 @@ label {
 .box-title {
   color: #ff6873; }
 
-.box-subtitle:not(:first-child) {
+.box-subtitle {
   margin-top: .5rem;
-  padding-top: .5rem;
-  border-top: 1px dotted #dce7eb; }
+  padding-top: .5rem; }
+
+.box-separator {
+  border-width: 0;
+  border-bottom: 1px dotted #dce7eb; }
 
 .img--responsive {
   max-width: 100%;
@@ -2893,6 +2896,9 @@ label {
 
 .u-text-semibold {
   font-weight: 600; }
+
+.u-text-bold {
+  font-weight: 800; }
 
 .u-m-0 {
   margin: 0; }
