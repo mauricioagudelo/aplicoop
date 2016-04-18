@@ -319,46 +319,39 @@ while (list($from, $to, $sub, $tex, $datac, $vis) = mysql_fetch_row($result5)) {
 <div class="page">
 
     <div class="container">
-        <div class="desktop-wrapper row">
-            <div class="col-md-6">
-                <div class="box">
-                    <h2 class="box-title">Pedido</h2>
-                    <div>
-                        <?php echo $nota1; ?>
-                        <?php echo $nota12; ?>
-                        <?php echo $nota13; ?>
-                    </div>
+        <div class="desktop-wrapper">
+            <div class="box">
+                <h2 class="box-title">Pedido</h2>
+                <div>
+                    <?php echo $nota1; ?>
+                    <?php echo $nota12; ?>
+                    <?php echo $nota13; ?>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="box">
-                    <h2 class="box-title clearfix">Monedero <span class="pull-right" <?php echo $style . ">** " . $moneder; ?> **</span></h2>
+            <div class="box">
+                <h2 class="box-title clearfix">Monedero <span
+                        class="pull-right" <?php echo $style . ">** " . $moneder; ?> **</span></h2>
 
-                    <h3 class="u-mb-1 u-mt-1">
-                        &Uacute;ltimos movimientos contabilizados
-                    </h3>
-                    <table class="table table-striped"><?php echo $last; ?></table>
+                <h3 class="u-mb-1 u-mt-1">
+                    &Uacute;ltimos movimientos contabilizados
+                </h3>
+                <table class="table table-striped"><?php echo $last; ?></table>
 
-                    <?php echo $nota21; ?>
+                <?php echo $nota21; ?>
 
+            </div>
+            <div class="box">
+                <h2 class="box-title">Agenda</h2>
+                <div>
+                    <iframe src="<?php echo $gcal; ?>" style=" border-width:0 " width="400" height="300"
+                            frameborder="0"
+                            scrolling="no"></iframe>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="box">
-                    <h2 class="box-title">Agenda</h2>
-                    <div>
-                        <iframe src="<?php echo $gcal; ?>" style=" border-width:0 " width="400" height="300"
-                                frameborder="0"
-                                scrolling="no"></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="box">
-                    <h2 class="box-title">Correos</h2>
-                    <div id="correu">
-                        <?php echo $correu_linia; ?>
-                    </div>
+            <div class="box">
+                <h2 class="box-title">Correos</h2>
+                <div id="correu">
+                    <?php echo $correu_linia; ?>
                 </div>
             </div>
         </div>

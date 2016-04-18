@@ -1,12 +1,13 @@
 @import '../config/variables';
 
 $box-padding: 1.8rem;
+$box-margin: $margin-box;
 
 .box {
   box-shadow: 0 10px 0 0 $color-box inset;
   background-color: $color-white;
   padding: $box-padding $box-padding $box-padding/2;
-  margin-bottom: 1.5rem;
+  margin-bottom: $box-margin;
 }
 
 .box-title {

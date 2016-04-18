@@ -67,7 +67,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 var descompte = document.getElementById("descompte").value;
 
                 if (nom == "") {
-                    alert("T'has deixat el nom en blanc");
+                    alert("Debes rellenar el nombre");
                     document.getElementById("nom").focus();
                     return false;
                 }
@@ -221,7 +221,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     {
                     ?>
                     case "<?php echo $jtipus; ?>":
-                        document.nouprod.subtipus.options[0] = new Option("elegeix subcategoria", "");
+                        document.nouprod.subtipus.options[0] = new Option("elegir subcategoria", "");
                     <?php
 
                     $query8 = "SELECT subcategoria FROM subcategoria
@@ -474,7 +474,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 		<input align="right" name="prov" id="prov" type="TEXT" maxlength="30" size="20" value="' . $gprov . '" readonly>
 		';
                                 } else {
-                                    echo '<SELECT name="prov" id="prov" size="1" maxlenght="30"><option value="">elegeix proveïdora</option>';
+                                    echo '<SELECT name="prov" id="prov" size="1" maxlenght="30"><option value="">elegir proveedor</option>';
                                     $query = "SELECT nom FROM proveidores ORDER BY nom";
                                     $result = mysql_query($query);
                                     if (!$result) {

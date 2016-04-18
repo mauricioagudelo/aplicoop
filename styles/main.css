@@ -2877,11 +2877,12 @@ label {
   .desktop-wrapper {
     display: flex;
     flex-wrap: wrap; }
-    .desktop-wrapper > [class*='col-'] {
-      display: flex;
-      flex-direction: column; }
-      .desktop-wrapper > [class*='col-'] .box {
-        flex: 1; } }
+    .desktop-wrapper > .box {
+      width: calc(50% - 0.75rem); }
+      .desktop-wrapper > .box:nth-child(odd) {
+        margin-right: 0.75rem; }
+      .desktop-wrapper > .box:nth-child(even) {
+        margin-left: 0.75rem; } }
 /*****************************************************
 /* UTILITIES
 /*****************************************************/
