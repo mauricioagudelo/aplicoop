@@ -2620,12 +2620,16 @@ label {
     background: #1a1a1a;
     border-radius: 0;
     transition: transform .2s; }
+    .navbar-toggle .icon-bar:first-child {
+      transform-origin: top left; }
+    .navbar-toggle .icon-bar:last-child {
+      transform-origin: bottom left; }
   .navbar-toggle:not(.collapsed) .icon-bar:first-child {
-    transform: rotate(45deg) translate(5px, 5px); }
+    transform: rotate(45deg); }
   .navbar-toggle:not(.collapsed) .icon-bar:nth-child(3n + 2) {
     opacity: 0; }
   .navbar-toggle:not(.collapsed) .icon-bar:last-child {
-    transform: rotate(-45deg) translate(5px, -5px); }
+    transform: rotate(-45deg); }
 
 .navbar-logo {
   height: 50px; }

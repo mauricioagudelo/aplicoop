@@ -42,18 +42,25 @@ $navbar-color-black: #1a1a1a;
     background: $navbar-color-black;
     border-radius: 0;
     transition: transform .2s;
+
+    &:first-child {
+      transform-origin: top left;
+    }
+    &:last-child {
+      transform-origin: bottom left;
+    }
   }
 
   &:not(.collapsed) {
-    $offset: 5px;
+
     .icon-bar:first-child {
-      transform: rotate(45deg) translate($offset, $offset);
+      transform: rotate(45deg);
     }
     .icon-bar:nth-child(3n + 2) {
       opacity: 0;
     }
     .icon-bar:last-child {
-      transform: rotate(-45deg) translate($offset, -$offset);
+      transform: rotate(-45deg);
     }
 
   }
