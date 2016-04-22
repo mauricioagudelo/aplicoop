@@ -41,8 +41,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                 <table class="table table-striped">
                     <tr class="cos_majus">
-                        <td width="40%" class="u-text-semibold u-text-right u-text-right">Nombre:</td>
-                        <td width="60%"  ><?php echo $nom; ?></td>
+                        <td width="50%" class="u-text-semibold u-text-right u-text-right">Nombre:</td>
+                        <td width="50%"  ><?php echo $nom; ?></td>
                     </tr>
                     <tr class="cos_majus">
                         <td class="u-text-semibold u-text-right">D&iacute;a de recogida:</td>
@@ -84,8 +84,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         <td class="u-text-semibold u-text-right">Comentarios:</td>
                         <td class="cos" ><?php echo $nota; ?></td>
                     </tr>
-                    <tr class="u-text-semibold u-text-right">
-                        <td>Permisos:</td>
+                    <tr>
+                        <td  class="u-text-semibold u-text-right">Permisos:</td>
                         <td ><?php echo $tip; ?></td>
                     </tr>
                 </table>
@@ -100,7 +100,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 ?>
 
                 <div class="u-text-center">
-                    <button class="button button--animated" onClick="javascript:window.location = 'editdadesp.php';">editar</button>
+                    <button class="button button--animated" onClick="javascript:window.location = 'editdadesp.php';">editar  <i class="fa fa-pencil" aria-hidden="true"></i></button>
                 </div>
 
                 <?php

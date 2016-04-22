@@ -30,13 +30,13 @@ $superuser = strtoupper($_SESSION['user']);
         <div id="menu" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="comandes.php?id3=<?php /*echo $user; */ ?>">mis pedidos</a>
+                    <a href="comandes.php?id3=<?php echo $user;?>">mis pedidos</a>
                 </li>
                 <li>
-                    <a href="vis_user.php?id=<?php /*echo $user; */ ?>">mis datos</a>
+                    <a href="vis_user.php?id=<?php echo $user;?>">mis datos</a>
                 </li>
                 <li>
-                    <a href="comptes.php?id3=<?php /*echo $user; */ ?>">mis cuentas</a>
+                    <a href="comptes.php?id3=<?php echo $user;?>">mis cuentas</a>
                 </li>
                 <li>
                     <a href="admint.php">administrar</a>

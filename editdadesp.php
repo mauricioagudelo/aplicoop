@@ -18,7 +18,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     if ($nom == "" OR $nom == $user) {
         $nom = $user;
         $link = ">><a href='families.php'>llistat famílies</a>";
-        $modcdp = '<input class="button2" style="width: 180px;" type="button" value="MODIFICAR CLAU DE PAS" size="5"  onclick="javascript:window.location = \'editpass.php\';">';
+        $modcdp = '<button class="button button--animated"  onclick="javascript:window.location = \'editpass.php\';">Modificar contraseña</button>';
     } else {
         $link = ">><a href='editfamilies3.php'>crear y editar socios/as</a>";
     }
@@ -45,30 +45,23 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     <html>
     <head>
-        <meta http-equiv="content-type" content="=" text
-        /ht; charset=UTF-8" >
-        <link rel="stylesheet" type="text/css" href="coope.css"/>
-        <title>editar datos socio/a ::: la coope</title>
+        <?php include 'head.php'; ?>
+        <title>aplicoop - editar familia</title>
     </head>
 
     <body>
     <?php include 'menu.php'; ?>
-    <div class="pagina" style="margin-top: 10px;">
-        <div class="contenidor_1" style="border: 1px solid orange;">
+    <div class="page">
+        <div class="container">
 
-            <p class='path'>
-                ><a href='admint.php'>administraci&oacute;n</a>
-                <?php echo $link; ?>
-                >>><a href='editdadesp.php?id=<?php echo $nom; ?>'>editar socio/a <?php echo $supernom; ?></a>
-            </p>
-            <p class="h1" style="background: orange; text-align: left; padding-left: 20px;">
-                Editar família <?php echo $supernom; ?>
-                <span style="display: inline; float: right; text-align: center; vertical-align: middle;
-padding: 2px 50px 2px 0px;">
-<?php echo $modcdp; ?>
-</span>
-            </p>
 
+            <div class="u-cf">
+                <h1 class="pull-left"> Editar família <?php echo $supernom; ?> </h1>
+
+                <div class="pull-right u-mt-1">
+                   <?php echo $modcdp; ?>
+                </div>
+            </div>
 
             <?php
             if ($p_tip2 != "" OR $p_dia != "" OR $p_comp != "" OR $p_tip != "") {
@@ -86,7 +79,7 @@ padding: 2px 50px 2px 0px;">
             }
             ?>
 
-            <div class="contenidor_fac" style=" width:500px; border: 1px solid orange; margin-bottom:20px;">
+            <div class="box">
                 <form action="editdadesp.php?id=<?php echo $nom; ?>" method="post" name="frmeditdadesp"
                       id="frmeditdadesp">
 
@@ -278,17 +271,11 @@ FROM usuaris WHERE nom='$nom'";
                         </tr>
                     </table>
 
-                    <p class="linia_button2" style="background: orange; text-align: center; vertical-align: middle;">
-                        <input class="button2" type="submit" value="GUARDAR">
-                        <input class="button2" type="button" value="SORTIR" onClick="javascript:history.go(-1);">
-                    </p>
+                    <div class="u-text-center u-mt-1">
+                        <button class="button button--animated button--save" type="submit">Guardar <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+
+                    </div>
             </div>
-
-
-            <p class="cos2" style="clear: both; text-align: center;">
-                Per canviar les dades clica el botó GUARDAR. Per modificar la clau de pas
-                clica el botó superior.
-            </p>
 
         </div>
     </div>
