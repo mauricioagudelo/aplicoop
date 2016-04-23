@@ -18,6 +18,8 @@ $navbar-color-black: #1a1a1a;
         background-color: transparent;
         text-align: center;
         border-bottom: none;
+        padding-left: .7rem;
+        padding-right: .7rem;
         @media (min-width: $screen-sm-min) {
           font-size: .7rem;
           color: #f4f4f4;

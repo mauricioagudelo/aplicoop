@@ -113,17 +113,19 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
             }
             ?>
 
+            <div class="u-text-center">
+                <button type="submit" id="btnLogin" class="button button--animated button--save" name="entrar">
+                    Entrar
+                </button>
+            </div>
+
         </div>
 
-        <div class="u-text-center">
-            <button type="submit" id="btnLogin" class="button button--animated button--save" name="entrar">
-                Entrar
-            </button>
-        </div>
+
 
     </form>
 
-    <p class="u-text-center u-text-smaller u-mt-3">
+    <p class="u-text-center u-text-smaller u-mt-2">
         Si tienes cualquier problema notif&iacute;calo <a href="incidencia.php"  class="link link--highlight" target="_blank">aqu&iacute;</a>
     </p>
 

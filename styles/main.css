@@ -2596,7 +2596,9 @@ label {
     font-size: .9rem;
     background-color: transparent;
     text-align: center;
-    border-bottom: none; }
+    border-bottom: none;
+    padding-left: .7rem;
+    padding-left: .7rem; }
     @media (min-width: 768px) {
       .navbar .navbar-nav > li > a,
       .navbar .navbar-nav > li > a:focus,
