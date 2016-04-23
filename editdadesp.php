@@ -18,7 +18,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     if ($nom == "" OR $nom == $user) {
         $nom = $user;
         $link = ">><a href='families.php'>llistat famílies</a>";
-        $modcdp = '<button class="button button--animated"  onclick="javascript:window.location = \'editpass.php\';">Modificar contraseña</button>';
+        $modcdp = '<button class="button button--animated"  onclick="javascript:window.location = \'editpass.php\';">Modificar contraseña <i class="fa fa-lock" aria-hidden="true"></i></button>';
     } else {
         $link = ">><a href='editfamilies3.php'>crear y editar socios/as</a>";
     }
@@ -56,224 +56,248 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
 
             <div class="u-cf">
-                <h1 class="pull-left"> Editar família <?php echo $supernom; ?> </h1>
+                <h1 class="pull-left"> Editar familia <?php echo $supernom; ?> </h1>
 
-                <div class="pull-right u-mt-1">
-                   <?php echo $modcdp; ?>
+                <div class="pull-right u-mt-1 u-mb-1">
+                    <?php echo $modcdp; ?>
                 </div>
             </div>
 
-            <?php
-            if ($p_tip2 != "" OR $p_dia != "" OR $p_comp != "" OR $p_tip != "") {
-                $query2 = "UPDATE usuaris
+
+
+            <div class="box">
+                <form action="editdadesp.php?id=<?php echo $nom; ?>" method="post" name="frmeditdadesp"
+                      id="frmeditdadesp" class="form-horizontal">
+
+
+                    <?php
+                    if ($p_tip2 != "" OR $p_dia != "" OR $p_comp != "" OR $p_tip != "") {
+                        $query2 = "UPDATE usuaris
 	SET tipus='" . $p_tip . "', tipus2='" . $p_tip2 . "', dia='" . $p_dia . "', components='" . $p_comp . "',
 	tel1='" . $p_tlf1 . "', tel2='" . $p_tlf2 . "', email1='" . $p_email1 . "', email2='" . $p_email2 . "',
 	nomf='" . $p_nomf . "', adressf='" . $p_adressf . "', niff='" . $p_niff . "',
 	nota='" . $p_nota . "'
 	WHERE nom='" . $nom . "' ";
 
-                mysql_query($query2) or die('Error, insert query2 failed');
+                        mysql_query($query2) or die('Error, insert query2 failed');
 
-                echo "<p class='error' style='font-size: 14px;'>Los cambios de socio/a " . $supernom . " se han guardado correctamente</p>";
+                        echo "<p class='alert alert--info'>Los cambios de la familia " . $supernom . " se han guardado correctamente.</p>";
 
-            }
-            ?>
+                    }
+                    ?>
 
-            <div class="box">
-                <form action="editdadesp.php?id=<?php echo $nom; ?>" method="post" name="frmeditdadesp"
-                      id="frmeditdadesp">
+                    <?php
 
-                    <table style="padding: 10px;" width="100%" align="center" cellspading="5" cellspacing="5">
-
-                        <?php
-
-                        $select = "SELECT nom,tipus,tipus2,dia,components,tel1,tel2,email1,email2,nomf,adressf,niff,nota
+                    $select = "SELECT nom,tipus,tipus2,dia,components,tel1,tel2,email1,email2,nomf,adressf,niff,nota
 FROM usuaris WHERE nom='$nom'";
 
-                        $query = mysql_query($select);
+                    $query = mysql_query($select);
 
-                        if (!$query) {
-                            die('Invalid query: ' . mysql_error());
-                        }
+                    if (!$query) {
+                        die('Invalid query: ' . mysql_error());
+                    }
 
-                        list($nom, $tip, $tip2, $dia, $comp, $tlf1, $tlf2, $email1, $email2, $nomf, $adressf, $niff, $nota) = mysql_fetch_row($query);
+                    list($nom, $tip, $tip2, $dia, $comp, $tlf1, $tlf2, $email1, $email2, $nomf, $adressf, $niff, $nota) = mysql_fetch_row($query);
 
-                        if ($nom == "" OR $nom == $user) {
-                            $hidden = '<input type="hidden" name="tip2" id="tip2" value="' . $tip2 . '">';
-                            $hidden2 = '<input type="hidden" name="dia" id="dia" value="' . $dia . '">';
-                            $hidden3 = '<input type="hidden" name="tipus" id="tipus" value="' . $tip . '">';
-                            $new = "2";
-                        }
+                    if ($nom == "" OR $nom == $user) {
+                        $hidden = '<input type="hidden" name="tip2" id="tip2" value="' . $tip2 . '">';
+                        $hidden2 = '<input type="hidden" name="dia" id="dia" value="' . $dia . '">';
+                        $hidden3 = '<input type="hidden" name="tipus" id="tipus" value="' . $tip . '">';
+                        $new = "2";
+                    }
 
-                        ?>
+                    ?>
 
-                        <tr>
-                            <td class="cos_majus">Actiu/Baixa</td>
-                            <td class="cos">
-                                <SELECT name="tip2<?php echo $new; ?>" id="tip2<?php echo $new; ?>" size="1"
-                                        maxlength="5">
+                    <h2 class="box-subtitle u-text-center u-mb-1">Datos personales</h2>
 
-                                    <?php
-                                    if ($tip2 == 'actiu') {
-                                        $checked1 = 'selected';
-                                        $checked2 = "";
+
+                    <div class="form-group">
+                        <label for="tip2<?php echo $new; ?>" class="col-sm-3 control-label">Activo/Baja</label>
+                        <div class="col-sm-9">
+                            <SELECT name="tip2<?php echo $new; ?>" id="tip2<?php echo $new; ?>" size="1"
+                                    maxlength="5">
+
+                                <?php
+                                if ($tip2 == 'actiu') {
+                                    $checked1 = 'selected';
+                                    $checked2 = "";
+                                }
+                                if ($tip2 == 'baixa') {
+                                    $checked2 = 'selected';
+                                    $checked1 = "";
+                                }
+                                ?>
+
+                                <option value="actiu" <?php echo $checked1; ?>>activo</option>
+                                <option value="baixa" <?php echo $checked2; ?>>baja</option>
+                            </select>
+                            <?php echo $hidden; ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dia<?php echo $new; ?>" class="col-sm-3 control-label">Grupo</label>
+                        <div class="col-sm-9">
+                            <SELECT name="dia<?php echo $new; ?>" id="dia<?php echo $new; ?>">
+
+                                <?php
+                                $select3 = "SELECT nom FROM grups ORDER BY nom";
+                                $query3 = mysql_query($select3);
+                                if (!$query3) {
+                                    die('Invalid query3: ' . mysql_error());
+                                }
+
+                                while (list($sgrup) = mysql_fetch_row($query3)) {
+                                    if ($dia == $sgrup) {
+                                        echo '<option value="' . $sgrup . '" selected>' . $sgrup . '</option>';
+                                    } else {
+                                        echo '<option value="' . $sgrup . '">' . $sgrup . '</option>';
                                     }
-                                    if ($tip2 == 'baixa') {
-                                        $checked2 = 'selected';
-                                        $checked1 = "";
-                                    }
-                                    ?>
+                                }
+                                ?>
 
-                                    <option value="actiu" <?php echo $checked1; ?>>activo</option>
-                                    <option value="baixa" <?php echo $checked2; ?>>baja</option>
-                                </select>
-                                <?php echo $hidden; ?>
-                            </td>
-                        </tr>
+                            </select>
+                            <?php echo $hidden2; ?>
+                        </div>
+                    </div>
 
-                        <tr>
-                            <td class="cos_majus">Grup</td>
-                            <td class="cos">
-                                <SELECT name="dia<?php echo $new; ?>" id="dia<?php echo $new; ?>" size="1"
-                                        maxlength="12">
 
-                                    <?php
-                                    $select3 = "SELECT nom FROM grups ORDER BY nom";
-                                    $query3 = mysql_query($select3);
-                                    if (!$query3) {
-                                        die('Invalid query3: ' . mysql_error());
-                                    }
-
-                                    while (list($sgrup) = mysql_fetch_row($query3)) {
-                                        if ($dia == $sgrup) {
-                                            echo '<option value="' . $sgrup . '" selected>' . $sgrup . '</option>';
-                                        } else {
-                                            echo '<option value="' . $sgrup . '">' . $sgrup . '</option>';
-                                        }
-                                    }
-                                    ?>
-
-                                </select>
-                                <?php echo $hidden2; ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="cos_majus">Tipus d'usuari (permisos)</td>
-                            <td class="cos">
-                                <SELECT name="tipus<?php echo $new; ?>" id="tipus<?php echo $new; ?>" size="1"
-                                        maxlength="10">
-                                    <?php
-                                    if ($tip == 'user') {
-                                        $checked3 = 'selected';
-                                        $checked4 = "";
-                                        $checked5 = "";
-                                        $checked6 = "";
-                                        $checked7 = "";
-                                        $checked8 = "";
-                                    } elseif ($tip == 'admin') {
-                                        $checked3 = '';
-                                        $checked4 = "selected";
-                                        $checked5 = "";
-                                        $checked6 = "";
-                                        $checked7 = "";
-                                        $checked8 = "";
-                                    } elseif ($tip == 'eco') {
-                                        $checked3 = '';
-                                        $checked4 = "";
-                                        $checked5 = "selected";
-                                        $checked6 = "";
-                                        $checked7 = "";
-                                        $checked8 = "";
-                                    } elseif ($tip == 'prov') {
-                                        $checked3 = '';
-                                        $checked4 = "";
-                                        $checked5 = "";
-                                        $checked6 = "selected";
-                                        $checked7 = "";
-                                        $checked8 = "";
-                                    } elseif ($tip == 'cist') {
-                                        $checked3 = '';
-                                        $checked4 = "";
-                                        $checked5 = "";
-                                        $checked6 = "";
-                                        $checked7 = "selected";
-                                        $checked8 = "";
-                                    } elseif ($tip == 'super') {
-                                        $checked3 = '';
-                                        $checked4 = "";
-                                        $checked5 = "";
-                                        $checked6 = "";
-                                        $checked7 = "";
-                                        $checked8 = "selected";
-                                    }
-                                    echo '
+                    <div class="form-group">
+                        <label for="tipus<?php echo $new; ?>" class="col-sm-3 control-label">Tipo de usuario
+                            (permisos)</label>
+                        <div class="col-sm-9">
+                            <SELECT name="tipus<?php echo $new; ?>" id="tipus<?php echo $new; ?>" size="1"
+                                    maxlength="10">
+                                <?php
+                                if ($tip == 'user') {
+                                    $checked3 = 'selected';
+                                    $checked4 = "";
+                                    $checked5 = "";
+                                    $checked6 = "";
+                                    $checked7 = "";
+                                    $checked8 = "";
+                                } elseif ($tip == 'admin') {
+                                    $checked3 = '';
+                                    $checked4 = "selected";
+                                    $checked5 = "";
+                                    $checked6 = "";
+                                    $checked7 = "";
+                                    $checked8 = "";
+                                } elseif ($tip == 'eco') {
+                                    $checked3 = '';
+                                    $checked4 = "";
+                                    $checked5 = "selected";
+                                    $checked6 = "";
+                                    $checked7 = "";
+                                    $checked8 = "";
+                                } elseif ($tip == 'prov') {
+                                    $checked3 = '';
+                                    $checked4 = "";
+                                    $checked5 = "";
+                                    $checked6 = "selected";
+                                    $checked7 = "";
+                                    $checked8 = "";
+                                } elseif ($tip == 'cist') {
+                                    $checked3 = '';
+                                    $checked4 = "";
+                                    $checked5 = "";
+                                    $checked6 = "";
+                                    $checked7 = "selected";
+                                    $checked8 = "";
+                                } elseif ($tip == 'super') {
+                                    $checked3 = '';
+                                    $checked4 = "";
+                                    $checked5 = "";
+                                    $checked6 = "";
+                                    $checked7 = "";
+                                    $checked8 = "selected";
+                                }
+                                echo '
 <option value="user" ' . $checked3 . '>user</option>
 <option value="admin" ' . $checked4 . '>admin</option>
 <option value="eco" ' . $checked5 . '>eco</option>
 <option value="prov" ' . $checked6 . '>prov</option>
 <option value="cist" ' . $checked7 . '>cist</option>
 <option value="super" ' . $checked8 . '>super</option>';
-                                    ?>
+                                ?>
 
-                                </select>
-                                <?php echo $hidden3; ?>
-                            </td>
-                        </tr>
-                        <tr class="cos_majus">
-                            <td>Components de la família</td>
-                            <td>
-                                <input type="text" name="comp" value="<?php echo $comp; ?>" size="30" maxlength="100">
-                            </td>
-                        </tr>
-                        <tr class="cos_majus">
-                            <td>Telèfon 1</td>
-                            <td>
-                                <input type="text" name="tlf1" value="<?php echo $tlf1; ?>" size="9" maxlength="9"></td>
-                        </tr>
-                        <tr class="cos_majus">
-                            <td>Telèfon 2</td>
-                            <td>
-                                <input type="text" name="tlf2" value="<?php echo $tlf2; ?>" size="9" maxlength="9"></td>
-                        </tr>
-                        <tr class="cos_majus">
-                            <td>E-mail 1</td>
-                            <td>
-                                <input type="text" name="email1" value="<?php echo $email1; ?>" size="30"
-                                       maxlength="50"></td>
-                        </tr>
-                        <tr class="cos_majus">
-                            <td>E-mail 2</td>
-                            <td>
-                                <input type="text" name="email2" value="<?php echo $email2; ?>" size="30"
-                                       maxlength="50"></td>
-                        </tr>
-                        <tr class="cos_majus">
-                            <td>Nom a efectes de la factura</td>
-                            <td>
-                                <input type="text" name="nomf" value="<?php echo $nomf; ?>" size="30" maxlength="100">
-                            </td>
-                        </tr>
-                        <tr class="cos_majus">
-                            <td>Adreça a efectes de la factura</td>
-                            <td>
-                                <input type="text" name="adressf" value="<?php echo $adressf; ?>" size="30"
-                                       maxlength="200"></td>
-                        </tr>
-                        <tr class="cos_majus">
-                            <td>NIF a efectes de la factura</td>
-                            <td>
-                                <input type="text" name="niff" value="<?php echo $niff; ?>" size="9" maxlength="9"></td>
-                        </tr>
-                        <tr class="cos_majus">
-                            <td>comentaris</td>
-                            <td>
-                                <textarea name="nota" cols="35" rows="4" id="nota"><?php echo $nota; ?></textarea></td>
-                        </tr>
-                    </table>
+                            </select>
+                            <?php echo $hidden3; ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comp" class="col-sm-3 control-label">Componentes de la familia</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="comp" name="comp" value="<?php echo $comp; ?>" maxlength="100">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tlf1" class="col-sm-3 control-label">Teléfono</label>
+                        <div class="col-sm-9">
+                            <input type="tel" id="tlf1" name="tlf1" value="<?php echo $tlf1; ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tlf2" class="col-sm-3 control-label">Teléfono 2</label>
+                        <div class="col-sm-9">
+                            <input type="tel" id="tlf2" name="tlf2" value="<?php echo $tlf2; ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email1" class="col-sm-3 control-label">E-mail</label>
+                        <div class="col-sm-9">
+                            <input type="email" id="email1" name="email1" value="<?php echo $email1; ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email2" class="col-sm-3 control-label">E-mail 2</label>
+                        <div class="col-sm-9">
+                            <input type="email" id="email2" name="email2" value="<?php echo $email2; ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nota" class="col-sm-3 control-label">Comentarios</label>
+                        <div class="col-sm-9">
+                            <textarea name="nota" cols="35" rows="4" id="nota"><?php echo $nota; ?></textarea>
+                        </div>
+                    </div>
+
+                    <hr class="box-separator"/>
+
+                    <h2 class="box-subtitle u-text-center  u-mb-1">Factura</h2>
+
+                    <div class="form-group">
+                        <label for="nomf" class="col-sm-3 control-label">Nombre</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="nomf" name="nomf" value="<?php echo $nomf; ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adressf" class="col-sm-3 control-label">Dirección</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="adressf" name="adressf" value="<?php echo $adressf; ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="niff" class="col-sm-3 control-label">NIF</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="niff" name="niff" value="<?php echo $niff; ?>">
+                        </div>
+                    </div>
+
+
 
                     <div class="u-text-center u-mt-1">
-                        <button class="button button--animated button--save" type="submit">Guardar <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-
+                        <button class="button button--animated button--save" type="submit">Guardar <i
+                                class="fa fa-floppy-o" aria-hidden="true"></i></button>
                     </div>
             </div>
 

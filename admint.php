@@ -61,7 +61,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 <li><a class="link" <?php echo $h5; ?>>Devoluciones y facturas fuera de proceso</a></li>
                             </ul>
 
-                            <h2 class="box-subtitle">Socios/as-Fam&iacute;lias</h2>
+                            <h2 class="box-subtitle">Socios/as-Familias</h2>
                             <ul type="circle">
                                 <li><a class="link" href='families.php'>Lista de Socios/as</a></li>
                                 <li><a class="link" <?php echo $h2; ?>>Crear y editar Socios/as</a></li>

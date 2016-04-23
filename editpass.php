@@ -43,19 +43,19 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     $msg = "";
 
                     if ($password == "") {
-                        echo "<p class='alert alert--error'>La contraseña no puede ser vacia</p>";
+                        echo "<p class='alert alert--error'>La contraseña no puede estar vacia.</p>";
                     } else {
                         if (strlen($password) > 10) {
-                            echo "<p  class='alert alert--error'>La contraseña ha de ser inferior a 10 dígitos</p>";
+                            echo "<p  class='alert alert--error'>La contraseña ha de ser inferior a 10 dígitos.</p>";
                         } else {
                             if ($password <> $password2) {
-                                echo "<p  class='alert alert--error'>Las contraseñas no coinciden</p>";
+                                echo "<p  class='alert alert--error'>Las contraseñas no coinciden.</p>";
                             } else {
                                 // if all validations are passed.
                                 $md5pass = md5($password);
                                 $query2 = "update usuaris set claudepas='$md5pass' where nom='$user'";
                                 mysql_query($query2) or die('Error, insert query2 failed');
-                                echo "<p  class='alert alert--info'>La contraseña ha cambiado</p>";
+                                echo "<p  class='alert alert--info'>La contraseña ha sido cambiada correctamente.</p>";
                             }
                         }
                     }

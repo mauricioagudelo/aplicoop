@@ -2548,6 +2548,7 @@ input[type=number],
 input[type=email],
 input[type=password],
 input[type=search],
+input[type=tel],
 input[type=text] {
   width: 100%;
   padding: 5px 15px;
@@ -2562,6 +2563,7 @@ input[type=text] {
   input[type=email]:focus:not([readonly]),
   input[type=password]:focus:not([readonly]),
   input[type=search]:focus:not([readonly]),
+  input[type=tel]:focus:not([readonly]),
   input[type=text]:focus:not([readonly]) {
     outline: none;
     border-color: #040404;
@@ -2665,6 +2667,9 @@ label {
 
 .navbar-date {
   font-weight: 200; }
+
+.table-fixed {
+  table-layout: fixed; }
 
 .calendar {
   background: #1ABC9C;
