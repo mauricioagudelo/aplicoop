@@ -193,7 +193,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
 
                 <form action="<?php echo $goto; ?>" method="post" name="frmComanda" id="frmComanda"
-                      onSubmit="return validate_form()" target="cos">
+                      onSubmit="return validate_form()">
 
                     <h1><?php echo $cap; ?></h1>
 
@@ -305,7 +305,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                     print('
                 <li class="col-lg-6">
                     <div class="form-group product">
-                        <label for="num' . $id . '"style="' . $color_cos . '">
+                        <label for="num' . $id . '">
                             <span class="product-name">' . $prodtext . '</span>
                             <span class="product-price">' . $pvp . ' &#8364;/' . $unitat . '</span>
                             <span>' . $w_estoc . ' ' . $w_desc . '</span>

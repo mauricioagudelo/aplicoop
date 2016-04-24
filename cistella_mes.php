@@ -130,6 +130,7 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR $_SESSION['codi_cistella'] != '
 
 	<html>
 		<head>
+			<?php include 'head.php'; ?>
 			<meta http-equiv="content-type" content="text; charset=UTF-8" >
 			<link rel="stylesheet" type="text/css" href="coope.css" />			
 			<title>introduir novetats cistella ::: la coope</title>
@@ -143,7 +144,7 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR $_SESSION['codi_cistella'] != '
 		</head>
 
 <body>
-
+<?php include 'menu.php'; ?>
 <div class="pagina" style="margin-top: 10px;">
 
 <div class="contenidor_1" style="border: 1px solid green;">

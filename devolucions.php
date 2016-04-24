@@ -99,36 +99,9 @@ function selectNumFact($numero)
 
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <?php include 'head.php'; ?>
-    <link rel="stylesheet" type="text/css" href="coope.css"/>
-    <title>crear/editar devolucions o factures fora proces ::: la coope</title>
+    <title>aplicoop - devoluciones y facturas fuera de proceso </title>
 </head>
-<style type="text/css">
-    a#color:link, a#color:visited {
-        color: white;
-        border: 1px solid #9cff00;
-    }
-
-    a#color:hover {
-        color: black;
-        border: 3px solid #9cff00;
-        -moz-border-radius: 10%;
-    }
-
-    a#color:active {
-        color: white;
-        border: 3px solid #9cff00;
-        -moz-border-radius: 10%;
-    }
-</style>
-
-<style type="text/css" media="print">
-    .NonPrintable {
-        display: none;
-    }
-</style>
-
 
 <script language="javascript" type="text/javascript">
 
@@ -162,8 +135,8 @@ function selectNumFact($numero)
 
 <body>
 <?php include 'menu.php'; ?>
-<div class="pagina" style="margin-top: 10px;">
-    <div class="contenidor_1" style="border: 1px solid #9cff00;">
+<div class="page">
+    <div class="container">
 
 
         <?php
@@ -189,13 +162,9 @@ function selectNumFact($numero)
             if ($count_files == 0) {
                 // Si no hi ha cap quantitat elegida no continua endavant //
 
-                echo '<p class="error" style="padding-top: 50px;">
-				No has introduït cap quantitat a cap producte!!!!
-				</p>';
+                echo '<p class="alert alert--error">No has introducido ninguna cantidad a ningún producto</p>';
 
-                die ('<p class="error" style="font-size: 14px; padding-bottom: 50px;"><a href="devolucions.php" target="cos"
-				title="clica per tornar">		
-				Torna a devolució o factura fora de procés</a></p>');
+                die ('<a class="button" href="devolucions.php">Volver</a>');
             }
             //////////////////
             /// Si hi ha dades num ///
@@ -249,30 +218,24 @@ function selectNumFact($numero)
                 /////// editar -> carrega el formulari amb les dades introduides i es poden canviar
                 /////// eliminar -> borra tot i carrega un nou formulari en blanc
                 ?>
-                <div class="contenidor_fac">
+                <div class="box">
                     <form action="devolucions.php?id=1" method="post" name="frmdev2" id="frmdev2" target="cos">
                         <input type=hidden name="numcmda" value="<?php echo $numcmda; ?>">
                         <input type=hidden name="tipus" value="<?php echo $ptipus; ?>">
                         <input type=hidden name="nouf" value="<?php echo $paddfam; ?>">
 
-                        <div class="NonPrintable">
-                            <p class="linia_button2"
-                               style="background: #9cff00; text-align: center; vertical-align: middle;">
-                                <input class="button2" type="submit" name="acord" id="acord" value="D'ACORD">
-                                <input class="button2" type="submit" name="edit" id="edit" value="EDITAR">
-                                <input class="button2" type="submit" name="del" id="del" value="ELIMINAR"
-                                       onClick="var answer = confirm (\'Estàs segur que vols borrar aquesta factura o devolució!! \')
-				if (answer)
-					{document.frmdev2.submit()'}">
-                                <input class="button2" type="button" name="imprimir" value="IMPRIMIR"
-                                       onclick="window.print();">'
-                            </p>
+                        <div class="hidden-print  u-text-right u-mb-2">
+
+                                <button class="button button--animated" type="submit" name="acord" id="acord">Confirmar <i class="fa fa-check" aria-hidden="true"></i></button>
+                                <button class="button button--animated" type="submit" name="edit" id="edit" >Editar <i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                <button class="button button--animated" type="submit" name="del" id="del"
+                                       onClick="if (confirm('¿Estás seguro que quieres borrar esta factura o devolución?')) document.frmdev2.submit();">Eliminar <i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                <button class="button button--animated" type="button" name="imprimir"
+                                       onclick="window.print();">Imprimir <i class="fa fa-print" aria-hidden="true"></i></button>
+
                         </div>
                     </form>
-                    <div class="contenidor_4" style="float:left;">
-                        <img id="fig" style="width:175px; height:85px; padding: 10px 0px 20px 0px ;"
-                             src="<?php echo $logo_factura; ?>">
-                    </div>
+
 
                     <?php
                     /// Aconseguim les dades personals per a la factura ///
@@ -287,33 +250,38 @@ function selectNumFact($numero)
                     $year_avui = date("Y");
                     ?>
 
-                    <div style="width: 510px; float:right;">
-                        <p class="cos16"
-                           style="font-weight: bold; text-align: left; padding-left:40px; padding-right:25px;
-					 vertical-align: middle;">
-                            <span style="color: grey;">Factura nº </span><?php echo $numfact . "/" . $year_avui; ?>
+                    <div class="row">
+                        <div class="col-md-4 u-text-center u-mb-1">
+                            <img id="fig" class="img--responsive" style="height:85px;" src="<?php echo $logo_factura; ?>">
+                        </div>
+
+                        <div class="col-md-8 u-text-right u-mb-1">
+                            <span style="color: grey;">Factura nº </span><span class="u-text-semibold"><?php echo $numfact . "/" . $year_avui; ?></span>
                             <br/>
-                            <span style="color: grey;">Data: </span><?php echo $ver_avui; ?>
+                            <span style="color: grey;">Fecha: </span><span class="u-text-semibold"><?php echo $ver_avui; ?></span>
                             <br/>
-                            <span style="color: grey;">Nom família: </span><?php echo $nomf; ?>
+                            <span style="color: grey;">Familia: </span><span class="u-text-semibold"><?php echo $nomf; ?></span>
                             <br/>
-                            <span style="color: grey;">Adreça: </span><?php echo $adressf; ?>
+                            <span style="color: grey;">Dirección: </span><span class="u-text-semibold"><?php echo $adressf; ?></span>
                             <br/>
-                            <span style="color: grey;">NIF: </span><?php echo $niff; ?>
-                        </p>
+                            <span style="color: grey;">NIF: </span><span class="u-text-semibold"><?php echo $niff; ?></span>
+                        </div>
                     </div>
 
-                    <div style="clear: both; border: 1px solid green;">
-                        <table width="100%" align="center" style="padding:15px;">
-                            <tr class="cos_majus" valign="baseline">
-                                <td width="50%" align="left" style="padding:15px 0px;"><u>Producte</u></td>
-                                <td width="15%" align="center"><u>Quant.</u></td>
-                                <td width="10%" align="center"><u>Preu</u></td>
-                                <td width="10%" align="center"><u>Desc</u></td>
-                                <td width="10%" align="center"><u>Iva</u></td>
-                                <td width="10%" align="right"><u>Total</u></td>
-                            </tr>
 
+                    <div class="cf u-mt-2 table-responsive u-width-100">
+                        <table width="100%" class="table table-striped">
+                            <thead>
+                            <tr  style="font-size:18px;" valign="baseline">
+                                <td width="50%" align="left" class="u-text-semibold">Producto</td>
+                                <td width="15%" align="center" class="u-text-semibold">Cantidad</td>
+                                <td width="10%" align="center" class="u-text-semibold">PVP</td>
+                                <td width="10%" align="center" class="u-text-semibold">Descuento</td>
+                                <td width="10%" align="center" class="u-text-semibold">IVA</td>
+                                <td width="10%" align="right" class="u-text-semibold">Total</td>
+                            </tr>
+                            </thead>
+                            <tbody>
                             <?php
                             /// entrem les quantitats a comanda_linia ///
                             for ($i = 0; $i < $files; $i++) {
@@ -412,12 +380,12 @@ function selectNumFact($numero)
 
                         </table>
                         <table width="100%" align="center">
-                            <tr class="cos_majus" valign="baseline">
-                                <td width="33%" align="center" style="padding:15px 0px;"><u>Imp. Brut</u></td>
-                                <td width="33%" align="center" style="padding:15px 0px;"><u>Iva</u></td>
-                                <td width="33%" align="center"><u>TOTAL</u></td>
+                            <tr class="u-text-semibold"  style="font-size:18px;">
+                                <td width="33%" align="center">Imp. Brut</td>
+                                <td width="33%" align="center" >IVA</td>
+                                <td width="33%" align="center">TOTAL</td>
                             </tr>
-                            <tr class="cos12" style="font-weight: bold;">
+                            <tr>
                                 <td align="center"><?php echo $total_import_brut; ?>&#8364;</td>
                                 <td align="center"><?php echo $totaliva; ?>&#8364;</td>
                                 <td align="center"><?php echo $total; ?>&#8364;</td>
@@ -441,15 +409,9 @@ function selectNumFact($numero)
         //////////////////////////////////
         ?>
 
-        <p class='path'>
-            ><a href='admint.php'>administració</a>
-            >><a href='devolucions.php'>Crear devolucions o factures fora procés </a>
-        </p>
+        <h1>Crear devoluciones o facturas fuera de proceso</h1>
 
-        <p class="h1" style="background: #9cff00; text-align: left; padding-left: 20px;">
-            Crear devolucions o factures fora procés</p>
-
-        <div class="contenidor_fac" style="border: 1px solid green; max-height: 350px; width: 450px;">
+        <div class="box">
 
             <?php
             ////////////////////////////
@@ -473,16 +435,16 @@ function selectNumFact($numero)
                     die('Invalid query: ' . mysql_error());
                 }
                 if ($ptipus == "dev") {
-                    $text = array("retornat", "devolució");
+                    $text = array("devuelto", "devolución");
                 }
                 if ($ptipus == "fac") {
-                    $text = array("carregat", "factura");
+                    $text = array("cargado", "factura");
                 }
                 $yearfact = date('Y');
-                die ('<p class="error" style="font-size: 14px; padding-bottom: 50px;">
-		S\'han ' . $text[0] . ' ' . $cuenta . '€ al moneder de la família ' . $paddfam . ' corresponents a la ' . $text[1] . ' numero ' . $numfact . '/' . $yearfact . '</p>
-		<p class="error" style="font-size: 14px; padding-bottom: 50px;">
-		<a href="devolucions.php" target="cos" title="clica per tornar"> Torna a devolució o factura fora de procés</a></p>');
+                die ('<div class="alert alert--info">
+		Se ha ' . $text[0] . ' ' . $cuenta . '€ al monedero de la familia ' . $paddfam . ' correspondiente a la ' . $text[1] . ' número ' . $numfact . '/' . $yearfact . '</div>
+		<div class="u-text-center u-mt-2">
+		<a href="devolucions.php" class="button">Volver</a></div>');
             }
             /////////////////////
             /// Si apretem el boto ELIMINAR des de la visualització de la factura///
@@ -498,95 +460,102 @@ function selectNumFact($numero)
             ///////////////////////////////////////////////////////////////////////////
             ?>
 
-            <form action="" method="post" name="frmdev" id="frmdev" onSubmit="return validate_form()" target="cos">
+            <form action="" method="post" name="frmdev" id="frmdev" onSubmit="return validate_form()">
 
-                <table width="60%" align="center" valign="middle" cellpadding="5" cellspacing="5">
-
-                    <tr>
-                        <td align="center" class='cos_majus'>Tipus</td>
-                        <td align="center" class="cos">
-                            <SELECT class="button2" name="tipus" id="tipus" size="1" maxlength="30"
-                                    onchange="document.frmdev.submit()">
-                                <option value="">Elegeix tipus</option>
-                                <?php
-                                $selected = "";
-                                $selected1 = "";
-                                if ($ptipus == "dev") {
-                                    $selected = "selected";
-                                }
-                                if ($ptipus == "fac") {
-                                    $selected1 = "selected";
-                                }
-                                ?>
-                                <option value="dev" <?php echo $selected; ?>>Devolució</option>
-                                <option value="fac" <?php echo $selected1; ?>>Factura</option>
-                            </select>
-                        </td>
-
-                        <td align="center" class='cos_majus'>Família</td>
-                        <td align="center" class="cos">
-                            <SELECT class="button2" name="nouf" id="nouf" size="1"
-                                    maxlength="30" <?php echo $disabled; ?> onchange="document.frmdev.submit()">
-                                <option value="">insereix familia</option>
-
-                                <?php
-                                // Es pot elegir entre totes les famílies actives o anònim//
-                                $selected2 = "";
-                                if ($paddfam == "anom") {
-                                    $selected2 = "selected";
-                                }
-                                echo '<option value="anom" ' . $selected2 . '>Anònim</option>';
-
-                                $taula7 = "SELECT nom FROM usuaris WHERE tipus2='actiu' ORDER BY nom";
-                                $result7 = mysql_query($taula7);
-                                if (!$result7) {
-                                    die('Invalid query7: ' . mysql_error());
-                                }
-
-                                while (list($sfam) = mysql_fetch_row($result7)) {
-                                    $selected3 = "";
-                                    if ($paddfam == $sfam) {
-                                        $selected3 = "selected";
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="tipus">Tipo</label>
+                            <div>
+                                <SELECT class="button2" name="tipus" id="tipus" size="1" maxlength="30"
+                                        onchange="document.frmdev.submit()">
+                                    <option value="">-- elegir --</option>
+                                    <?php
+                                    $selected = "";
+                                    $selected1 = "";
+                                    if ($ptipus == "dev") {
+                                        $selected = "selected";
                                     }
-                                    echo '<option value="' . $sfam . '" ' . $selected3 . '>' . $sfam . '</option>';
+                                    if ($ptipus == "fac") {
+                                        $selected1 = "selected";
+                                    }
+                                    ?>
+                                    <option value="dev" <?php echo $selected; ?>>Devolucion</option>
+                                    <option value="fac" <?php echo $selected1; ?>>Factura</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nouf">Familia</label>
+                            <div>
+                                <SELECT class="button2" name="nouf" id="nouf" size="1"
+                                        maxlength="30" <?php echo $disabled; ?> onchange="document.frmdev.submit()">
+                                    <option value="">-- elegir -- </option>
 
+                                    <?php
+                                    // Es pot elegir entre totes les famílies actives o anònim//
+                                    $selected2 = "";
+                                    if ($paddfam == "anom") {
+                                        $selected2 = "selected";
+                                    }
+                                    echo '<option value="anom" ' . $selected2 . '>Anònim</option>';
+
+                                    $taula7 = "SELECT nom FROM usuaris WHERE tipus2='actiu' ORDER BY nom";
+                                    $result7 = mysql_query($taula7);
+                                    if (!$result7) {
+                                        die('Invalid query7: ' . mysql_error());
+                                    }
+
+                                    while (list($sfam) = mysql_fetch_row($result7)) {
+                                        $selected3 = "";
+                                        if ($paddfam == $sfam) {
+                                            $selected3 = "selected";
+                                        }
+                                        echo '<option value="' . $sfam . '" ' . $selected3 . '>' . $sfam . '</option>';
+
+                                    }
+                                    ?>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <label for="cat">Añadir a Categoria</label>
+                        <div>
+                            <SELECT class="button2" name="cat" id="cat" size="1" maxlength="30" <?php echo $disabled2; ?>
+                                    onChange="location=this.form.cat.value">
+                                <option value="">-- elegir --</option>
+
+                                <?php
+
+                                $sel = "SELECT tipus FROM categoria WHERE actiu='activat' ORDER BY tipus ASC";
+                                $result = mysql_query($sel);
+                                if (!$result) {
+                                    die('Invalid query: ' . mysql_error());
+                                }
+
+                                while (list($scat) = mysql_fetch_row($result)) {
+                                    if ($pcat == $scat) {
+                                        echo '<option value="#' . $scat . '" selected>' . $scat . '</option>';
+                                    } else {
+                                        echo '<option value="#' . $scat . '">' . $scat . '</option>';
+                                    }
                                 }
                                 ?>
 
                             </select>
-                        </td>
-                    </tr>
-                </table>
-        </div>
-
-        <p class="h1" style="background: #9cff00; text-align: left; padding-left: 20px;">
-            Anar a Categoria:
-            <SELECT class="button2" name="cat" id="cat" size="1" maxlength="30" <?php echo $disabled2; ?>
-                    onChange="location=this.form.cat.value">
-                <option value="">elegeix categoria</option>
-
-                <?php
-
-                $sel = "SELECT tipus FROM categoria WHERE actiu='activat' ORDER BY tipus ASC";
-                $result = mysql_query($sel);
-                if (!$result) {
-                    die('Invalid query: ' . mysql_error());
-                }
-
-                while (list($scat) = mysql_fetch_row($result)) {
-                    if ($pcat == $scat) {
-                        echo '<option value="#' . $scat . '" selected>' . $scat . '</option>';
-                    } else {
-                        echo '<option value="#' . $scat . '">' . $scat . '</option>';
-                    }
-                }
-                ?>
-
-            </select>
-        </p>
+                        </div>
+                    </div>
+                </div>
 
 
-        <div id="contenidor_1" style="height: 250px; clear: both; overflow: scroll; overflow-x: hidden; ">
+
+
 
             <?php
 
@@ -600,8 +569,7 @@ function selectNumFact($numero)
             $id = 0;
             $cc = 0;
             while (list($sscat) = mysql_fetch_row($result)) {
-                print ('<a name="' . $sscat . '"></a>
-					<p class="h1" style="background: ' . $color[$cc] . '; text-align: left; padding-left: 20px;">' . $sscat . '</a></p>');
+
                 $cc++;
                 if ($cc == 7) {
                     $cc = 0;
@@ -617,9 +585,17 @@ function selectNumFact($numero)
                     die('Invalid query2: ' . mysql_error());
                 }
 
-                print ('<table align="centre" width="100%" class="cos"
-			style="padding-left: 30; padding-right: 30; ">
-			<tr>');
+                print ('
+
+                    <ul class="accordion">
+                        <hr class="box-separator"/>
+                        <li class="accordion-item">
+                            <input type="checkbox"  class="accordion-check" checked>
+                            <i class="accordion-icon"></i>
+                            <h2 class="accordion-title box-subtitle">' . $sscat . '</h2>
+                            <ul class="accordion-section row">
+
+                ');
 
                 $contador = 0;
                 while (list($ref, $nomprod, $unitat, $prov, $categ, $ctg_estoc, $subcat, $preu, $iva, $marge, $descompte, $pr_estoc) = mysql_fetch_row($result2)) {
@@ -703,30 +679,37 @@ function selectNumFact($numero)
                     $w_desc = "";
                     if ($descompte != 0) {
                         $descompte = $descompte * 100;
-                        $w_desc = "<span style='color:red; text-decoration:blink' > descompte:" . $descompte . "%</span>";
+                        $w_desc = "<span class='u-text-bold'> descuento: " . $descompte . "%</span>";
                     }
 
-                    print('<td width="6%">
-		      <input align="right" name="num[]" id="num' . $id . '" type="TEXT" value="' . $num[$id] . '" maxlength="5" size="3" ' . $disabled2 . '>
-				</td>
-				<td width="26%" style="' . $color_cos . '">
-            ' . $nomprod . ' (' . $pvp . ' &#8364;/' . $unitat . ') ' . $w_estoc . ' ' . $w_desc . '
-            <input type=hidden name="ref[]" value="' . $ref . '">
-             <input type=hidden name="uni[]" value="' . $unitat . '">
-             <input type=hidden name="nomp[]" id="nom' . $id . '" value="' . $nomprod . '">
-            </td>');
+                    print('
+                        <li class="col-lg-6">
+                            <div class="form-group product">
+                                <label for="num' . $id . '">
+                                    ' . $nomprod . ' (' . $pvp . ' &#8364;/' . $unitat . ') ' . $w_estoc . ' ' . $w_desc . '
+                                </label>
 
-                    $contador++;
+
+                                <input  class="form-control" name="num[]" id="num' . $id . '" type="number" value="' . $num[$id] . '" maxlength="5" size="3" ' . $disabled2 . '>
+
+                                <input type=hidden name="ref[]" value="' . $ref . '">
+                                <input type=hidden name="uni[]" value="' . $unitat . '">
+                                <input type=hidden name="nomp[]" id="nom' . $id . '" value="' . $nomprod . '">
+                            </div>
+                        </li>
+                    ');
+
                     $id++;
-
-                    if ($contador == 3) {
-                        print ('</tr><tr>');
-                        $contador = 0;
-                    }
 
                 }
 
-                print ('</tr></table>');
+                print ('
+                            </ul>
+
+                        </li>
+                    </ul>
+                ');
+
             }
 
             /// Si hem apretat el botó EDITAR de la visualització de la factura
@@ -743,20 +726,19 @@ function selectNumFact($numero)
             }
             ?>
 
+
+        <div class="u-text-center">
+            <button class="button button--save button--animated" name="acceptar" type="submit" id="acceptar"
+                    <?php echo $disabled2; ?>>Guardar <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
         </div>
-        <p class="linia_button2" style="background: #9cff00; text-align: center; vertical-align: middle;">
-            <input class="button2" name="acceptar" type="submit" id="acceptar"
-                   value="Acceptar" <?php echo $disabled2; ?>>
-            <input class="button2" type="button" value="Sortir" onClick="javascript:location.href='admint.php'">
-        </p>
         </form>
-        <p class="cos2" style="clear: both; text-align: center; padding: 0px 100px;">
+        <div class="alert alert--info">
             Omple les quantitats dels productes que vulguis i clica ACCEPTAR.
             Les devolucions s'introdueixen en positiu encara que sigui un retorn.
             Els productes estan ordenats per categoria. Només apareixen els productes actius i les categories actives.
             Per buscar un producte concret pots utilitzar l'opció de recerca del teu navegador (usualment al menu
             Editar>opció Buscar)
-        </p>
+        </div>
     </div>
 </div>
 
