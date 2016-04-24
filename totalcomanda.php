@@ -147,8 +147,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                     ?>
 
-                    <tr class='cos'>
-                        <td><?php echo $nomprod; ?></td>
+                    <tr class='u-text-center'>
+                        <td class="u-text-left"><?php echo $nomprod; ?></td>
                         <td><?php echo $sum; ?><?php echo $uni; ?></td>
 
                         <?php

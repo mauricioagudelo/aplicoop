@@ -2598,7 +2598,7 @@ label {
     text-align: center;
     border-bottom: none;
     padding-left: .7rem;
-    padding-left: .7rem; }
+    padding-right: .7rem; }
     @media (min-width: 768px) {
       .navbar .navbar-nav > li > a,
       .navbar .navbar-nav > li > a:focus,
@@ -2903,6 +2903,9 @@ label {
 /*****************************************************
 /* UTILITIES
 /*****************************************************/
+.u-text-left {
+  text-align: left; }
+
 .u-text-center {
   text-align: center; }
 
