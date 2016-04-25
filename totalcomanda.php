@@ -37,7 +37,18 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
         <div class="container">
 
-            <h1>Pedido total <?php echo $title . " " . $proces . "-" . $grup . "-" . $data; ?></h1>
+
+            <div class="u-cf">
+                <h1 class="pull-left">Pedido total <?php echo $title . " " . $proces . "-" . $grup . "-" . $data; ?></h1>
+
+                <div class="pull-right u-mt-1 u-mb-1">
+                    <button class="button button--white button--animated" type="button"
+                            onClick="javascript:window.location = 'createcsv.php?id=<?php echo $bd_data . "&id2=" . $proces . "&id3=" . $grup . $link; ?>'">
+                        CSV <i class="fa fa-table" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+
             <div class="box">
                 <div >
 
@@ -78,7 +89,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     }
 
 
-                    echo '<hr class="box-separator"/><div class="u-mt-2" style="overflow: auto; height: 50vh">';
+                    echo '<hr class="box-separator"/><div class="u-mt-2" style="overflow: auto; height: 60vh;">';
 
                     $cc = 0;
                     $select3 = "SELECT nom FROM proveidores";
@@ -108,7 +119,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     if ($cc == 9) {
                         $cc = 0;
                     }
-                    echo '<table class="table table-striped">';
+                    echo '<table class="table table-striped table-bordered">';
 
                     $query = "SELECT numero,usuari FROM comanda
 		WHERE proces='$proces' AND grup='$grup' AND data='$bd_data' 
@@ -149,7 +160,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                     <tr class='u-text-center'>
                         <td class="u-text-left"><?php echo $nomprod; ?></td>
-                        <td><?php echo $sum; ?><?php echo $uni; ?></td>
+                        <td><?php echo  (0.01 * (int)($sum*100))  ?> <?php echo $uni; ?></td>
 
                         <?php
 
@@ -168,10 +179,10 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         while (list($numcmda, $familia, $nomprod2, $quant) = mysql_fetch_row($result2)) {
                             $numrows2 = mysql_numrows($result2);
 
-                            for ($i = $j; $i <= $numrows1; $i++) {
+                            for ($i = $j; $i < $numrows1; $i++) {
                                 $numfila = $fila[$i];
                                 if ($numcmda == $numfila) {
-                                    echo "<td>" . $quant . "</td>";
+                                    echo "<td>" . (0.01 * (int)($quant*100)) . "</td>";
                                     $j++;
 
                                 } else {
@@ -186,13 +197,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         echo "</table>";
                         }
                         ?>
-                </div>
-
-                <div class="u-text-center u-mt-1">
-                    <button class="button button--animated" type="button"
-                            onClick="javascript:window.location = 'createcsv.php?id=<?php echo $bd_data . "&id2=" . $proces . "&id3=" . $grup . $link; ?>'">
-                        Crear archivo CSV
-                    </button>
+                    </div>
                 </div>
 
             </div>
