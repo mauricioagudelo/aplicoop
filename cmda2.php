@@ -529,8 +529,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             }
 
             if ($editar == 0) {
-                $button = '<button class="button button--animated" onClick="javascript:history.go(-1);">Volver <i class="fa fa-undo" aria-hidden="true"></i></button>
-		                   <button class="button button--animated" name="imprimir" onclick="window.print();">Imprimir <i class="fa fa-print" aria-hidden="true"></i></button>';
+                $button = '<button class="button button--animated" name="imprimir" onclick="window.print();">Imprimir <i class="fa fa-print" aria-hidden="true"></i></button>
+                            <button class="button button--animated" onClick="javascript:history.go(-1);">Volver <i class="fa fa-undo" aria-hidden="true"></i></button>';
             } else {
                 $button = '<button class="button button--animated" onClick="javascript:window.location = \'comandes.php?id3=' . $user . ' \';">Confirmar <i class="fa fa-check" aria-hidden="true"></i></button>
 		                   <button class="button button--animated" onClick="javascript:window.location = \'cmda2.php?id=' . $proces . '&id2=' . $numcmda . '&id4=create \';">Editar <i class="fa fa-pencil" aria-hidden="true"></i></button>
@@ -624,7 +624,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             }
 
                             print('<tr class="cos16"><td>' . $clref . ' - ' . $nomprod . ' - ' . $nomprod2 . '</td>
-				<td align="center">' . $qdec . ' ' . $unitat . '</td>
+				<td align="center">' . ($qdec + 0). ' ' . $unitat . '</td>
 				<td align="center">' . $pvp . '&#8364;</td>
 				' . $w_desco . '
 				<td align="right">' . $qtot . '&#8364;</td></tr>');

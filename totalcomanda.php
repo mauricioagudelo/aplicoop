@@ -141,7 +141,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         $i++;
                     }
                     echo "</tr></thead>";
-
+                    $total = $i;
                     $taula = "SELECT cl.ref, pr.nom, pr.unitat, SUM(cl.quantitat) AS sum
 		FROM comanda AS c, comanda_linia AS cl, productes AS pr
 		WHERE c.numero=cl.numero AND pr.ref=cl.ref AND c.proces='$proces' 
@@ -160,7 +160,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                     <tr class='u-text-center'>
                         <td class="u-text-left"><?php echo $nomprod; ?></td>
-                        <td><?php echo $sum ?> <?php echo $uni; ?></td>
+                        <td><?php echo ($sum+0) ?> <?php echo $uni; ?></td>
 
                         <?php
 
@@ -176,20 +176,26 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         }
 
                         $j = 0;
+
                         while (list($numcmda, $familia, $nomprod2, $quant) = mysql_fetch_row($result2)) {
                             $numrows2 = mysql_numrows($result2);
 
-                            for ($i = $j; $i < $numrows1; $i++) {
+                            for ($i = $j; $i <= $numrows1; $i++) {
                                 $numfila = $fila[$i];
                                 if ($numcmda == $numfila) {
-                                    echo "<td>" . $quant . "</td>";
+                                    echo "<td>" . ($quant  + 0) . "</td>";
                                     $j++;
-
+                                    break;
                                 } else {
-                                    echo "<td>&nbsp</td>";
+                                    echo "<td>&nbsp;</td>";
                                     $j++;
                                 }
                             }
+
+
+                        }
+                        for ($k =  $j; $k < $total; $k++) {
+                            echo "<td>&nbsp;</td>";
                         }
                         echo "</tr>";
                         }

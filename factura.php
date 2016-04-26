@@ -173,7 +173,7 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR ($_GET['id'] != "" AND strlen($
 
 				<tr class="cos">
 				<td><?php echo $ref.' - '.$nomprod; ?></td>
-				<td align="center"><?php echo $cistella.' - '.$unitat1; ?>.</td>
+				<td align="center"><?php echo ($cistella + 0).' '.$unitat; ?></td>
 				<td align="center"><?php echo $preu; ?>&#8364;</td>
 				<td align="center"><?php echo $v_descompte; ?></td>
 				<td align="center"><?php echo $v_iva; ?></td>
