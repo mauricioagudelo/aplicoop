@@ -129,6 +129,7 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR ($_GET['id'] != "" AND strlen($
 
 				<td width="50%" align="left" class="u-text-semibold">Producto</u></td>
 				<td width="15%" align="center" class="u-text-semibold">Cantidad</td>
+				<td width="15%" align="center" class="u-text-semibold">Unidad</td>
 				<td width="10%" align="center" class="u-text-semibold">PVP</td>
 				<td width="10%" align="center" class="u-text-semibold">Descuento</td>
 				<td width="10%" align="center" class="u-text-semibold">IVA</td>
@@ -173,7 +174,8 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR ($_GET['id'] != "" AND strlen($
 
 				<tr class="cos">
 				<td><?php echo $ref.' - '.$nomprod; ?></td>
-				<td align="center"><?php echo ($cistella + 0).' '.$unitat; ?></td>
+				<td align="center"><?php echo ($cistella + 0); ?></td>
+				<td align="center"><?php echo $unitat; ?></td>
 				<td align="center"><?php echo $preu; ?>&#8364;</td>
 				<td align="center"><?php echo $v_descompte; ?></td>
 				<td align="center"><?php echo $v_iva; ?></td>

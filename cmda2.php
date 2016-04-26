@@ -568,6 +568,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         <tr style="font-size:18px;" valign="baseline">
                             <td width="50%" align="left" class="u-text-semibold">Producto</u></td>
                             <td width="20%" align="center" class="u-text-semibold">Cantidad</td>
+                            <td width="20%" align="center" class="u-text-semibold">Unidad</td>
                             <td width="10%" align="center" class="u-text-semibold">PVP<sup>*</sup></td>
                             <td width="10%" align="center" class="u-text-semibold">Descuento</td>
                             <td width="10%" align="right" class="u-text-semibold">Total</td>
@@ -624,7 +625,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             }
 
                             print('<tr class="cos16"><td>' . $clref . ' - ' . $nomprod . ' - ' . $nomprod2 . '</td>
-				<td align="center">' . ($qdec + 0). ' ' . $unitat . '</td>
+				<td align="center">' . ($qdec + 0). '</td>
+				<td align="center">' . $unitat . '</td>
 				<td align="center">' . $pvp . '&#8364;</td>
 				' . $w_desco . '
 				<td align="right">' . $qtot . '&#8364;</td></tr>');
