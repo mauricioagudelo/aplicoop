@@ -160,7 +160,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                     <tr class='u-text-center'>
                         <td class="u-text-left"><?php echo $nomprod; ?></td>
-                        <td><?php echo ($sum+0) ?> <?php echo $uni; ?></td>
+                        <td><?php echo ($sum+0) ?> (<?php echo $uni; ?>)</td>
 
                         <?php
 
