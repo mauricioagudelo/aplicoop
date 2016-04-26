@@ -160,7 +160,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                     <tr class='u-text-center'>
                         <td class="u-text-left"><?php echo $nomprod; ?></td>
-                        <td><?php echo  (0.01 * (int)($sum*100))  ?> <?php echo $uni; ?></td>
+                        <td><?php echo $sum ?> <?php echo $uni; ?></td>
 
                         <?php
 
@@ -182,7 +182,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             for ($i = $j; $i < $numrows1; $i++) {
                                 $numfila = $fila[$i];
                                 if ($numcmda == $numfila) {
-                                    echo "<td>" . (0.01 * (int)($quant*100)) . "</td>";
+                                    echo "<td>" . $quant . "</td>";
                                     $j++;
 
                                 } else {

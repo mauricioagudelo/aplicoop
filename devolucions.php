@@ -690,7 +690,7 @@ function selectNumFact($numero)
                                 </label>
 
 
-                                <input  class="form-control" name="num[]" id="num' . $id . '" type="number" value="' . $num[$id] . '" maxlength="5" size="3" ' . $disabled2 . '>
+                                <input  class="form-control" name="num[]" id="num' . $id . '" type="number" value="' . $num[$id] . '" maxlength="5" size="3" ' . $disabled2 . '  step="0.01">
 
                                 <input type=hidden name="ref[]" value="' . $ref . '">
                                 <input type=hidden name="uni[]" value="' . $unitat . '">
