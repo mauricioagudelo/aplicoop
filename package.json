@@ -1,0 +1,24 @@
+{
+  "name": "aplicoop",
+  "version": "1.0.0",
+  "description": "## QUE �S APLICOOP?",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aplicoop/aplicoop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aplicoop/aplicoop/issues"
+  },
+  "homepage": "https://github.com/Aplicoop/aplicoop#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0"
+  }
+}
