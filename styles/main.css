@@ -2774,7 +2774,8 @@ label {
 
 .box-subtitle {
   margin-top: .5rem;
-  padding-top: .5rem; }
+  padding-top: .5rem;
+  font-weight: 600; }
 
 .box-separator {
   border-width: 0;
