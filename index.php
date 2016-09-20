@@ -47,8 +47,8 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
 
 
             //keep number session
-            $sql2 = "INSERT INTO session (user, date)
-          		 VALUES ('$userId', '$timeinitse')";
+            $sql2 = "INSERT INTO session (user, date, date2)
+          		 VALUES ('$userId', '$timeinitse', '$timeinitse')";
             mysql_query($sql2) or
             die('Query2 failed. ' . mysql_error());
             $sessionid = mysql_insert_id();
