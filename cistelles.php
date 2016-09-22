@@ -159,29 +159,21 @@ if ($_SESSION['image_is_logged_in'] == 'true' )
 
 	<html>
 		<head>
-			<?php include 'head.php'; ?>
-			<link rel="stylesheet" type="text/css" href="coope.css" />			
-			<title>fer la cistella ::: la coope</title>
-			
-			<style type="text/css">
-			a#color:link, a#color:visited {color:white; border: 1px solid #9cff00;}
-			a#color:hover {color:black; border: 1px solid #9cff00;   -moz-border-radius: 10%;}
-   		a#color:active {color:white; border: 1px solid #9cff00;  -moz-border-radius: 10%;}
-   		a#color2:link, a#color2:visited, a#color2:hover, a#color2:active {color:black;}
-			</style>
+			<?php include 'head.php'; ?>						
+			<title>aplicoop - editar pedido</title>		
 		</head>
 
-<script language="javascript" type="text/javascript">
+		<script language="javascript" type="text/javascript">
 			function confirma()
 			{
 				var answer;
-				var answer = confirm("Estas tancant l'apartat de FER CISTELLES \nS'enviarà notificació electrònica a totes les famílies i es generarà un codi d'edició. \nAcceptar: Anar a facturació \nCancelar: Continuar fent cistelles");
+				var answer = confirm("Estas cerrando el apartado de HACER CESTAS \nSe mandará una notificación electrónica a todas las familias y se generara un código de edición\nAceptar: ir a facturacion \nCancelar: continuar haciendo cestas");
 				if (answer)
 				{
 	  				window.location = 'cistella_check1.php?id=<?php echo $gproces."&id2=".$ggrup."&id3=".$gbd_data; ?>';
 				}
 			}
-</script>
+		</script>
 
 <?php
 
@@ -195,61 +187,53 @@ if ($_SESSION['image_is_logged_in'] == 'true' )
 	/// Si no es pot editar (gvis=0) no hi ha botó de "pas segúent" ni d'"introduir nou producte" ///
 	if ($gvis==0) 
 	{
-		$link_cap=">>><a class='Estilo2' href='cistelles.php?id2=".$gdata."&id3=".$gproces."&id4=".$ggrup."&id5=0'>veure la cistella ".$gdata." - ".$gproces." - ".$ggrup."</a>";
-		$title="Veure la cistella ".$gdata." - ".$gproces." - ".$ggrup;
-		$button='<input class="button2" type="button" value="CREAR ARXIU CSV" style="width: 120px;"
-		onClick="javascript:window.location = \'createcsv.php?id='.$gbd_data.'&id2='.$gproces.'&id3='.$ggrup.'&id4=2\'">';
-		$sty="padding:4px 0px; height: 20px;";
+		$link_cap="<a class='link' href='cistelles.php?id2=".$gdata."&id3=".$gproces."&id4=".$ggrup."&id5=0'>Ver cesta ".$gdata." - ".$gproces." - ".$ggrup."</a>";
+		$title="Ver pedido ".$gdata." - ".$gproces." - ".$ggrup;
+		$button='<button class="button  button--white button--animated" onClick="javascript:window.location = \'createcsv.php?id='.$gbd_data.'&id2='.$gproces.'&id3='.$ggrup.'&id4=2\'">CSV <i class="fa fa-table" aria-hidden="true"></i></button>';
+		$sty="";
 		$nouproducte="";
 	}
 	else
 	{
-		$button='<input class="button2" style="width: 120px;" name="Gcodi" type="button" value="PAS SEGÜENT" onClick="confirma()">';
+		$button='<button class="button button button--save button--animated" name="Gcodi" type="button"  onClick="confirma()">Siguiente paso <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button>';
 		$sty="";
-		$nouproducte='<input class="button2" style="width:150px;" type="button" value="AFEGIR NOU PRODUCTE" 
-		onClick="javascript:window.location = \'cistella_mes.php?id3='.$gdata.'&id5='.$gvis.'&id6='.$gproces.'&id7='.$ggrup.'\'">';
+		$nouproducte='<div class="u-cf"><button class="button button--animated u-mb-1 pull-right " type="button" 
+		onClick="javascript:window.location = \'cistella_mes.php?id3='.$gdata.'&id5='.$gvis.'&id6='.$gproces.'&id7='.$ggrup.'\'">Añadir nuevo producto <i class="fa fa-plus" aria-hidden="true"></i></button></div>';
 		if ($check==0)
 		{
-			$link_cap=">>><a class='Estilo2' href='cistelles.php?id2=".$gdata."&id3=".$gproces."&id4=".$ggrup."&id5=1'>fer la cistella ".$gdata." - ".$gproces." - ".$ggrup."</a>";
-			$title="Fer la cistella ".$gdata." - ".$gproces." - ".$ggrup;
+			$link_cap="<a class='link' href='cistelles.php?id2=".$gdata."&id3=".$gproces."&id4=".$ggrup."&id5=1'>Ver cesta ".$gdata." - ".$gproces." - ".$ggrup."</a>";
+			$title="Ver cesta ".$gdata." - ".$gproces." - ".$ggrup;
 		}
 		else
 		{
-			$link_cap=">>><a class='Estilo2' href='cistelles.php?id2=".$gdata."&id3=".$gproces."&id4=".$ggrup."&id5=1".$id6."'>editar la cistella ".$gdata." - ".$gproces." - ".$ggrup."</a>";
-			$title="Editar la cistella ".$gdata." - ".$gproces." - ".$ggrup;
+			$link_cap="<a class='link' href='cistelles.php?id2=".$gdata."&id3=".$gproces."&id4=".$ggrup."&id5=1".$id6."'>Editar cesta ".$gdata." - ".$gproces." - ".$ggrup."</a>";
+			$title="Editar cesta ".$gdata." - ".$gproces." - ".$ggrup;
 		}	
 	}
 ?>
 <body>
 <?php include 'menu.php'; ?>
-<div class="pagina" style="margin-top: 10px;">
+<div class="page">
+    <div class="container">
+	<div class="u-cf">
+		<h1 class="pull-left"><?php echo $link_cap; ?></h1>
+		<div class="pull-right u-mt-1 u-mb-1">
+			<button class="button button--animated"  type="button" 
+onClick="javascript:window.location = 'cistelles2.php?id2=<?php echo $gdata.'&id3='.$gproces.'&id4='.$ggrup.'&id5='.$gvis; ?>'">Pedidos por familia</button>
+  		</div>
+	</div>
 
-<div class="contenidor_1" style="border: 1px solid green;">
-<p class='path'> 
-><a href='admint.php'>administració</a> 
->><a href='grups_comandes.php'>grups de comandes i cistelles</a>
- <?php echo $link_cap; ?>
-</p>
-<p class="h1" style="background: green; text-align: left; padding-left: 20px;"><?php echo $title; ?>
-<span style="display: inline; float: right; text-align: center; vertical-align: middle; 
-padding: 2px 50px 2px 0px;">
-<input class="button2" style="width:150px; margin-left:10px;" type="button" value="CISTELLES PER FAMILIA" 
-onClick="javascript:window.location = 'cistelles2.php?id2=<?php echo $gdata.'&id3='.$gproces.'&id4='.$ggrup.'&id5='.$gvis; ?>'">
-</span>
-</p>
-<p class="h1" style="background: green; text-align: left; padding-left: 20px;">Llista de productes per categoria
-<span style="display: inline; float: right; text-align: center; vertical-align: middle; 
-padding: 2px 50px 2px 0px;">
+ 
+
+
 <?php echo $nouproducte; ?>
-</span>
-</p>
 
 <?php echo $nota; ?>
 
-<div class="cat" style="width: 750px; margin-left: auto; margin-right: auto;">
 
 <?php
-	$color2=array("#C0C000","#00b2ff","orange","#b20000","#14e500","red","#8524ba");
+	echo'<div class="box"><div>';
+	$color2 = array("#1abc9c", "#e74c3c", "#34495e", "#b20000", "#9b59b6", "#f1c40f", "#f39c12", "#c0392b", "#2980b9");
 	$cc=0;
 	$sel = "SELECT tipus FROM categoria ORDER BY tipus";
 	$result = mysql_query($sel);
@@ -265,15 +249,16 @@ padding: 2px 50px 2px 0px;">
 	
 		if (mysql_num_rows($result2)>0)
 		{
-			print ('<a href="#'.$cat.'" id="color" style="background: '.$color2[$cc].'; 
-				margin-bottom: 5px; margin-right: 3px; white-space: -moz-pre-wrap; word-wrap: break-word;">
+			print ('<a href="#'.$cat.'" id="color" class="link u-text-semibold"  style="border-bottom: 1px solid transparent;color: '.$color2[$cc].'; 
+				margin-bottom: 5px; margin-right: 3px; margin-right: 1rem;">
 				<span>'.$cat.'</span></a>');
 				$cc++;
 				if ($cc==7){$cc=0;}
 		}
 	}
-	echo'</div>	
-	<div class="contenidor_fac" style="border: 1px solid green; max-height: 350px; overflow: scroll; overflow-x:hidden;">';
+	echo'</div>
+	<hr class="box-separator"/>
+	<div  style="overflow: auto; height: 44vh;">';
 	$cc=0;
 	$sel = "SELECT tipus FROM categoria ORDER BY tipus";
 	$result = mysql_query($sel);
@@ -294,13 +279,12 @@ padding: 2px 50px 2px 0px;">
 	if (mysql_num_rows($result2)>0)
 	{
 		print ('<a name="'.$cat.'"></a>
-	  	<p class="h1"
-		style="background: '.$color2[$cc].'; font-size:14px; text-align: left; 
-		height: 20px; padding-left: 20px; clear: left;">'.$cat.'</p>');
-		echo '<table width="80%" align="center" valign="middle" cellpadding="5" cellspacing="5">';
-		echo "<tr class='cos_majus'><td width='60%'>Producte</td>";
-		echo "<td width='20%' align='center'>Total comanda</td>";
-		echo "<td width='20%' align='center'>Total cistella</td>";
+	  	<h2 style="color: '.$color2[$cc].'">'.$cat.'</h2>');
+		echo '<div class="u-mb-2" style="padding-right: 1rem;">';
+		echo '<table class="table table-striped table-bordered">';
+		echo "<tr  class='u-text-semibold'><td width='60%'>Producto</td>";
+		echo "<td width='20%'  class='u-text-semibold  u-text-center'>Total pedido</td>";
+		echo "<td width='20%'  class='u-text-semibold  u-text-center'>Total cesta</td>";
 		echo "</tr>";
 
 		while (list($prodref,$nom_prod,$nom_prov,$uni,$t,$n,$d,$sum,$csum)=mysql_fetch_row($result2))
@@ -310,7 +294,7 @@ padding: 2px 50px 2px 0px;">
 		$color="";
 		if ($csuma!=0) 
 			{
-			$color="style='color: ".$color2[$cc].";'";
+			$color="";
 			}
 		$estil="";
 		if ($csuma!=0 AND $csuma<>$suma) 
@@ -319,7 +303,7 @@ padding: 2px 50px 2px 0px;">
 			$estil="style='color: red;'";
   			}
   		
-		$link="<a id='color2' href='cistella_prod.php?id=".$prodref."&id3=".$gdata."&id4=".$cat."&id5=".$gvis."&id6=".$gproces."&id7=".$ggrup.$id8."'>".$nom_prod."-".$nom_prov."</a>";
+		$link="<a id='color2' class='link' href='cistella_prod.php?id=".$prodref."&id3=".$gdata."&id4=".$cat."&id5=".$gvis."&id6=".$gproces."&id7=".$ggrup.$id8."'>".$nom_prod."-".$nom_prov."</a>";
 		
 ?>
 
@@ -331,7 +315,7 @@ padding: 2px 50px 2px 0px;">
 
 <?php
 		}
-	echo "</table>";
+	echo "</table></div>";
 	$cc++;
 	if ($cc==7){$cc=0;}
 	}
@@ -339,23 +323,19 @@ padding: 2px 50px 2px 0px;">
 	
 ?>
 </div>
-
+<div class="u-mt-1 u-text-center">
 <?php
 if ($gnumfact!="")
 {
-echo '<p class="linia_button2" style="padding:4px 0px; height: 20px; background: green; text-align: center; vertical-align: middle;">
-<input class="button2" type="button" value="SORTIR" style="width: 120px;"
- onClick="javascript:window.location = \'comandes.php?id=1 \'">
-</p>';
+
 }
 else
 {
-echo '<p class="linia_button2" style="'.$sty.' background: green; text-align: center; vertical-align: middle;">
-'.$button.' 
-<input class="button2" type="button" value="SORTIR" style="width: 120px;"
- onClick="javascript:window.location = \'grups_comandes.php \'">
-</p>';
+echo ''.$button.'';
 } ?>
+</div>
+</div>
+
 
 </div>
 </div>

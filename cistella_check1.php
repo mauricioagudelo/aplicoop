@@ -180,26 +180,17 @@ $codi2 = generaCodiCistella($lenght);
 
 <html>
 	<head>
-		//<meta http-equiv="content-type" content="text/html; charset=UTF-8" >
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" >		
-		<link rel="stylesheet" type="text/css" href="coope.css" />			
-		<title>cistella - primer check ::: la coope</title>
-</head>
+		<?php include 'head.php'; ?>				
+		<title>aplicoop - primer check pedido</title>
+	</head>
 
 
 <body>
-<div class="pagina" style="margin-top: 10px;">
-<div class="contenidor_1" style="border: 1px solid green;">
-<p class='path'> 
- ><a href='admint.php'>administració</a> 
- >><a href='grups_comandes.php'>grups de comandes i cistelles</a>
- >>><a href='cistelles.php?id2=<?php echo $gdata."&id3=".$gproces."&id4=".$ggrup; ?>&id5=1'>
- fer la cistella <?php echo $gdata." - ".$gproces." - ".$ggrup; ?></a>
- >>>><a>generació codi d'edició</a>
-</p>
-<p class="h1" style="background: green; text-align: left; padding-left: 20px;">
-Generació codi d'edició
-</p>
+<?php include 'menu.php'; ?>
+<div class="page">
+    <div class="container">
+
+		<h1>Generación código de edición</h1>
 
 
 <?php
@@ -229,15 +220,18 @@ else
 }
 
 ?>
-<p class="error" align="center" style="font-size: 14px; padding-top: 50px;" >
-  L'edició de cistelles queda tancada. A partir d'ara només s'hi podrà entrar amb el següent codi:
+<div class="box">
+<p class="alert alert--info" align="center" style="font-size: 14px; padding-top: 50px;" >
+  La edición de cestas queda cerrada. A partir de ahora sólo se podrá entrar con el siguiente código:
+  </br>
+  <span class="u-text-bold" style="font-size: 3rem;"><?php echo $codi2; ?><span>
 </p>
-<p class="error" align="center" style="padding-bottom: 50px;"><b><?php echo $codi2; ?></p>
 
-<p class="linia_button2" style="background: green; text-align: center; vertical-align: middle;">
-<input class="button2" name="fact" type="button" value="FACTURES" onClick="javascript:window.location = 'cistella_check2.php?id=<?php echo $gproces.'&id2='.$ggrup.'&id3='.$gbd_data; ?>';">
-<input class="button2" name="sortir" type="button" value="ENRERE" onClick="javascript: history.go(-1);">
+<p class="u-text-center">
+<button class="button button--animated button--white" name="fact" type="button" onClick="javascript:window.location = 'cistella_check2.php?id=<?php echo $gproces.'&id2='.$ggrup.'&id3='.$gbd_data; ?>';">Facturas</button>
+<button class="button button--animated button--white" name="sortir" type="button"  onClick="javascript: history.go(-1);">Atrás</button>
 </p>
+</div>
 </div>
 </div>
 </body>

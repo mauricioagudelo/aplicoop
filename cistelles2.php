@@ -47,10 +47,10 @@ $user = $_SESSION['user'];
 	else 
 	{
 		$readonly="";
-		$button='<input class="button2" style="width: 120px;" name="Gcodi" type="button" value="PAS SEGÜENT" onClick="confirma()">';
+		$button='<button class="button button--save button--animated" name="Gcodi" type="button" value="PAS SEGÜENT" onClick="confirma()">Siguiente paso <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button>';
 		$sty="";
-		$intronovafam='<input class="button2" style="width:160px;" type="button" value="INTRODUIR NOVA FAMÍLIA" 
-		onClick="javascript:window.location = \'cistella_mes.php?id3='.$gdata.'&id5='.$gvis.'&id6='.$gproces.'&id7='.$ggrup.'&id8=1\'">';
+		$intronovafam='<button class="button button--save button--animated"" 
+		onClick="javascript:window.location = \'cistella_mes.php?id3='.$gdata.'&id5='.$gvis.'&id6='.$gproces.'&id7='.$ggrup.'&id8=1\'">Nueva familia</button>';
 	}
 
 
@@ -171,7 +171,7 @@ $user = $_SESSION['user'];
 			}	
 		}
 
-		$nota="<p class='error' style='font-size: 14px;'>S'han introduït correctament les dades de la cistella de la família ".$gfam." corresponents a la comanda numero ".$pnumcmda."</p>";
+		$nota="<p class='alert alert--error'>S'han introduït correctament les dades de la cistella de la família ".$gfam." corresponents a la comanda numero ".$pnumcmda."</p>";
 	}
 
 ///Inici html///
@@ -180,21 +180,14 @@ $user = $_SESSION['user'];
 <html>
 	<head>
 		<?php include 'head.php'; ?>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" >
-		<link rel="stylesheet" type="text/css" href="coope.css" />			
-		<title>fer la cistella - llista famílies ::: la coope</title>
+		<title>aplicoop - editar pedido - lista de familias</title>		
 </head>
-<style type="text/css">
-			a#color:link, a#color:visited {color:white; border: 1px solid #9cff00;}
-			a#color:hover {color:black; border: 1px solid #9cff00;   -moz-border-radius: 10%;}
-   		a#color:active {color:white; border: 1px solid #9cff00;  -moz-border-radius: 10%;}
-   		a#color2:link, a#color2:visited, a#color2:hover, a#color2:active {color:black;}
-			</style>
+
 <script language="javascript" type="text/javascript">
 			function confirma()
 			{
 				var answer;
-				var answer = confirm("Estas tancant l'apartat de FER CISTELLES \nS'enviarà notificació electrònica a totes les famílies i es generarà un codi d'edició. \nAcceptar: Anar a facturació \nCancelar: Continuar fent cistelles");
+				var answer = confirm("Estas cerrando el apartado de HACER CESTAS \nSe mandará una notificación electrónica a todas las familias y se generara un código de edición\nAceptar: ir a facturacion \nCancelar: continuar haciendo cestas");
 				if (answer)
 				{
 	  				window.location = 'cistella_check1.php?id=<?php echo $gproces."&id2=".$ggrup."&id3=".$gbd_data; ?>';
@@ -204,37 +197,40 @@ $user = $_SESSION['user'];
 
 <body>
 <?php include 'menu.php'; ?>
-<div class="pagina" style="margin-top: 10px;">
-<div class="contenidor_1" style="border: 1px solid green;">
-<p class='path'> 
-><a href='admint.php'>administració</a> 
->><a href='grups_comandes.php'>grups de comandes i cistelles</a>
->>><a href='cistelles2.php?id2=<?php echo $gdata."&id3=".$gproces."&id4=".$ggrup."&id5=".$gvis; ?>'>cistella <?php echo $gdata." - ".$gproces." - ".$ggrup; ?></a>  
-</p>
-<p class="h1" style="background: green; text-align: left; padding-left: 20px;">
-cistella <?php echo $gdata." - ".$gproces." - ".$ggrup; ?>
-<span style="display: inline; float: right; text-align: center; vertical-align: middle; padding: 2px 50px 2px 0px;">
-<input class="button2" style="width:160px; margin-left:10px;" type="button" value="CISTELLES PER PRODUCTE" 
-onClick="javascript:window.location = 'cistelles.php?id2=<?php echo $gdata.'&id3='.$gproces.'&id4='.$ggrup.'&id5='.$gvis; ?>'">
-</span></p>
-<?php echo $nota; ?>
+<div class="page">
+    <div class="container">
 
-<div class="contenidor_fac" style="border: 1px solid green; max-height: 350px; overflow: scroll; overflow-x:hidden;">
-<p class="h1" style="background: green; text-align: left; padding-left: 20px;">
-Llista famílies
-<span style="display: inline; float: right; text-align: center; vertical-align: middle; padding: 2px 50px 2px 0px;">
-<?php echo $intronovafam; ?>
-</span>
-</p>
+	<div class="u-cf">
+		<h1 class="pull-left">Pedido <?php echo $gdata." - ".$gproces." - ".$ggrup; ?>></h1>
+		<div class="pull-right u-mt-1 u-mb-1">
+			<button class="button button--white button--animated" type="button" onClick="javascript:window.location = 'cistelles.php?id2=<?php echo $gdata.'&id3='.$gproces.'&id4='.$ggrup.'&id5='.$gvis; ?>'">Cestas por producto</button>
+  		</div>
+	</div>
+
+
+		<?php echo $nota; ?>
 
 
 
-<table width="60%" align="center" valign="middle" cellpadding="5" cellspacing="5">
+<div class="box">
 
-<tr class='cos_majus'><td align="center">Família</td>
-<td align="center">Numero comanda</td>
-<td align="center">Unitats demanades</td>
-<td align="center">Unitats servides</td>
+	<div class="u-cf">
+		<h2 class="pull-left">Lista familias</h1>
+		<div class="pull-right u-mt-1 u-mb-1">
+			<?php echo $intronovafam; ?>
+  		</div>
+	</div>
+
+<h2 >
+
+
+<div class="table-responsive">
+<table  class="table table-striped table-bordered">
+
+<tr class='cos_majus'><td class='u-text-semibold u-text-center'>Família</td>
+<td class='u-text-semibold  u-text-center'>Numero comanda</td>
+<td class='u-text-semibold  u-text-center'>Unidades demandadas</td>
+<td class='u-text-semibold  u-text-center'>Unidades servidas</td>
 </tr> 
 
 
@@ -266,7 +262,7 @@ Llista famílies
 
 <tr class="cos">
 <td align="center">
-<a id='color2' href="cistella2_fam.php?id=<?php echo $familia.'&id2='.$gdata.'&id3='.$gproces.'&id4='.$ggrup.'&id5='.$gvis; ?>" >
+<a id='color2' class="link" href="cistella2_fam.php?id=<?php echo $familia.'&id2='.$gdata.'&id3='.$gproces.'&id4='.$ggrup.'&id5='.$gvis; ?>" >
 <?php echo $familia; ?></a></td>
 <td align="center"><?php echo $numero; ?></td>
 <td align="center" <?php echo $color; ?>><?php echo $demanat; ?></td>
@@ -279,9 +275,7 @@ Llista famílies
 ?>
 </table>
 </div>
-
-
-<p class="linia_button2" style="<?php echo $sty; ?> background: green; text-align: center; vertical-align: middle;">
+<p class="u-text-center">
 
 <?php 
 	if ($gvis=='1')
@@ -290,8 +284,11 @@ Llista famílies
 	}
 ?>
 
-<input class="button2" type="button" value="Sortir" onClick="location.href='grups_comandes.php'">
+
 </p>
+</div>
+
+
 
 </form>
 

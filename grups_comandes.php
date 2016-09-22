@@ -111,7 +111,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
         $pdata = $pdia . '-' . $pmes . '-' . $pany;
 
         if ($pcodi == "") {
-            $errorMessage = "Has d'introduir una clau";
+            $errorMessage = "Has de introducir la clave";
         } else {
             $sql = "SELECT codi FROM cistella_check
 			WHERE codi = '$pcodi' 
@@ -130,7 +130,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 <?php
                 exit;
             } else {
-                $errorMessage = "Ho sentim, la clau d'edició no és correcta. Prova altra vegada.";
+                $errorMessage = "Lo sentimos, la clave de edición no es correcta. Prueba otra vez..";
                 include 'config/disconect.php';
             }
         }
@@ -184,9 +184,9 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     if ($check == "1") {
                         echo '<thead>';
                         echo '<tr class="cos_majus" align="center">';
-                        echo "<td>Proces - Grup</td>";
-                        echo "<td>Data</td>";
-                        echo "<td>Codi d'edició</td>";
+                        echo "<td>Proceso - Grupo</td>";
+                        echo "<td>Fecha</td>";
+                        echo "<td>Código</td>";
                         echo "</tr>";
                         echo "</thead>";
                         ?>

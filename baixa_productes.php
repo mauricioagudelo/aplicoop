@@ -20,22 +20,18 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     <html>
     <head>
-        <?php include 'head.php'; ?>
-        <link rel="stylesheet" type="text/css" href="coope.css"/>
-        <title>activar productes ::: la coope</title>
+        <?php include 'head.php'; ?>       
+        <title>aplicoop - baja productos</title>		 
+        
     </head>
 
     <body>
     <?php include 'menu.php'; ?>
-    <div class="pagina" style="margin-top: 10px;">
-        <div class="contenidor_1" style="border: 1px solid #990000;">
-            <p class='path'>
-                ><a href='admint.php'>administració</a>
-                >><a href='baixa_productes.php'>activar i donar de baixa productes</a>
-            </p>
-
-            <p class="h1" style="background: #990000; text-align: left; padding-left: 20px;">
-                Activar i donar de baixa productes</p>
+    <div class="page">
+        <div class="container">
+           
+            <h1 >Activar y dar de baja productos</h1>
+         
 
             <?php
             if ($gactiu != "") {
@@ -50,131 +46,134 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             }
             ?>
 
-            <table width="80%" align="center">
-                <form action="baixa_productes.php" method="post" name="prod" id="prod">
-                    <tr style="padding-top: 10px;" class="cos_majus">
-                        <td width="33%" align="center">Categories</td>
-                        <td width="33%" align="center">Subcategories</td>
-                        <td width="33%" align="center">Proveidores</td>
-                    </tr>
+        <form action="baixa_productes.php" method="post" name="prod" id="prod">
 
-                    <tr style="padding-bottom: 10px;">
-                        <td align="center">
-                            <SELECT name="cat" id="cat" size="1" maxlength="30" onChange="this.form.submit()">
-                                <option value="">elegeix una categoria</option>
+            <div class="row">
+			    <div class="col-md-4">
+				    <div class="form-group">
+                        <label for="cat">Categorias</label>
+                        <SELECT name="cat" id="cat" size="1" maxlength="30" onChange="this.form.submit()">
+                            <option value="">--</option>
 
-                                <?php
-                                $select2 = "SELECT tipus FROM categoria ORDER BY tipus";
-                                $query2 = mysql_query($select2);
-                                if (!$query2) {
-                                    die('Invalid query2: ' . mysql_error());
+                            <?php
+                            $select2 = "SELECT tipus FROM categoria ORDER BY tipus";
+                            $query2 = mysql_query($select2);
+                            if (!$query2) {
+                                die('Invalid query2: ' . mysql_error());
+                            }
+                            while (list($scat) = mysql_fetch_row($query2)) {
+                                if ($pcat == $scat) {
+                                    echo '<option value="' . $scat . '" selected>' . $scat . '</option>';
+                                } else {
+                                    echo '<option value="' . $scat . '">' . $scat . '</option>';
                                 }
-                                while (list($scat) = mysql_fetch_row($query2)) {
-                                    if ($pcat == $scat) {
-                                        echo '<option value="' . $scat . '" selected>' . $scat . '</option>';
-                                    } else {
-                                        echo '<option value="' . $scat . '">' . $scat . '</option>';
-                                    }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+				<div class="form-group">
+					<label for="subcat">Subcategorias</label>
+					  <?php
+				$dis_sc = "disabled";
+				$opt_sc = '<OPTION value="">--</option>';
+				if ($pcat != "") {
+					$dis_sc = "";
+					$opt_sc = '<OPTION value="">';
+				}
+				?>
+
+				
+					<SELECT name="subcat" id="subcat" size="1" maxlength="30" <?php echo $dis_sc; ?>
+							onChange="this.form.submit()">
+
+						<?php
+						echo $opt_sc;
+						if ($pcat != "") {
+							$select2 = "SELECT subcategoria FROM subcategoria
+WHERE categoria='" . $pcat . "' ORDER BY subcategoria";
+							$query2 = mysql_query($select2);
+							if (!$query2) {
+								die('Invalid query2: ' . mysql_error());
+							}
+							while (list($scat) = mysql_fetch_row($query2)) {
+								if ($psubcat == $scat) {
+									echo '<option value="' . $scat . '" selected>' . $scat . '</option>';
+								} else {
+									echo '<option value="' . $scat . '">' . $scat . '</option>';
+								}
+							}
+						}
+						?>
+                        </select>
+				</div>
+			</div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="prov">Proveedores</label>
+                        <SELECT name="prov" id="prov" size="1" maxlength="30" onChange="this.form.submit()">
+                            <option value="">--</option>
+
+                            <?php
+                            $select3 = "SELECT nom FROM proveidores ORDER BY nom";
+                            $query3 = mysql_query($select3);
+                            if (!$query3) {
+                                die('Invalid query3: ' . mysql_error());
+                            }
+                            while (list($sprov) = mysql_fetch_row($query3)) {
+                                if ($pprov == $sprov) {
+                                    echo '<option value="' . $sprov . '" selected>' . $sprov . '</option>';
+                                } else {
+                                    echo '<option value="' . $sprov . '">' . $sprov . '</option>';
                                 }
-                                ?>
+                            }
+                            ?>
                             </select>
-                        </td>
+                    </div>
+                </div>
+                    
+            </div>
+          	   
+		</form>
 
-                        <?php
-                        $dis_sc = "disabled";
-                        $opt_sc = '<OPTION value="">elegeix una categoria</option>';
-                        if ($pcat != "") {
-                            $dis_sc = "";
-                            $opt_sc = '<OPTION value="">';
-                        }
-                        ?>
-
-                        <td align="center">
-                            <SELECT name="subcat" id="subcat" size="1" maxlength="30" <?php echo $dis_sc; ?>
-                                    onChange="this.form.submit()">
-
-                                <?php
-                                echo $opt_sc;
-                                if ($pcat != "") {
-                                    $select2 = "SELECT subcategoria FROM subcategoria
-		WHERE categoria='" . $pcat . "' ORDER BY subcategoria";
-                                    $query2 = mysql_query($select2);
-                                    if (!$query2) {
-                                        die('Invalid query2: ' . mysql_error());
-                                    }
-                                    while (list($scat) = mysql_fetch_row($query2)) {
-                                        if ($psubcat == $scat) {
-                                            echo '<option value="' . $scat . '" selected>' . $scat . '</option>';
-                                        } else {
-                                            echo '<option value="' . $scat . '">' . $scat . '</option>';
-                                        }
-                                    }
-                                }
-                                ?>
-
-                        </td>
-                        <td align="center">
-                            <SELECT name="prov" id="prov" size="1" maxlength="30" onChange="this.form.submit()">
-                                <option value="">elegeix una proveïdora</option>
-
-                                <?php
-                                $select3 = "SELECT nom FROM proveidores ORDER BY nom";
-                                $query3 = mysql_query($select3);
-                                if (!$query3) {
-                                    die('Invalid query3: ' . mysql_error());
-                                }
-                                while (list($sprov) = mysql_fetch_row($query3)) {
-                                    if ($pprov == $sprov) {
-                                        echo '<option value="' . $sprov . '" selected>' . $sprov . '</option>';
-                                    } else {
-                                        echo '<option value="' . $sprov . '">' . $sprov . '</option>';
-                                    }
-                                }
-                                ?>
-
-                        </td>
-                </form>
-                </tr></table>
-
-            <div class="contenidor_fac" style="border: 1px solid #990000; max-height: 350px; overflow: scroll; overflow-x: hidden;
-margin-bottom: 20px; padding-bottom: 20px;">
+            <div class="box" >
 
                 <?php
                 if ($pcat != "" OR $pprov != "") {
                     if ($pcat == "") {
                         $where = "WHERE proveidora='" . $pprov . "'";
-                        $title = "Recerca per proveïdora " . $pprov;
+                        $title = "Filtrado por proveedor " . $pprov;
                     } else {
                         if ($psubcat == "" AND $pprov == "") {
                             $where = "WHERE categoria='" . $pcat . "'";
-                            $title = "Recerca per categoria " . $pcat;
+                            $title = "Filtrado por categoria " . $pcat;
                         } elseif ($psubcat != "" AND $pprov == "") {
                             $where = "WHERE categoria='" . $pcat . "' AND subcategoria='" . $psubcat . "'";
-                            $title = "Recerca per categoria " . $pcat . " i subcategoria " . $psubcat;
+                            $title = "Filtrado por categoria " . $pcat . " y subcategoria " . $psubcat;
                         } elseif ($psubcat == "" AND $pprov != "") {
                             $where = "WHERE categoria='" . $pcat . "' AND proveidora='" . $pprov . "'";
-                            $title = "Recerca per categoria " . $pcat . " i proveïdora " . $pprov;
+                            $title = "Filtrado por categoria " . $pcat . " y proveedor " . $pprov;
                         } elseif ($psubcat != "" AND $pprov != "") {
                             $where = "WHERE categoria='" . $pcat . "' AND subcategoria='" . $psubcat . "' AND proveidora='" . $pprov . "'";
-                            $title = "Recerca per categoria " . $pcat . ", subcategoria " . $psubcat . " i proveïdora " . $pprov;
+                            $title = "Filtrado por categoria " . $pcat . ", subcategoria " . $psubcat . " y proveedor " . $pprov;
                         }
                     }
                 } else {
                     $where = "";
-                    $title = "Ordenació alfabètica de productes";
+                    $title = "Ordenación alfabética de productos";
                 }
 
-                print ('<p class="h1"
-		style="background: #990000; font-size:14px; text-align: left; 
-		height: 20px; padding-left: 20px;">' . $title . '</p>');
+                print ('<p class="alert alert--info">' . $title . '</p>');
 
-                print('<table width="95%" align="center" style="padding:0px;" >');
+                print('<div style="overflow: auto; height: 40vh;">');
+                print('<table class="table table-striped table-bordered" >');
 
                 print('<tr class="cos_majus">
-			<td width="20%" align="center">Producte</td><td width="12%" align="center">Actiu</td>
-			<td width="20%" align="center">Producte</td><td width="12%" align="center">Actiu</td>
-			<td width="20%" align="center">Producte</td><td width="12%" align="center">Actiu</td>
-			</tr>');
+			    <td width="80%" class="u-text-semibold">Producto</td>
+                <td width="202%" class="u-text-semibold">Activo</td>
+		
+			    </tr>');
 
                 $sel = "SELECT ref,nom,proveidora,actiu FROM productes " . $where . " ORDER BY nom";
                 $result = mysql_query($sel);
@@ -192,38 +191,40 @@ margin-bottom: 20px; padding-bottom: 20px;">
                     } else {
                         $checked2 = "checked";
                     }
-                    if ($i == 0) {
-                        print ('<tr>');
-                    }
+                    
                     ?>
-
-                    <td class="cos"><?php echo $nomprod; ?></td>
-                    <td class="cos">
-                        si<input type="radio" name="actiu<?php echo $k; ?>" value="actiu"
-                                 id="actiu<?php echo $k; ?>" <?php echo $checked1; ?>
-                                 onClick="javascript:window.location = 'baixa_productes.php?id=<?php echo $ref; ?>&id3=actiu&id4=<?php echo $pcat; ?>&id5=<?php echo $psubcat; ?>&id6=<?php echo $pprov; ?>';">
-                        no<input type="radio" name="actiu<?php echo $k; ?>" value="baixa"
-                                 id="actiu<?php echo $k; ?>" <?php echo $checked2; ?>
-                                 onClick="javascript:window.location = 'baixa_productes.php?id=<?php echo $ref; ?>&id3=baixa&id4=<?php echo $pcat; ?>&id5=<?php echo $psubcat; ?>&id6=<?php echo $pprov; ?>';">
-                    </td>
-
+                    <tr>
+                        <td class="cos"><?php echo $nomprod; ?></td>
+                        <td class="u-text-center">
+                            <label>
+                                si&nbsp;<input type="radio" name="actiu<?php echo $k; ?>" value="actiu"
+                                    id="actiu<?php echo $k; ?>" <?php echo $checked1; ?>
+                                    onClick="javascript:window.location = 'baixa_productes.php?id=<?php echo $ref; ?>&id3=actiu&id4=<?php echo $pcat; ?>&id5=<?php echo $psubcat; ?>&id6=<?php echo $pprov; ?>';">
+                            </label>
+                            <label class="u-ml-1">                                    
+                                no&nbsp;<input type="radio" name="actiu<?php echo $k; ?>" value="baixa"
+                                    id="actiu<?php echo $k; ?>" <?php echo $checked2; ?>
+                                    onClick="javascript:window.location = 'baixa_productes.php?id=<?php echo $ref; ?>&id3=baixa&id4=<?php echo $pcat; ?>&id5=<?php echo $psubcat; ?>&id6=<?php echo $pprov; ?>';">
+                                </label>
+                        </td>
+                    </tr>
                     <?php
 
-                    $i++;
+                   
                     $k++;
-                    if ($i == 3) {
-                        print ('</tr>');
-                        $i = 0;
-                    }
+                   
                 }
-                print ('</table></div></div>');
+                print ('</table></div>');
 
                 ?>
-                <p class="cos2" style="clear: both; text-align: center; padding: 0px 100px;">
-                    Per activar o desactivar productes clica al botó corresponent i s'aplicarà automàticament.
-                    Pots buscar productes per categoria i/o per proveïdora. Per defecte apareixen tots els
-                    productes ordenats per ordre alfabètic.</p>
+                <p class="alert alert--info" >
+                    Para activar o desactivar productos pulsa el botón correspondiente y se aplicará automáticamente.
+                    Puedes buscar productos por categoría y / o por proveedor.
+                    Por defecto aparecen todos los productos ordenados por orden alfabético.    
+                </p>
 
+            </div>
+            </div>
             </div>
     </body>
     </html>
