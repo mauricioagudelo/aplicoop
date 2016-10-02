@@ -50,7 +50,7 @@ $user = $_SESSION['user'];
 		$button='<button class="button button--save button--animated" name="Gcodi" type="button" value="PAS SEGÜENT" onClick="confirma()">Siguiente paso <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button>';
 		$sty="";
 		$intronovafam='<button class="button button--save button--animated"" 
-		onClick="javascript:window.location = \'cistella_mes.php?id3='.$gdata.'&id5='.$gvis.'&id6='.$gproces.'&id7='.$ggrup.'&id8=1\'">Nueva familia</button>';
+		onClick="javascript:window.location = \'cistella_mes.php?id3='.$gdata.'&id5='.$gvis.'&id6='.$gproces.'&id7='.$ggrup.'&id8=1\'">Nueva familia <i class="fa fa-plus" aria-hidden="true"></i></button>';
 	}
 
 
@@ -201,7 +201,7 @@ $user = $_SESSION['user'];
     <div class="container">
 
 	<div class="u-cf">
-		<h1 class="pull-left">Pedido <?php echo $gdata." - ".$gproces." - ".$ggrup; ?>></h1>
+		<h1 class="pull-left">Pedido <?php echo $gdata." - ".$gproces." - ".$ggrup; ?></h1>
 		<div class="pull-right u-mt-1 u-mb-1">
 			<button class="button button--white button--animated" type="button" onClick="javascript:window.location = 'cistelles.php?id2=<?php echo $gdata.'&id3='.$gproces.'&id4='.$ggrup.'&id5='.$gvis; ?>'">Cestas por producto</button>
   		</div>

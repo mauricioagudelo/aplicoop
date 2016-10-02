@@ -46,7 +46,7 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR $_SESSION['codi_cistella'] != '
 	// (associat a una família i comanda) a un proces-grup ///////////////////
 	/////////////////////////////////////////////////////////////////////////
 	
-	$title_array=array("Introduir nova família","Afegir nou producte");
+	$title_array=array("Introducir nueva familia","Añadir nuevo producto");
 	$a="id=".$gref;
 	$form_action_pre_array=array("cistella_mes.php?","id=$gref",
 		"&id3=".$gdata."&id4=".$gcat."&id5=".$gvis."&id6=".$gproces."&id7=".$ggrup."","&id8=1","&id9=$gfam",";");
@@ -109,7 +109,7 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR $_SESSION['codi_cistella'] != '
 			$disabled2="disabled";
 			$disabled3="disabled";
 			$form_action="cistelles".$idcist2.".php?id2=".$gdata."&id3=".$gproces."&id4=".$ggrup."&id5=".$gvis;
-			$subtit='Elegeix una família, una proveïdora i un producte, en aquest ordre, i clica ACCEPTAR.';			
+			$subtit='Elige una familia, un proveedor y un producto y pulsa ACEPTAR.';			
 			$sortir="cistelles".$idcist2.".php?id2=".$gdata."&id3=".$gproces."&id4=".$ggrup."&id5=".$gvis;
 			if ($paddfam!="")
 			{
@@ -131,189 +131,170 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR $_SESSION['codi_cistella'] != '
 	<html>
 		<head>
 			<?php include 'head.php'; ?>
-			<meta http-equiv="content-type" content="text; charset=UTF-8" >
-			<link rel="stylesheet" type="text/css" href="coope.css" />			
-			<title>introduir novetats cistella ::: la coope</title>
-			
-			<style type="text/css">
-			a#color:link, a#color:visited {color:white; border: 1px solid #9cff00;}
-			a#color:hover {color:black; border: 1px solid #9cff00;   -moz-border-radius: 10%;}
-   		a#color:active {color:white; border: 1px solid #9cff00;  -moz-border-radius: 10%;}
-   		a#color2:link, a#color2:visited, a#color2:hover, a#color2:active {color:black;}
-			</style>
+			<title>aplicoop - editar pedido</title>
 		</head>
 
 <body>
 <?php include 'menu.php'; ?>
-<div class="pagina" style="margin-top: 10px;">
+<div class="page">
 
-<div class="contenidor_1" style="border: 1px solid green;">
-<p class='path'> 
-><a href='admint.php'>administració</a> 
->><a href='grups_comandes.php'>grups de comandes i cistelles</a>
->>><a href='cistelles<?php echo $idcist2; ?>.php?id2=<?php echo $gdata."&id3=".$gproces."&id4=".$ggrup."&id5=".$gvis; ?>'>
-fer la cistella <?php echo $gdata." - ".$gproces." - ".$ggrup; ?> </a>
-<?php echo $link_cap; ?> 
+<div class="container">
+
+<h1><?php echo $title; ?></h1>
+
+<p class="alert alert--info">
+<?php echo $subtit; ?>
 </p>
-<p class="h1" style="background: green; text-align: left; padding-left: 20px;"><?php echo $title; ?></p>
 
-<div class="contenidor_fac" style="border: 1px solid green; max-height: 350px; overflow: scroll; overflow-x:hidden;">
+<div class="box" >
 
-<form action="<?php echo $form_action_pre; ?>" method="post" name="frmmes" id="frmmes"  target="cos">
+<form action="<?php echo $form_action_pre; ?>" method="post" name="frmmes" id="frmmes" >
 	
-<table width="60%" align="center" valign="middle" cellpadding="5" cellspacing="5">
+ <div class="form-group row">
+ 	 <label for="nouf" class="col-sm-3 control-label">Familia</label>
+     <div class="col-sm-9">    
 
-<tr class='cos_majus'>
-<td align="center">Familia</td>
-<td align="center">Proveïdora</td>
-<td align="center">Producte</td>
-</tr>
-
-<tr class="cos">
-<td align="center">
-
-<?php
-	if ($gfam!="") 
-	{
-		echo $gfam;
-	}
-	else 
-	{
-		echo'<SELECT class="button2" name="nouf" id="nouf" size="1" maxlength="30" onchange="document.frmmes.submit()">
-		<option value="">insereix familia</option>';
-
-		// Es pot elegir entre totes les famílies actives del grup //
-		
-		$taula7="SELECT u.nom, c.numero, cl.ref FROM usuaris AS u LEFT JOIN comanda AS c 
-		ON u.nom=c.usuari AND c.data='$gbd_data' AND c.proces='$gproces' AND c.grup='$ggrup'
-		LEFT JOIN comanda_linia AS cl ON c.numero=cl.numero AND cl.ref='$gref'
-		WHERE u.dia='$ggrup' AND u.tipus2='actiu' 
-		ORDER BY u.nom";
-		$result7 = mysql_query($taula7);
-		if (!$result7) {die('Invalid query7: ' . mysql_error());}
-
-		while(list($sfam,$snum,$sref)=mysql_fetch_row($result7))
-		{
-			if($sref=="") 
+		<?php
+			if ($gfam!="") 
 			{
-				$text="";
-				if($snum!="") 
-				{
-					$text=$sfam.'('.$snum.')';
-				}
-				else 
-				{
-					$text=$sfam; 
-				}
+				echo $gfam;
+			}
+			else 
+			{
+				echo'<SELECT class="button2" name="nouf" id="nouf" size="1" maxlength="30" onchange="document.frmmes.submit()">
+				<option value="">--</option>';
+
+				// Es pot elegir entre totes les famílies actives del grup //
 				
-				if ($paddfam==$sfam)
+				$taula7="SELECT u.nom, c.numero, cl.ref FROM usuaris AS u LEFT JOIN comanda AS c 
+				ON u.nom=c.usuari AND c.data='$gbd_data' AND c.proces='$gproces' AND c.grup='$ggrup'
+				LEFT JOIN comanda_linia AS cl ON c.numero=cl.numero AND cl.ref='$gref'
+				WHERE u.dia='$ggrup' AND u.tipus2='actiu' 
+				ORDER BY u.nom";
+				$result7 = mysql_query($taula7);
+				if (!$result7) {die('Invalid query7: ' . mysql_error());}
+
+				while(list($sfam,$snum,$sref)=mysql_fetch_row($result7))
 				{
-					echo '<option value="'.$sfam.'" selected>'.$text.'</option>';
-					$input_num=$snum;				
+					if($sref=="") 
+					{
+						$text="";
+						if($snum!="") 
+						{
+							$text=$sfam.'('.$snum.')';
+						}
+						else 
+						{
+							$text=$sfam; 
+						}
+						
+						if ($paddfam==$sfam)
+						{
+							echo '<option value="'.$sfam.'" selected>'.$text.'</option>';
+							$input_num=$snum;				
+						}
+						else 
+						{
+							echo '<option value="'.$sfam.'">'.$text.'</option>';
+						}	
+					}
 				}
-				else 
-				{
-					echo '<option value="'.$sfam.'">'.$text.'</option>';
-				}	
+				echo '</select>';
 			}
-		}
-		echo '</select>';
-	}
-?>
-
-</td>
-
-<td align="center">
-<?php
-	if ($gref!="") 
-	{
-		echo $gprov;
-	}
-	else 
-	{
-		echo '<SELECT name="prov" id="prov" size="1" maxlength="30" '.$disabled.' onChange="document.frmmes.submit();">
-			<option value="">elegeix una proveïdora</option>';
-
-		$query= "SELECT nom FROM proveidores ORDER BY nom";
-		$result=mysql_query($query);
-		if (!$result) {die("Query to show fields from table failed");}
-
-		while (list($sprov)=mysql_fetch_row($result)) 
-		{
-			if ($pprov==$sprov){echo '<option value="'.$sprov.'" selected>'.$sprov.'</option>';}
-			else {echo '<option value="'.$sprov.'">'.$sprov.'</option>';}
-		}
-		echo '</SELECT>';
-	}
-?>
-
-</td>
-
-<td align="center">
-<?php
-	if ($gref!="") 
-	{
-		echo $gnomprod;
-	}
-	else 
-	{
-		echo '<SELECT name="prod" id="prod" size="1" maxlength="30" '.$disabled2.' onchange="document.frmmes.submit()">
-			<option value="">elegeix un producte</option>';
-			
-		// Es pot elegir entre tots els productes excepte els que ja hi son ///
-		
-		$query2 = "SELECT pr.ref, pr.nom FROM productes AS pr	WHERE pr.proveidora='$pprov' ORDER BY pr.nom";
-		$result2=mysql_query($query2);
-		if (!$result2) {die("Query2 to show fields from table failed:" . mysql_error());}
-
-		while (list($sref,$sprod)=mysql_fetch_row($result2)) 
-		{
-			$query3 = "SELECT cl.ref, pr.nom FROM comanda_linia AS cl, comanda AS c, productes AS pr
-			WHERE c.numero=cl.numero AND cl.ref=pr.ref AND cl.ref='$sref'
-			AND c.data='$gbd_data' AND c.proces='$gproces' AND c.grup='$ggrup' 
-			GROUP BY cl.ref";
-			$result3=mysql_query($query3);
-			if (!$result3) {die("Query3 to show fields from table failed:" . mysql_error());}
-			
-			list($r, $ssprod)=mysql_fetch_row($result3);
-			if(!$ssprod) 
+		?>
+	 </div>
+ </div>
+ <div class="form-group u-mt-1 row">
+ 	 <label for="prov" class="col-sm-3 control-label">Proveedor</label>
+     <div class="col-sm-9">  
+		<?php
+			if ($gref!="") 
 			{
-				if ($pprod==$sprod)
-				{
-					echo '<option value="'.$sprod.'" selected>'.$sprod.'</option>';
-					$input_ref=$sref;
-				}
-				else {echo '<option value="'.$sprod.'">'.$sprod.'</option>';}	
+				echo $gprov;
 			}
-		}
-		echo '</SELECT>';
-	}
-?>
-</td>
-</tr>
+			else 
+			{
+				echo '<SELECT name="prov" id="prov" size="1" maxlength="30" '.$disabled.' onChange="document.frmmes.submit();">
+					<option value="">--</option>';
 
-</table>	
+				$query= "SELECT nom FROM proveidores ORDER BY nom";
+				$result=mysql_query($query);
+				if (!$result) {die("Query to show fields from table failed");}
+
+				while (list($sprov)=mysql_fetch_row($result)) 
+				{
+					if ($pprov==$sprov){echo '<option value="'.$sprov.'" selected>'.$sprov.'</option>';}
+					else {echo '<option value="'.$sprov.'">'.$sprov.'</option>';}
+				}
+				echo '</SELECT>';
+			}
+		?>
+	 </div>
+ </div>
+ <div class="form-group u-mt-1 row">
+ 	 <label for="prod" class="col-sm-3 control-label">Producto</label>
+     <div class="col-sm-9">   
+		<?php
+			if ($gref!="") 
+			{
+				echo $gnomprod;
+			}
+			else 
+			{
+				echo '<SELECT name="prod" id="prod" size="1" maxlength="30" '.$disabled2.' onchange="document.frmmes.submit()">
+					<option value="">--</option>';
+					
+				// Es pot elegir entre tots els productes excepte els que ja hi son ///
+				
+				$query2 = "SELECT pr.ref, pr.nom FROM productes AS pr	WHERE pr.proveidora='$pprov' ORDER BY pr.nom";
+				$result2=mysql_query($query2);
+				if (!$result2) {die("Query2 to show fields from table failed:" . mysql_error());}
+
+				while (list($sref,$sprod)=mysql_fetch_row($result2)) 
+				{
+					$query3 = "SELECT cl.ref, pr.nom FROM comanda_linia AS cl, comanda AS c, productes AS pr
+					WHERE c.numero=cl.numero AND cl.ref=pr.ref AND cl.ref='$sref'
+					AND c.data='$gbd_data' AND c.proces='$gproces' AND c.grup='$ggrup' 
+					GROUP BY cl.ref";
+					$result3=mysql_query($query3);
+					if (!$result3) {die("Query3 to show fields from table failed:" . mysql_error());}
+					
+					list($r, $ssprod)=mysql_fetch_row($result3);
+					if(!$ssprod) 
+					{
+						if ($pprod==$sprod)
+						{
+							echo '<option value="'.$sprod.'" selected>'.$sprod.'</option>';
+							$input_ref=$sref;
+						}
+						else {echo '<option value="'.$sprod.'">'.$sprod.'</option>';}	
+					}
+				}
+				echo '</SELECT>';
+			}
+		?>
+	 </div>
+ </div>
+
+
 
 </div>
 </form>
-<form action="<?php echo $form_action; ?>" method="post" name="frmmes2" id="frmmes2"  target="cos" >
-<p class="linia_button2" style="background: green; text-align: center; vertical-align: middle;">
+<form action="<?php echo $form_action; ?>" method="post" name="frmmes2" id="frmmes2">
+
 <input type="hidden" name="nouf" id="nouf" value="<?php echo $paddfam; ?>">
 <input type="hidden" name="prov" id="prov" value="<?php echo $pprov; ?>">
 <input type="hidden" name="prod" id="prod" value="<?php echo $pprod; ?>">
 <input type="hidden" name="ref" id="ref" value="<?php echo $input_ref; ?>">
 <input type="hidden" name="num" id="num" value="<?php echo $input_num; ?>">
 
-<input class="button2" name="acceptar" type="button" value="Acceptar" <?php echo $disabled3; ?> onclick="document.frmmes2.submit()">
+<div class="u-text-center">
+<button class="button  button--white button--animated" name="acceptar" type="button" <?php echo $disabled3; ?> onclick="document.frmmes2.submit()">Aceptar</button>
+</div>
 
-<input class="button2" type="button" value="Sortir" onClick="location.href='<?php echo $sortir; ?>'">
-</p>
 
 </form>
 
-<p class="cos2" style="clear: both; text-align: center; padding: 0px 100px;">
-<?php echo $subtit; ?>
-</p>
 
 </div>
 </div>
