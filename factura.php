@@ -126,15 +126,13 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR ($_GET['id'] != "" AND strlen($
 		<table width="100%"  class="table table-striped">
 			<thead>
 			<tr style="font-size:18px;">
-
 				<td width="50%" align="left" class="u-text-semibold">Producto</u></td>
-				<td width="15%" align="center" class="u-text-semibold">Cantidad</td>
-				<td width="15%" align="center" class="u-text-semibold">Unidad</td>
+				<td width="10%" align="center" class="u-text-semibold">Cant.</td>
+				<td width="10%" align="center" class="u-text-semibold">Unidad</td>
 				<td width="10%" align="center" class="u-text-semibold">PVP</td>
 				<td width="10%" align="center" class="u-text-semibold">Descuento</td>
 				<td width="10%" align="center" class="u-text-semibold">IVA</td>
 				<td width="10%" align="right" class="u-text-semibold">Total</td>
-
 			</tr>
 			</thead>
 			<tbody>
