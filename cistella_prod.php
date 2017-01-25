@@ -39,11 +39,11 @@ $user = $_SESSION['user'];
 	else 
 	{
 		$readonly="";
-		$button='<input class="button2" name="acceptar" type="submit" value="Acceptar">';
+		$button='<button class="button button button--save button--animated" name="acceptar" type="submit">Aceptar <i class="fa fa-check" aria-hidden="true"></i></button>';
 		$sty="";
-		$intronovafam='<input class="button2" style="width:160px;" type="button" value="INTRODUIR NOVA FAMÍLIA" 
+		$intronovafam='<button class="button button--animated pull-right" type="button"  
 		onClick="javascript:window.location = \'cistella_mes.php?id='.$gprodref.'&id3='.$gdata.'&id4='.$gcat.'&id5='
-		.$gvis.'&id6='.$gproces.'&id7='.$ggrup.'\'">';
+		.$gvis.'&id6='.$gproces.'&id7='.$ggrup.'\'">Añadir nueva familia <i class="fa fa-plus" aria-hidden="true"></i></button>';
 	}
 
 	list($mdiatdx, $mestdx, $anytdx ) = explode("-", $gdata);
@@ -94,10 +94,9 @@ $user = $_SESSION['user'];
 
 <html>
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" >
-		<link rel="stylesheet" type="text/css" href="coope.css" />			
-		<title>fer la cistella - productes ::: la coope</title>
-</head>
+		<?php include 'head.php'; ?>						
+		<title>aplicoop - editar pedido / producto</title>		
+	</head>
 
 <script language="javascript" type="text/javascript">
 
@@ -107,7 +106,7 @@ var x = new Array();
 var nom = new Array();
 var answered;
 var i;
-var error = "Les següents families tenen la cistella buida:\n\n";
+var error = "Las siguientes familias tienen la cesta vacia:\n\n";
 var a = "";
 
 /// la funció lenght no detecta arrays d'un item. Així pots solucionar-se el problema ///
@@ -126,7 +125,7 @@ break;
 }
 
 if (x[i]>=100 || x[i]<0) {
-alert ('A ' + nom[i] + ': el numero ha de ser superior que 0 i inferior a 100'); 
+alert ('A ' + nom[i] + ': el numero ha de ser superior a 0 e inferior a 100'); 
 document.getElementById("num"+i).focus();
 return false;
 break;
@@ -139,7 +138,7 @@ a += nom[i] + '\n';
 }
 
 if (a != "") {
-a += '\nCancelar: Tornar a la pàgina per omplir les cistelles buides \nAcceptar: Continuar endavant';
+a += '\nCancelar: Volver a la página para llenar las cestas vacías \nAceptar: Seguir adelante';
 var answered = confirm(error + a);
 	if (answered){
 		return true;
@@ -155,22 +154,18 @@ return true;
 
 
 <body>
-<div class="pagina" style="margin-top: 10px;">
-<div class="contenidor_1" style="border: 1px solid green;">
-<p class='path'> 
-><a href='admint.php'>administració</a> 
->><a href='grups_comandes.php'>grups de comandes i cistelles</a>
->>><a href='cistelles.php?id2=<?php echo $gdata."&id3=".$gproces."&id4=".$ggrup."&id5=".$gvis.$id6; ?>#<?php echo $gcat; ?>'>cistella <?php echo $gdata." - ".$gproces." - ".$ggrup; ?></a>  
->>>><a href='cistella_prod.php?id=<?php echo $gprodref."&id3=".$gdata."&id4=".$gcat."&id5=".$gvis."&id6=".$gproces."&id7=".$ggrup.$id8; ?>'> <?php echo $gnomprod."-".$gprov; ?></a>
-</p>
-<p class="h1" style="background: green; text-align: left; padding-left: 20px;">cistella <?php echo $gdata." - ".$gproces." - ".$ggrup; ?></p>
-<div class="contenidor_fac" style="border: 1px solid green; max-height: 350px; overflow: scroll; overflow-x:hidden;">
-<p class="h1" style="background: green; text-align: left; padding-left: 20px;">
-<?php echo $gnomprod."-".$gprov; ?>
-<span style="display: inline; float: right; text-align: center; vertical-align: middle; padding: 2px 50px 2px 0px;">
-<?php echo $intronovafam; ?>
-</span>
-</p>
+<?php include 'menu.php'; ?>
+
+<div class="page;">
+<div class="container">
+
+<h1>Cesta <?php echo $gdata." - ".$gproces." - ".$ggrup; ?></h1>
+<div class="box">
+
+<div class="u-cf u-mb-1">
+	<h2 class="pull-left"><?php echo $gnomprod."-".$gprov; ?></h2>
+	<?php echo $intronovafam; ?>
+</div>
 
 <?php
 	////Busquem dades sobre el producte en qüestió////
@@ -194,25 +189,29 @@ return true;
 	
 ?>
 <form action="cistelles.php?id=<?php echo $gprodref.'&id2='.$gdata.'&id3='.$gproces.'&id4='.$ggrup.'&id5='.$gvis.$id6; ?>#<?php echo $gcat; ?>" 
- method="post" name="frmComanda" id="frmComanda"  target="cos" onSubmit="return validate_form();" >
+ method="post" name="frmComanda" id="frmComanda"   onSubmit="return validate_form();" >
 
-<table width="100%" align="center" valign="left" cellpadding="5" cellspacing="5">
+<div class="alert alert--info" style="position: relative">
+	<div>PVP sin iva: <?php echo $pvpsi; ?> €/<?php echo $unitat; ?> 
+		<span style="color: grey;">[Precio:<?php echo $preusi; ?>]+[Margen:<?php echo $vis_marge; ?>%]</span>
+	</div>
+	<div>
+		PVP con iva: <?php echo $pvp; ?> €/<?php echo $unitat; ?> <span style="color: grey;">[Iva: <?php echo $vis_iva; ?>%] </span>
+	</div>
+	<div>
+		Descuento: <?php echo $vis_descompte; ?>%
+	</div>
 
-<tr>
-<td class="cos" align="center" style="border: 1px solid green;">
-PVP sense iva: <?php echo $pvpsi; ?> €/<?php echo $unitat; ?> 
-<span style="color: grey;">[Preu:<?php echo $preusi; ?>]+[Marge:<?php echo $vis_marge; ?>%]</span>
-PVP amb iva: <?php echo $pvp; ?> €/<?php echo $unitat; ?> <span style="color: grey;">[Iva: <?php echo $vis_iva; ?>%] </span>
-Descompte: <?php echo $vis_descompte; ?>%
-<br><a class="button2" href="canvi_massiu_productes.php?id=<?php echo $gprodref.'&id3='.$gdata.'
-&id4='.$gcat.'&id5='.$gvis.'&id6='.$gproces.'&id7='.$ggrup; ?>" style="width: 120px;">Canvi dades</a>
-</td></tr></table>
+	<a class="button button--white button--animated" style="position: absolute; right: .6rem; top: .6rem;" href="canvi_massiu_productes.php?id=<?php echo $gprodref.'&id3='.$gdata.'
+&id4='.$gcat.'&id5='.$gvis.'&id6='.$gproces.'&id7='.$ggrup; ?>">Cambio datos</a>
+</div>
 
-<table width="60%" align="center" valign="middle" cellpadding="5" cellspacing="5">
+<table class="table table-striped table-bordered u-mt-2">
 
-<tr class='cos_majus'><td>Familia</td>
-<td align="center">Comanda</td>
-<td align="center">Cistella</td>
+<tr >
+<td  class='u-text-semibold'>Familia</td>
+<td  class='u-text-semibold'>Pedido</td>
+<td  class='u-text-semibold'>Cesta</td>
 </tr>
 
 <?php
@@ -251,21 +250,16 @@ Descompte: <?php echo $vis_descompte; ?>%
 	}
 ?>
 </table>
-</div>
-
-
-<p class="linia_button2" style="<?php echo $sty; ?> background: green; text-align: center; vertical-align: middle;">
-
+<div class="u-text-center u-mt-2 u-mb-1">
 <?php 
 	if ($gvis=='1')
 	{
-		echo $button; 
+		echo $button; 		
 	}
 ?>
+</div>
 
-<input class="button2" type="button" value="Sortir" 
-	onClick="location.href='cistelles.php?id2=<?php echo $gdata."&id3=".$gproces."&id4=".$ggrup."&id5=".$gvis.$id6."#".$gcat; ?>'">
-</p>
+</div>
 
 </form>
 

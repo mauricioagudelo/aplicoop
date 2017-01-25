@@ -289,7 +289,7 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR $_SESSION['codi_cistella'] != '
 <input type="hidden" name="num" id="num" value="<?php echo $input_num; ?>">
 
 <div class="u-text-center">
-<button class="button  button--white button--animated" name="acceptar" type="button" <?php echo $disabled3; ?> onclick="document.frmmes2.submit()">Aceptar</button>
+<button class="button  button--white button--animated" name="acceptar" type="button" <?php echo $disabled3; ?> onclick="document.frmmes2.submit()">Aceptar  <i class="fa fa-check" aria-hidden="true"></i></button>
 </div>
 
 

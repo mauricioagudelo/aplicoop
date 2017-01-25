@@ -121,7 +121,7 @@ else
 ?>
 
 <div class="contenidor_fac" style=" width:500px; border: 1px solid orange; margin-bottom:20px;">
-<form action="editprov.php?id=<?php echo $nompre; ?>" method="post" name="nouprov" id="nouprov" target="cos">
+<form action="editprov.php?id=<?php echo $nompre; ?>" method="post" name="nouprov" id="nouprov" >
 
 <table style="padding: 10px;" width="100%" align="center" cellspading="5" cellspacing="5" >
 <tr><td class="cos_majus">Nom:(*)</td><td><input align="right" name="nom" id="nom" type="TEXT" maxlength="20" size="20"

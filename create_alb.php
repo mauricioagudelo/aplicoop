@@ -223,7 +223,7 @@ else
 ?>
 <div class="contenidor_fac" style="border: 1px solid #990000; margin-bottom:20px;">
 
-<FORM action="create_alb.php"  method="POST" name="one" id="one" target="cos">
+<FORM action="create_alb.php"  method="POST" name="one" id="one" >
 <table style="padding: 10px;" width="100%" align="center" cellspading="5" cellspacing="5" >
 <tr>
 <td align="left" width="20%" class="cos_majus">Proveïdora:</td>
@@ -283,7 +283,7 @@ if ($pprov!="")
 	</td></tr>	</table>
 	</form>
 	
-	<FORM action="create_alb.php"  method="POST" name="tres" id="tres" target="cos"
+	<FORM action="create_alb.php"  method="POST" name="tres" id="tres" 
 	onSubmit="return validar_Form();">
 	<input type="hidden" value="" name="prov" id="prov" >
 	<input type="hidden" value="" name="data" id="data" >
@@ -311,7 +311,7 @@ if ($pprov!="")
 	
 	<div id="contenidor_1" style="height: 210px; overflow: scroll; overflow-x: hidden;">
 
-	<FORM action="create_alb.php"  method="POST" name="two" id="two" target="cos"
+	<FORM action="create_alb.php"  method="POST" name="two" id="two" 
 	onSubmit="return validar_Form();">
 <input type="hidden" value="" name="prov" id="prov" >
 <input type="hidden" value="" name="data" id="data" >

@@ -171,7 +171,7 @@ $user = $_SESSION['user'];
 			}	
 		}
 
-		$nota="<p class='alert alert--error'>S'han introduït correctament les dades de la cistella de la família ".$gfam." corresponents a la comanda numero ".$pnumcmda."</p>";
+		$nota="<p class='alert alert--info'>Se han introducido correctamente los datos de la cesta de la familia ".$gfam." correspondiente al pedido número ".$pnumcmda."</p>";
 	}
 
 ///Inici html///
@@ -228,7 +228,7 @@ $user = $_SESSION['user'];
 <table  class="table table-striped table-bordered">
 
 <tr class='cos_majus'><td class='u-text-semibold u-text-center'>Família</td>
-<td class='u-text-semibold  u-text-center'>Numero comanda</td>
+<td class='u-text-semibold  u-text-center'>Nímero pedido</td>
 <td class='u-text-semibold  u-text-center'>Unidades demandadas</td>
 <td class='u-text-semibold  u-text-center'>Unidades servidas</td>
 </tr> 
@@ -262,7 +262,7 @@ $user = $_SESSION['user'];
 
 <tr class="cos">
 <td align="center">
-<a id='color2' class="link" href="cistella2_fam.php?id=<?php echo $familia.'&id2='.$gdata.'&id3='.$gproces.'&id4='.$ggrup.'&id5='.$gvis; ?>" >
+<a id='color2' class="link link--visitable" href="cistella2_fam.php?id=<?php echo $familia.'&id2='.$gdata.'&id3='.$gproces.'&id4='.$ggrup.'&id5='.$gvis; ?>" >
 <?php echo $familia; ?></a></td>
 <td align="center"><?php echo $numero; ?></td>
 <td align="center" <?php echo $color; ?>><?php echo $demanat; ?></td>

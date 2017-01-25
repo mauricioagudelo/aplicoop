@@ -129,12 +129,12 @@ $data = getdate();
 			</div>
 			<div class="menu">
   			 <a target="_parent" href="logout.php" style="margin-right: 25px;"><span>Salir</span></a>
-   		 <a target="cos" href="ajuda.php"><span>Ayuda</span></a>
-  			  <a target="cos" href="admint.php"><span>Administar</span></a>
- 		 	  <a target="cos" href="comptes.php?id3=<?php echo $user; ?>"><span>Mis Cuentas</span></a>
- 		 	  <a target="cos" href="vis_user.php?id=<?php echo $user; ?>"><span>Mis Datos</span></a>
-  			  <a target="cos" href="comandes.php?id3=<?php echo $user; ?>"><span>Mis pedidos</span></a>
- 		 	  <a target="cos" href="escriptori2.php"><span>Inicio</span></a>
+   		 <a  href="ajuda.php"><span>Ayuda</span></a>
+  			  <a  href="admint.php"><span>Administar</span></a>
+ 		 	  <a  href="comptes.php?id3=<?php echo $user; ?>"><span>Mis Cuentas</span></a>
+ 		 	  <a  href="vis_user.php?id=<?php echo $user; ?>"><span>Mis Datos</span></a>
+  			  <a  href="comandes.php?id3=<?php echo $user; ?>"><span>Mis pedidos</span></a>
+ 		 	  <a  href="escriptori2.php"><span>Inicio</span></a>
  	 		 </div>
 		</div>
 	</div>

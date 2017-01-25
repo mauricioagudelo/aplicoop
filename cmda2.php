@@ -330,7 +330,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         <div class="u-text-center">
                             <button type="submit" class="button button--animated button--save u-mt-1" name="acceptar"
                                     id="btnComanda">
-                                Aceptar <i class="fa fa-check" aria-hidden="true"></i
+                                Aceptar <i class="fa fa-check" aria-hidden="true"></i>
                             </button>
                         </div>
 
@@ -375,7 +375,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         ¡No has introducido cantidad a ningun producto!
                         </p>';
 
-                    die ('<p class="u-text-center"><a class="button" href="cmda2.php?id=' . $proces . '&id4=create" target="cos"
+                    die ('<p class="u-text-center"><a class="button" href="cmda2.php?id=' . $proces . '&id4=create" 
 				title="Volver al pedido">
 				Volver al pedido  <i class="fa fa-undo" aria-hidden="true"></i></a></p>');
                 } //////////////////
@@ -442,7 +442,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 						Ya ha creado un pedido para un proceso ' . $proces . '-' . $grup . ' con fecha ' . $data . '.
 						</p>
 						<p class="u-text-center">
-						<a class="button" href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis" target="cos"
+						<a class="button" href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis" 
 						title="editar la comanda actual">
 						editar la comanda actual</a>
 						</p>');

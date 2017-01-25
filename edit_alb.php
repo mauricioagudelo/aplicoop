@@ -141,7 +141,7 @@ $st3="";
 
 <body>
 
-<FORM action="edit_alb.php?id=<?php echo $num_alb; ?>"  method="POST" name="noualbara" id="noualbara" target="cos"
+<FORM action="edit_alb.php?id=<?php echo $num_alb; ?>"  method="POST" name="noualbara" id="noualbara" 
 	onSubmit="return validar_Form();">
 <div class="pagina" style="margin-top: 10px;">
 <div class="contenidor_1" style="border: 1px solid #990000">

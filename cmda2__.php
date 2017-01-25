@@ -239,7 +239,7 @@ return true;
 	  
 		<div id="contenidor_1" style="height: 350px; clear: both; overflow: scroll; overflow-x: hidden; ">
 
-		<form action="<?php echo $goto; ?>" method="post" name="frmComanda" id="frmComanda" onSubmit="return validate_form()" target="cos" >
+		<form action="<?php echo $goto; ?>" method="post" name="frmComanda" id="frmComanda" onSubmit="return validate_form()"  >
 
 		<?php
 
@@ -402,7 +402,7 @@ return true;
 				No has introduït cap quantitat a cap producte!!!!
 				</p>';				
 				 
-				die ('<p class="error" style="font-size: 14px; padding-bottom: 50px;"><a href="cmda2.php?id='.$proces.'&id4=create" target="cos" 
+				die ('<p class="error" style="font-size: 14px; padding-bottom: 50px;"><a href="cmda2.php?id='.$proces.'&id4=create"  
 				title="clica per tornar a la comanda">		
 				Torna a la comanda</a></p>');
 			}
@@ -478,7 +478,7 @@ return true;
 						Ja heu creat una comanda per a un procés '.$proces.'-'.$grup.' amb data '.$data.'.
 						</p>
 						<p class="error" style="font-size: 14px;"> 
-						<a href="cmda2.php?id='.$proces.'&id2='.$numcmda1.'&id4=vis" target="cos" 
+						<a href="cmda2.php?id='.$proces.'&id2='.$numcmda1.'&id4=vis"  
 						title="clica per editar aquesta comanda">		
 						editar la comanda vigent</a>
 						</p>');

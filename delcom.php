@@ -43,7 +43,7 @@ mysql_query($query3) or die('Error, insert query failed');
 		</div>
 
 		<div class="u-text-center">
-			<a class="button" href="escriptori2.php" target="cos" title="Volver al escritorio">Volver</a>
+			<a class="button" href="escriptori2.php"  title="Volver al escritorio">Volver</a>
 		</div>
 	</div>
 </div>

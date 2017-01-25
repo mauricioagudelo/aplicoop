@@ -2798,12 +2798,12 @@ label {
   background-color: #d9edf7; }
 
 .link {
-  color: #1e1e1e; }
+  color: #1e1e1e;
+  border-bottom: 1px dotted transparent; }
   .link:hover {
-    color: #000000;
-    border-bottom: 1px dotted #000000; }
-  .link:visited {
-    color: #1e1e1e; }
+    border-bottom-color: #000000; }
+  .link--visitable:visited {
+    color: #ad0017; }
 
 .link--highlight {
   font-weight: 600; }

@@ -2,15 +2,19 @@
 
 .link {
   color: $color-black-soft;
+  border-bottom: 1px dotted transparent;
 
-  &:hover {
-    color: $color-black;
-    border-bottom: 1px dotted $color-black;
+  &:hover {    
+    border-bottom-color: $color-black;
   }
-  &:visited {
-    color: $color-black-soft;
+
+  &--visitable {
+    &:visited {
+      color: $color-link-visited;
+    }
   }
 }
+
 
 .link--highlight {
   font-weight: 600;

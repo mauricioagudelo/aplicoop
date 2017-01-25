@@ -334,7 +334,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             </table>
         </form>
 
-        <FORM action="" method="POST" name="canvi" id="canvi" target="cos" onSubmit="return validar_Form();">
+        <FORM action="" method="POST" name="canvi" id="canvi" onSubmit="return validar_Form();">
             <div class="contenidor_fac" style="border: 1px solid #990000; max-height: 350px; overflow: scroll; overflow-x: hidden;
 margin-bottom: 20px; padding-bottom: 20px;">
 

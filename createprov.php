@@ -129,7 +129,7 @@ else
 ?>
 <div class="contenidor_fac" style=" width:500px; border: 1px solid #990000; margin-bottom:20px;">
 
-<form action="createprov.php" method="post" name="nouprov" id="nouprov" target="cos">
+<form action="createprov.php" method="post" name="nouprov" id="nouprov" >
 <table style="padding: 10px;" width="100%" align="center" cellspading="5" cellspacing="5" >
 
 <tr>

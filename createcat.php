@@ -63,7 +63,7 @@ Crear nova categoria</p>
 
 ?>
 <div class="contenidor_fac" style="border: 1px solid #990000; width: 500px; margin-bottom: 20px;" >
-<form action="createcat.php" method="post" name="noucat" id="noucat" target="cos">
+<form action="createcat.php" method="post" name="noucat" id="noucat" >
 <table width="80%" align="center" valign="middle" cellpadding="5" cellspacing="5">
 <tr>
 <td class="cos_majus">Categoria:</td>

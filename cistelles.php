@@ -152,7 +152,7 @@ if ($_SESSION['image_is_logged_in'] == 'true' )
 			}	
 		}
 
-		$nota="<p class='error' style='font-size: 14px;'>S'han introduït correctament les dades de la cistella del producte ".$gnomprod."-".$gprov."</p>";
+		$nota="<div class='alert alert--info u-mb-1'>Se han introducido correctamente los datos de la cesta del producto ".$gnomprod."-".$gprov."</div>";
 	}
 	
 	?>
@@ -303,7 +303,7 @@ onClick="javascript:window.location = 'cistelles2.php?id2=<?php echo $gdata.'&id
 			$estil="style='color: red;'";
   			}
   		
-		$link="<a id='color2' class='link' href='cistella_prod.php?id=".$prodref."&id3=".$gdata."&id4=".$cat."&id5=".$gvis."&id6=".$gproces."&id7=".$ggrup.$id8."'>".$nom_prod."-".$nom_prov."</a>";
+		$link="<a id='color2' class='link link--visitable' href='cistella_prod.php?id=".$prodref."&id3=".$gdata."&id4=".$cat."&id5=".$gvis."&id6=".$gproces."&id7=".$ggrup.$id8."'>".$nom_prod."-".$nom_prov."</a>";
 		
 ?>
 

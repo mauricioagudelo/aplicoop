@@ -193,7 +193,7 @@ else
 ?>
 
 <div class="contenidor_fac" style="border: 1px solid #a74fd7; width: 600px;margin-bottom: 20px;" >
-<form action="editnota.php?id=<?php echo $numnota; ?>" method="post" name="editnota" id="editnota" target="cos">
+<form action="editnota.php?id=<?php echo $numnota; ?>" method="post" name="editnota" id="editnota" >
 <table width="100%" align="center" valign="middle" cellpadding="5" cellspacing="5">
 <tr>
 <td class="cos_majus">Numero:</td><td><input align="right" name="num" id="num" type="TEXT" maxlength="5" size="5"

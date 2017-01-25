@@ -39,10 +39,10 @@ $gdata=date('d-m-Y',strtotime('$gbd_data'));
 
 <?php
 
-echo "<tr class='cos_majus'><td width='55%' class='u-text-semibold'>Família (número comanda)</td>";
-echo "<td width='15%' class='u-text-semibold  u-text-center'>productos pedidos</td>";
-echo "<td width='15%' class='u-text-semibold  u-text-center'>productos servidos</td>";
-echo "<td width='15%' class='u-text-semibold  u-text-center'>total a pagar</td>";
+echo "<tr class='cos_majus'><td width='55%' class='u-text-semibold'>Família (número pedido)</td>";
+echo "<td width='15%' class='u-text-semibold  u-text-center'>Prods. pedidos</td>";
+echo "<td width='15%' class='u-text-semibold  u-text-center'>Prods. servidos</td>";
+echo "<td width='15%' class='u-text-semibold  u-text-center'>Total a pagar</td>";
 echo "</tr>";
 
 include 'config/configuracio.php';
@@ -73,7 +73,7 @@ while (list($numero,$familia,$check0)=mysql_fetch_row($result))
 ?>
 
 <tr class='cos'>
-<td align="left"><a class='link'  href='factura.php?id=<?php echo $numero; ?>'>
+<td align="left"><a class='link link--visitable'  href='factura.php?id=<?php echo $numero; ?>'>
 <?php echo $familia; ?> (<?php echo $numero; ?>)</a></td>
 
 <?php
@@ -89,7 +89,7 @@ while (list($numero,$familia,$check0)=mysql_fetch_row($result))
 </div>
 
 <p class="u-text-center">
-<button class="button button--animated button--white" name="sortir" type="button"  onClick="javascript:window.location = 'admint.php';">Finalizar</button>
+<button class="button button--animated button--white" name="sortir" type="button"  onClick="javascript:window.location = 'admint.php';">Finalizar <i class="fa fa-check" aria-hidden="true"></i></button>
 <button class="button button--animated button--white"  name="sortir" type="button" value="INCIDÈNCIES" 
 	onClick="javascript:window.location = 'cistella_incidencia.php?id=<?php echo $gproces.'&id2='.$ggrup.'&id3='.$gbd_data; ?>';">Incidencias</button>
 </p>

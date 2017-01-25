@@ -219,7 +219,7 @@ function selectNumFact($numero)
                 /////// eliminar -> borra tot i carrega un nou formulari en blanc
                 ?>
                 <div class="box">
-                    <form action="devolucions.php?id=1" method="post" name="frmdev2" id="frmdev2" target="cos">
+                    <form action="devolucions.php?id=1" method="post" name="frmdev2" id="frmdev2" >
                         <input type=hidden name="numcmda" value="<?php echo $numcmda; ?>">
                         <input type=hidden name="tipus" value="<?php echo $ptipus; ?>">
                         <input type=hidden name="nouf" value="<?php echo $paddfam; ?>">

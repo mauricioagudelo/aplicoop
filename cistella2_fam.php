@@ -158,7 +158,7 @@ Família <?php echo $gfam; ?></a>
 </p>
 
 <form action="cistelles2.php?id=<?php echo $gfam.'&id2='.$gdata.'&id3='.$gproces.'&id4='.$ggrup.'&id5='.$gvis; ?>" 
- method="post" name="frmComanda" id="frmComanda"  target="cos" onSubmit="return validate_form();" >
+ method="post" name="frmComanda" id="frmComanda"   onSubmit="return validate_form();" >
 
 <table width="85%" align="center" valign="left" cellpadding="5" cellspacing="5">
 
