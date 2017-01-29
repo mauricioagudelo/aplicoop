@@ -343,7 +343,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 			<p class='cos2'>preu sense iva: " . $ppreusi . "</p>
 			<p class='cos2'>iva: " . $piva . "</p>
 			<p class='cos2'>preu amb iva: " . $ppreu . "</p>
-			<p class='cos2'>marge: " . $pmarge . "</p>
+			<p class='cos2'>margen: " . $pmarge . "</p>
 			<p class='cos2'>descompte: " . $pdescompte . "</p>
 			<p class='cos2'>pvp sense iva: " . $ppvpsi . "</p>
 			<p class='cos2'>pvp: " . $ppvp . "</p>
@@ -363,11 +363,11 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 			<p class='cos2'>provedor: " . $gprov . "</p>
 			<p class='cos2'>categoria: " . $pcat . "</p>
 			<p class='cos2'>subcategoria: " . $psubcat . "</p>
-			<p class='cos2'>actiu: " . $pactiu . "</p>
+			<p class='cos2'>activo: " . $pactiu . "</p>
 			<p class='cos2'>precio sin IVA: " . $ppreusi . "</p>
 			<p class='cos2'>IVA: " . $piva . "</p>
 			<p class='cos2'>precio con IVA: " . $ppreu . "</p>
-			<p class='cos2'>marge: " . $pmarge . "</p>
+			<p class='cos2'>margen: " . $pmarge . "</p>
 			<p class='cos2'>descuento: " . $pdescompte . "</p>
 			<p class='cos2'>pvp sin IVA: " . $ppvpsi . "</p>
 			<p class='cos2'>pvp: " . $ppvp . "</p>
@@ -588,23 +588,24 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             $descompte = 0;
                         }
                         ?>
-
+                        
                         <div class="form-group">
-                            <label for="descompte" class="col-sm-2 control-label">Marge (%)</label>
-                            <div class="col-sm-10">
-                                <input align="right" name="descompte" id="descompte" type="TEXT" maxlength="7" size="5"
-                                       value="<?php echo $descompte; ?>">
-                            </div>
-                        </div>
-
-                         <div class="form-group">
-                            <label for="marge" class="col-sm-2 control-label">Descuento (%)</label>
+                            <label for="marge" class="col-sm-2 control-label">Margen (%)</label>
                             <div class="col-sm-10">
                                 <input align="right" name="marge" id="marge" type="TEXT" maxlength="7" size="5"
                                        value="<?php echo $marge; ?>">
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label for="descompte" class="col-sm-2 control-label">Descuento (%)</label>
+                            <div class="col-sm-10">
+                                <input align="right" name="descompte" id="descompte" type="TEXT" maxlength="7" size="5"
+                                       value="<?php echo $descompte; ?>">
+                            </div>
+                        </div>
+
+                         
                         <?php
                         if ($estoc != "") {
                             ?>
