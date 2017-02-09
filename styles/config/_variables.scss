@@ -7,6 +7,8 @@ $color-black: #000000;
 $color-black-soft: #1e1e1e;
 $color-grey-soft: #DCE7EB;
 $color-pink: #ff6873;
+$color-orange: #f39c12;
+$color-red: #ad0017;
 
 $color-main: $color-green;
 $color-content: $color-grey-soft;
@@ -19,6 +21,10 @@ $color-link: $color-black;
 $color-link-hover: $color-black;
 $color-link-visited: #ad0017;
 $color-border: $color-black-soft;
+
+$color-error: $color-red;
+$color-ok: $color-green;
+$color-warning: $color-orange;
 
 $color-box: $color-pink;
 

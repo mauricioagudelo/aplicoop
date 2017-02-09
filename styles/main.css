@@ -2958,4 +2958,13 @@ label {
 .u-width-100 {
   width: 100%; }
 
+.u-color-error {
+  color: #ad0017; }
+
+.u-color-ok {
+  color: #1ABC9C; }
+
+.u-color-warning {
+  color: #f39c12; }
+
 /*# sourceMappingURL=main.css.map */

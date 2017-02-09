@@ -289,35 +289,43 @@ onClick="javascript:window.location = 'cistelles2.php?id2=<?php echo $gdata.'&id
 
 		while (list($prodref,$nom_prod,$nom_prov,$uni,$t,$n,$d,$sum,$csum)=mysql_fetch_row($result2))
 		{
-		$suma = sprintf("%01.2f", $sum);
-		$csuma= sprintf("%01.2f", $csum);
-		$color="";
-		if ($csuma!=0) 
+			$suma = sprintf("%01.2f", $sum); // pedido
+			$csuma= sprintf("%01.2f", $csum); // cesta
+			$estil="";
+
+			if ($csuma != 0 AND $csuma == $suma) 
 			{
-			$color="";
+				$estil="u-color-ok";
 			}
-		$estil="";
-		if ($csuma!=0 AND $csuma<>$suma) 
+
+			if ($suma != 0 AND $csuma == 0) 
 			{
-			$color="";
-			$estil="style='color: red;'";
-  			}
-  		
-		$link="<a id='color2' class='link link--visitable' href='cistella_prod.php?id=".$prodref."&id3=".$gdata."&id4=".$cat."&id5=".$gvis."&id6=".$gproces."&id7=".$ggrup.$id8."'>".$nom_prod."-".$nom_prov."</a>";
-		
-?>
+				$estil="u-color-error";
+			}
+			
+			if ($csuma != 0 AND $csuma <> $suma) 
+			{				
+				$estil="u-color-warning";
+			}
+			
+			$link="<a id='color2' class='link link--visitable' href='cistella_prod.php?id=".$prodref."&id3=".$gdata."&id4=".$cat."&id5=".$gvis."&id6=".$gproces."&id7=".$ggrup.$id8."'>".$nom_prod."-".$nom_prov."</a>";
+	
+			?>
 
-<tr class='cos' <?php echo $color; ?>>
-<td><?php echo $link; ?></td>
-<td align="center" <?php echo $estil; ?>><?php echo $suma; ?> <?php echo $uni; ?></td>
-<td align="center" <?php echo $estil; ?>><?php echo $csuma; ?> <?php echo $uni; ?></td>
-</tr>
+			<tr>
+				<td><?php echo $link; ?></td>
+				<td align="center" class="<?php echo $estil; ?>"><?php echo $suma; ?> <?php echo $uni; ?></td>
+				<td align="center" class="<?php echo $estil; ?>"><?php echo $csuma; ?> <?php echo $uni; ?></td>
+			</tr>
 
-<?php
+			<?php
 		}
-	echo "</table></div>";
-	$cc++;
-	if ($cc==7){$cc=0;}
+
+		echo "</table></div>";
+		$cc++;
+		if ($cc==7) {
+			$cc=0;
+		}
 	}
 }
 	
