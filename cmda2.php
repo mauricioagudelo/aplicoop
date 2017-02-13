@@ -300,7 +300,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                     }
                                     $prod = htmlentities($nomprod, null, 'utf-8');
                                     $prodtext = str_replace("&nbsp;", " ", $prod);
-                                    $prodtext = html_entity_decode($prodtext);
+                                    $prodtext = html_entity_decode($prodtext, null, 'utf-8');
 
                                     print('
                 <li class="col-lg-6">
