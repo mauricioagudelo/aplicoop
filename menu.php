@@ -17,7 +17,7 @@ $superuser = strtoupper($_SESSION['user']);
             <a href="escriptori2.php" class="navbar-logo pull-left">
                 <img  src="imatges/logo_menu.png" title="applicop">
             </a>
-            <div class="navbar-info visible-lg-inline-block">
+            <div class="navbar-info visible-lg-inline-block  pull-left">
                 <div class="navbar-family"><?php echo $superuser; ?></div>
                 <div class="navbar-time">
                     <span id="hour" class="navbar-hour"></span>
