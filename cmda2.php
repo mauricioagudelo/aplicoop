@@ -625,7 +625,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             }
 
                             print('<tr class="cos16"><td>' . $clref . ' - ' . $nomprod . ' - ' . $nomprod2 . '</td>
-				<td align="center">' . ($qdec + 0). '</td>
+				<td align="center">' . $qdec. '</td>
 				<td align="center">' . $unitat . '</td>
 				<td align="center">' . $pvp . '&#8364;</td>
 				' . $w_desco . '
