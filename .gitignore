@@ -1,3 +1,4 @@
 config/configuracio.php
 .idea/
 node_modules/
+.vscode

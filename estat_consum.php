@@ -195,7 +195,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             $despesa = number_format($despesa, 2, ',', '.');
             $prod = htmlentities($nomprod, null, 'utf-8');
             $prodtext = str_replace("&nbsp;", " ", $prod);
-            $prodtext = html_entity_decode($prodtext);
+            $prodtext = html_entity_decode($prodtext, null, 'utf-8');
 
             ?>
             <tr>

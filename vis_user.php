@@ -108,7 +108,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         <?php
                         $nota = htmlentities($nota, null, 'utf-8');
                         $notatext = str_replace("&nbsp;", " ", $nota);
-                        $notatext = html_entity_decode($notatext);
+                        $notatext = html_entity_decode($notatext, null, 'utf-8');
                         ?>
                         <td class="cos"><?php echo $notatext; ?></td>
                     </tr>

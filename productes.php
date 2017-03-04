@@ -183,7 +183,7 @@ WHERE categoria='" . $pcat . "' ORDER BY subcategoria";
                         while (list($ref, $nomprod, $nomprov) = mysql_fetch_row($result)) {
                             $prod = htmlentities($nomprod, null, 'utf-8');
                             $prodtext = str_replace("&nbsp;", " ", $prod);
-                            $prodtext = html_entity_decode($prodtext);
+                            $prodtext = html_entity_decode($prodtext, null, 'utf-8');
                             $letter = $nomprod[0];
                             if ($letter != $prevletter){
                                 print('<div class="col-lg-12 u-mt-1"><h2 class="box-subtitle box-separator u-text-bold">'.$letter.'</h2></div>');
@@ -212,7 +212,7 @@ WHERE categoria='" . $pcat . "' ORDER BY subcategoria";
                         while (list($ref, $nomprod, $nomprov) = mysql_fetch_row($result)) {
                             $prod = htmlentities($nomprod, null, 'utf-8');
                             $prodtext = str_replace("&nbsp;", " ", $prod);
-                            $prodtext = html_entity_decode($prodtext);
+                            $prodtext = html_entity_decode($prodtext, null, 'utf-8');
                             $letter = $nomprod[0];
                             if ($letter != $prevletter){
                                 print('<div class="col-lg-12 u-mt-1"><h2 class="box-subtitle box-separator u-text-bold">'.$letter.'</h2></div>');
