@@ -17,27 +17,22 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     <html>
     <head>
-        <?php include 'head.php'; ?>
-        <link rel="stylesheet" type="text/css" href="coope.css"/>
-        <title>editar categories ::: la coope</title>
+        <?php include 'head.php'; ?>       
+        <title>aplicoop - editar categorias</title>
 
     <body>
     <?php include 'menu.php'; ?>
-    <div class="pagina" style="margin-top: 10px;">
-        <div class="contenidor_1" style="border: 1px solid #990000;">
-            <p class='path'>
-                ><a href='admint.php'>administració</a>
-                >><a href='categories.php'>crear, editar i eliminar categories</a>
-            </p>
-            <p class="h1" style="background: #990000; text-align: left; padding-left: 20px;">
-                Crear, editar i eliminar categories
-<span style="display: inline; float: right; text-align: center; vertical-align: middle; 
-padding: 2px 50px 2px 0px;">
-<input class="button2" style="width:180px;" type="button" value="CREAR NOVA CATEGORIA"
-       onClick="javascript:window.location = 'createcat.php';">
-</span>
-            </p>
+    <div class="page">
+        <div class="container">
+           <div class="u-cf">
+             <h1 class="pull-left">Crear, editar y eliminar categorias</h1>
+            <div class="pull-right u-mt-1">
+                <button class="button button--white button--animated" onClick="javascript:window.location = 'createcat.php';">Crear categoría<i class="fa fa-plus-circle" aria-hidden="true"></i></button>
 
+            </div>
+        </div>
+
+          
 
             <?php
             if ($gestoc != "") {
@@ -74,14 +69,15 @@ padding: 2px 50px 2px 0px;">
 
             ?>
 
-            <div class="contenidor_fac" style="border: 1px solid #990000; margin-bottom: 20px;">
-                <table width="80%" align="center" valign="middle" cellpadding="5" cellspacing="5">
+            <div class="box">
+               <div class="table-responsive">
+                 <table class="table table-striped table-fixed">
                     <tr class="cos_majus">
-                        <td width="20%" align="center">CATEGORIA</td>
-                        <td width="20%" align="center">ACTIVAT</td>
-                        <td width="20%" align="center">ESTOC</td>
-                        <td width="20%" align="center">SUBCATEGORIES</td>
-                        <td width="20%" align="center">ELIMINAR</td>
+                        <td width="40%" align="center" class="u-text-bold">CATEGORIA</td>
+                        <td width="15%" align="center" class="u-text-bold">ACTIVO</td>
+                        <td width="15%" align="center" class="u-text-bold">STOCK</td>
+                        <td width="15%" align="center" class="u-text-bold">SUBCATEGORIAS</td>
+                        <td width="15%" align="center" class="u-text-bold">ELIMINAR</td>
                     </tr>
                     <?php
 
@@ -115,8 +111,7 @@ padding: 2px 50px 2px 0px;">
 
                     <tr class="cos">
                         <td align="center">
-                            <input type="text" name="tipus" id="tipus" value="<?php echo $tipus; ?>" size="15"
-                                   maxlength="30" readonly></td>
+                            <?php echo $tipus; ?>
                         </td>
                         <td align="center">
                             si<input type="radio" name="actiu<?php echo $k; ?>" value="activat"
@@ -145,14 +140,19 @@ padding: 2px 50px 2px 0px;">
                         }
                         echo "</tr></table></div>";
 
-                        ?>
-
-
-                        <p class="cos2" style="clear: both; text-align: center; padding: 0px 100px;">
+                           echo "<p class='alert alert--info'>  
+                           
                             Per activar o desactivar o per permetre que una categoria tingui estoc o no clica el botó
                             desitjat.
                             Per editar subcategories clica la S en la categoria que et convingui.
-                            Per borrar clica sobre la X de la columna ELIMINAR</p>
+                            Per borrar clica sobre la X de la columna ELIMINAR</p>";
+
+                        echo "</div>";
+
+                        ?>
+
+
+                     
 
             </div>
         </div>
