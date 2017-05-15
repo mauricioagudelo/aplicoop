@@ -263,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `proces_linia` (
 DROP TABLE IF EXISTS `productes`;
 CREATE TABLE IF NOT EXISTS `productes` (
   `ref` varchar(7) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `nom` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `nom` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
   `unitat` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
   `proveidora` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `categoria` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
