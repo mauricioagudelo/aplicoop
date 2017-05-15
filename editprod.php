@@ -446,8 +446,6 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                        value="<?php echo $ref; ?>" readonly>
                             </div>
                         </div>
-
-
                         <div class="form-group">
                             <label for="nom" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-10">
