@@ -353,7 +353,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             }
 
             if ($que == 'edit') {
-                $query3 = "UPDATE productes SET unitat='" . $punitat . "',categoria='" . $pcat . "',
+                $query3 = "UPDATE productes SET nom='" . $pnom . "',unitat='" . $punitat . "',categoria='" . $pcat . "',
 	subcategoria='" . $psubcat . "',actiu='" . $pactiu . "',preusi='" . $ppreusi . "',iva='" . $piva . "',marge='" . $pmarge . "',
 	descompte='" . $pdescompte . "',notes='" . $pnotes . "'
 	WHERE ref='" . $pref . "'";
