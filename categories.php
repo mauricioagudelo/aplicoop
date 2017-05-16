@@ -91,42 +91,25 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     $k = 0;
                     while (list($tipus, $actiu, $estoc) = mysql_fetch_row($result))
                     {
-                    $checked1 = "";
-                    $checked2 = "";
-                    if ($actiu == "activat") {
-                        $checked1 = "checked";
-                    } else {
-                        $checked2 = "checked";
-                    }
-                    $checked3 = "";
-                    $checked4 = "";
-                    if ($estoc == "si") {
-                        $checked3 = "checked";
-                    } else {
-                        $checked4 = "checked";
-                    }
-
                     ?>
-
-
                     <tr class="cos">
                         <td align="center">
                             <?php echo $tipus; ?>
                         </td>
                         <td align="center">
                             si<input type="radio" name="actiu<?php echo $k; ?>" value="activat"
-                                     id="actiu<?php echo $k; ?>" <?php echo $checked1; ?>
+                                     id="actiu<?php echo $k; ?>" <?php if ($actiu == "activat") {echo "checked";} ?>
                                      onClick="javascript:window.location = 'categories.php?id=<?php echo $tipus; ?>&id2=activat';">
                             no<input type="radio" name="actiu<?php echo $k; ?>" value="desactivat"
-                                     id="actiu<?php echo $k; ?>" <?php echo $checked2; ?>
+                                     id="actiu<?php echo $k; ?>" <?php if ($actiu == "desactivat") {echo "checked";} ?>
                                      onClick="javascript:window.location = 'categories.php?id=<?php echo $tipus; ?>&id2=desactivat';">
                         </td>
                         <td align="center">
                             si<input type="radio" name="estoc<?php echo $k; ?>" value="si"
-                                     id="estoc<?php echo $k; ?>" <?php echo $checked3; ?>
+                                     id="estoc<?php echo $k; ?>" <?php if ($estoc == "si") {echo "checked";} ?>
                                      onClick="javascript:window.location = 'categories.php?id=<?php echo $tipus; ?>&id4=si';">
                             no<input type="radio" name="estoc<?php echo $k; ?>" value="no"
-                                     id="estoc<?php echo $k; ?>" <?php echo $checked4; ?>
+                                     id="estoc<?php echo $k; ?>" <?php if ($estoc == "no") {echo "checked";} ?>
                                      onClick="javascript:window.location = 'categories.php?id=<?php echo $tipus; ?>&id4=no';">
                         </td>
                         <td align="center"><a href='subcategories.php?id=<?php echo $tipus; ?>'>S</a></td>
