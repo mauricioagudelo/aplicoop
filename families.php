@@ -45,30 +45,17 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                     <tr>
                         <td align="center">
-                            <SELECT name="actiu" id="actiu" size="1" maxlength="5" onChange="this.form.submit()">
+                            <select name="actiu" id="actiu" size="1" maxlength="5" onChange="this.form.submit()">
 
-                                <?php
-
-                                if ($pactiu == 'actiu') {
-                                    $checked1 = 'selected';
-                                    $checked2 = "";
-                                }
-                                if ($pactiu == 'baixa') {
-                                    $checked2 = 'selected';
-                                    $checked1 = "";
-                                }
-
-
-                                ?>
                                 <option value="">Tots</option>
-                                <option value="actiu" <?php echo $checked1; ?>>Actiu</option>
-                                <option value="baixa" <?php echo $checked2; ?>>Baixa</option>
+                                <option value="actiu" <?php if ($pactiu == 'actiu') {echo $checked1;} ?>>Actiu</option>
+                                <option value="baixa" <?php if ($pactiu == 'baixa') {echo $checked2;} ?>>Baixa</option>
 
                             </select>
                         </td>
 
                         <td align="center">
-                            <SELECT name="grup" id="grup" size="1" maxlength="30" onChange="this.form.submit()">
+                            <select name="grup" id="grup" size="1" maxlength="30" onChange="this.form.submit()">
                                 <option value="">Tots</option>
 
                                 <?php
@@ -91,60 +78,16 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             </select>
                         </td>
                         <td align="center">
-                            <SELECT name="tipus" id="tipus" size="1" maxlength="30" onChange="this.form.submit()">
+                            <select name="tipus" id="tipus" size="1" maxlength="30" onChange="this.form.submit()">
                                 <option value="">Tots</option>
-                                <?php
-                                if ($ptipus == 'user') {
-                                    $checked3 = 'selected';
-                                    $checked4 = "";
-                                    $checked5 = "";
-                                    $checked6 = "";
-                                    $checked7 = "";
-                                    $checked8 = "";
-                                } elseif ($ptipus == 'admin') {
-                                    $checked3 = '';
-                                    $checked4 = "selected";
-                                    $checked5 = "";
-                                    $checked6 = "";
-                                    $checked7 = "";
-                                    $checked8 = "";
-                                } elseif ($ptipus == 'eco') {
-                                    $checked3 = '';
-                                    $checked4 = "";
-                                    $checked5 = "selected";
-                                    $checked6 = "";
-                                    $checked7 = "";
-                                    $checked8 = "";
-                                } elseif ($ptipus == 'prov') {
-                                    $checked3 = '';
-                                    $checked4 = "";
-                                    $checked5 = "";
-                                    $checked6 = "selected";
-                                    $checked7 = "";
-                                    $checked8 = "";
-                                } elseif ($ptipus == 'cist') {
-                                    $checked3 = '';
-                                    $checked4 = "";
-                                    $checked5 = "";
-                                    $checked6 = "";
-                                    $checked7 = "selected";
-                                    $checked8 = "";
-                                } elseif ($ptipus == 'super') {
-                                    $checked3 = '';
-                                    $checked4 = "";
-                                    $checked5 = "";
-                                    $checked6 = "";
-                                    $checked7 = "";
-                                    $checked8 = "selected";
-                                }
-                                echo '
-<option value="user" ' . $checked3 . '>user</option>
-<option value="admin" ' . $checked4 . '>admin</option>
-<option value="eco" ' . $checked5 . '>eco</option>
-<option value="prov" ' . $checked6 . '>prov</option>
-<option value="cist" ' . $checked7 . '>cist</option>
-<option value="super" ' . $checked8 . '>super</option>';
-                                ?>
+
+<option value="user" <?php if ($ptipus == 'user') {echo "selected";} ?>>user</option>
+<option value="admin" <?php if ($ptipus == 'admin') {echo "selected";} ?>>admin</option>
+<option value="eco" <?php if ($ptipus == 'eco') {echo "selected";} ?>>eco</option>
+<option value="prov" <?php if ($ptipus == 'prov') {echo "selected";} ?>>prov</option>
+<option value="cist" <?php if ($ptipus == 'cist') {echo "selected";} ?>>cist</option>
+<option value="super" <?php if ($ptipus == 'super') {echo "selected";} ?>>super</option>';
+                                
 
                             </select>
                         </td>

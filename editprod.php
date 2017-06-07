@@ -353,7 +353,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             }
 
             if ($que == 'edit') {
-                $query3 = "UPDATE productes SET unitat='" . $punitat . "',categoria='" . $pcat . "',
+                $query3 = "UPDATE productes SET nom='" . $pnom . "',unitat='" . $punitat . "',categoria='" . $pcat . "',
 	subcategoria='" . $psubcat . "',actiu='" . $pactiu . "',preusi='" . $ppreusi . "',iva='" . $piva . "',marge='" . $pmarge . "',
 	descompte='" . $pdescompte . "',notes='" . $pnotes . "'
 	WHERE ref='" . $pref . "'";
@@ -446,14 +446,12 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                        value="<?php echo $ref; ?>" readonly>
                             </div>
                         </div>
-
-
                         <div class="form-group">
                             <label for="nom" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-10">
-                                <input align="right" name="nom" id="nom" type="TEXT" maxlength="50"
-                                       size="50"
-                                       value="<?php echo $nom; ?>" <?php echo $readonly; ?>>
+                                <input align="right" name="nom" id="nom" type="TEXT" maxlength="80"
+                                       size="80"
+                                       value="<?php echo $nom; ?>">
                             </div>
                         </div>
 
@@ -588,7 +586,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             $descompte = 0;
                         }
                         ?>
-                        
+
                         <div class="form-group">
                             <label for="marge" class="col-sm-2 control-label">Margen (%)</label>
                             <div class="col-sm-10">
@@ -605,7 +603,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             </div>
                         </div>
 
-                         
+
                         <?php
                         if ($estoc != "") {
                             ?>

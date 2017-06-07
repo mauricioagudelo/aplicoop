@@ -137,7 +137,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     $i = 0;
                     while (list($numero, $familia) = mysql_fetch_row($result)) {
                         $fila[] = $numero;
-                        echo "<td  class='u-text-semibold u-text-center'>" . $familia . " (" . $fila[$i] . ")</td>";
+                        echo "<td  class='u-text-semibold u-text-center'>" . ($i + 1) ."<br>" . $familia . " (" . $fila[$i] . ")</td>";
                         $i++;
                     }
                     echo "</tr></thead>";
