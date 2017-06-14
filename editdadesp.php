@@ -37,7 +37,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     $p_adressf = $_POST['adressf'];
     $p_niff = $_POST['niff'];
     $p_nota = $_POST['nota'];
-
+    $p_kuota = $_POST['kuota'];
 
     include('config/configuracio.php');
 
@@ -76,7 +76,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 	SET tipus='" . $p_tip . "', tipus2='" . $p_tip2 . "', dia='" . $p_dia . "', components='" . $p_comp . "',
 	tel1='" . $p_tlf1 . "', tel2='" . $p_tlf2 . "', email1='" . $p_email1 . "', email2='" . $p_email2 . "',
 	nomf='" . $p_nomf . "', adressf='" . $p_adressf . "', niff='" . $p_niff . "',
-	nota='" . $p_nota . "'
+	nota='" . $p_nota . "', kuota='" . $p_kuota . "' 
 	WHERE nom='" . $nom . "' ";
 
                         mysql_query($query2) or die('Error, insert query2 failed');
@@ -88,7 +88,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                     <?php
 
-                    $select = "SELECT nom,tipus,tipus2,dia,components,tel1,tel2,email1,email2,nomf,adressf,niff,nota
+                    $select = "SELECT nom,tipus,tipus2,dia,components,tel1,tel2,email1,email2,nomf,adressf,niff,nota,kuota
 FROM usuaris WHERE nom='$nom'";
 
                     $query = mysql_query($select);
@@ -97,7 +97,7 @@ FROM usuaris WHERE nom='$nom'";
                         die('Invalid query: ' . mysql_error());
                     }
 
-                    list($nom, $tip, $tip2, $dia, $comp, $tlf1, $tlf2, $email1, $email2, $nomf, $adressf, $niff, $nota) = mysql_fetch_row($query);
+                    list($nom, $tip, $tip2, $dia, $comp, $tlf1, $tlf2, $email1, $email2, $nomf, $adressf, $niff, $nota, $kuota) = mysql_fetch_row($query);
 
                     if ($nom == "" OR $nom == $user) {
                         $hidden = '<input type="hidden" name="tip2" id="tip2" value="' . $tip2 . '">';
@@ -265,6 +265,19 @@ FROM usuaris WHERE nom='$nom'";
                         <label for="nota" class="col-sm-3 control-label">Comentarios</label>
                         <div class="col-sm-9">
                             <textarea name="nota" cols="35" rows="4" id="nota"><?php echo $nota; ?></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kuota" class="col-sm-3 control-label">Kuota</label>
+                        <div class="col-sm-9">
+                            <select name="kuota" id="kuota" size="1"
+                                    maxlength="5">
+                                <option value="0" <?php if ($kuota == 0) {echo $checked1;} ?>>0.00</option>
+                                <option value="5" <?php if ($kuota == 5) {echo $checked1;} ?>>5.00</option>
+                                <option value="7" <?php if ($kuota == 7) {echo $checked1;} ?>>7.00</option>
+                                <option value="10" <?php if ($kuota == 10) {echo $checked1;} ?>>10.00</option>
+                            </select>
                         </div>
                     </div>
 

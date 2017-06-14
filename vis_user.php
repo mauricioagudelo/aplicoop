@@ -11,7 +11,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     include 'config/configuracio.php';
 
-    $select = "SELECT nom,tipus,tipus2,dia,components,tel1,tel2,email1,email2,nomf,adressf,niff,nota FROM usuaris WHERE nom='$nom'";
+    $select = "SELECT nom,tipus,tipus2,dia,components,tel1,tel2,email1,email2,nomf,adressf,niff,nota,kuota FROM usuaris WHERE nom='$nom'";
 
     $query = mysql_query($select);
 
@@ -19,7 +19,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
         die('Invalid query: ' . mysql_error());
     }
 
-    list($nom, $tip, $tip2, $dia, $components, $tel1, $tel2, $email1, $email2, $nomf, $adressf, $niff, $nota) = mysql_fetch_row($query);
+    list($nom, $tip, $tip2, $dia, $components, $tel1, $tel2, $email1, $email2, $nomf, $adressf, $niff, $nota, $kuota) = mysql_fetch_row($query);
 
     ?>
 
@@ -94,6 +94,10 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     <tr class="cos_majus">
                         <td class="u-text-semibold u-text-right">Teléfono 2:</td>
                         <td><?php echo $tel2; ?></td>
+                    </tr>
+                    <tr class="cos_majus">
+                        <td class="u-text-semibold u-text-right">Kuota</td>
+                        <td><?php echo $kuota.".00"; ?></td>
                     </tr>
                     <tr>
                         <td class="u-text-semibold u-text-right">E-mail:</td>

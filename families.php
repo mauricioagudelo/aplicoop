@@ -9,7 +9,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     $pactiu = $_POST['actiu'];
     $pgrup = $_POST['grup'];
     $ptipus = $_POST['tipus'];
-
+    $pkuota = $_POST['kuota'];
+    
     include 'config/configuracio.php';
 
     ?>

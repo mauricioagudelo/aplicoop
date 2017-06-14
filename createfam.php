@@ -22,7 +22,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     $p_adressf = $_POST['adressf'];
     $p_niff = $_POST['niff'];
     $p_nota = $_POST['nota'];
-
+    $p_kuota = $_POST['kuota'];
 
     include('config/configuracio.php');
 
@@ -46,6 +46,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             var tel2 = document.getElementById("tlf2").value;
             var email1 = document.getElementById("email1").value;
             var email2 = document.getElementById("email2").value;
+            var kuota = document.getElementById("kuota").value;
 
             if (nom == "") {
                 alert("T'has deixat el nom en blanc");
@@ -96,6 +97,11 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 return false;
             }
 
+            if (kuota == ""0) {
+                alert("No has elegido la kuota");
+                document.getElementById("kuota").focus();
+                return false;
+            }
             return true;
         }
     </script>
@@ -121,9 +127,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     if ($p_nom != ""){
                         $md5_cdp = md5($p_cdp);
                         $query2 = "INSERT INTO usuaris
-	VALUES ('" . $p_nom . "', '" . $md5_cdp . "', '" . $p_tip . "', '" . $p_tip2 . "', '" . $p_dia . "', '0', '" . $p_comp . "',
-	'" . $p_tlf1 . "', '" . $p_tlf2 . "', '" . $p_email1 . "', '" . $p_email2 . "', '" . $p_nomf . "', '" . $p_adressf . "', '" . $p_niff . "',
-	'" . $p_nota . "') ";
+	VALUES ('" . $p_nom . "', '" . $md5_cdp . "', '" . $p_tip . "', '" . $p_tip2 . "', '" . $p_dia . "', '0', '" . $p_comp . "', '" . $p_tlf1 . "', '" . $p_tlf2 . "', '" . $p_email1 . "', '" . $p_email2 . "', '" . $p_nomf . "', '" . $p_adressf . "', '" . $p_niff . "', '" . $p_nota . "','" . $p_kuota . "') ";
 
                         mysql_query($query2) or die('Error, insert query2 failed:' . mysql_error());
 
@@ -143,6 +147,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 	<p>NOM FACTURA: " . $p_nomf . "</p>
 	<p>ADREÇA FACTURA: " . $p_adressf . "</p>
 	<p>NIF FACTURA: " . $p_niff . "</p>
+    <p>KUOTA: " . $p_kuota . "</p>
 	<p>COMENTARIS: " . $p_nota . "</p>
 	</td></tr>
 	</table>";
@@ -255,6 +260,16 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             <td>NIF a efectes de la factura</td>
                             <td>
                                 <input type="text" name="niff" value="<?php echo $niff; ?>" size="9" maxlength="9"></td>
+                        </tr>
+                        <tr>
+                            <td class="cos_majus">Kuota de la socia</td>
+                            <td class="cos">
+                                <SELECT name="kuota" id="kuota" size="1" maxlength="10">
+                                    <option value="0">0.0</option>
+                                    <option value="5">5.0</option>
+                                    <option value="7">7.0</option>
+                                    <option value="10">10.0</option>
+                                </select></td>
                         </tr>
                         <tr class="cos_majus">
                             <td>comentaris</td>
