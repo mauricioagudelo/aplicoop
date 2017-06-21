@@ -269,7 +269,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         <tr>
                             <td class="cos_majus">Kuota de la socia</td>
                             <td class="cos">
-                                <input type="number" name="kuota" min="0" max="10">
+                                <input type="number" name="kuota" min="0" max="10" step="0.01">
                             </td>
                         </tr>
                         <tr>

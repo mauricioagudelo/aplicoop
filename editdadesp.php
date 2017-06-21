@@ -273,7 +273,7 @@ FROM usuaris WHERE nom='$nom'";
                     <div class="form-group">
                         <label for="kuota" class="col-sm-3 control-label">Kuota</label>
                         <div class="col-sm-9">
-                            <input type="number" name="kuota" min="0" max="10" value="<?php echo $kuota; ?>">
+                            <input type="number" name="kuota" min="0" max="10" step="0.01" value="<?php echo $kuota; ?>">
                         </div>
                     </div>
                     <div class="form-group">
