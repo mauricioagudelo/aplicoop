@@ -38,18 +38,15 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             <div class="u-cf">
                 <h1 class="pull-left"> Ver familia <?php echo $nom; ?> </h1>
                 <?php
-                if ($nom == $user) {
+                if ($nom == $user && $tip == "super") {
 
                     ?>
                     <div class="pull-right u-mt-1 u-mb-1">
 
 
                         <button class="button button--animated"
-                                onClick="javascript:window.location = 'editdadesp.php';">Editar <i class="fa fa-pencil"
-                                                                                                   aria-hidden="true"></i>
+                                onClick="javascript:window.location = 'editdadesp.php';">Editar <i class="fa fa-pencil" aria-hidden="true"></i>
                         </button>
-
-
                     </div>
                     <?php
                 }
