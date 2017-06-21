@@ -97,7 +97,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     </tr>
                     <tr class="cos_majus">
                         <td class="u-text-semibold u-text-right">Kuota</td>
-                        <td><?php echo $kuota.".00"; ?></td>
+                        <td><?php echo $kuota; ?></td>
                     </tr>
                     <tr>
                         <td class="u-text-semibold u-text-right">E-mail:</td>
