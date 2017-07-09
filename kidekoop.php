@@ -5,6 +5,9 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     $user = $_SESSION['user'];
 
+    $pyear = $_POST['year'];
+    $pmes = $_POST['mes'];
+
     include 'config/configuracio.php';
 
     $sel = "SELECT tipus FROM usuaris WHERE nom='$user'";
@@ -53,8 +56,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 		<div class="col-md-3">
    		                    <div class="form-group">
    		                    	<label for="year">Año</label>
-   		                    	<div>
-   		                    	<SELECT name="year" id="year" size="1" maxlength="30" onChange="this.form.submit()">
+   		                    	<select name="year" id="year" size="1" maxlength="30">
    		                    	<option value="">-- Seleccionar --</option>
    		                    	<?php
                                 $select2 = "SELECT DISTINCT YEAR(data) FROM comanda";
@@ -71,14 +73,12 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 }
                                 ?>
                             </select>
-                        </div>
                     </div>
                 </div>
                 <div class="col-md-3">
    		                    <div class="form-group">
    		                    	<label for="mes">Mes</label>
-   		                    	<div>
-   		                    	<SELECT name="mes" id="mes" size="1" maxlength="30" onChange="this.form.submit()">
+   		                    	<select name="mes" id="mes" size="1" maxlength="30">
    		                    	<option value="">-- Seleccionar --</option>
    		                    	<?php
                                 $select2 = "SELECT DISTINCT MONTH(data) mes FROM comanda ORDER BY mes ASC ";
@@ -95,12 +95,165 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 }
                                 ?>
                             </select>
-                        </div>
                     </div>
                 </div>
-
-
+                <div class="col-md-3">
+                    <div class="form-group"><br>
+                        <input type="submit" name="submit" value="ENVIAR">
+                    </div>
+                </div>
             </div>
+            </form>
+            <?php 
+
+            print ('<p class="alert alert--info"> Consumo mensual de Soci@s con domiciliacion</p>');
+            print('<div class="table-responsive">
+                    <table class="table table-condensed table-striped" >
+                        <tr >
+                            <td width="5%" class="u-text-semibold">No</td>
+                            <td width="10%" class="u-text-semibold">Soci@</td>
+                            <td width="25%" class="u-text-semibold">Nombre</td>
+                            <td width="25%" class="u-text-semibold">IBAN</td>                            
+                            <td width="10%" class="u-text-semibold u-text-right">Consumo</td>
+                            <td width="5%" class="u-text-semibold u-text-right">Cuota</td>
+                            <td width="20%" class="u-text-semibold u-text-right">TOTAL</td>
+                        </tr>') ;     
+
+            $sel="SELECT comanda.usuari, usuaris.components, usuaris.IBAN, SUM(comanda_linia.cistella * comanda_linia.preu), usuaris.kuota, SUM(comanda_linia.cistella * comanda_linia.preu) + usuaris.kuota
+            FROM comanda 
+            JOIN comanda_linia ON comanda.numero=comanda_linia.numero 
+            JOIN usuaris on comanda.usuari=usuaris.nom
+            WHERE YEAR(comanda.data) = '$pyear'  AND MONTH(comanda.data) = '$pmes' AND usuaris.domiciliacion = 1
+            GROUP BY comanda.usuari
+            ORDER BY comanda.usuari";
+
+            $result = mysql_query($sel);
+            if (!$result) {
+            die('Invalid query: ' . mysql_error());
+            }
+            $k = 0;
+            while (list($socio, $nomsocio, $iban, $consumo, $cuota, $total) = mysql_fetch_row($result)) {
+            // $datas3 = explode("-", $datamax);
+            // $datai3 = explode("-", $datamin);
+            // $datamaxvis = $datas3[2] . "-" . $datas3[1] . "-" . $datas3[0];
+            // $dataminvis = $datai3[2] . "-" . $datai3[1] . "-" . $datai3[0];
+            // $consum = number_format($consum, 3, ',', '.');
+            // $despesa = number_format($despesa, 2, ',', '.');
+            // $prod = htmlentities($nomprod, null, 'utf-8');
+            // $prodtext = str_replace("&nbsp;", " ", $prod);
+            // $prodtext = html_entity_decode($prodtext, null, 'utf-8');
+
+           ?>
+
+           <tr>
+                <td><?php echo $k + 1; ?></td>
+                <td><?php echo $socio; ?></td>
+                <td><?php echo $nomsocio; ?></td>
+                <td><?php echo $iban; ?></td>
+                <!--<td><?php echo $subcat; ?></td>-->
+                <td class="u-text-right"><?php echo $consumo; ?></td>
+                <td class="u-text-right"><?php echo $cuota; ?> €</td>
+                <td class="u-text-right"><?php echo $total; ?></td>
+            </tr>
+
+            <?php
+            $k++;
+        }
+        print ('</table></div>');
+        ?>
+
+        <?php
+        print ('<p class="alert alert--info"> Consumo mensual de Soci@s con monedero</p>');
+        print('<div class="table-responsive">
+                    <table class="table table-condensed table-striped" >
+                        <tr>
+                            <td width="5%" class="u-text-semibold">No</td>
+                            <td width="15%" class="u-text-semibold">Soci@</td>
+                            <td width="45%" class="u-text-semibold">Nombre</td>                       
+                            <td width="10%" class="u-text-semibold u-text-right">Consumo</td>
+                            <td width="5%" class="u-text-semibold u-text-right">Cuota</td>
+                            <td width="20%" class="u-text-semibold u-text-right">TOTAL</td>
+                        </tr>') ;     
+
+    $sel="SELECT comanda.usuari, usuaris.components, SUM(comanda_linia.cistella * comanda_linia.preu), usuaris.kuota, SUM(comanda_linia.cistella * comanda_linia.preu) + usuaris.kuota
+            FROM comanda 
+            JOIN comanda_linia ON comanda.numero=comanda_linia.numero 
+            JOIN usuaris on comanda.usuari=usuaris.nom
+            WHERE YEAR(comanda.data) = '$pyear'  AND MONTH(comanda.data) = '$pmes' AND usuaris.domiciliacion = 0
+            GROUP BY comanda.usuari
+            ORDER BY comanda.usuari";
+
+            $result = mysql_query($sel);
+            if (!$result) {
+            die('Invalid query: ' . mysql_error());
+            }
+            $k = 0;
+            while (list($socio, $nomsocio, $consumo, $cuota, $total) = mysql_fetch_row($result)) {
+                ?>
+           <tr>
+                <td><?php echo $k +1; ?></td>
+                <td><?php echo $socio; ?></td>
+                <td><?php echo $nomsocio; ?></td>
+                <!--<td><?php echo $subcat; ?></td>-->
+                <td class="u-text-right"><?php echo $consumo; ?></td>
+                <td class="u-text-right"><?php echo $cuota; ?> €</td>
+                <td class="u-text-right"><?php echo $total; ?></td>
+            </tr>
+
+            <?php
+            $k++;
+        }
+        print ('</table></div>');
+
+        print ('<p class="alert alert--info"> Cuota mensual de Soci@s activ@s sin consumo</p>');
+        print('<div class="table-responsive">
+                    <table class="table table-condensed table-striped" >
+                        <tr>
+                            <td width="5%" class="u-text-semibold">No</td>
+                            <td width="15%" class="u-text-semibold">Soci@</td>
+                            <td width="40%" class="u-text-semibold">Nombre</td>                       
+                            <td width="30%" class="u-text-semibold">IBAN</td>                       
+                            <td width="10%" class="u-text-semibold u-text-right">Cuota</td>
+                        </tr>') ;     
+
+        if (isset($_POST['year'])) {
+            $sel="SELECT usuaris.nom, usuaris.components, usuaris.IBAN, usuaris.kuota
+            FROM usuaris
+            WHERE nom NOT IN (
+            SELECT DISTINCT us.nom
+                    FROM usuaris AS us
+                    JOIN comanda ON us.nom=comanda.usuari
+                    WHERE year(comanda.data) = " . $pyear . " AND MONTH(comanda.data) = " . $pmes . "
+                 )  AND usuaris.tipus2 = 'actiu'
+                 ORDER BY usuaris.IBAN DESC";
+        }
+        else {
+            $sel="SELECT usuaris.nom, usuaris.components, usuaris.IBAN, usuaris.kuota
+            FROM usuaris
+            WHERE usuaris.tipus2 = 'actiu' ";
+             }
+            $result = mysql_query($sel);
+            if (!$result) {
+            die('Invalid query: ' . mysql_error());
+            }
+            $k = 0;
+            while (list($socio, $nomsocio, $iban, $cuota) = mysql_fetch_row($result)) {
+                ?>
+           <tr>
+                <td><?php echo $k +1; ?></td>
+                <td><?php echo $socio; ?></td>
+                <td><?php echo $nomsocio; ?></td>
+                <td><?php echo $iban; ?></td>
+                <td class="u-text-right"><?php echo $cuota; ?> €</td>
+            </tr>
+
+            <?php
+            $k++;
+        }
+        print ('</table></div>');
+
+        print('</div></div>');
+        ?>
         </div>
         </body>
         </html>
