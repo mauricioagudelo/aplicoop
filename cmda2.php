@@ -296,7 +296,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                     $w_desc = "";
                                     if ($descompte != 0) {
                                         $descompte = $descompte * 100;
-                                        $w_desc = "<span > descompte:" . $descompte . "%</span>";
+                                        $w_desc = "<span style='color:red;'> DESCUENTO:" . $descompte . "%</span>";
                                     }
                                     $prod = htmlentities($nomprod, null, 'utf-8');
                                     $prodtext = str_replace("&nbsp;", " ", $prod);
