@@ -44,6 +44,9 @@ ALTER TABLE `comanda_linia`  DROP `producte`,  DROP `proveidora`;
 --- Creem 3 camps nous: nomf, adressf, niff. Son les dades que apareixeran a les factures ---
 ALTER TABLE `usuaris` ADD `nomf` VARCHAR( 100 ) NOT NULL AFTER `email2`,
 ADD `adressf` VARCHAR( 200 ) NOT NULL AFTER `nomf`,
-ADD `niff` VARCHAR( 9 ) NOT NULL AFTER `adressf`;
+ADD `niff` VARCHAR( 9 ) NOT NULL AFTER `adressf`,
+ALTER TABLE `usuaris` ADD `kuota` FLOAT(4,2) NOT NULL AFTER `nota`,
+ALTER TABLE `usuaris` ADD `IBAN` VARCHAR(24) NOT NULL AFTER `kuota`,
+ALTER TABLE `usuaris` ADD `domiciliacion` TINYINT NOT NULL AFTER `IBAN`;  
 ----
 
