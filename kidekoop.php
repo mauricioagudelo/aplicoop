@@ -37,7 +37,6 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             $h4 = "href=''";
             $h5 = "href=''";
         }
-
         ?>
 
         <html>
@@ -105,7 +104,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             </div>
             </form>
             <?php 
-
+            if (isset($_POST['year'])) {
             print ('<p class="alert alert--info"> Consumo mensual de Soci@s con domiciliacion</p>');
             print('<div class="table-responsive">
                     <table class="table table-condensed table-striped" >
@@ -133,24 +132,12 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             }
             $k = 0;
             while (list($socio, $nomsocio, $iban, $consumo, $cuota, $total) = mysql_fetch_row($result)) {
-            // $datas3 = explode("-", $datamax);
-            // $datai3 = explode("-", $datamin);
-            // $datamaxvis = $datas3[2] . "-" . $datas3[1] . "-" . $datas3[0];
-            // $dataminvis = $datai3[2] . "-" . $datai3[1] . "-" . $datai3[0];
-            // $consum = number_format($consum, 3, ',', '.');
-            // $despesa = number_format($despesa, 2, ',', '.');
-            // $prod = htmlentities($nomprod, null, 'utf-8');
-            // $prodtext = str_replace("&nbsp;", " ", $prod);
-            // $prodtext = html_entity_decode($prodtext, null, 'utf-8');
-
            ?>
-
            <tr>
                 <td><?php echo $k + 1; ?></td>
                 <td><?php echo $socio; ?></td>
                 <td><?php echo $nomsocio; ?></td>
                 <td><?php echo $iban; ?></td>
-                <!--<td><?php echo $subcat; ?></td>-->
                 <td class="u-text-right"><?php echo $consumo; ?></td>
                 <td class="u-text-right"><?php echo $cuota; ?> €</td>
                 <td class="u-text-right"><?php echo $total; ?></td>
@@ -205,7 +192,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
         }
         print ('</table></div>');
 
-        print ('<p class="alert alert--info"> Cuota mensual de Soci@s activ@s sin consumo</p>');
+        print ('<p class="alert alert--info"> Cuota mensual de Soci@s activ@s con domiciliacion y sin consumo</p>');
         print('<div class="table-responsive">
                     <table class="table table-condensed table-striped" >
                         <tr>
@@ -216,7 +203,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             <td width="10%" class="u-text-semibold u-text-right">Cuota</td>
                         </tr>') ;     
 
-        if (isset($_POST['year'])) {
+        
             $sel="SELECT usuaris.nom, usuaris.components, usuaris.IBAN, usuaris.kuota
             FROM usuaris
             WHERE nom NOT IN (
@@ -224,14 +211,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     FROM usuaris AS us
                     JOIN comanda ON us.nom=comanda.usuari
                     WHERE year(comanda.data) = " . $pyear . " AND MONTH(comanda.data) = " . $pmes . "
-                 )  AND usuaris.tipus2 = 'actiu'
+                 )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 1
                  ORDER BY usuaris.IBAN DESC";
-        }
-        else {
-            $sel="SELECT usuaris.nom, usuaris.components, usuaris.IBAN, usuaris.kuota
-            FROM usuaris
-            WHERE usuaris.tipus2 = 'actiu' ";
-             }
             $result = mysql_query($sel);
             if (!$result) {
             die('Invalid query: ' . mysql_error());
@@ -250,9 +231,51 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             <?php
             $k++;
         }
+
+        print ('</table></div>');
+
+        print ('<p class="alert alert--info"> Cuota mensual de Soci@s activ@s con monedero y sin consumo</p>');
+        print('<div class="table-responsive">
+                    <table class="table table-condensed table-striped" >
+                        <tr>
+                            <td width="5%" class="u-text-semibold">No</td>
+                            <td width="15%" class="u-text-semibold">Soci@</td>
+                            <td width="40%" class="u-text-semibold">Nombre</td>                       
+                            <td width="30%" class="u-text-semibold">IBAN</td>                       
+                            <td width="10%" class="u-text-semibold u-text-right">Cuota</td>
+                        </tr>') ;     
+            $sel="SELECT usuaris.nom, usuaris.components, usuaris.IBAN, usuaris.kuota
+            FROM usuaris
+            WHERE nom NOT IN (
+            SELECT DISTINCT us.nom
+                    FROM usuaris AS us
+                    JOIN comanda ON us.nom=comanda.usuari
+                    WHERE year(comanda.data) = " . $pyear . " AND MONTH(comanda.data) = " . $pmes . "
+                 )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 0
+                 ORDER BY usuaris.IBAN DESC";
+            $result = mysql_query($sel);
+            if (!$result) {
+            die('Invalid query: ' . mysql_error());
+            }
+            $k = 0;
+            while (list($socio, $nomsocio, $iban, $cuota) = mysql_fetch_row($result)) {
+                ?>
+           <tr>
+                <td><?php echo $k +1; ?></td>
+                <td><?php echo $socio; ?></td>
+                <td><?php echo $nomsocio; ?></td>
+                <td><?php echo $iban; ?></td>
+                <td class="u-text-right"><?php echo $cuota; ?> €</td>
+            </tr>
+
+            <?php
+            $k++;
+        }
+
         print ('</table></div>');
 
         print('</div></div>');
+    }
         ?>
         </div>
         </body>
