@@ -48,5 +48,6 @@ ADD `niff` VARCHAR( 9 ) NOT NULL AFTER `adressf`,
 ALTER TABLE `usuaris` ADD `kuota` FLOAT(4,2) NOT NULL AFTER `nota`,
 ALTER TABLE `usuaris` ADD `IBAN` VARCHAR(24) NOT NULL AFTER `kuota`,
 ALTER TABLE `usuaris` ADD `domiciliacion` TINYINT NOT NULL AFTER `IBAN`;  
+ALTER TABLE `usuaris` ADD `fechaalta` DATE NOT NULL AFTER `domiciliacion`; 
 ----
 

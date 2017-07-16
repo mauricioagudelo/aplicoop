@@ -40,6 +40,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     $p_kuota = $_POST['kuota'];
     $p_IBAN = $_POST['IBAN'];
     $p_domiciliacion = $_POST['domiciliacion'];
+    $p_fechaalta = $_POST['fechaalta'];
 
     include('config/configuracio.php');
 
@@ -78,8 +79,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 	SET tipus='" . $p_tip . "', tipus2='" . $p_tip2 . "', dia='" . $p_dia . "', components='" . $p_comp . "',
 	tel1='" . $p_tlf1 . "', tel2='" . $p_tlf2 . "', email1='" . $p_email1 . "', email2='" . $p_email2 . "',
 	nomf='" . $p_nomf . "', adressf='" . $p_adressf . "', niff='" . $p_niff . "',
-	nota='" . $p_nota . "', kuota='" . $p_kuota . "', IBAN='" . $p_IBAN . "', domiciliacion='" . $p_domiciliacion . "'
-	WHERE nom='" . $nom . "' ";
+	nota='" . $p_nota . "', kuota='" . $p_kuota . "', IBAN='" . $p_IBAN . "', domiciliacion='" . $p_domiciliacion . "', fechaalta='" . $p_fechaalta . "' 
+ 	WHERE nom='" . $nom . "' ";
 
                         mysql_query($query2) or die('Error, insert query2 failed');
 
@@ -90,7 +91,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                     <?php
 
-                    $select = "SELECT nom,tipus,tipus2,dia,components,tel1,tel2,email1,email2,nomf,adressf,niff,nota,kuota,IBAN,domiciliacion
+                    $select = "SELECT nom,tipus,tipus2,dia,components,tel1,tel2,email1,email2,nomf,adressf,niff,nota,kuota,IBAN,domiciliacion,fechaalta
 FROM usuaris WHERE nom='$nom'";
 
                     $query = mysql_query($select);
@@ -99,7 +100,7 @@ FROM usuaris WHERE nom='$nom'";
                         die('Invalid query: ' . mysql_error());
                     }
 
-                    list($nom, $tip, $tip2, $dia, $comp, $tlf1, $tlf2, $email1, $email2, $nomf, $adressf, $niff, $nota, $kuota, $IBAN, $domiciliacion) = mysql_fetch_row($query);
+                    list($nom, $tip, $tip2, $dia, $comp, $tlf1, $tlf2, $email1, $email2, $nomf, $adressf, $niff, $nota, $kuota, $IBAN, $domiciliacion,$fechaalta) = mysql_fetch_row($query);
 
                     if ($nom == "" OR $nom == $user) {
                         $hidden = '<input type="hidden" name="tip2" id="tip2" value="' . $tip2 . '">';
@@ -291,7 +292,12 @@ FROM usuaris WHERE nom='$nom'";
                             </select>
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        <label for="fechaalta" class="col-sm-3 control-label">Fecha de Alta</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="fechaalta" value="<?php echo $fechaalta; ?>">
+                        </div>
+                    </div>
                     <hr class="box-separator"/>
 
                     <h2 class="box-subtitle u-text-center  u-mb-1">Factura</h2>
