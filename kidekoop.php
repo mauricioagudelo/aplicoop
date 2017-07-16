@@ -8,6 +8,11 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     $pyear = $_POST['year'];
     $pmes = $_POST['mes'];
 
+    $totalof1 = 0;
+    $totalof2 = 0;
+    $totalof3 = 0;
+    $totalof4 = 0;
+    $nuevas_altas = 0;
     include 'config/configuracio.php';
 
     $sel = "SELECT tipus FROM usuaris WHERE nom='$user'";
@@ -124,7 +129,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 <td><?php echo $nomsocio; ?></td>
                 <td><?php echo $iban; ?></td>
                 <td class="u-text-right"><?php echo sprintf("%01.2f", $consumo); ?></td>
-                <td class="u-text-right"><?php echo $cuota; ?> €</td>
+                <td class="u-text-right"><?php echo $cuota; ?></td>
                 <td class="u-text-right"><?php echo sprintf("%01.2f", $total); ?></td>
             </tr>
 
@@ -142,7 +147,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
         ?>
         <tr>
             <td>TOTAL : </td>
-            <td> <?php echo $totalof1; ?></td>
+            <td> <?php echo sprintf("%01.2f", $totalof1); ?>€</td>
         </tr>
         <?php
         
@@ -164,8 +169,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     FROM usuaris AS us
                     JOIN comanda ON us.nom=comanda.usuari
                     WHERE year(comanda.data) = " . $pyear . " AND MONTH(comanda.data) = " . $pmes . "
-                 )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 1
-                 ORDER BY usuaris.IBAN DESC";
+                 )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 1 AND usuaris.fechaalta >='" . $pyear . "-" . $pmes . "-" . "01" . "' ORDER BY usuaris.IBAN DESC";
             $result = mysql_query($sel);
             if (!$result) {
             die('Invalid query: ' . mysql_error());
@@ -178,7 +182,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 <td><?php echo $socio; ?></td>
                 <td><?php echo $nomsocio; ?></td>
                 <td><?php echo $iban; ?></td>
-                <td class="u-text-right"><?php echo $cuota; ?> €</td>
+                <td class="u-text-right"><?php echo $cuota; ?></td>
             </tr>
 
             <?php
@@ -194,7 +198,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         FROM usuaris AS us
                         JOIN comanda ON us.nom=comanda.usuari
                         WHERE year(comanda.data) = " . $pyear . " AND MONTH(comanda.data) = " . $pmes . "
-                 ) AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 1) AS sub";
+                 ) AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 1  AND usuaris.fechaalta >='" . $pyear . "-" . $pmes . "-" . "01" . "') AS sub";
         $result = mysql_query($tot);
         if (!$result) {
             die('Invalid query: ' . mysql_error());
@@ -203,7 +207,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
         ?>
         <tr>
             <td>TOTAL : </td>
-            <td> <?php echo $totalof2; ?></td>
+            <td> <?php echo sprintf("%01.2f", $totalof2); ?>€</td>
         </tr>
         
         <?php
@@ -240,7 +244,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 <td><?php echo $nomsocio; ?></td>
                 <!--<td><?php echo $subcat; ?></td>-->
                 <td class="u-text-right"><?php echo sprintf("%01.2f", $consumo); ?></td>
-                <td class="u-text-right"><?php echo $cuota; ?> €</td>
+                <td class="u-text-right"><?php echo $cuota; ?></td>
                 <td class="u-text-right"><?php echo sprintf("%01.2f", $total); ?></td>
             </tr>
 
@@ -264,7 +268,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
         ?>
         <tr>
             <td>TOTAL : </td>
-            <td> <?php echo $totalof3; ?></td>
+            <td> <?php echo sprintf("%01.2f", $totalof3); ?>€</td>
         </tr>
         
         <?php
@@ -284,7 +288,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     FROM usuaris AS us
                     JOIN comanda ON us.nom=comanda.usuari
                     WHERE year(comanda.data) = " . $pyear . " AND MONTH(comanda.data) = " . $pmes . "
-                 )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 0 AND usuaris.kuota != 0";
+                 )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 0 AND usuaris.kuota != 0 AND usuaris.fechaalta >='" . $pyear . "-" . $pmes . "-" . "01" . "'";
             $result = mysql_query($sel);
             if (!$result) {
             die('Invalid query: ' . mysql_error());
@@ -296,7 +300,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 <td><?php echo $k +1; ?></td>
                 <td><?php echo $socio; ?></td>
                 <td><?php echo $nomsocio; ?></td>
-                <td class="u-text-right"><?php echo $cuota; ?> €</td>
+                <td class="u-text-right"><?php echo $cuota; ?></td>
             </tr>
 
             <?php
@@ -313,7 +317,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     FROM usuaris AS us
                     JOIN comanda ON us.nom=comanda.usuari
                     WHERE year(comanda.data) = " . $pyear . " AND MONTH(comanda.data) = " . $pmes . "
-                 )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 0 AND usuaris.kuota != 0) as sub";
+                 )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 0 AND usuaris.kuota != 0 AND usuaris.fechaalta >='" . $pyear . "-" . $pmes . "-" . "01" . "') as sub";
         $result = mysql_query($tot);
         if (!$result) {
             die('Invalid query: ' . mysql_error());
@@ -322,14 +326,22 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
         ?>
         <tr>
             <td>TOTAL : </td>
-            <td> <?php echo $totalof4; ?></td>
+            <td> <?php echo sprintf("%01.2f", $totalof4); ?>€</td>
         </tr>
         
         <?php
-        print('</div></div>');
+        
     }
-    $overall = $totalof1 + $totalof2 + $totalof3 + $totalof4;
-    echo "<p>TOTAL de todos : ". $overall . "</p>";
+    $result = mysql_query("SELECT COUNT(nom) FROM usuaris WHERE MONTH(fechaalta) = MONTH('" . $pyear . "-" . $pmes . "-" . "01" . "') AND YEAR(fechaalta) = YEAR('" . $pyear . "-" . $pmes . "-" . "01" . "')");
+    if (!$result) {
+            die('Invalid query: ' . mysql_error());
+            }
+    list($count) = mysql_fetch_row($result);
+    $nuevas_altas = $count*20;
+    echo "<p>Este més ha havido : " . $count . " nuevas altas con un total importe de : " . $nuevas_altas . " €</p>";
+    $overall = $totalof1 + $totalof2 + $totalof3 + $totalof4 + $nuevas_altas;
+    echo "<p>TOTAL de facturas, cuotas y nuevas altas : ". sprintf("%01.2f", $overall) . "€</p>";
+    print('</div></div>');
         ?>
         </div>
         </body>
