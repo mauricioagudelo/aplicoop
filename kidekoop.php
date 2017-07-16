@@ -18,25 +18,6 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
         if ($priv == 'super') {
 
-        if ($priv != 'user') {
-            $h1 = "";
-        } else {
-            $h1 = "href=''";
-        }
-
-        if ($priv == 'admin' OR $priv == 'super') {
-            $h2 = "href='editfamilies3.php'";
-        } else {
-            $h2 = "href=''";
-        }
-
-        if ($priv == 'eco' OR $priv == 'super') {
-            $h4 = "href='moneder_linia.php'";
-            $h5 = "href='devolucions.php'";
-        } else {
-            $h4 = "href=''";
-            $h5 = "href=''";
-        }
         ?>
 
         <html>
@@ -103,8 +84,12 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 </div>
             </div>
             </form>
+
             <?php 
+            //When form is send
+
             if (isset($_POST['year'])) {
+                echo "<div><a class='button button--animated button--save u-mt-2 u-mb-1' href='actualizar_monederos.php?year=".$pyear."&month=".$pmes."' title='Actualizar Monederos'>Actualizar Monederos <i class='fa fa-plus-circle' aria-hidden='true'></i></a></div>";
             print ('<p class="alert alert--info"> Consumo mensual de Soci@s con domiciliacion</p>');
             print('<div class="table-responsive">
                     <table class="table table-condensed table-striped" >
@@ -114,7 +99,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             <td width="25%" class="u-text-semibold">Nombre</td>
                             <td width="25%" class="u-text-semibold">IBAN</td>                            
                             <td width="10%" class="u-text-semibold u-text-right">Consumo</td>
-                            <td width="5%" class="u-text-semibold u-text-right">Cuota</td>
+                            <td width="10%" class="u-text-semibold u-text-right">Cuota</td>
                             <td width="20%" class="u-text-semibold u-text-right">TOTAL</td>
                         </tr>') ;     
 
@@ -138,61 +123,31 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 <td><?php echo $socio; ?></td>
                 <td><?php echo $nomsocio; ?></td>
                 <td><?php echo $iban; ?></td>
-                <td class="u-text-right"><?php echo $consumo; ?></td>
+                <td class="u-text-right"><?php echo sprintf("%01.2f", $consumo); ?></td>
                 <td class="u-text-right"><?php echo $cuota; ?> €</td>
-                <td class="u-text-right"><?php echo $total; ?></td>
+                <td class="u-text-right"><?php echo sprintf("%01.2f", $total); ?></td>
             </tr>
 
             <?php
             $k++;
         }
         print ('</table></div>');
-        ?>
 
-        <?php
-        print ('<p class="alert alert--info"> Consumo mensual de Soci@s con monedero</p>');
-        print('<div class="table-responsive">
-                    <table class="table table-condensed table-striped" >
-                        <tr>
-                            <td width="5%" class="u-text-semibold">No</td>
-                            <td width="15%" class="u-text-semibold">Soci@</td>
-                            <td width="45%" class="u-text-semibold">Nombre</td>                       
-                            <td width="10%" class="u-text-semibold u-text-right">Consumo</td>
-                            <td width="5%" class="u-text-semibold u-text-right">Cuota</td>
-                            <td width="20%" class="u-text-semibold u-text-right">TOTAL</td>
-                        </tr>') ;     
-
-    $sel="SELECT comanda.usuari, usuaris.components, SUM(comanda_linia.cistella * comanda_linia.preu), usuaris.kuota, SUM(comanda_linia.cistella * comanda_linia.preu) + usuaris.kuota
-            FROM comanda 
-            JOIN comanda_linia ON comanda.numero=comanda_linia.numero 
-            JOIN usuaris on comanda.usuari=usuaris.nom
-            WHERE YEAR(comanda.data) = '$pyear'  AND MONTH(comanda.data) = '$pmes' AND usuaris.domiciliacion = 0
-            GROUP BY comanda.usuari
-            ORDER BY comanda.usuari";
-
-            $result = mysql_query($sel);
-            if (!$result) {
+        $tot = "SELECT SUM(total) FROM ( SELECT comanda.usuari, usuaris.components, usuaris.IBAN, SUM(comanda_linia.cistella * comanda_linia.preu), usuaris.kuota, SUM(comanda_linia.cistella * comanda_linia.preu) + usuaris.kuota as total FROM comanda JOIN comanda_linia ON comanda.numero=comanda_linia.numero JOIN usuaris on comanda.usuari=usuaris.nom WHERE YEAR(comanda.data) = '$pyear'  AND MONTH(comanda.data) = '$pmes' AND usuaris.domiciliacion = 1 GROUP BY comanda.usuari) AS sub";
+        $result = mysql_query($tot);
+        if (!$result) {
             die('Invalid query: ' . mysql_error());
             }
-            $k = 0;
-            while (list($socio, $nomsocio, $consumo, $cuota, $total) = mysql_fetch_row($result)) {
-                ?>
-           <tr>
-                <td><?php echo $k +1; ?></td>
-                <td><?php echo $socio; ?></td>
-                <td><?php echo $nomsocio; ?></td>
-                <!--<td><?php echo $subcat; ?></td>-->
-                <td class="u-text-right"><?php echo $consumo; ?></td>
-                <td class="u-text-right"><?php echo $cuota; ?> €</td>
-                <td class="u-text-right"><?php echo $total; ?></td>
-            </tr>
+        list($totalof1) = mysql_fetch_row($result);
+        ?>
+        <tr>
+            <td>TOTAL : </td>
+            <td> <?php echo $totalof1; ?></td>
+        </tr>
+        <?php
+        
 
-            <?php
-            $k++;
-        }
-        print ('</table></div>');
-
-        print ('<p class="alert alert--info"> Cuota mensual de Soci@s activ@s con domiciliacion y sin consumo</p>');
+        print ('<p class="alert alert--info"> Cuotas mensuales de Soci@s activ@s con domiciliacion pero sin consumo</p>');
         print('<div class="table-responsive">
                     <table class="table table-condensed table-striped" >
                         <tr>
@@ -202,8 +157,6 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             <td width="30%" class="u-text-semibold">IBAN</td>                       
                             <td width="10%" class="u-text-semibold u-text-right">Cuota</td>
                         </tr>') ;     
-
-        
             $sel="SELECT usuaris.nom, usuaris.components, usuaris.IBAN, usuaris.kuota
             FROM usuaris
             WHERE nom NOT IN (
@@ -231,40 +184,118 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             <?php
             $k++;
         }
-
         print ('</table></div>');
 
-        print ('<p class="alert alert--info"> Cuota mensual de Soci@s activ@s con monedero y sin consumo</p>');
+        $tot = "SELECT SUM(total) FROM (
+                    SELECT usuaris.nom, usuaris.components, usuaris.IBAN, usuaris.kuota as total
+                    FROM usuaris
+                    WHERE nom NOT IN (
+                    SELECT DISTINCT us.nom
+                        FROM usuaris AS us
+                        JOIN comanda ON us.nom=comanda.usuari
+                        WHERE year(comanda.data) = " . $pyear . " AND MONTH(comanda.data) = " . $pmes . "
+                 ) AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 1) AS sub";
+        $result = mysql_query($tot);
+        if (!$result) {
+            die('Invalid query: ' . mysql_error());
+            }
+        list($totalof2) = mysql_fetch_row($result);
+        ?>
+        <tr>
+            <td>TOTAL : </td>
+            <td> <?php echo $totalof2; ?></td>
+        </tr>
+        
+        <?php
+        print ('<p class="alert alert--info"> Consumo mensual de Soci@s con monedero</p>');
+        print('<div class="table-responsive">
+                    <table class="table table-condensed table-striped" >
+                        <tr>
+                            <td width="5%" class="u-text-semibold">No</td>
+                            <td width="15%" class="u-text-semibold">Soci@</td>
+                            <td width="45%" class="u-text-semibold">Nombre</td>                       
+                            <td width="10%" class="u-text-semibold u-text-right">Consumo</td>
+                            <td width="10%" class="u-text-semibold u-text-right">Cuota</td>
+                            <td width="15%" class="u-text-semibold u-text-right">TOTAL</td>
+                        </tr>') ;     
+
+            $sel="SELECT comanda.usuari, usuaris.components, SUM(comanda_linia.cistella * comanda_linia.preu), usuaris.kuota, SUM(comanda_linia.cistella * comanda_linia.preu) + usuaris.kuota
+            FROM comanda 
+            JOIN comanda_linia ON comanda.numero=comanda_linia.numero 
+            JOIN usuaris on comanda.usuari=usuaris.nom
+            WHERE YEAR(comanda.data) = '$pyear'  AND MONTH(comanda.data) = '$pmes' AND usuaris.domiciliacion = 0
+            GROUP BY comanda.usuari
+            ORDER BY comanda.usuari";
+
+            $result = mysql_query($sel);
+            if (!$result) {
+            die('Invalid query: ' . mysql_error());
+            }
+            $k = 0;
+            while (list($socio, $nomsocio, $consumo, $cuota, $total) = mysql_fetch_row($result)) {
+            ?>
+           <tr>
+                <td><?php echo $k +1; ?></td>
+                <td><?php echo $socio; ?></td>
+                <td><?php echo $nomsocio; ?></td>
+                <!--<td><?php echo $subcat; ?></td>-->
+                <td class="u-text-right"><?php echo sprintf("%01.2f", $consumo); ?></td>
+                <td class="u-text-right"><?php echo $cuota; ?> €</td>
+                <td class="u-text-right"><?php echo sprintf("%01.2f", $total); ?></td>
+            </tr>
+
+            <?php
+            $k++;
+        }
+        print ('</table></div>');
+
+        $tot = "SELECT SUM(total) FROM (
+            SELECT comanda.usuari, usuaris.components, SUM(comanda_linia.cistella * comanda_linia.preu), usuaris.kuota, SUM(comanda_linia.cistella * comanda_linia.preu) + usuaris.kuota as total
+            FROM comanda 
+            JOIN comanda_linia ON comanda.numero=comanda_linia.numero 
+            JOIN usuaris on comanda.usuari=usuaris.nom
+            WHERE YEAR(comanda.data) = '$pyear'  AND MONTH(comanda.data) = '$pmes' AND usuaris.domiciliacion = 0
+            GROUP BY comanda.usuari) as sub";    
+        $result = mysql_query($tot);
+        if (!$result) {
+            die('Invalid query: ' . mysql_error());
+            }
+        list($totalof3) = mysql_fetch_row($result);
+        ?>
+        <tr>
+            <td>TOTAL : </td>
+            <td> <?php echo $totalof3; ?></td>
+        </tr>
+        
+        <?php
+        print ('<p class="alert alert--info"> Cuotas mensuales de Soci@s activ@s con monedero pero sin consumo</p>');
         print('<div class="table-responsive">
                     <table class="table table-condensed table-striped" >
                         <tr>
                             <td width="5%" class="u-text-semibold">No</td>
                             <td width="15%" class="u-text-semibold">Soci@</td>
                             <td width="40%" class="u-text-semibold">Nombre</td>                       
-                            <td width="30%" class="u-text-semibold">IBAN</td>                       
                             <td width="10%" class="u-text-semibold u-text-right">Cuota</td>
                         </tr>') ;     
-            $sel="SELECT usuaris.nom, usuaris.components, usuaris.IBAN, usuaris.kuota
+            $sel="SELECT usuaris.nom, usuaris.components, usuaris.kuota
             FROM usuaris
             WHERE nom NOT IN (
             SELECT DISTINCT us.nom
                     FROM usuaris AS us
                     JOIN comanda ON us.nom=comanda.usuari
                     WHERE year(comanda.data) = " . $pyear . " AND MONTH(comanda.data) = " . $pmes . "
-                 )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 0
-                 ORDER BY usuaris.IBAN DESC";
+                 )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 0 AND usuaris.kuota != 0";
             $result = mysql_query($sel);
             if (!$result) {
             die('Invalid query: ' . mysql_error());
             }
             $k = 0;
-            while (list($socio, $nomsocio, $iban, $cuota) = mysql_fetch_row($result)) {
+            while (list($socio, $nomsocio, $cuota) = mysql_fetch_row($result)) {
                 ?>
            <tr>
                 <td><?php echo $k +1; ?></td>
                 <td><?php echo $socio; ?></td>
                 <td><?php echo $nomsocio; ?></td>
-                <td><?php echo $iban; ?></td>
                 <td class="u-text-right"><?php echo $cuota; ?> €</td>
             </tr>
 
@@ -274,8 +305,31 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
         print ('</table></div>');
 
+        $tot = "SELECT SUM(total) FROM (
+            SELECT usuaris.nom, usuaris.components, usuaris.kuota as total
+            FROM usuaris
+            WHERE nom NOT IN (
+            SELECT DISTINCT us.nom
+                    FROM usuaris AS us
+                    JOIN comanda ON us.nom=comanda.usuari
+                    WHERE year(comanda.data) = " . $pyear . " AND MONTH(comanda.data) = " . $pmes . "
+                 )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 0 AND usuaris.kuota != 0) as sub";
+        $result = mysql_query($tot);
+        if (!$result) {
+            die('Invalid query: ' . mysql_error());
+            }
+        list($totalof4) = mysql_fetch_row($result);
+        ?>
+        <tr>
+            <td>TOTAL : </td>
+            <td> <?php echo $totalof4; ?></td>
+        </tr>
+        
+        <?php
         print('</div></div>');
     }
+    $overall = $totalof1 + $totalof2 + $totalof3 + $totalof4;
+    echo "<p>TOTAL de todos : ". $overall . "</p>";
         ?>
         </div>
         </body>
