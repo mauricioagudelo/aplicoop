@@ -118,7 +118,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         </tr>') ;     
 
             $sel="(
-SELECT comanda.usuari, usuaris.components, usuaris.IBAN, SUM(comanda_linia.cistella * comanda_linia.preu), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20',usuaris.kuota), SUM(comanda_linia.cistella * comanda_linia.preu) + IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20',usuaris.kuota) AS tot
+SELECT comanda.usuari, usuaris.components, usuaris.IBAN, SUM(comanda_linia.cistella * comanda_linia.preu), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota), SUM(comanda_linia.cistella * comanda_linia.preu) + IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) AS tot
 FROM comanda 
 JOIN comanda_linia ON comanda.numero=comanda_linia.numero 
 JOIN usuaris on comanda.usuari=usuaris.nom
@@ -126,7 +126,7 @@ WHERE YEAR(comanda.data) = " . $pyear . "  AND MONTH(comanda.data) = " . $pmes .
 GROUP BY comanda.usuari)
 UNION
 (
-SELECT usuaris.nom, usuaris.components, usuaris.IBAN, '0', IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20',usuaris.kuota), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) AS tot
+SELECT usuaris.nom, usuaris.components, usuaris.IBAN, '0', IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) AS tot
             FROM usuaris
             WHERE nom NOT IN (
             SELECT DISTINCT us.nom

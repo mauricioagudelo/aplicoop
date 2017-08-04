@@ -49,7 +49,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 	        //Ordainketak
 	        $concepto = "Ordainketa (dom.) ".$pmes.'/'.$pyear;
 	        $notas = "hecho desde economia kidekoop";
-	        $query = "SELECT comanda.usuari, SUM(comanda_linia.cistella * comanda_linia.preu), usuaris.kuota
+	        $query = "SELECT comanda.usuari, SUM(comanda_linia.cistella * comanda_linia.preu), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota)
 	            FROM comanda 
 	            JOIN comanda_linia ON comanda.numero=comanda_linia.numero 
 	            JOIN usuaris on comanda.usuari=usuaris.nom
@@ -72,7 +72,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 	            //	print ("<p class='comment'>S'han " . $verb . " " . ABS($pvalor) . " euros a " . $tfam . " pel concepte " . $pconcepte . " </p>");
 	        }
 
-	        $query="SELECT usuaris.nom, usuaris.kuota
+	        $query="SELECT usuaris.nom, IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota)
             FROM usuaris
             WHERE nom NOT IN (
             SELECT DISTINCT us.nom
@@ -95,7 +95,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 	        //Kuotak
 	        echo "<p>Kuotas del més : ". $pmes . "/" . $pyear . "</p>";
 	        $concepto = "Kuota ".$pmes.'/'.$pyear;
-	        $query = "SELECT nom,kuota FROM `usuaris` WHERE tipus2='actiu' AND kuota != 0";
+	        $query = "SELECT nom,IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) FROM `usuaris` WHERE tipus2='actiu' AND kuota != 0";
 	        $result = mysql_query($query);
 			if (!$result) {
 	            die('Invalid query: ' . mysql_error());
