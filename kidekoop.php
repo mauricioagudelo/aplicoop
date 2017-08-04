@@ -269,13 +269,13 @@ UNION
         <?php
         
     }
-    $result = mysql_query("SELECT COUNT(nom) FROM usuaris WHERE MONTH(fechaalta) = MONTH('" . $pyear . "-" . $pmes . "-" . "01" . "') AND YEAR(fechaalta) = YEAR('" . $pyear . "-" . $pmes . "-" . "01" . "')");
+    /*$result = mysql_query("SELECT COUNT(nom) FROM usuaris WHERE MONTH(fechaalta) = MONTH('" . $pyear . "-" . $pmes . "-" . "01" . "') AND YEAR(fechaalta) = YEAR('" . $pyear . "-" . $pmes . "-" . "01" . "')");
     if (!$result) {
             die('Invalid query: ' . mysql_error());
             }
     list($count) = mysql_fetch_row($result);
     $nuevas_altas = $count*20;
-    echo "<p>Este més ha havido : " . $count . " nuevas altas con un total importe de : " . $nuevas_altas . " €</p>";
+    echo "<p>Este més ha havido : " . $count . " nuevas altas con un total importe de : " . $nuevas_altas . " €</p>";*/
     $overall = $totalof1 + $totalof3;
     echo "<p>TOTAL de facturas, cuotas y nuevas altas : ". sprintf("%01.2f", $overall) . "€</p>";
     print('</div></div>');
