@@ -118,7 +118,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         </tr>') ;     
 
             $sel="(
-SELECT comanda.usuari, usuaris.components, usuaris.IBAN, SUM(comanda_linia.cistella * comanda_linia.preu), usuaris.kuota, SUM(comanda_linia.cistella * comanda_linia.preu) + usuaris.kuota
+SELECT comanda.usuari, usuaris.components, usuaris.IBAN, SUM(comanda_linia.cistella * comanda_linia.preu), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20',usuaris.kuota), SUM(comanda_linia.cistella * comanda_linia.preu) + IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20',usuaris.kuota) AS tot
 FROM comanda 
 JOIN comanda_linia ON comanda.numero=comanda_linia.numero 
 JOIN usuaris on comanda.usuari=usuaris.nom
@@ -126,7 +126,7 @@ WHERE YEAR(comanda.data) = " . $pyear . "  AND MONTH(comanda.data) = " . $pmes .
 GROUP BY comanda.usuari)
 UNION
 (
-SELECT usuaris.nom, usuaris.components, usuaris.IBAN, '0', usuaris.kuota, usuaris.kuota
+SELECT usuaris.nom, usuaris.components, usuaris.IBAN, '0', IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20',usuaris.kuota), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) AS tot
             FROM usuaris
             WHERE nom NOT IN (
             SELECT DISTINCT us.nom
@@ -159,7 +159,7 @@ SELECT usuaris.nom, usuaris.components, usuaris.IBAN, '0', usuaris.kuota, usuari
 
         $tot = "SELECT SUM(total)
 FROM ((
-SELECT comanda.usuari, usuaris.components, usuaris.IBAN, SUM(comanda_linia.cistella * comanda_linia.preu), usuaris.kuota, SUM(comanda_linia.cistella * comanda_linia.preu) + usuaris.kuota as total
+SELECT comanda.usuari, usuaris.components, usuaris.IBAN, SUM(comanda_linia.cistella * comanda_linia.preu), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota), SUM(comanda_linia.cistella * comanda_linia.preu) + IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) as total
 FROM comanda 
 JOIN comanda_linia ON comanda.numero=comanda_linia.numero 
 JOIN usuaris on comanda.usuari=usuaris.nom
@@ -167,7 +167,7 @@ WHERE YEAR(comanda.data) = " . $pyear . "  AND MONTH(comanda.data) = " . $pmes .
 GROUP BY comanda.usuari)
 UNION
 (
-SELECT usuaris.nom, usuaris.components, usuaris.IBAN, '0', usuaris.kuota, usuaris.kuota as total
+SELECT usuaris.nom, usuaris.components, usuaris.IBAN, '0', IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) as total
             FROM usuaris
             WHERE nom NOT IN (
             SELECT DISTINCT us.nom
@@ -200,14 +200,14 @@ SELECT usuaris.nom, usuaris.components, usuaris.IBAN, '0', usuaris.kuota, usuari
                             <td width="15%" class="u-text-semibold u-text-right">TOTAL</td>
                         </tr>') ;     
 
-            $sel="(SELECT comanda.usuari, usuaris.components, SUM(comanda_linia.cistella * comanda_linia.preu), usuaris.kuota, SUM(comanda_linia.cistella * comanda_linia.preu) + usuaris.kuota as total
+            $sel="(SELECT comanda.usuari, usuaris.components, SUM(comanda_linia.cistella * comanda_linia.preu), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota), SUM(comanda_linia.cistella * comanda_linia.preu) + IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) as total
             FROM comanda 
             JOIN comanda_linia ON comanda.numero=comanda_linia.numero 
             JOIN usuaris on comanda.usuari=usuaris.nom
             WHERE YEAR(comanda.data) = ".$pyear."  AND MONTH(comanda.data) = ".$pmes." AND usuaris.domiciliacion = 0
             GROUP BY comanda.usuari)
 UNION
-     (SELECT usuaris.nom, usuaris.components, '0', usuaris.kuota,usuaris.kuota
+     (SELECT usuaris.nom, usuaris.components, '0', IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota),IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota)
             FROM usuaris
             WHERE nom NOT IN (
             SELECT DISTINCT us.nom
@@ -239,14 +239,14 @@ UNION
         print ('</table></div>');
 
         $tot = "SELECT SUM(total) FROM (
-            (SELECT comanda.usuari, usuaris.components, SUM(comanda_linia.cistella * comanda_linia.preu), usuaris.kuota, SUM(comanda_linia.cistella * comanda_linia.preu) + usuaris.kuota as total
+            (SELECT comanda.usuari, usuaris.components, SUM(comanda_linia.cistella * comanda_linia.preu), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota), SUM(comanda_linia.cistella * comanda_linia.preu) + IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) as total
             FROM comanda 
             JOIN comanda_linia ON comanda.numero=comanda_linia.numero 
             JOIN usuaris on comanda.usuari=usuaris.nom
             WHERE YEAR(comanda.data) = ".$pyear."  AND MONTH(comanda.data) = ".$pmes." AND usuaris.domiciliacion = 0
             GROUP BY comanda.usuari)
 UNION
-     (SELECT usuaris.nom, usuaris.components, '0', usuaris.kuota,usuaris.kuota as total
+     (SELECT usuaris.nom, usuaris.components, '0', IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota),IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) as total
             FROM usuaris
             WHERE nom NOT IN (
             SELECT DISTINCT us.nom
@@ -276,7 +276,7 @@ UNION
     list($count) = mysql_fetch_row($result);
     $nuevas_altas = $count*20;
     echo "<p>Este més ha havido : " . $count . " nuevas altas con un total importe de : " . $nuevas_altas . " €</p>";
-    $overall = $totalof1 + $totalof3 + $nuevas_altas;
+    $overall = $totalof1 + $totalof3;
     echo "<p>TOTAL de facturas, cuotas y nuevas altas : ". sprintf("%01.2f", $overall) . "€</p>";
     print('</div></div>');
         ?>
