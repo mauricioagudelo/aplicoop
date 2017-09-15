@@ -49,8 +49,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             <select name="actiu" id="actiu" size="1" maxlength="5" onChange="this.form.submit()">
 
                                 <option value="">Tots</option>
-                                <option value="actiu" <?php if ($pactiu == 'actiu') {echo $checked1;} ?>>Actiu</option>
-                                <option value="baixa" <?php if ($pactiu == 'baixa') {echo $checked2;} ?>>Baixa</option>
+                                <option value="actiu" <?php if ($pactiu == 'actiu') {echo 'selected';} ?>>Actiu</option>
+                                <option value="baixa" <?php if ($pactiu == 'baixa') {echo 'selected';} ?>>Baixa</option>
 
                             </select>
                         </td>

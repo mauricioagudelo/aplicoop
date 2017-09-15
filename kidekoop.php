@@ -5,7 +5,7 @@ En concreto, muestra los consumos y cuotas de los socios de cada mes.
 La gestion de los monederos que se puede hacer mediante el boton "Actualizar Monederos" no se recomienda utilizar
 fuera del contexto del "cierre del mes". En futuras versiones se intentara capar esa opcion para evitar "falsos cierres de mes"
 Autor: Leonidas Ioannidis
-Contacto: leonidas@cryptolab.net
+Contacto: info@kidekooo.org
 -->
 
 
