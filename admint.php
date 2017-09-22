@@ -103,6 +103,11 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 <li><a class="link" href='estat_consum.php'>Estad&iacute;stica de consumo</a></li>
                                 <li><a class="link" href='estat_iva.php'>Consumo IVA</a></li>
                             </ul>
+                            <h2 class="box-subtitle">Econom&iacute;a Kidekoop</h2>
+                            <ul type="circle">
+                                <li><a class="link" href='kidekoop.php'>Cierre de Més</a></li>
+                                <li><a class="link" href='balances_socios.php'>Balances de Socios</a></li>
+                            </ul>
                         </div>
                         <div class="col-md-4">
                             <h2 class="box-subtitle">Productos</h2>

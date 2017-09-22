@@ -22,7 +22,10 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     $p_adressf = $_POST['adressf'];
     $p_niff = $_POST['niff'];
     $p_nota = $_POST['nota'];
-
+    $p_kuota = $_POST['kuota'];
+    $p_IBAN = $_POST['IBAN'];
+    $p_domiciliacion = $_POST['domiciliacion'];
+    $p_fechaalta = $_POST['fechaalta'];
 
     include('config/configuracio.php');
 
@@ -30,7 +33,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     <html>
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <?php include 'head.php'; ?>
         <link rel="stylesheet" type="text/css" href="coope.css"/>
         <title>crear dades família ::: la coope</title>
     </head>
@@ -46,6 +49,10 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             var tel2 = document.getElementById("tlf2").value;
             var email1 = document.getElementById("email1").value;
             var email2 = document.getElementById("email2").value;
+            var kuota = document.getElementById("kuota").value;
+            //var fechaalta = document.getElementById("fechaalta").value;
+            
+
 
             if (nom == "") {
                 alert("T'has deixat el nom en blanc");
@@ -96,6 +103,17 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 return false;
             }
 
+            if (kuota == "") {
+                alert("No has elegido la kuota");
+                document.getElementById("kuota").focus();
+                return false;
+            }
+            // if (validateDate(fechaalta, 'Y-m-d') == false) {
+            //     console.log(validateDate(fechaalta, 'Y-m-d'));
+            //     alert("No has respetado el formato de fecha AAAA-MM-DD");
+            //     document.getElementById("fechaalta").focus();
+            //     return false;
+            // }
             return true;
         }
     </script>
@@ -121,15 +139,13 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     if ($p_nom != ""){
                         $md5_cdp = md5($p_cdp);
                         $query2 = "INSERT INTO usuaris
-	VALUES ('" . $p_nom . "', '" . $md5_cdp . "', '" . $p_tip . "', '" . $p_tip2 . "', '" . $p_dia . "', '0', '" . $p_comp . "',
-	'" . $p_tlf1 . "', '" . $p_tlf2 . "', '" . $p_email1 . "', '" . $p_email2 . "', '" . $p_nomf . "', '" . $p_adressf . "', '" . $p_niff . "',
-	'" . $p_nota . "') ";
+	VALUES ('" . $p_nom . "', '" . $md5_cdp . "', '" . $p_tip . "', '" . $p_tip2 . "', '" . $p_dia . "', '0', '" . $p_comp . "', '" . $p_tlf1 . "', '" . $p_tlf2 . "', '" . $p_email1 . "', '" . $p_email2 . "', '" . $p_nomf . "', '" . $p_adressf . "', '" . $p_niff . "', '" . $p_nota . "','" . $p_kuota . "','" . $p_IBAN . "','" . $p_domiciliacion . "','" . $p_fechaalta . "') ";
 
                         mysql_query($query2) or die('Error, insert query2 failed:' . mysql_error());
 
                         echo
                             "<tr><td align='center' class='cos2'>
-	<p class='error' style='font-size: 14px;'>Una nova família s'ha introduït correctament a la base de dades:</p>
+	<p class='error' style='font-size: 14px;'>Una nueva família se ha introducido correctamente a la base de datos:</p>
 	<p>NOM: " . $p_nom . "</p>
 	<p>CLAU DE PAS: " . $p_cdp . "</p>
 	<p>PERMISOS: " . $p_tip . "</p>
@@ -143,6 +159,10 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 	<p>NOM FACTURA: " . $p_nomf . "</p>
 	<p>ADREÇA FACTURA: " . $p_adressf . "</p>
 	<p>NIF FACTURA: " . $p_niff . "</p>
+    <p>KUOTA: " . $p_kuota . "</p>
+    <p>IBAN: " . $p_IBAN . "</p>
+    <p>Domiciliacion: "; if ($p_domiciliacion == 1){echo "Si";} else {echo "No";} echo "</p>
+    <p>Fecha de alta: " . $p_fechaalta . "</p>  
 	<p>COMENTARIS: " . $p_nota . "</p>
 	</td></tr>
 	</table>";
@@ -256,6 +276,32 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             <td>
                                 <input type="text" name="niff" value="<?php echo $niff; ?>" size="9" maxlength="9"></td>
                         </tr>
+                        <tr>
+                            <td class="cos_majus">Kuota de la socia</td>
+                            <td class="cos">
+                                <input type="number" name="kuota" min="0" max="10" step="0.01">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="cos_majus">IBAN</td>
+                            <td class="cos">
+                                <input type="text" name="IBAN" value="<?php echo $IBAN; ?>" size="24" maxlength="24">
+                        </tr>
+                        <tr>
+                            <td class="cos_majus">Domiciliacion</td>
+                            <td class="cos">
+                                <SELECT name="domiciliacion" id="domiciliacion">
+                                    <option value="0"></option>
+                                    <option value="1">SI</option>
+                                    <option value="0">NO</option>
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <td class="cos_majus">Fecha de alta</td>
+                            <td class="cos">
+                                <input type="text" name="fechaalta" placeholder="AAAA-MM-DD">
+                            </td>
+                        </tr>
                         <tr class="cos_majus">
                             <td>comentaris</td>
                             <td>
@@ -266,7 +312,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                 <p class="linia_button2" style="background: orange; text-align: center; vertical-align: middle;">
                     <input class="button2" type="submit" value="GUARDAR">
-                    <input class="button2" type="button" value="SORTIR" onClick="javascript:history.go(-1);';">
+                    <input class="button2" type="button" value="SORTIR" onClick="javascript:history.go(-1);">
                 </p>
             </div>
 
@@ -275,7 +321,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             ?>
 
             <p class="cos2" style="clear: both; text-align: center;">
-                Per canviar les dades clica el botó GUARDAR
+                Para guardar los datos clica á GUARDAR
             </p>
         </div>
     </div>
