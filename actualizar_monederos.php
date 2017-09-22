@@ -10,7 +10,9 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     $pyear = $_GET['year'];
     $pmes = $_GET['month'];
-    
+    $nextmonth = $pmes+1;
+    $fecha1 = $pyear . "-" . $nextmonth . "-01";
+
     include 'config/configuracio.php';
 
     $sel = "SELECT tipus FROM usuaris WHERE nom='$user'";
@@ -67,9 +69,6 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 	        	$query2 = "INSERT INTO moneder
 	 			VALUES ('" . $session . "','" . $user . "','" . $data . "','" . $socio . "','" . $concepto . "','" . $total . "','" . $notas . "')";
 	            mysql_query($query2) or die('Error, insert query2 failed');
-	            //$query3 = "UPDATE usuaris SET moneder=moneder" . $signe . $absvalor . " WHERE nom = '" . $tfam . "'";
-	            //mysql_query($query3) or die('Error, insert query4 failed');
-	            //	print ("<p class='comment'>S'han " . $verb . " " . ABS($pvalor) . " euros a " . $tfam . " pel concepte " . $pconcepte . " </p>");
 	        }
 
 	        $query="SELECT usuaris.nom, IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota)
@@ -79,7 +78,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     FROM usuaris AS us
                     JOIN comanda ON us.nom=comanda.usuari
                     WHERE year(comanda.data) = " . $pyear . " AND MONTH(comanda.data) = " . $pmes . "
-                 )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 1";
+                 )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 1 AND usuaris.fechaalta <='" . $fecha1 . "'";
             $result = mysql_query($query);
             if (!$result) {
             	die('Invalid query: ' . mysql_error());
@@ -91,21 +90,6 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 	 			VALUES ('" . $session . "','" . $user . "','" . $data . "','" . $socio . "','" . $concepto . "','" . $kuota . "','" . $notas . "')";
 	            mysql_query($query2) or die('Error, insert query2 failed');
             }
-
-	        //Kuotak
-	        echo "<p>Kuotas del més : ". $pmes . "/" . $pyear . "</p>";
-	        $concepto = "Kuota ".$pmes.'/'.$pyear;
-	        $query = "SELECT nom,IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) FROM `usuaris` WHERE tipus2='actiu' AND kuota != 0";
-	        $result = mysql_query($query);
-			if (!$result) {
-	            die('Invalid query: ' . mysql_error());
-	            }
-	        while (list($socio,$kuota) = mysql_fetch_row($result)) {
-	        	echo $socio . " " . $kuota . "<br>";
-	        	$query2 = "INSERT INTO moneder
-	 			VALUES ('" . $session . "','" . $user . "','" . $data . "','" . $socio . "','" . $concepto . "','" . -$kuota . "','" . $notas . "')";
-	 			mysql_query($query2) or die('Error, insert query2 failed');
-			}
 		}
 		else {
 			echo "<p>Esta operación parece que ha sido realizada. Cancelando ... </p><p><a href='kidekoop.php'>Volver</a>";

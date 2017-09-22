@@ -103,7 +103,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             //When form is send
 
             if (isset($_POST['year'])) {
-                echo "<div><a class='button button--animated button--save u-mt-2 u-mb-1' href='actualizar_monederos.php?year=".$pyear."&month=".$pmes."' title='Actualizar Monederos'>Actualizar Monederos <i class='fa fa-plus-circle' aria-hidden='true'></i></a></div>";
+                echo "<div><a class='button button--animated button--save u-mt-2 u-mb-1' href='actualizar_monederos.php?year=".$pyear."&month=".$pmes."' title='Ordainketak'>Ordainketak <i class='fa fa-plus-circle' aria-hidden='true'></i></a>
+                <a class='button button--animated button--save u-mt-2 u-mb-1' href='actualizar_kuotas.php?year=".$pyear."&month=".$pmes."' title='Kuotak'>Kuotak <i class='fa fa-plus-circle' aria-hidden='true'></i></a></div>";
             print ('<p class="alert alert--info"> Consumo mensual de Soci@s con domiciliacion</p>');
             print('<div class="table-responsive">
                     <table class="table table-condensed table-striped" >
