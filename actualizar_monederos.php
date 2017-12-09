@@ -10,7 +10,15 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     $pyear = $_GET['year'];
     $pmes = $_GET['month'];
-    $nextmonth = $pmes+1;
+    if ($pmes == 12) {
+        $nextmonth = 1;
+        $pyear = $pyear +1;
+    }
+    else{
+        $nextmonth = $pmes+1;
+    }
+    
+
     $fecha1 = $pyear . "-" . $nextmonth . "-01";
 
     include 'config/configuracio.php';
@@ -21,7 +29,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
 ///sólo entramos si somos "super"////
 
-        if ($priv == 'super') {
+    if ($priv == 'super') {
 
         ?>
 
@@ -34,51 +42,50 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             	alert('Operación cancelada.');
             	window.location = "kidekoop.php";
             }
-            </script>
-        </head>
+        </script>
+    </head>
 
-        <body>
+    <body>
         <?php include 'menu.php'; ?>
         <div class="page">
-        <p>Actualizando Monederos ...</p>
-        <?php
+            <p>Actualizando Monederos ...</p>
+            <?php
         //Check that this is the first time
-        $concepto = "Ordainketa (dom.) ".$pmes.'/'.$pyear;
-        $query_check = "SELECT familia FROM moneder WHERE concepte = '$concepto'";
-        $result = mysql_query($query_check);
-        if (mysql_num_rows($result)==0) {
-        	echo "<p>Consumos y cuotas liquidados por domiciliación bancária del més " . $pmes . "/" . $pyear ."</p>";
+            $concepto = "Ordainketa (dom.) ".$pmes.'/'.$pyear;
+            $query_check = "SELECT familia FROM moneder WHERE concepte = '$concepto'";
+            $result = mysql_query($query_check);
+            if (mysql_num_rows($result)==0) {
+               echo "<p>Acutalizacion de monederos con consumos y cuotas liquidados por domiciliación bancária del més " . $pmes . "/" . $pyear ."</p>";
 	        //Ordainketak
-	        $concepto = "Ordainketa (dom.) ".$pmes.'/'.$pyear;
-	        $notas = "hecho desde economia kidekoop";
-	        $query = "SELECT comanda.usuari, SUM(comanda_linia.cistella * comanda_linia.preu), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota)
-	            FROM comanda 
-	            JOIN comanda_linia ON comanda.numero=comanda_linia.numero 
-	            JOIN usuaris on comanda.usuari=usuaris.nom
-	            WHERE YEAR(comanda.data) = '$pyear'  AND MONTH(comanda.data) = '$pmes' AND usuaris.domiciliacion = 1
-	            GROUP BY comanda.usuari";
-			$result = mysql_query($query);
-			if (!$result) {
-	            die('Invalid query: ' . mysql_error());
-	            }
-	        while (list($socio,$consumo,$kuota) = mysql_fetch_row($result)) {
-	        	$consumo = sprintf("%01.2f", $consumo);
-	        	$total = $consumo + $kuota;
-	        	echo $socio . " " . $consumo . " + " . $kuota . " = " . $total . "<br>";
+               $concepto = "Ordainketa (dom.) ".$pmes.'/'.$pyear;
+               $notas = "hecho desde economia kidekoop";
+               $query = "SELECT familia, ROUND(SUM(valor),2), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota), ROUND(IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) + ABS(SUM(valor)),2) as tot
+               FROM `moneder`
+               JOIN usuaris ON moneder.familia = usuaris.nom
+               WHERE year(data) = " . $pyear . " and month(data) = " . $pmes . " and (concepte LIKE 'Factura%' OR concepte LIKE 'Anulacio%') AND usuaris.domiciliacion=1
+               GROUP BY familia";
+               $result = mysql_query($query);
+               if (!$result) {
+                   die('Invalid query: ' . mysql_error());
+               }
+               while (list($socio,$consumo,$kuota,$total) = mysql_fetch_row($result)) {
+                  // $consumo = sprintf("%01.2f", $consumo);
+                  // $total = $consumo + $kuota;
+                  echo $socio . " " . $consumo . " + " . $kuota . " = " . $total . "<br>";
 
-	        	$query2 = "INSERT INTO moneder
-	 			VALUES ('" . $session . "','" . $user . "','" . $data . "','" . $socio . "','" . $concepto . "','" . $total . "','" . $notas . "')";
-	            mysql_query($query2) or die('Error, insert query2 failed');
-	        }
+                  $query2 = "INSERT INTO moneder
+                  VALUES ('" . $session . "','" . $user . "','" . $data . "','" . $socio . "','" . $concepto . "','" . $total . "','" . $notas . "')";
+                  mysql_query($query2) or die('Error, insert query2 failed');
+              }
 
-	        $query="SELECT usuaris.nom, IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota)
-            FROM usuaris
-            WHERE nom NOT IN (
-            SELECT DISTINCT us.nom
-                    FROM usuaris AS us
-                    JOIN comanda ON us.nom=comanda.usuari
-                    WHERE year(comanda.data) = " . $pyear . " AND MONTH(comanda.data) = " . $pmes . "
-                 )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 1 AND usuaris.fechaalta <='" . $fecha1 . "'";
+              $query="SELECT usuaris.nom, IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota)
+              FROM usuaris
+              WHERE nom NOT IN (
+                SELECT DISTINCT us.nom
+                FROM usuaris AS us
+                JOIN comanda ON us.nom=comanda.usuari
+                WHERE year(comanda.data) = " . $pyear . " AND MONTH(comanda.data) = " . $pmes . "
+            )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 1 AND usuaris.fechaalta <='" . $fecha1 . "'";
             $result = mysql_query($query);
             if (!$result) {
             	die('Invalid query: ' . mysql_error());
@@ -87,23 +94,23 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             while (list($socio, $kuota) = mysql_fetch_row($result)) {
             	echo $socio . " " . $kuota . "<br>";
             	$query2 = "INSERT INTO moneder
-	 			VALUES ('" . $session . "','" . $user . "','" . $data . "','" . $socio . "','" . $concepto . "','" . $kuota . "','" . $notas . "')";
-	            mysql_query($query2) or die('Error, insert query2 failed');
-            }
-		}
-		else {
-			echo "<p>Esta operación parece que ha sido realizada. Cancelando ... </p><p><a href='kidekoop.php'>Volver</a>";
+               VALUES ('" . $session . "','" . $user . "','" . $data . "','" . $socio . "','" . $concepto . "','" . $kuota . "','" . $notas . "')";
+               mysql_query($query2) or die('Error, insert query2 failed');
+           }
+       }
+       else {
+         echo "<p>Esta operación parece que ha sido realizada. Cancelando ... </p><p><a href='kidekoop.php'>Volver</a>";
 
-		}
-        ?>
-        </div>
-        </body>
-        </html>
-    <?php
-        include 'config/disconect.php';
-    } else {
-        header("Location: escriptori2.php");
-    }
+     }
+     ?>
+ </div>
+</body>
+</html>
+<?php
+include 'config/disconect.php';
+} else {
+    header("Location: escriptori2.php");
+}
 } else {
     header("Location: index.php");
 }

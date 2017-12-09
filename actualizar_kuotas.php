@@ -46,7 +46,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
         $query_check = "SELECT familia FROM moneder WHERE concepte = '$concepto'";
         $result = mysql_query($query_check);
         if (mysql_num_rows($result)==0) {
-        	echo "<p>Consumos y cuotas liquidados por domiciliación bancária del més " . $pmes . "/" . $pyear ."</p>";
+        	echo "<p>Aplicar la cuota del mes en los monederos para el més " . $pmes . "/" . $pyear ."</p>";
 
 	        //Kuotak
 	        echo "<p>Kuotas del més : ". $pmes . "/" . $pyear . "</p>";

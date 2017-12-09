@@ -103,31 +103,26 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             //When form is send
 
             if (isset($_POST['year'])) {
-                echo "<div><a class='button button--animated button--save u-mt-2 u-mb-1' href='actualizar_monederos.php?year=".$pyear."&month=".$pmes."' title='Ordainketak'>Ordainketak <i class='fa fa-plus-circle' aria-hidden='true'></i></a>
-                <a class='button button--animated button--save u-mt-2 u-mb-1' href='actualizar_kuotas.php?year=".$pyear."&month=".$pmes."' title='Kuotak'>Kuotak <i class='fa fa-plus-circle' aria-hidden='true'></i></a></div>";
+                echo "<div><a class='button button--animated button--save u-mt-2 u-mb-1' href='actualizar_monederos.php?year=".$pyear."&month=".$pmes."' title='Ordainketak'>Ordainketak Eguneratu <i class='fa fa-plus-circle' aria-hidden='true'></i></a>
+                <a class='button button--animated button--save u-mt-2 u-mb-1' href='actualizar_kuotas.php?year=".$pyear."&month=".$pmes."' title='Kuotak'>Kuotak Kobratu <i class='fa fa-plus-circle' aria-hidden='true'></i></a></div>";
             print ('<p class="alert alert--info"> Consumo mensual de Soci@s con domiciliacion</p>');
             print('<div class="table-responsive">
                     <table class="table table-condensed table-striped" >
                         <tr >
                             <td width="5%" class="u-text-semibold">No</td>
                             <td width="10%" class="u-text-semibold">Soci@</td>
-                            <td width="25%" class="u-text-semibold">Nombre</td>
-                            <td width="25%" class="u-text-semibold">IBAN</td>                            
-                            <td width="10%" class="u-text-semibold u-text-right">Consumo</td>
-                            <td width="10%" class="u-text-semibold u-text-right">Cuota</td>
+                            <td width="40%" class="u-text-semibold">Nombre</td>                     
+                            <td width="15%" class="u-text-semibold u-text-right">Consumo</td>
+                            <td width="15%" class="u-text-semibold u-text-right">Cuota</td>
                             <td width="20%" class="u-text-semibold u-text-right">TOTAL</td>
                         </tr>') ;     
-
-            $sel="(
-SELECT comanda.usuari, usuaris.components, usuaris.IBAN, SUM(comanda_linia.cistella * comanda_linia.preu), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota), SUM(comanda_linia.cistella * comanda_linia.preu) + IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) AS tot
-FROM comanda 
-JOIN comanda_linia ON comanda.numero=comanda_linia.numero 
-JOIN usuaris on comanda.usuari=usuaris.nom
-WHERE YEAR(comanda.data) = " . $pyear . "  AND MONTH(comanda.data) = " . $pmes . " AND usuaris.domiciliacion = 1
-GROUP BY comanda.usuari)
+            $sel = "(SELECT familia,usuaris.components, ROUND(SUM(valor),2), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota), ROUND(IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) + ABS(SUM(valor)),2) as tot
+FROM `moneder`
+JOIN usuaris ON moneder.familia = usuaris.nom
+WHERE year(data) = " . $pyear . " and month(data) = " . $pmes . " and (concepte LIKE 'Factura%' OR concepte LIKE 'Anulacio%') AND usuaris.domiciliacion=1
+GROUP BY familia)
 UNION
-(
-SELECT usuaris.nom, usuaris.components, usuaris.IBAN, '0', IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) AS tot
+(SELECT usuaris.nom, usuaris.components, '0', IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) AS tot
             FROM usuaris
             WHERE nom NOT IN (
             SELECT DISTINCT us.nom
@@ -141,13 +136,12 @@ SELECT usuaris.nom, usuaris.components, usuaris.IBAN, '0', IF(year(usuaris.fecha
             die('Invalid query: ' . mysql_error());
             }
             $k = 0;
-            while (list($socio, $nomsocio, $iban, $consumo, $cuota, $total) = mysql_fetch_row($result)) {
+            while (list($socio, $nomsocio, $consumo, $cuota, $total) = mysql_fetch_row($result)) {
            ?>
            <tr>
                 <td><?php echo $k + 1; ?></td>
                 <td><?php echo $socio; ?></td>
                 <td><?php echo $nomsocio; ?></td>
-                <td><?php echo $iban; ?></td>
                 <td class="u-text-right"><?php echo sprintf("%01.2f", $consumo); ?></td>
                 <td class="u-text-right"><?php echo $cuota; ?></td>
                 <td class="u-text-right"><?php echo sprintf("%01.2f", $total); ?></td>
@@ -159,24 +153,20 @@ SELECT usuaris.nom, usuaris.components, usuaris.IBAN, '0', IF(year(usuaris.fecha
         print ('</table></div>');
 
         $tot = "SELECT SUM(total)
-FROM ((
-SELECT comanda.usuari, usuaris.components, usuaris.IBAN, SUM(comanda_linia.cistella * comanda_linia.preu), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota), SUM(comanda_linia.cistella * comanda_linia.preu) + IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) as total
-FROM comanda 
-JOIN comanda_linia ON comanda.numero=comanda_linia.numero 
-JOIN usuaris on comanda.usuari=usuaris.nom
-WHERE YEAR(comanda.data) = " . $pyear . "  AND MONTH(comanda.data) = " . $pmes . " AND usuaris.domiciliacion = 1
-GROUP BY comanda.usuari)
+FROM ((SELECT familia,usuaris.components, ROUND(SUM(valor),2), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota), ROUND(IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) + ABS(SUM(valor)),2) as total
+FROM `moneder`
+JOIN usuaris ON moneder.familia = usuaris.nom
+WHERE year(data) = " . $pyear . " and month(data) = " . $pmes . " and (concepte LIKE 'Factura%' OR concepte LIKE 'Anulacio%') AND usuaris.domiciliacion=1
+GROUP BY familia)
 UNION
-(
-SELECT usuaris.nom, usuaris.components, usuaris.IBAN, '0', IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) as total
+(SELECT usuaris.nom, usuaris.components, '0', IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) AS total
             FROM usuaris
             WHERE nom NOT IN (
             SELECT DISTINCT us.nom
                     FROM usuaris AS us
                     JOIN comanda ON us.nom=comanda.usuari
                     WHERE year(comanda.data) = " . $pyear . " AND MONTH(comanda.data) = " . $pmes . "
-                 )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 1 AND usuaris.fechaalta <='" . $fecha1 . "' ORDER BY usuaris.IBAN DESC
-))as sub";
+                 )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 1 AND usuaris.fechaalta <='" . $fecha1 . "'))as sub";
         $result = mysql_query($tot);
         if (!$result) {
             die('Invalid query: ' . mysql_error());
@@ -270,13 +260,7 @@ UNION
         <?php
         
     }
-    /*$result = mysql_query("SELECT COUNT(nom) FROM usuaris WHERE MONTH(fechaalta) = MONTH('" . $pyear . "-" . $pmes . "-" . "01" . "') AND YEAR(fechaalta) = YEAR('" . $pyear . "-" . $pmes . "-" . "01" . "')");
-    if (!$result) {
-            die('Invalid query: ' . mysql_error());
-            }
-    list($count) = mysql_fetch_row($result);
-    $nuevas_altas = $count*20;
-    echo "<p>Este més ha havido : " . $count . " nuevas altas con un total importe de : " . $nuevas_altas . " €</p>";*/
+
     $overall = $totalof1 + $totalof3;
     echo "<p>TOTAL de facturas, cuotas y nuevas altas : ". sprintf("%01.2f", $overall) . "€</p>";
     print('</div></div>');
