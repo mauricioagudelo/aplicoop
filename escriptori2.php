@@ -289,16 +289,14 @@ while (list($datam, $concepte, $valor) = mysql_fetch_row($result7)) {
 $sel5 = "SELECT * FROM incidencia
 	WHERE vist='0' AND (`to`='$user' OR `from`='$user')
 	ORDER BY data DESC
-	LIMIT 20";
+	LIMIT 5";
 $result5 = mysql_query($sel5);
 if (!$result5) {
     die('Invalid query5: ' . mysql_error());
 }
 while (list($from, $to, $sub, $tex, $datac, $vis) = mysql_fetch_row($result5)) {
 
-    $correu_linia .= '<div id="correu_f1"><p><SPAN style="font-weight: bold;"> Tema: </span>' . $sub . '
-		 <SPAN style="font-weight: bold;"> De: </span>' . $from . ' <SPAN style="font-weight: bold;">A: </span>' . $to . '
-		 <SPAN style="font-weight: bold;"> Data: </span>' . $datac . '</div>
+    $correu_linia .= '<div id="correu_f1"><p><SPAN style="font-weight: bold;"> Gaia: </span>' . $sub . '<span style="font-weight: bold;"> Data: </span>' . $datac . '</div>
 		<div id="correu_f2">' . $tex . '</div>';
 }
 
@@ -343,9 +341,7 @@ while (list($from, $to, $sub, $tex, $datac, $vis) = mysql_fetch_row($result5)) {
             <div class="box">
                 <h2 class="box-title">Agenda</h2>
                 <div>
-                    <iframe src="<?php echo $gcal; ?>" style=" border-width:0 " width="400" height="300"
-                            frameborder="0"
-                            scrolling="no"></iframe>
+                    <iframe src="<?php echo $gcal; ?>" style=" border-width:0 " width="400" height="300" frameborder="0" scrolling="no"></iframe>
                 </div>
             </div>
             <div class="box">
