@@ -18,9 +18,15 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     $pyear = $_POST['year'];
     $pmes = $_POST['mes'];
-    $nextmonth = $pmes+1;
-    $fecha1 = $pyear . "-" . $nextmonth . "-01";
-    
+    if ($pmes == 12) {
+        $nextmonth = 1;
+        $pyear = $pyear +1;
+    }
+    else{
+        $nextmonth = $pmes+1;
+    }
+    // $nextmonth = $pmes+1;
+    $fecha1 = $pyear . "-" . $nextmonth . "-01";    
     
     include 'config/configuracio.php';
 
@@ -115,7 +121,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             <td width="15%" class="u-text-semibold u-text-right">Consumo</td>
                             <td width="15%" class="u-text-semibold u-text-right">Cuota</td>
                             <td width="20%" class="u-text-semibold u-text-right">TOTAL</td>
-                        </tr>') ;     
+                        </tr>') ;
+
             $sel = "(SELECT familia,usuaris.components, ROUND(SUM(valor),2), IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota), ROUND(IF(year(usuaris.fechaalta)=" . $pyear . " AND month((usuaris.fechaalta))=" . $pmes . ",'20.00',usuaris.kuota) + ABS(SUM(valor)),2) as tot
 FROM `moneder`
 JOIN usuaris ON moneder.familia = usuaris.nom
