@@ -10,7 +10,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     $pprov = $_POST['prov'];
     $pdatas = $_POST['datas'];
     $pdatai = $_POST['datai'];
-
+    print_r($pdatas,$pdatai);
     include 'config/configuracio.php';
     ?>
 
@@ -141,14 +141,14 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 $tpprov = "";
             }
             if ($pdatas != "") {
-                $wpdatas = "AND c.data>='" . $datasup . "'";
+                $wpdatas = "AND c.data>='" . $pdatas . "'";
                 $tpdatas = 'fecha superior a ' . $pdatas;
             } else {
                 $wpdatas = "";
                 $tpdatas = "";
             }
             if ($pdatai != "") {
-                $wpdatai = "AND c.data<='" . $datainf . "'";
+                $wpdatai = "AND c.data<='" . $pdatai . "'";
                 $tpdatai = 'fecha inferior a ' . $pdatai;
             } else {
                 $wpdatai = "";
@@ -180,6 +180,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 			FROM comanda AS c, comanda_linia AS cl, productes AS pr
 			WHERE c.numero=cl.numero AND pr.ref=cl.ref " . $where . "
 			GROUP BY cl.ref";
+            print_r($sel);
         $result = mysql_query($sel);
         if (!$result) {
             die('Invalid query: ' . mysql_error());
