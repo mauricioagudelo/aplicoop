@@ -101,7 +101,7 @@ while (list($numero,$familia,$check0)=mysql_fetch_row($result))
 	$to  = $email1.", ".$email2;
 
 	// Tema
-	$subject = "Kidekoop: Eskaera ".$numero." balioztatu";
+	$subject = "Kidekoop: Eskaera ".$numero." balioztatuta";
 
 	//Trobem el directori base http a partir d'on construim l'enllaç amb la factura
 	$path_parts = pathinfo($_SERVER['HTTP_REFERER']);
