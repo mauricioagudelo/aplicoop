@@ -20,13 +20,13 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     $pmes = $_POST['mes'];
     if ($pmes == 12) {
         $nextmonth = 1;
-        $pyear = $pyear +1;
+        $pnextyear = $pyear +1;
     }
     else{
         $nextmonth = $pmes+1;
     }
     // $nextmonth = $pmes+1;
-    $fecha1 = $pyear . "-" . $nextmonth . "-01";    
+    $fecha1 = $pnextyear . "-" . $nextmonth . "-01";    
     
     include 'config/configuracio.php';
 
@@ -107,7 +107,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
             <?php 
             //When form is send
-
+            print_r($pyear);
             if (isset($_POST['year'])) {
                 echo "<div><a class='button button--animated button--save u-mt-2 u-mb-1' href='actualizar_monederos.php?year=".$pyear."&month=".$pmes."' title='Ordainketak'>Ordainketak Eguneratu <i class='fa fa-plus-circle' aria-hidden='true'></i></a>
                 <a class='button button--animated button--save u-mt-2 u-mb-1' href='actualizar_kuotas.php?year=".$pyear."&month=".$pmes."' title='Kuotak'>Kuotak Kobratu <i class='fa fa-plus-circle' aria-hidden='true'></i></a></div>";

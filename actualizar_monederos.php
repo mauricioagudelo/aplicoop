@@ -12,14 +12,14 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     $pmes = $_GET['month'];
     if ($pmes == 12) {
         $nextmonth = 1;
-        $pyear = $pyear +1;
+        $pnextyear = $pyear +1;
     }
     else{
         $nextmonth = $pmes+1;
     }
     
 
-    $fecha1 = $pyear . "-" . $nextmonth . "-01";
+    $fecha1 = $pnextyear . "-" . $nextmonth . "-01";
 
     include 'config/configuracio.php';
 
