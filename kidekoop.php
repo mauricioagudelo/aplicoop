@@ -24,6 +24,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     }
     else{
         $nextmonth = $pmes+1;
+        $pnextyear = $pyear;
     }
     // $nextmonth = $pmes+1;
     $fecha1 = $pnextyear . "-" . $nextmonth . "-01";    
@@ -107,7 +108,6 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
             <?php 
             //When form is send
-            print_r($pyear);
             if (isset($_POST['year'])) {
                 echo "<div><a class='button button--animated button--save u-mt-2 u-mb-1' href='actualizar_monederos.php?year=".$pyear."&month=".$pmes."' title='Ordainketak'>Ordainketak Eguneratu <i class='fa fa-plus-circle' aria-hidden='true'></i></a>
                 <a class='button button--animated button--save u-mt-2 u-mb-1' href='actualizar_kuotas.php?year=".$pyear."&month=".$pmes."' title='Kuotak'>Kuotak Kobratu <i class='fa fa-plus-circle' aria-hidden='true'></i></a></div>";
@@ -225,7 +225,7 @@ UNION
                 <td><?php echo $k +1; ?></td>
                 <td><?php echo $socio; ?></td>
                 <td><?php echo $nomsocio; ?></td>
-                <!--<td><?php echo $subcat; ?></td>-->
+                
                 <td class="u-text-right"><?php echo sprintf("%01.2f", $consumo); ?></td>
                 <td class="u-text-right"><?php echo $cuota; ?></td>
                 <td class="u-text-right"><?php echo sprintf("%01.2f", $total); ?></td>

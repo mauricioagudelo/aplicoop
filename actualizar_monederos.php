@@ -16,6 +16,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     }
     else{
         $nextmonth = $pmes+1;
+        $pnextyear = $pyear;
     }
     
 
