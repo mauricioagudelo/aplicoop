@@ -179,7 +179,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 $rnum = mysql_num_rows($result);
 
                 if (!$gcont) {
-                    $cont = 30;
+                    $cont = 50;
                 } else {
                     $cont = $gcont;
                 }
@@ -244,9 +244,9 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 print ('</table></div>');
 
                 if ($rnum > $cont) {
-                    $id = $cont + 30;
+                    $id = $cont + 50;
                     echo '<div class="u-text-center"><button class="button button--animated" name="mes"
-			onClick="javascript:window.location = \'comandes.php?id2=' . $id . '&id4=' . $pfam . '&id5=' . $pdatas . '&id6=' . $pdatai . '\'">30+</button>
+			onClick="javascript:window.location = \'comandes.php?id2=' . $id . '&id4=' . $pfam . '&id5=' . $pdatas . '&id6=' . $pdatai . '\'">50+</button>
 			</div>';
                 }
 

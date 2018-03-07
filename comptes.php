@@ -229,8 +229,6 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     echo '<div class="u-text-center"><button class="button button--animated"  name="mes"
 		onClick="javascript:window.location = \'comptes.php?id2=' . $id . '&id4=' . $pfam . '&id5=' . $pdatas . '&id6=' . $pdatai . '\'">100+</button></div>';
                 }
-
-
                 ?>
             </div>
         </div>
