@@ -120,8 +120,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 if ($pfam != "" OR $pdatas != "" OR $pdatai != "") {
                     $datas2 = explode("/", $pdatas);
                     $datai2 = explode("/", $pdatai);
-                    $datasup = $datas2[2] . "-" . $datas2[1] . "-" . $datas2[0];
-                    $datainf = $datai2[2] . "-" . $datai2[1] . "-" . $datai2[0];
+                    $datasup = $datas2[0];// . "-" . $datas2[1] . "-" . $datas2[0];
+                    $datainf = $datai2[0];// . "-" . $datai2[1] . "-" . $datai2[0];
 
                     if ($pfam != "" AND $pdatas == "" AND $pdatai == "") {
                         $where = "WHERE usuari='" . $pfam . "'";
