@@ -324,7 +324,7 @@ while (list($from, $to, $sub, $tex, $datac, $vis) = mysql_fetch_row($result5)) {
     <script type="text/javascript">
         function confirm_alert(node,datediff,proces) {
             if(datediff > 7)
-                return confirm("El pedido " + proces + " de esta semana ya esta cerrado. Si realizas tu pedido ahora se registrara para la semana siguiente. ¿Estás de acuerdo?");
+                return confirm("El pedido " + proces + " de esta semana ya esta cerrado. Si realizas tu pedido ahora se registrará para la semana siguiente. ¿Estás de acuerdo?");
         }
     </script>
 </head>
