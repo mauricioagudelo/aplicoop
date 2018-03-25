@@ -230,14 +230,14 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 }
                                 //added
                                     $sel2 = "SELECT pr.ref,pr.nom,pr.unitat,pr.proveidora,ctg.tipus,ctg.estoc,pr.subcategoria,pr.preusi,pr.iva,
-                                    pr.marge, pr.descompte,pr.estoc FROM productes AS pr, categoria AS ctg
+                                    pr.marge, pr.descompte,pr.estoc, pr.labels FROM productes AS pr, categoria AS ctg
                                     WHERE pr.categoria=ctg.tipus AND pr.categoria='$cat' AND pr.actiu='actiu'  ORDER BY pr.categoria, pr.nom ";
                                     $result2 = mysql_query($sel2);
                                     if (!$result2) {
                                         die('Invalid query2: ' . mysql_error());
                                     }
                                     print ('<ul class="accordion-section row">');
-                                    while (list($ref, $nomprod, $unitat, $prov, $categ, $ctg_estoc, $subcat, $preu, $iva, $marge, $descompte, $pr_estoc) = mysql_fetch_row($result2)) {
+                                    while (list($ref, $nomprod, $unitat, $prov, $categ, $ctg_estoc, $subcat, $preu, $iva, $marge, $descompte, $pr_estoc, $labels) = mysql_fetch_row($result2)) {
                                     //// En els productes d'estoc, apareix l'estoc ////
                                     //// Si l'estoc es negatiu apareix en gris ////
                                         if ($ctg_estoc == 'si') {
@@ -294,6 +294,12 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                         if ($descompte != 0) {
                                             $w_desc = "<span style='color:red;'> DESKONTU/DESCUENTO:" . $descompte * 100 . "%</span>";
                                         }
+                                        $labels_array = explode(',', $labels);
+                                        $labels_html = '';
+                                        for ($i=0; $i < sizeof($labels_array); $i++) { 
+                                            # code...
+                                            $labels_html .= "<span class='label label-success'>" . $labels_array[$i] . "</span>";
+                                        }
                                         $prod = htmlentities($nomprod, null, 'utf-8');
                                         $prodtext = str_replace("&nbsp;", " ", $prod);
                                         $prodtext = html_entity_decode($prodtext, null, 'utf-8');
@@ -305,6 +311,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                             <span class="product-price">' . $pvp . ' &#8364;/' . $unitat . '</span>
                                             <span>' . $w_estoc . ' ' . $w_desc . '</span>
                                             </label>
+                                            <div style="float:right;">'.$labels_html.'</div>
                                             <input class="form-control" name="num[]" id="num' . $id . '" type="number" value="' . $qdec . '" maxlength="5" size="3" min="0"  step="any">
                                             <input type=hidden name="ref[]" id="ref' . $id . '" value="' . $ref . '">
                                             <input type=hidden name="nom[]" id="nom' . $id . '" value="' . $nomprod . '">
