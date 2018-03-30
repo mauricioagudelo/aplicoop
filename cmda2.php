@@ -298,7 +298,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                         $labels_html = '';
                                         for ($i=0; $i < sizeof($labels_array); $i++) { 
                                             # code...
-                                            $labels_html .= "<span class='label label-success'>" . $labels_array[$i] . "</span>";
+                                            $labels_html .= "<span class='product-label label label-success'>" . $labels_array[$i] . "</span>";
                                         }
                                         $prod = htmlentities($nomprod, null, 'utf-8');
                                         $prodtext = str_replace("&nbsp;", " ", $prod);
@@ -309,10 +309,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                             <label for="num' . $id . '">
                                             <span class="product-name">' . $prodtext . '</span>
                                             <span class="product-price">' . $pvp . ' &#8364;/' . $unitat . '</span>
-                                            <span>' . $w_estoc . ' ' . $w_desc . '</span>
-                                            </label>
-                                            <div style="float:right;">'.$labels_html.'</div>
-                                            <input class="form-control" name="num[]" id="num' . $id . '" type="number" value="' . $qdec . '" maxlength="5" size="3" min="0"  step="any">
+                                            <span>' . $w_estoc . ' ' . $w_desc . '</span>'.$labels_html.'</label><input class="form-control" name="num[]" id="num' . $id . '" type="number" value="' . $qdec . '" maxlength="5" size="3" min="0"  step="any">
                                             <input type=hidden name="ref[]" id="ref' . $id . '" value="' . $ref . '">
                                             <input type=hidden name="nom[]" id="nom' . $id . '" value="' . $nomprod . '">
                                             <input type=hidden name="uni[]" value="' . $unitat . '">
