@@ -145,209 +145,208 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     <body>
 
-    <?php include 'menu.php'; ?>
-    <div class="page">
-        <div class="contenidor_1 container">
+        <?php include 'menu.php'; ?>
+        <div class="page">
+            <div class="contenidor_1 container">
 
-            <?php
-            $sel5 = "SELECT dia FROM usuaris WHERE nom='$user'";
-            $result5 = mysql_query($sel5);
-            if (!$result5) {
-                die('Invalid query5: ' . mysql_error());
-            }
-            list($grup) = mysql_fetch_row($result5);
+                <?php
+                $sel5 = "SELECT dia FROM usuaris WHERE nom='$user'";
+                $result5 = mysql_query($sel5);
+                if (!$result5) {
+                    die('Invalid query5: ' . mysql_error());
+                }
+                list($grup) = mysql_fetch_row($result5);
 
-            $sel6 = "SELECT tipus, data_inici, data_fi, periode, dia_recollida, dia_tall, hora_tall
-				FROM processos WHERE nom='$proces' AND grup='$grup'";
-            $result6 = mysql_query($sel6);
-            if (!$result6) {
-                die('Invalid query6: ' . mysql_error());
-            }
-            list($tipus, $datai, $dataf, $periode, $diare, $diat, $horat) = mysql_fetch_row($result6);
+                $sel6 = "SELECT tipus, data_inici, data_fi, periode, dia_recollida, dia_tall, hora_tall
+                FROM processos WHERE nom='$proces' AND grup='$grup'";
+                $result6 = mysql_query($sel6);
+                if (!$result6) {
+                    die('Invalid query6: ' . mysql_error());
+                }
+                list($tipus, $datai, $dataf, $periode, $diare, $diat, $horat) = mysql_fetch_row($result6);
 
-            $title = $proces . " / grupo " . $grup;
+                $title = $proces . " / grupo " . $grup;
 
             ////////////////////////
             // Això és id4=create //
             ////////////////////////
 
-            if ($pres == 'create')
-            {
-                if (!$numcmda) {
+                if ($pres == 'create')
+                {
+                    if (!$numcmda) {
                     /////////////////////////////////////
                     // anem a generar una comanda nova //
                     // apareix la fitxa de productes buida   //
                     /////////////////////////////////////
 
-                    $cap = $title;
-                    $goto = 'cmda2.php?id=' . $proces . '&id4=vis';
-                } else {
+                        $cap = $title;
+                        $goto = 'cmda2.php?id=' . $proces . '&id4=vis';
+                    } else {
                     //////////////////////////////////////////////////////
                     /// Editem una comanda ja realitzada /////
                     //////////////////////////////////////////////////////
 
-                    $cap = 'Pedido nº ' . $numcmda . ' - ' . $title;
-                    $goto = 'cmda2.php?id=' . $proces . '&id2=' . $numcmda . '&id4=vis';
-                }
-                ?>
+                        $cap = 'Pedido nº ' . $numcmda . ' - ' . $title;
+                        $goto = 'cmda2.php?id=' . $proces . '&id2=' . $numcmda . '&id4=vis';
+                    }
+                    ?>
 
 
-                <form action="<?php echo $goto; ?>" method="post" name="frmComanda" id="frmComanda"
+                    <form action="<?php echo $goto; ?>" method="post" name="frmComanda" id="frmComanda"
                       onSubmit="return validate_form()">
 
-                    <h1><?php echo $cap; ?></h1>
+                      <h1><?php echo $cap; ?></h1>
 
-                    <div class="box">
+                      <div class="box">
 
                         <ul class="accordion">
 
                             <?php
-
-                            $sel = "SELECT categoria FROM proces_linia
-		WHERE proces='$proces' AND grup='$grup' AND actiu='activat'
-		ORDER BY ordre";
+                            $sel = "SELECT categoria FROM proces_linia WHERE proces='$proces' AND grup='$grup' AND actiu='activat' ORDER BY ordre";
                             $result = mysql_query($sel);
                             if (!$result) {
                                 die('Invalid query: ' . mysql_error());
                             }
-
                             $id = 0;
-                            $cc = 0;
                             while (list($cat) = mysql_fetch_row($result)) {
                                 print ('<li class="accordion-item">
+                                    <input type="checkbox"  class="accordion-check" checked>
+                                    <i class="accordion-icon"></i>
+                                    <h2 class="accordion-title box-subtitle">' . $cat . '</h2>');
+                                //added
+                                $selectsubcategorias = "SELECT subcategoria FROM subcategoria WHERE categoria='$cat'";
+                                $ressubcat = mysql_query($selectsubcategorias);
+                                if (!$ressubcat) {
+                                    die('Invalid querysubcat: '  . mysql_error());
+                                }
+                                while (list($subcate) = mysql_fetch_row($ressubcat)) {
+                                    print ('<ul class="accordion">
+                                        <li class="accordion-item">
+                                        
+                                        <li class="col-lg-12">
                                         <input type="checkbox"  class="accordion-check" checked>
                                         <i class="accordion-icon"></i>
-                                        <h2 class="accordion-title box-subtitle">' . $cat . '</h2>');
-                                $cc++;
-                                if ($cc == 7) {
-                                    $cc = 0;
+                                        <h3 class="accordion-title box-subtitle">' . $subcate . '</h3></li></li></ul>');
                                 }
-
-                                $sel2 = "SELECT pr.ref,pr.nom,pr.unitat,pr.proveidora,ctg.tipus,ctg.estoc,pr.subcategoria,pr.preusi,pr.iva,
-			pr.marge, pr.descompte,pr.estoc FROM productes AS pr, categoria AS ctg
-			WHERE pr.categoria=ctg.tipus AND pr.categoria='$cat' AND pr.actiu='actiu'
-			ORDER BY pr.categoria, pr.nom ";
-
-                                $result2 = mysql_query($sel2);
-                                if (!$result2) {
-                                    die('Invalid query2: ' . mysql_error());
-                                }
-
-                                print ('<ul class="accordion-section row">');
-
-
-                                while (list($ref, $nomprod, $unitat, $prov, $categ, $ctg_estoc, $subcat, $preu, $iva, $marge, $descompte, $pr_estoc) = mysql_fetch_row($result2)) {
+                                //added
+                                    $sel2 = "SELECT pr.ref,pr.nom,pr.unitat,pr.proveidora,ctg.tipus,ctg.estoc,pr.subcategoria,pr.preusi,pr.iva,
+                                    pr.marge, pr.descompte,pr.estoc, pr.labels FROM productes AS pr, categoria AS ctg
+                                    WHERE pr.categoria=ctg.tipus AND pr.categoria='$cat' AND pr.actiu='actiu'  ORDER BY pr.categoria, pr.nom ";
+                                    $result2 = mysql_query($sel2);
+                                    if (!$result2) {
+                                        die('Invalid query2: ' . mysql_error());
+                                    }
+                                    print ('<ul class="accordion-section row">');
+                                    while (list($ref, $nomprod, $unitat, $prov, $categ, $ctg_estoc, $subcat, $preu, $iva, $marge, $descompte, $pr_estoc, $labels) = mysql_fetch_row($result2)) {
                                     //// En els productes d'estoc, apareix l'estoc ////
                                     //// Si l'estoc es negatiu apareix en gris ////
-                                    if ($ctg_estoc == 'si') {
-                                        $rpr_estoc = round($pr_estoc, 1);
-                                        $w_estoc = "[" . $rpr_estoc . "]";
-                                        if ($pr_estoc <= 0) {
-                                            $color_cos = "color: grey;";
-                                        } else {
-                                            $color_cos = "";
-                                        }
-                                    } else {
-                                        $w_estoc = "";
-                                    }
-
-                                    if (!$numcmda) {
-                                        $qdec = "";
-                                    } else {
-                                        $sel3 = "SELECT quantitat FROM comanda_linia
-					WHERE numero='$numcmda' AND ref='$ref'";
-
-                                        $result3 = mysql_query($sel3);
-                                        if (!$result3) {
-                                            die('Invalid query3: ' . mysql_error());
-                                        }
-                                        list ($quantitat) = mysql_fetch_row($result3);
-                                        $qdec = "";
-                                        if ($quantitat != "") {
-                                            /// per veure la quantitat amb els decimals imprescindibles /////
-                                            $r2 = round($quantitat, 2) * 1000;
-                                            $r1 = round($quantitat, 1) * 1000;
-                                            $r0 = round($quantitat) * 1000;
-                                            $rb = $quantitat * 1000;
-                                            if ($rb == $r0) {
-                                                $nd = 0;
+                                        if ($ctg_estoc == 'si') {
+                                            $rpr_estoc = round($pr_estoc, 1);
+                                            $w_estoc = "[" . $rpr_estoc . "]";
+                                            if ($pr_estoc <= 0) {
+                                                $color_cos = "color: grey;";
                                             } else {
-                                                if ($rb == $r1) {
-                                                    $nd = 1;
+                                                $color_cos = "";
+                                            }
+                                        } else {
+                                            $w_estoc = "";
+                                        }
+
+                                        if (!$numcmda) {
+                                            $qdec = "";
+                                        } else {
+                                            $sel3 = "SELECT quantitat FROM comanda_linia WHERE numero='$numcmda' AND ref='$ref'";
+                                            $result3 = mysql_query($sel3);
+                                            if (!$result3) {
+                                                die('Invalid query3: ' . mysql_error());
+                                            }
+                                            list ($quantitat) = mysql_fetch_row($result3);
+                                            $qdec = "";
+                                            if ($quantitat != "") {
+                                            /// per veure la quantitat amb els decimals imprescindibles /////
+                                                $r2 = round($quantitat, 2) * 1000;
+                                                $r1 = round($quantitat, 1) * 1000;
+                                                $r0 = round($quantitat) * 1000;
+                                                $rb = $quantitat * 1000;
+                                                if ($rb == $r0) {
+                                                    $nd = 0;
                                                 } else {
-                                                    if ($rb == $r2) {
-                                                        $nd = 2;
+                                                    if ($rb == $r1) {
+                                                        $nd = 1;
                                                     } else {
-                                                        $nd = 3;
+                                                        if ($rb == $r2) {
+                                                            $nd = 2;
+                                                        } else {
+                                                            $nd = 3;
+                                                        }
                                                     }
                                                 }
+                                                $qdec = round($quantitat, $nd);
                                             }
-                                            $qdec = round($quantitat, $nd);
-                                        }
                                         //////////////////////////////////////
-                                    }
-
+                                        }
                                     //// càlcul del pvp ///
                                     /// inclou iva i marge, però no descompte ////
-                                    $pvp = $preu * (1 + $iva) * (1 + $marge);
-                                    $pvp = sprintf("%01.2f", $pvp);
-
+                                        $pvp = $preu * (1 + $iva) * (1 + $marge);
+                                        $pvp = sprintf("%01.2f", $pvp);
                                     //// si existeix un descompte apareix en vermell ////
-                                    $w_desc = "";
-                                    if ($descompte != 0) {
-                                        $w_desc = "<span style='color:red;'> DESKONTU/DESCUENTO:" . $descompte * 100 . "%</span>";
+                                        $w_desc = "";
+                                        if ($descompte != 0) {
+                                            $w_desc = "<span style='color:red;'> DESKONTU/DESCUENTO:" . $descompte * 100 . "%</span>";
+                                        }
+                                        $labels_array = explode(',', $labels);
+                                        $labels_html = '';
+                                        for ($i=0; $i < sizeof($labels_array); $i++) { 
+                                            # code...
+                                            $labels_html .= "<span class='product-label label label-success'>" . $labels_array[$i] . "</span>";
+                                        }
+                                        $prod = htmlentities($nomprod, null, 'utf-8');
+                                        $prodtext = str_replace("&nbsp;", " ", $prod);
+                                        $prodtext = html_entity_decode($prodtext, null, 'utf-8');
+                                        print('
+                                            <li class="col-lg-6">
+                                            <div class="form-group product">
+                                            <label for="num' . $id . '">
+                                            <span class="product-name">' . $prodtext . '</span>
+                                            <span class="product-price">' . $pvp . ' &#8364;/' . $unitat . '</span>
+                                            <span>' . $w_estoc . ' ' . $w_desc . '</span>'.$labels_html.'</label><input class="form-control" name="num[]" id="num' . $id . '" type="number" value="' . $qdec . '" maxlength="5" size="3" min="0"  step="any">
+                                            <input type=hidden name="ref[]" id="ref' . $id . '" value="' . $ref . '">
+                                            <input type=hidden name="nom[]" id="nom' . $id . '" value="' . $nomprod . '">
+                                            <input type=hidden name="uni[]" value="' . $unitat . '">
+                                            </div>
+                                            </li>');
+                                        $id++;
                                     }
-                                    $prod = htmlentities($nomprod, null, 'utf-8');
-                                    $prodtext = str_replace("&nbsp;", " ", $prod);
-                                    $prodtext = html_entity_decode($prodtext, null, 'utf-8');
-
-                                    print('
-                <li class="col-lg-6">
-                    <div class="form-group product">
-                        <label for="num' . $id . '">
-                            <span class="product-name">' . $prodtext . '</span>
-                            <span class="product-price">' . $pvp . ' &#8364;/' . $unitat . '</span>
-                            <span>' . $w_estoc . ' ' . $w_desc . '</span>
-                        </label>
-                        <input class="form-control" name="num[]" id="num' . $id . '" type="number" value="' . $qdec . '" maxlength="5" size="3" min="0"  step="any">
-                        <input type=hidden name="ref[]" id="ref' . $id . '" value="' . $ref . '">
-                        <input type=hidden name="nom[]" id="nom' . $id . '" value="' . $nomprod . '">
-                        <input type=hidden name="uni[]" value="' . $unitat . '">
-                     </div>
-                </li>');
-                                    $id++;
-                                }
 
                                 print ('</ul>');
                                 print ('<hr class="box-separator"/>');
                                 print ('</li>');
                             }
-
                             ?>
                         </ul>
 
                         <div class="u-text-center">
                             <button type="submit" class="button button--animated button--save u-mt-1" name="acceptar"
-                                    id="btnComanda">
-                                Aceptar <i class="fa fa-check" aria-hidden="true"></i>
-                            </button>
-                        </div>
-
+                            id="btnComanda">
+                            Aceptar <i class="fa fa-check" aria-hidden="true"></i>
+                        </button>
                     </div>
 
+                </div>
 
-                </form>
+
+            </form>
 
 
-                <?php
-            }
+            <?php
+        }
 
             ////////////////////////
             // Això és id4=vis    //
             ////////////////////////
 
-            else
-            {
+        else
+        {
             if ($tipus == 'continu' AND $periode = 'setmanal') {
                 $title1 = "recogida";
             }
@@ -371,12 +370,12 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     // Si no hi ha cap quantitat elegida no continua endavant //
 
                     echo '<p class="alert alert--error">
-                        ¡No has introducido cantidad a ningun producto!
-                        </p>';
+                    ¡No has introducido cantidad a ningun producto!
+                    </p>';
 
                     die ('<p class="u-text-center"><a class="button" href="cmda2.php?id=' . $proces . '&id4=create" 
-				title="Volver al pedido">
-				Volver al pedido  <i class="fa fa-undo" aria-hidden="true"></i></a></p>');
+                        title="Volver al pedido">
+                        Volver al pedido  <i class="fa fa-undo" aria-hidden="true"></i></a></p>');
                 } //////////////////
                 else {
                     date_default_timezone_set("Europe/Madrid");
@@ -424,8 +423,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                     //comprovació de que no es generen dues comandes alhora //
                     $sel = "SELECT numero
-				FROM comanda 
-				WHERE usuari='$user' AND proces='$proces' AND grup='$grup' AND data='$bd_data'";
+                    FROM comanda 
+                    WHERE usuari='$user' AND proces='$proces' AND grup='$grup' AND data='$bd_data'";
                     $result = mysql_query($sel);
                     if (!$result) {
                         die('Invalid query: ' . mysql_error());
@@ -435,16 +434,16 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                     if ($numcmda1 != "") {
                         echo '<p class="alert alert--error">
-						¡Peligro de duplicación de pedido!
-						</p>';
+                        ¡Peligro de duplicación de pedido!
+                        </p>';
                         die ('<p class="error">
-						Ya ha creado un pedido para un proceso ' . $proces . '-' . $grup . ' con fecha ' . $data . '.
-						</p>
-						<p class="u-text-center">
-						<a class="button" href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis" 
-						title="editar la comanda actual">
-						editar la comanda actual</a>
-						</p>');
+                          Ya ha creado un pedido para un proceso ' . $proces . '-' . $grup . ' con fecha ' . $data . '.
+                          </p>
+                          <p class="u-text-center">
+                          <a class="button" href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis" 
+                          title="editar la comanda actual">
+                          editar la comanda actual</a>
+                          </p>');
                     }
 
 
@@ -454,7 +453,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     /// La data a la taula comanda és data fi periode si el procés és de eríode concret ///
                     /// o la data de recollida si és un procés continu setmanal ///
                     $query2 = "INSERT INTO `comanda` ( `usuari` , `proces`, `grup`, `sessionid` , `data` )
-				VALUES ('$user', '$proces', '$grup', '$sessionid', '$bd_data')";
+                    VALUES ('$user', '$proces', '$grup', '$sessionid', '$bd_data')";
                     mysql_query($query2) or die('Error, insert query2 failed.');
                     $numcmda = mysql_insert_id();
                     $ver_datase = date("d-m-Y");
@@ -470,8 +469,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 ///////////////////////////////////////////////
 
                 $sel3 = "SELECT c.usuari, c.data, c.sessionid, c.notes, s.date
-			FROM comanda AS c, session AS s
-			WHERE c.numero='$numcmda' AND c.sessionid=s.sessionid";
+                FROM comanda AS c, session AS s
+                WHERE c.numero='$numcmda' AND c.sessionid=s.sessionid";
 
                 $query3 = mysql_query($sel3) or die(mysql_error());
                 list($familia, $bd_data, $sessionid, $notescmda, $bd_datase) = mysql_fetch_row($query3);
@@ -529,41 +528,41 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
             if ($editar == 0) {
                 $button = '<button class="button button--animated" name="imprimir" onclick="window.print();">Imprimir <i class="fa fa-print" aria-hidden="true"></i></button>
-                            <button class="button button--animated" onClick="javascript:history.go(-1);">Volver <i class="fa fa-undo" aria-hidden="true"></i></button>';
+                <button class="button button--animated" onClick="javascript:history.go(-1);">Volver <i class="fa fa-undo" aria-hidden="true"></i></button>';
             } else {
                 $button = '<button class="button button--animated" onClick="javascript:window.location = \'comandes.php?id3=' . $user . ' \';">Confirmar <i class="fa fa-check" aria-hidden="true"></i></button>
-		                   <button class="button button--animated" onClick="javascript:window.location = \'cmda2.php?id=' . $proces . '&id2=' . $numcmda . '&id4=create \';">Editar <i class="fa fa-pencil" aria-hidden="true"></i></button>
-		                   <button class="button button--animated" onClick="var answer = confirm (\'¿Estás seguro que quieres borrar este pedido?\')
-				            if (answer)
-					        {window.location=\'delcom.php?id=' . $numcmda . ' \'}">Eliminar <i class="fa fa-trash-o" aria-hidden="true"></i></button>
-		                   <button class="button button--animated" name="imprimir" onclick="window.print();">Imprimir <i class="fa fa-print" aria-hidden="true"></i></button>';
-            }
-            ?>
+                <button class="button button--animated" onClick="javascript:window.location = \'cmda2.php?id=' . $proces . '&id2=' . $numcmda . '&id4=create \';">Editar <i class="fa fa-pencil" aria-hidden="true"></i></button>
+                <button class="button button--animated" onClick="var answer = confirm (\'¿Estás seguro que quieres borrar este pedido?\')
+                if (answer)
+                   {window.location=\'delcom.php?id=' . $numcmda . ' \'}">Eliminar <i class="fa fa-trash-o" aria-hidden="true"></i></button>
+               <button class="button button--animated" name="imprimir" onclick="window.print();">Imprimir <i class="fa fa-print" aria-hidden="true"></i></button>';
+           }
+           ?>
 
-            <div class="box">
+           <div class="box">
 
-                <div class="hidden-print u-text-right u-mb-2">
-                    <?php echo $button; ?>
+            <div class="hidden-print u-text-right u-mb-2">
+                <?php echo $button; ?>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-4 u-text-center u-mb-1">
+                    <img id="fig" class="img--responsive" style="height:85px;" src="<?php echo $logo_factura; ?>">
                 </div>
 
-
-                <div class="row">
-                    <div class="col-md-4 u-text-center u-mb-1">
-                        <img id="fig" class="img--responsive" style="height:85px;" src="<?php echo $logo_factura; ?>">
-                    </div>
-
-                    <div class="col-md-8 u-text-right u-mb-1">
-                        <span style="color: grey;">Pedido nº: </span><span class="u-text-semibold"><?php echo $numcmda; ?></span><br/>
-                        <span style="color: grey;">Familia: </span><span class="u-text-semibold"><?php echo $superfam; ?></span><br/>
-                        <span style="color: grey;">Fecha <?php echo $title1; ?>: </span><span class="u-text-semibold"><?php echo $data; ?></span>
-                    </div>
+                <div class="col-md-8 u-text-right u-mb-1">
+                    <span style="color: grey;">Pedido nº: </span><span class="u-text-semibold"><?php echo $numcmda; ?></span><br/>
+                    <span style="color: grey;">Familia: </span><span class="u-text-semibold"><?php echo $superfam; ?></span><br/>
+                    <span style="color: grey;">Fecha <?php echo $title1; ?>: </span><span class="u-text-semibold"><?php echo $data; ?></span>
                 </div>
+            </div>
 
 
 
-                <div class="cf u-mt-2 table-responsive u-width-100">
-                    <table width="100%" class="table table-striped">
-                        <thead>
+            <div class="cf u-mt-2 table-responsive u-width-100">
+                <table width="100%" class="table table-striped">
+                    <thead>
                         <tr style="font-size:18px;" valign="baseline">
                             <td width="50%" align="left" class="u-text-semibold">Producto</u></td>
                             <td width="20%" align="center" class="u-text-semibold">Cantidad</td>
@@ -572,8 +571,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             <td width="10%" align="center" class="u-text-semibold">Descuento</td>
                             <td width="10%" align="right" class="u-text-semibold">Total</td>
                         </tr>
-                        </thead>
-                        <tbody>
+                    </thead>
+                    <tbody>
                         <?php
                         if ($files != 0) {
                             //////////////////////////////////////////////////////////////////
@@ -596,7 +595,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             for ($i = 0; $i < $files; $i++) {
                                 if ($num[$i] != "" AND $num[$i] != 0) {
                                     $query4 = "INSERT INTO `comanda_linia` ( `numero` , `ref`, `quantitat` )
-					VALUES ('$numcmda', '$pref[$i]', '$num[$i]')";
+                                    VALUES ('$numcmda', '$pref[$i]', '$num[$i]')";
                                     mysql_query($query4) or die('Error, insert query failed');
                                 }
                             }
@@ -604,9 +603,9 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                         // Visualitzem les dades //
                         $sel5 = "SELECT cl.ref, pr.nom, pr.proveidora, cl.quantitat, pr.unitat,pr.preusi,pr.iva,pr.marge,pr.descompte
-		FROM comanda_linia AS cl, productes AS pr
-		WHERE numero='$numcmda' AND cl.ref=pr.ref
-		ORDER BY pr.categoria,pr.proveidora,pr.nom";
+                        FROM comanda_linia AS cl, productes AS pr
+                        WHERE numero='$numcmda' AND cl.ref=pr.ref
+                        ORDER BY pr.categoria,pr.proveidora,pr.nom";
                         $result5 = mysql_query($sel5) or die(mysql_error());
                         while (list ($clref, $nomprod, $nomprod2, $quantitat, $unitat, $preu, $iva, $marge, $descompte) = mysql_fetch_row($result5)) {
                             $pvp = $preu * (1 + $marge) * (1 + $iva);
@@ -624,41 +623,41 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             }
 
                             print('<tr class="cos16"><td>' . $clref . ' - ' . $nomprod . ' - ' . $nomprod2 . '</td>
-				<td align="center">' . $qdec. '</td>
-				<td align="center">' . $unitat . '</td>
-				<td align="center">' . $pvp . '&#8364;</td>
-				' . $w_desco . '
-				<td align="right">' . $qtot . '&#8364;</td></tr>');
+                                <td align="center">' . $qdec. '</td>
+                                <td align="center">' . $unitat . '</td>
+                                <td align="center">' . $pvp . '&#8364;</td>
+                                ' . $w_desco . '
+                                <td align="right">' . $qtot . '&#8364;</td></tr>');
                         }
                         ?>
-                        </tbody>
-                    </table>
-                    <table width="100%">
-                        <tr style="font-weight: bold;">
-                            <td width="80%" align="right" style="padding:15px 0px;">Total</td>
-                            <td width="20%" align="right"><?php echo $qtot2; ?>&#8364;</td>
-                        </tr>
-                    </table>
-                </div>
-                <p class="alert alert--info">
-                    Pedido realizado el <?php echo $ver_datase; ?> con número de sessión <?php echo $sessionid; ?>.</br>
-                    (*) Precio de venta aproximado (último precio actualizado). Incluye IVA.
-                </p>
+                    </tbody>
+                </table>
+                <table width="100%">
+                    <tr style="font-weight: bold;">
+                        <td width="80%" align="right" style="padding:15px 0px;">Total</td>
+                        <td width="20%" align="right"><?php echo $qtot2; ?>&#8364;</td>
+                    </tr>
+                </table>
             </div>
-
-            <?php
-            }
-            ?>
-
-            </form>
+            <p class="alert alert--info">
+                Pedido realizado el <?php echo $ver_datase; ?> con número de sessión <?php echo $sessionid; ?>.</br>
+                (*) Precio de venta aproximado (último precio actualizado). Incluye IVA.
+            </p>
         </div>
-    </div>
-    </body>
-    </html>
 
-    <?php
+        <?php
+    }
+    ?>
 
-    include 'config/disconect.php';
+</form>
+</div>
+</div>
+</body>
+</html>
+
+<?php
+
+include 'config/disconect.php';
 } else {
     header("Location: index.php");
 }

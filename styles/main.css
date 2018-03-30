@@ -774,7 +774,7 @@ legend {
 label {
   display: inline-block;
   max-width: 100%;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   font-weight: bold; }
 
 input[type="search"] {
@@ -1802,9 +1802,61 @@ tbody.collapse.in {
 
 /*@import "bootstrap/breadcrumbs";
 @import "bootstrap/pagination";
-@import "bootstrap/pager";
-@import "bootstrap/labels";
-@import "bootstrap/badges";
+@import "bootstrap/pager";*/
+.label {
+  display: inline;
+  padding: .1em .6em .2em;
+  margin: .2em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em; }
+  .label:empty {
+    display: none; }
+  .btn .label {
+    position: relative;
+    top: -1px; }
+
+a.label:hover, a.label:focus {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer; }
+
+.label-default {
+  background-color: #777777; }
+  .label-default[href]:hover, .label-default[href]:focus {
+    background-color: #5e5e5e; }
+
+.label-primary {
+  background-color: #337ab7; }
+  .label-primary[href]:hover, .label-primary[href]:focus {
+    background-color: #286090; }
+
+.label-success {
+  background-color: #5cb85c; }
+  .label-success[href]:hover, .label-success[href]:focus {
+    background-color: #449d44; }
+
+.label-info {
+  background-color: #5bc0de; }
+  .label-info[href]:hover, .label-info[href]:focus {
+    background-color: #31b0d5; }
+
+.label-warning {
+  background-color: #f0ad4e; }
+  .label-warning[href]:hover, .label-warning[href]:focus {
+    background-color: #ec971f; }
+
+.label-danger {
+  background-color: #d9534f; }
+  .label-danger[href]:hover, .label-danger[href]:focus {
+    background-color: #c9302c; }
+
+/*@import "bootstrap/badges";
 @import "bootstrap/jumbotron";
 @import "bootstrap/thumbnails";
 @import "bootstrap/alerts";
@@ -2396,7 +2448,7 @@ th {
 *,
 *:before,
 *:after {
-  box-sizing: inherit; }
+  box-sizing: border-box; }
 
 html, body {
   height: 100%;
@@ -2623,7 +2675,8 @@ label {
     display: none; }
 
 .product {
-  margin-bottom: 1.1rem; }
+  margin-bottom: 1.1rem;
+  box-sizing: border-box; }
 
 .product-name {
   display: block;
@@ -2637,6 +2690,13 @@ label {
   font-size: .8rem;
   font-weight: 800;
   color: #202020; }
+
+.product-label {
+  margin-top: 8px;
+  margin-bottom: 8px; }
+
+label span.product-price {
+  margin-bottom: 8px; }
 
 .button {
   display: inline-block;
@@ -2957,14 +3017,5 @@ label {
 
 .u-width-100 {
   width: 100%; }
-
-.u-color-error {
-  color: #ad0017; }
-
-.u-color-ok {
-  color: #1ABC9C; }
-
-.u-color-warning {
-  color: #f39c12; }
 
 /*# sourceMappingURL=main.css.map */

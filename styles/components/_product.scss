@@ -2,6 +2,7 @@
 
 .product {
   margin-bottom: 1.1rem;
+  box-sizing: border-box;
 }
 
 .product-name {
@@ -17,4 +18,13 @@
   font-size: .8rem;
   font-weight: 800;
   color: #202020;
+}
+
+.product-label {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+label span.product-price {
+  margin-bottom:8px;
 }

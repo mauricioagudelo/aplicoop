@@ -22,6 +22,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     $pdescompte = $_POST['descompte'];
     $pestoc = $_POST['estoc'];
     $pnotes = $_POST['notes'];
+    $plabels = $_POST['labels'];
 
     $pmarge = $pmarge / 100;
     $pdescompte = $pdescompte / 100;
@@ -332,7 +333,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     $query2 = "INSERT INTO productes
  				VALUES ('" . $newref . "','" . $pnom . "','" . $punitat . "','" . $pprov . "','" . $pcat . "','" . $psubcat . "',
  				'" . $pactiu . "','" . $ppreusi . "','" . $piva . "','" . $pmarge . "','" . $pdescompte . "','0',
- 				'" . $pnotes . "')";
+ 				'" . $plabels . "','" . $pnotes . "')";
                     mysql_query($query2) or die('Error, insert query2 failed:' . mysql_error());
                     die ("<p class='comment'>El producte " . $newref . "-" . $supernom . " s'ha introduït correctament a la base de dades:</p>
 			<p class='cos2'>unitat: " . $punitat . "</p>
@@ -348,14 +349,15 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 			<p class='cos2'>pvp sense iva: " . $ppvpsi . "</p>
 			<p class='cos2'>pvp: " . $ppvp . "</p>
 			<p class='cos2'>pvp amb descompte: " . $ppvpdesc . "</p>
-			<p class='cos2'>comentaris: " . $pnotes . "</p>");
+			<p class='cos2'>comentaris: " . $pnotes . "</p>
+            <p class='cos2'>etiquetas: " . $plabels . "</p>");
                 }
             }
 
             if ($que == 'edit') {
                 $query3 = "UPDATE productes SET nom='" . $pnom . "',unitat='" . $punitat . "',categoria='" . $pcat . "',
 	subcategoria='" . $psubcat . "',actiu='" . $pactiu . "',preusi='" . $ppreusi . "',iva='" . $piva . "',marge='" . $pmarge . "',
-	descompte='" . $pdescompte . "',notes='" . $pnotes . "'
+	descompte='" . $pdescompte . "',labels='" . $plabels . "',notes='" . $pnotes . "'
 	WHERE ref='" . $pref . "'";
                 mysql_query($query3) or die('Error, insert query3 failed');
                 die ("<div class='box'><p class='alert alert--info'>El producto " . $pref . "-" . $supernom . " ha cambiado los siguientes datos:</p>
@@ -372,7 +374,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 			<p class='cos2'>pvp sin IVA: " . $ppvpsi . "</p>
 			<p class='cos2'>pvp: " . $ppvp . "</p>
 			<p class='cos2'>pvp con descuento: " . $ppvpdesc . "</p>
-			<p class='cos2'>comentarios: " . $pnotes . "</p></div>");
+			<p class='cos2'>comentarios: " . $pnotes . "</p>
+            <p class='cos2'>etiquetas: " . $plabels . "</p></div>");
             }
 
             if ($que == 'elim') {
@@ -425,7 +428,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     die('Invalid query: ' . mysql_error());
                 }
 
-                list($ref, $nom, $unitat, $proveidora, $tipus, $subtipus, $actiu, $preusi, $iva, $marge, $descompte, $estoc, $notes) = mysql_fetch_row($query);
+                list($ref, $nom, $unitat, $proveidora, $tipus, $subtipus, $actiu, $preusi, $iva, $marge, $descompte, $estoc, $labels, $notes) = mysql_fetch_row($query);
                 $readonly = "readonly";
                 $marge = $marge * 100;
                 $descompte = $descompte * 100;
@@ -619,6 +622,12 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         }
                         ?>
 
+                        <div class="form-group">
+                            <label for="notes" class="col-sm-2 control-label">Etiquetas</label>
+                            <div class="col-sm-10">
+                                <input align="right" name="labels" id="labels" type="TEXT" maxlength="80" size="80" value="<?php echo $labels; ?>">
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <label for="notes" class="col-sm-2 control-label">Comentarios</label>

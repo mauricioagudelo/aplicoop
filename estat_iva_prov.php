@@ -35,25 +35,25 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             <div class="contenidor_1" style="border: 1px solid black;">
                 <p class='path'>
                     ><a href='admint.php'>Administración</a>
-                    >><a href='estat_iva.php'>calculo del IVA</a>
+                    >><a href='estat_iva_prov.php'>calculo del IVA</a>
                 </p>
 
                 <p class="h1" style="background: black; text-align: left; padding-left: 20px;">
                 Estadística de consumo</p>
 
                 <table width="95%" align="center">
-                    <form action="estat_iva.php" method="post" name="prod" id="prod">
+                    <form action="estat_iva_prov.php" method="post" name="prod" id="prod">
                         <tr class="cos_majus" style="padding-top: 10px;">
-                            <td width="20%" align="center" class="form">Família</td>
+                            <td width="20%" align="center" class="form">Proveedor</td>
                             <td width="20%" align="center" class="form">Superior a la fecha</td>
                             <td width="20%" align="center" class="form">Inferior a la fecha</td>
                         </tr>
                         <tr class="cos">
                             <td align="center">
                                 <SELECT name="familia" id="familia" size="1" maxlength="30" onChange="document.prod.submit()">
-                                    <option value="">Elige una familia</option>
+                                    <option value="">Elige un proveedor</option>
                                     <?php
-                                    $select3 = "SELECT nom FROM usuaris ORDER BY nom";
+                                    $select3 = "SELECT nom FROM proveidores ORDER BY nom";
                                     $query3 = mysql_query($select3);
                                     if (!$query3) {
                                         die('Invalid query3: ' . mysql_error());
@@ -111,8 +111,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 $where = "";
                 $title = "";
                 if ($pfamilia != "") {
-                    $where .= " AND c.usuari='" . $pfamilia . "'";
-                    $title .= "Búsqueda por família " . $superpfam;
+                    $where .= " AND pr.proveidora='" . $pfamilia . "'";
+                    $title .= "Búsqueda por proveedor " . $superpfam;
                 } 
                 if ($pdatas != "") {
                     $where .= " AND c.data>='" . $datasup . "'";
@@ -142,8 +142,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             SUM(cl.preu*cl.cistella*(1-cl.descompte)*cl.iva) AS ivat, 
             SUM(cl.preu*cl.cistella*(1-cl.descompte)*(1+cl.iva)) AS total, 
             MIN(c.data), MAX(c.data)
-            FROM comanda AS c, comanda_linia AS cl
-            WHERE c.numero=cl.numero " . $where . "
+            FROM comanda AS c, comanda_linia AS cl, productes as pr
+            WHERE c.numero=cl.numero AND cl.ref=pr.ref " . $where . "
             GROUP BY cl.iva";
             $result = mysql_query($sel);
             if (!$result) {

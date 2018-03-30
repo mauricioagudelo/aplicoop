@@ -322,13 +322,13 @@ $exit="L'arxiu ".$arxiu." s'ha creat amb exit";
 //$exit=iconv("UTF-8","ISO-8859-1",$exit); Ha de ser-hi si no es treballa amb UTF8
 
 //copia de seguretat
-$avui=date("Y-m-d");
-$sqlFile = 'download/'.$dbname.'_'.$avui.'.sql';
+//$avui=date("Y-m-d");
+//$sqlFile = 'download/'.$dbname.'_'.$avui.'.sql';
 
-$creatBackup = "mysqldump --add-drop-table -u ".$dbuser." --password=".$dbpass." ".$dbname." > ".$sqlFile;
-exec($creatBackup);
+//$creatBackup = "mysqldump --add-drop-table -u ".$dbuser." --password=".$dbpass." ".$dbname." > ".$sqlFile;
+//exec($creatBackup);
 
-$exit2="Igualment s'ha realitzar amb èxit la copia de seguretat que podeu trobar a ".$sqlFile;
+//$exit2="Igualment s'ha realitzar amb èxit la copia de seguretat que podeu trobar a ".$sqlFile;
 }
 
 ?>

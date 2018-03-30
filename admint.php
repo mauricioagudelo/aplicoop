@@ -102,6 +102,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             <ul type="circle">
                                 <li><a class="link" href='estat_consum.php'>Estad&iacute;stica de consumo</a></li>
                                 <li><a class="link" href='estat_iva.php'>Consumo IVA</a></li>
+                                <li><a class="link" href='estat_iva_prov.php'>Consumo IVA (prov.)</a></li>
                             </ul>
                             <h2 class="box-subtitle">Econom&iacute;a Kidekoop</h2>
                             <ul type="circle">

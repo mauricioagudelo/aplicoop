@@ -141,27 +141,26 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 if ($pfam != "" OR $pdatas != "" OR $pdatai != "") {
                     $datas2 = explode("/", $pdatas);
                     $datai2 = explode("/", $pdatai);
-                    $datasup = $datas2[2] . "-" . $datas2[1] . "-" . $datas2[0];
-                    $datainf = $datai2[2] . "-" . $datai2[1] . "-" . $datai2[0];
-
+                    $datasup = $datas2[0];// . "-" . $datas2[1] . "-" . $datas2[0];
+                    $datainf = $datai2[0];// . "-" . $datai2[1] . "-" . $datai2[0];
                     if ($pfam != "" AND $pdatas == "" AND $pdatai == "") {
                         $where = "WHERE familia='" . $pfam . "'";
                         $title = "B&uacute;squeda por socio/a: " . $superpfam;
                     } elseif ($pfam != "" AND $pdatas != "" AND $pdatai == "") {
                         $where = "WHERE familia='" . $pfam . "' AND data>='" . $datasup . "'";
-                        $title = "B&uacute;squeda por socio/a: " . $superpfam . " i per data superior a " . $pdatas;
+                        $title = "B&uacute;squeda por socio/a: " . $superpfam . " y por fecha superior a " . $pdatas;
                     } elseif ($pfam != "" AND $pdatas == "" AND $pdatai != "") {
                         $where = "WHERE familia='" . $pfam . "' AND data<='" . $datainf . "'";
-                        $title = "B&uacute;squeda por socio/a: " . $superpfam . " i per data inferior a " . $pdatai;
+                        $title = "B&uacute;squeda por socio/a: " . $superpfam . " y por fecha inferior a " . $pdatai;
                     } elseif ($pfam != "" AND $pdatas != "" AND $pdatai != "") {
                         $where = "WHERE familia='" . $pfam . "' AND  data>='" . $datasup . "' AND data<='" . $datainf . "'";
-                        $title = "Recerca per família " . $superpfam . " per data entre " . $pdatas . " i " . $pdatai;
+                        $title = "Búsqueda por família " . $superpfam . " por fecha entre " . $pdatas . " y " . $pdatai;
                     } elseif ($pfam == "" AND $pdatas != "" AND $pdatai == "") {
                         $where = "WHERE data>='" . $datasup . "'";
                         $title = "B&uacute;squeda por fecha superior a " . $pdatas;
                     } elseif ($pfam == "" AND $pdatas != "" AND $pdatai != "") {
                         $where = "WHERE data>='" . $datasup . "' AND data<='" . $datainf . "'";
-                        $title = "B&uacute;squeda por fecha entre " . $pdatas . " i " . $pdatai;
+                        $title = "B&uacute;squeda por fecha entre " . $pdatas . " y " . $pdatai;
                     } elseif ($pfam == "" AND $pdatas == "" AND $pdatai != "") {
                         $where = "WHERE data<='" . $datainf . "'";
                         $title = "B&uacute;squeda por fecha inferior a " . $pdatai;
@@ -195,7 +194,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 $rnum = mysql_num_rows($result);
 
                 if (!$gcont) {
-                    $cont = 30;
+                    $cont = 100;
                 } else {
                     $cont = $gcont;
                 }
@@ -226,12 +225,10 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 echo "</table></div>";
 
                 if ($rnum > $cont) {
-                    $id = $cont + 30;
+                    $id = $cont + 100;
                     echo '<div class="u-text-center"><button class="button button--animated"  name="mes"
-		onClick="javascript:window.location = \'comptes.php?id2=' . $id . '&id4=' . $pfam . '&id5=' . $pdatas . '&id6=' . $pdatai . '\'">30+</button></div>';
+		onClick="javascript:window.location = \'comptes.php?id2=' . $id . '&id4=' . $pfam . '&id5=' . $pdatas . '&id6=' . $pdatai . '\'">100+</button></div>';
                 }
-
-
                 ?>
             </div>
         </div>

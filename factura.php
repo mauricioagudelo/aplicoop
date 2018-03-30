@@ -108,8 +108,11 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR ($_GET['id'] != "" AND strlen($
 			<div class="row">
 				<div class="col-md-4 u-text-center u-mb-1">
 					<img id="fig" class="img--responsive" style="height:85px;" src="<?php echo $logo_factura; ?>">
+					<p>Kidekoop Elkartea
+					CIF: G95749321<br>
+					C/ Urazurrutia 26
+					48003 BILBAO<p>
 				</div>
-
 				<div class="col-md-8 u-text-right u-mb-1">
 					<span style="color: grey;">Factura nº: </span><span class="u-text-semibold"><?php echo $numfact; ?></span><br/>
 					<span style="color: grey;">Fecha: </span><span class="u-text-semibold"><?php echo $ver_data2; ?></span><br/>
