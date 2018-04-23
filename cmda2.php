@@ -190,7 +190,18 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         $goto = 'cmda2.php?id=' . $proces . '&id2=' . $numcmda . '&id4=vis';
                     }
                     ?>
-
+                    <div class="well row">
+                        <h2>Etiquetas</h2>
+                        <div class="col-md-4" id="columna-uno">
+                            <div><p><span class="product-label label label-success">eko</span> &#8594; Producto ecológico</p></div>
+                            <div><p><span class="product-label label label-success">aplic</span> &#8594; disponible solo desde aplicoop</p></div>
+                        </div>
+                        <div class="col-md-4" id="columna-dos">
+                            <div><p><span class="product-label label label-success">KM0</span> &#8594; Producto 0-100 km</p></div>
+                            <div><p><span class="product-label label label-success">KM100</span> &#8594; Producto 100-500 km</p></div>
+                            <div><p><span class="product-label label label-success">KM500</span> &#8594; Producto +500 km</p></div>
+                        </div>
+                    </div><br>
 
                     <form action="<?php echo $goto; ?>" method="post" name="frmComanda" id="frmComanda"
                       onSubmit="return validate_form()">
@@ -229,94 +240,94 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                         <h3 class="accordion-title box-subtitle">' . $subcate . '</h3></li></li></ul>');
                                 }
                                 //added
-                                    $sel2 = "SELECT pr.ref,pr.nom,pr.unitat,pr.proveidora,ctg.tipus,ctg.estoc,pr.subcategoria,pr.preusi,pr.iva,
-                                    pr.marge, pr.descompte,pr.estoc, pr.labels FROM productes AS pr, categoria AS ctg
-                                    WHERE pr.categoria=ctg.tipus AND pr.categoria='$cat' AND pr.actiu='actiu'  ORDER BY pr.categoria, pr.nom ";
-                                    $result2 = mysql_query($sel2);
-                                    if (!$result2) {
-                                        die('Invalid query2: ' . mysql_error());
-                                    }
-                                    print ('<ul class="accordion-section row">');
-                                    while (list($ref, $nomprod, $unitat, $prov, $categ, $ctg_estoc, $subcat, $preu, $iva, $marge, $descompte, $pr_estoc, $labels) = mysql_fetch_row($result2)) {
+                                $sel2 = "SELECT pr.ref,pr.nom,pr.unitat,pr.proveidora,ctg.tipus,ctg.estoc,pr.subcategoria,pr.preusi,pr.iva,
+                                pr.marge, pr.descompte,pr.estoc, pr.labels FROM productes AS pr, categoria AS ctg
+                                WHERE pr.categoria=ctg.tipus AND pr.categoria='$cat' AND pr.actiu='actiu'  ORDER BY pr.categoria, pr.nom ";
+                                $result2 = mysql_query($sel2);
+                                if (!$result2) {
+                                    die('Invalid query2: ' . mysql_error());
+                                }
+                                print ('<ul class="accordion-section row">');
+                                while (list($ref, $nomprod, $unitat, $prov, $categ, $ctg_estoc, $subcat, $preu, $iva, $marge, $descompte, $pr_estoc, $labels) = mysql_fetch_row($result2)) {
                                     //// En els productes d'estoc, apareix l'estoc ////
                                     //// Si l'estoc es negatiu apareix en gris ////
-                                        if ($ctg_estoc == 'si') {
-                                            $rpr_estoc = round($pr_estoc, 1);
-                                            $w_estoc = "[" . $rpr_estoc . "]";
-                                            if ($pr_estoc <= 0) {
-                                                $color_cos = "color: grey;";
-                                            } else {
-                                                $color_cos = "";
-                                            }
+                                    if ($ctg_estoc == 'si') {
+                                        $rpr_estoc = round($pr_estoc, 1);
+                                        $w_estoc = "[" . $rpr_estoc . "]";
+                                        if ($pr_estoc <= 0) {
+                                            $color_cos = "color: grey;";
                                         } else {
-                                            $w_estoc = "";
+                                            $color_cos = "";
                                         }
+                                    } else {
+                                        $w_estoc = "";
+                                    }
 
-                                        if (!$numcmda) {
-                                            $qdec = "";
-                                        } else {
-                                            $sel3 = "SELECT quantitat FROM comanda_linia WHERE numero='$numcmda' AND ref='$ref'";
-                                            $result3 = mysql_query($sel3);
-                                            if (!$result3) {
-                                                die('Invalid query3: ' . mysql_error());
-                                            }
-                                            list ($quantitat) = mysql_fetch_row($result3);
-                                            $qdec = "";
-                                            if ($quantitat != "") {
+                                    if (!$numcmda) {
+                                        $qdec = "";
+                                    } else {
+                                        $sel3 = "SELECT quantitat FROM comanda_linia WHERE numero='$numcmda' AND ref='$ref'";
+                                        $result3 = mysql_query($sel3);
+                                        if (!$result3) {
+                                            die('Invalid query3: ' . mysql_error());
+                                        }
+                                        list ($quantitat) = mysql_fetch_row($result3);
+                                        $qdec = "";
+                                        if ($quantitat != "") {
                                             /// per veure la quantitat amb els decimals imprescindibles /////
-                                                $r2 = round($quantitat, 2) * 1000;
-                                                $r1 = round($quantitat, 1) * 1000;
-                                                $r0 = round($quantitat) * 1000;
-                                                $rb = $quantitat * 1000;
-                                                if ($rb == $r0) {
-                                                    $nd = 0;
+                                            $r2 = round($quantitat, 2) * 1000;
+                                            $r1 = round($quantitat, 1) * 1000;
+                                            $r0 = round($quantitat) * 1000;
+                                            $rb = $quantitat * 1000;
+                                            if ($rb == $r0) {
+                                                $nd = 0;
+                                            } else {
+                                                if ($rb == $r1) {
+                                                    $nd = 1;
                                                 } else {
-                                                    if ($rb == $r1) {
-                                                        $nd = 1;
+                                                    if ($rb == $r2) {
+                                                        $nd = 2;
                                                     } else {
-                                                        if ($rb == $r2) {
-                                                            $nd = 2;
-                                                        } else {
-                                                            $nd = 3;
-                                                        }
+                                                        $nd = 3;
                                                     }
                                                 }
-                                                $qdec = round($quantitat, $nd);
                                             }
-                                        //////////////////////////////////////
+                                            $qdec = round($quantitat, $nd);
                                         }
+                                        //////////////////////////////////////
+                                    }
                                     //// càlcul del pvp ///
                                     /// inclou iva i marge, però no descompte ////
-                                        $pvp = $preu * (1 + $iva) * (1 + $marge);
-                                        $pvp = sprintf("%01.2f", $pvp);
+                                    $pvp = $preu * (1 + $iva) * (1 + $marge);
+                                    $pvp = sprintf("%01.2f", $pvp);
                                     //// si existeix un descompte apareix en vermell ////
-                                        $w_desc = "";
-                                        if ($descompte != 0) {
-                                            $w_desc = "<span style='color:red;'> DESKONTU/DESCUENTO:" . $descompte * 100 . "%</span>";
-                                        }
-                                        $labels_array = explode(',', $labels);
-                                        $labels_html = '';
-                                        for ($i=0; $i < sizeof($labels_array); $i++) { 
-                                            # code...
-                                            $labels_html .= "<span class='product-label label label-success'>" . $labels_array[$i] . "</span>";
-                                        }
-                                        $prod = htmlentities($nomprod, null, 'utf-8');
-                                        $prodtext = str_replace("&nbsp;", " ", $prod);
-                                        $prodtext = html_entity_decode($prodtext, null, 'utf-8');
-                                        print('
-                                            <li class="col-lg-6">
-                                            <div class="form-group product">
-                                            <label for="num' . $id . '">
-                                            <span class="product-name">' . $prodtext . '</span>
-                                            <span class="product-price">' . $pvp . ' &#8364;/' . $unitat . '</span>
-                                            <span>' . $w_estoc . ' ' . $w_desc . '</span>'.$labels_html.'</label><input class="form-control" name="num[]" id="num' . $id . '" type="number" value="' . $qdec . '" maxlength="5" size="3" min="0"  step="any">
-                                            <input type=hidden name="ref[]" id="ref' . $id . '" value="' . $ref . '">
-                                            <input type=hidden name="nom[]" id="nom' . $id . '" value="' . $nomprod . '">
-                                            <input type=hidden name="uni[]" value="' . $unitat . '">
-                                            </div>
-                                            </li>');
-                                        $id++;
+                                    $w_desc = "";
+                                    if ($descompte != 0) {
+                                        $w_desc = "<span style='color:red;'> DESKONTU/DESCUENTO:" . $descompte * 100 . "%</span>";
                                     }
+                                    $labels_array = explode(',', $labels);
+                                    $labels_html = '';
+                                    for ($i=0; $i < sizeof($labels_array); $i++) { 
+                                            # code...
+                                        $labels_html .= "<span class='product-label label label-success'>" . $labels_array[$i] . "</span>";
+                                    }
+                                    $prod = htmlentities($nomprod, null, 'utf-8');
+                                    $prodtext = str_replace("&nbsp;", " ", $prod);
+                                    $prodtext = html_entity_decode($prodtext, null, 'utf-8');
+                                    print('
+                                        <li class="col-lg-6">
+                                        <div class="form-group product">
+                                        <label for="num' . $id . '">
+                                        <span class="product-name">' . $prodtext . '</span>
+                                        <span class="product-price">' . $pvp . ' &#8364;/' . $unitat . '</span>
+                                        <span>' . $w_estoc . ' ' . $w_desc . '</span>'.$labels_html.'</label><input class="form-control" name="num[]" id="num' . $id . '" type="number" value="' . $qdec . '" maxlength="5" size="3" min="0"  step="any">
+                                        <input type=hidden name="ref[]" id="ref' . $id . '" value="' . $ref . '">
+                                        <input type=hidden name="nom[]" id="nom' . $id . '" value="' . $nomprod . '">
+                                        <input type=hidden name="uni[]" value="' . $unitat . '">
+                                        </div>
+                                        </li>');
+                                    $id++;
+                                }
 
                                 print ('</ul>');
                                 print ('<hr class="box-separator"/>');
