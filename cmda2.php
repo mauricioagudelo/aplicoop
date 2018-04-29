@@ -190,18 +190,24 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         $goto = 'cmda2.php?id=' . $proces . '&id2=' . $numcmda . '&id4=vis';
                     }
                     ?>
-                    <div class="well row">
-                        <h2>Etiquetas</h2>
+                    <div class="well row" style="margin-left: 0; margin-right: 0;">
+                        <h2 style="border-bottom: 8px solid #FF6873;">Etiquetas</h2>
                         <div class="col-md-4" id="columna-uno">
                             <div><p><span class="product-label label label-success">eko</span> &#8594; Producto ecológico</p></div>
                             <div><p><span class="product-label label label-success">aplic</span> &#8594; disponible solo desde aplicoop</p></div>
+                            <div><p><span class="product-label label label-success">Pronta caducidad</span> &#8594; Producto en descuento por pronta caducidad</p></div>
                         </div>
                         <div class="col-md-4" id="columna-dos">
                             <div><p><span class="product-label label label-success">KM0</span> &#8594; Producto 0-100 km</p></div>
                             <div><p><span class="product-label label label-success">KM100</span> &#8594; Producto 100-500 km</p></div>
-                            <div><p><span class="product-label label label-success">KM500</span> &#8594; Producto +500 km</p></div>
+                            <div><p><span class="product-label label label-success">KM500</span> &#8594; Producto 500-1000 km</p></div>
+                            <div><p><span class="product-label label label-success">KM1000</span> &#8594; Producto +1000 km</p></div>   
                         </div>
-                    </div><br>
+                        <div class="col-md-4" id="columna-dos">
+                            
+
+                        </div>
+                    </div>
 
                     <form action="<?php echo $goto; ?>" method="post" name="frmComanda" id="frmComanda"
                       onSubmit="return validate_form()">
