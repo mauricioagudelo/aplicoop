@@ -191,21 +191,23 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     }
                     ?>
                     <div class="well row" style="margin-left: 0; margin-right: 0;">
-                        <h2 style="border-bottom: 8px solid #FF6873;">Etiquetas</h2>
-                        <div class="col-md-4" id="columna-uno">
-                            <div><p><span class="product-label label label-success">Eko</span> &#8594; Producto Ecológico</p></div>
-                            <div><p><span class="product-label label label-success">Aplic</span> &#8594; Disponible solo desde aplicoop</p></div>
-                            <div><p><span class="product-label label label-success">Pronta caducidad</span> &#8594; Descuento por pronta caducidad</p></div>
-                        </div>
-                        <div class="col-md-4" id="columna-dos">
-                            <div><p><span class="product-label label label-success">km0</span> &#8594; 0-100 km</p></div>
-                            <div><p><span class="product-label label label-success">km100</span> &#8594; 100-500 km</p></div>
-                            <div><p><span class="product-label label label-success">km500</span> &#8594; 500-1000 km</p></div>
-                            <div><p><span class="product-label label label-success">km1000</span> &#8594; +1000 km</p></div>
-                        </div>
-                        <div class="col-md-4" id="columna-dos">
-                            
-
+                        
+                        <a style="color: inherit;" href="#etiquetas" data-toggle="collapse"><h2 style="border-bottom: 8px solid #FF6873;">Etiquetas <span class="glyphicon glyphicon-plus"></span></h2></a>
+                        <div id="etiquetas" class="panel-collapse collapse">
+                            <div class="col-md-4" id="columna-uno">
+                                <div><p><span class="product-label label label-success">Eko</span> &#8594; Producto Ecológico</p></div>
+                                <div><p><span class="product-label label label-success">Aplic</span> &#8594; Disponible solo desde aplicoop</p></div>
+                                <div><p><span class="product-label label label-success">Pronta caducidad</span> &#8594; Descuento por pronta caducidad</p></div>
+                            </div>
+                            <div class="col-md-4" id="columna-dos">
+                                <div><p><span class="product-label label label-success">km0</span> &#8594; 0-100 km</p></div>
+                                <div><p><span class="product-label label label-success">km100</span> &#8594; 100-500 km</p></div>
+                                <div><p><span class="product-label label label-success">km500</span> &#8594; 500-1000 km</p></div>
+                                <div><p><span class="product-label label label-success">km1000</span> &#8594; +1000 km</p></div>
+                            </div>
+                            <div class="col-md-4" id="columna-dos">
+                                <div><p><span class="product-label label label-success">BiMe</span> &#8594; Bidezko Merkataritza/Comercio Justo</p></div>
+                            </div>
                         </div>
                     </div>
 
@@ -551,12 +553,12 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 <button class="button button--animated" onClick="javascript:window.location = \'cmda2.php?id=' . $proces . '&id2=' . $numcmda . '&id4=create \';">Editar <i class="fa fa-pencil" aria-hidden="true"></i></button>
                 <button class="button button--animated" onClick="var answer = confirm (\'¿Estás seguro que quieres borrar este pedido?\')
                 if (answer)
-                   {window.location=\'delcom.php?id=' . $numcmda . ' \'}">Eliminar <i class="fa fa-trash-o" aria-hidden="true"></i></button>
-               <button class="button button--animated" name="imprimir" onclick="window.print();">Imprimir <i class="fa fa-print" aria-hidden="true"></i></button>';
-           }
-           ?>
+                 {window.location=\'delcom.php?id=' . $numcmda . ' \'}">Eliminar <i class="fa fa-trash-o" aria-hidden="true"></i></button>
+             <button class="button button--animated" name="imprimir" onclick="window.print();">Imprimir <i class="fa fa-print" aria-hidden="true"></i></button>';
+         }
+         ?>
 
-           <div class="box">
+         <div class="box">
 
             <div class="hidden-print u-text-right u-mb-2">
                 <?php echo $button; ?>
