@@ -67,7 +67,7 @@ Crear nova categoria</p>
 <table width="80%" align="center" valign="middle" cellpadding="5" cellspacing="5">
 <tr>
 <td class="cos_majus">Categoria:</td>
-<td><input align="right" name="tipus" id="tipus" type="TEXT" maxlength="30" size="20">
+<td><input align="right" name="tipus" id="tipus" type="TEXT" maxlength="50" size="20">
 </td></tr>
 <tr>
 <td class="cos_majus">Estoc:</td>

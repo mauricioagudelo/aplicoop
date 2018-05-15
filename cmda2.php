@@ -190,6 +190,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         $goto = 'cmda2.php?id=' . $proces . '&id2=' . $numcmda . '&id4=vis';
                     }
                     ?>
+                    <!-- Etiquetas -->
                     <div class="well row" style="margin-left: 0; margin-right: 0;">
                         
                         <a style="color: inherit;" href="#etiquetas" data-toggle="collapse"><h2 style="border-bottom: 8px solid #FF6873;">Etiquetas <span class="glyphicon glyphicon-plus"></span></h2></a>
@@ -206,7 +207,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 <div><p><span class="product-label label label-success">km1000</span> &#8594; +1000 km</p></div>
                             </div>
                             <div class="col-md-4" id="columna-dos">
-                                <div><p><span class="product-label label label-success">BiMe</span> &#8594; Bidezko Merkataritza/Comercio Justo</p></div>
+                                <div><p><span class="product-label label label-success">BiMer</span> &#8594; Bidezko Merkataritza/Comercio Justo</p></div>
                             </div>
                         </div>
                     </div>
