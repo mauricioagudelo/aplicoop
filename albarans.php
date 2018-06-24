@@ -1,5 +1,5 @@
 <?php
-
+// albaranes
 session_start();
 
 if ($_SESSION['image_is_logged_in'] == 'true') {
