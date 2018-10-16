@@ -211,9 +211,13 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 <div><a class="button button--save button--animated  button--save  u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis"
                 title="Editar este pedido">Editar <i class="fa fa-pencil" aria-hidden="true"></i></a></div> Finaliza el ' . $ver_diats;
             } else {
+                $select_para_contador = "SELECT COUNT(*) FROM comanda WHERE proces='$proces' AND data='$bd_diare'";
+                $result_contador = mysql_query($select_para_contador);
+                list ($contador) = mysql_fetch_row($result_contador);
+                //printf($contador);
+
                 $proces_name = explode(" ", $proces);
-                $nota11 = $proces . ': abierto hasta el ' . $dayNames[date('l', strtotime($ver_diats))] .' '. $ver_diats . '
-                <div><a class="button button--animated button--save u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id4=create" onclick="return confirm_alert(this,'.$date_difference->d.',\''.$proces_name[0].'\')"; 
+                $nota11 = $proces . ': abierto hasta el ' . $dayNames[date('l', strtotime($ver_diats))] .' '. $ver_diats . ' <span style="text-decoration:underline;">' . $contador . ' pedidos registrados.</span>' . '<div><a class="button button--animated button--save u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id4=create" onclick="return confirm_alert(this,'.$date_difference->d.',\''.$proces_name[0].'\')"; 
                 title="Nuevo pedido">Nuevo pedido <i class="fa fa-plus-circle" aria-hidden="true"></i></a></div>';
             }
             $nota1 .= ' <div class="u-text-center">' . $nota11 . '</div>';
