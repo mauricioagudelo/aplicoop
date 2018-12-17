@@ -362,7 +362,7 @@ while (list($from, $to, $sub, $tex, $datac, $vis) = mysql_fetch_row($result5)) {
                     <div class="box">
                         <h2 class="box-title">Agenda</h2>
                         <div>
-                            <iframe src="<?php echo $gcal; ?>" style=" border-width:0 " width="400" height="300" frameborder="0" scrolling="no"></iframe>
+                            <iframe title="calendar_widget" src="<?php echo $gcal; ?>" style=" border-width:0 " width="400" height="300" frameborder="0" scrolling="no"></iframe>
                         </div>
                     </div>
                     <div class="box">
