@@ -312,8 +312,8 @@ if (!$result5) {
 }
 while (list($from, $to, $sub, $tex, $datac, $vis) = mysql_fetch_row($result5)) {
 
-    $correu_linia .= '<div id="correu_f1"><p><SPAN style="font-weight: bold;"> Gaia: </span>' . $sub . '<span style="font-weight: bold;"> Data: </span>' . $datac . '</div>
-    <div id="correu_f2">' . $tex . '</div>';
+    $correu_linia .= '<div class="correu_f1"><SPAN style="font-weight: bold;"> Gaia: </span>' . $sub . '<span style="font-weight: bold;"> Data: </span>' . $datac . '</div>
+    <div class="correu_f2">' . $tex . '</div>';
 }
 
 //
