@@ -23,7 +23,7 @@ mysql_query($query3) or die('Error, insert query failed');
 
 ?>
 
-<html>
+<html lang="es">
 	<head>
 		<?php include 'head.php'; ?>
 		<title>aplicoop - eliminar pedido</title>

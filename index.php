@@ -69,7 +69,7 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
 
 ?>
 
-<html>
+<html lang="es">
 <head>
     <title>aplicoop - login</title>
     <?php include 'head.php'; ?>

@@ -112,7 +112,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     ?>
 
-    <html>
+    <html lang="es">
     <head>
         <meta http-equiv="content-type" content="" text
         /htm; charset=UTF-8" >

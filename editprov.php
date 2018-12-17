@@ -33,7 +33,7 @@ include 'config/configuracio.php';
 
 ?>
 
-<html>
+<html lang="es">
 	<head>
 		<?php include 'head.php'; ?>
 		<link rel="stylesheet" type="text/css" href="coope.css" />

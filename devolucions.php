@@ -97,7 +97,7 @@ function selectNumFact($numero)
 
 ?>
 
-<html>
+<html lang="es">
 <head>
     <?php include 'head.php'; ?>
     <title>aplicoop - devoluciones y facturas fuera de proceso </title>

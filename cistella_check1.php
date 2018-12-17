@@ -178,7 +178,7 @@ $codi2 = generaCodiCistella($lenght);
 
 ?>
 
-<html>
+<html lang="es">
 	<head>
 		<?php include 'head.php'; ?>				
 		<title>aplicoop - primer check pedido</title>

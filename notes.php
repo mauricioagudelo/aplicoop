@@ -8,7 +8,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     ?>
 
-    <html>
+    <html lang="es">
     <head>
         <?php include 'head.php'; ?>
         <link rel="stylesheet" type="text/css" href="coope.css"/>

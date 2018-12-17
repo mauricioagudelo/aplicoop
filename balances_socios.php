@@ -28,7 +28,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
         ?>
 
-        <html>
+        <html lang="es">
         <head>
             <?php include 'head.php'; ?>
             <title>Balances de Soci@s</title>

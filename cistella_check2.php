@@ -16,7 +16,7 @@ $gdata=date('d-m-Y',strtotime('$gbd_data'));
 
 ?>
 
-<html>
+<html lang="es">
 	<head>
 		<?php include 'head.php'; ?>				
 		<title>aplicoop - generación factura</title>

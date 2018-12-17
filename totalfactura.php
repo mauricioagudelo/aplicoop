@@ -17,7 +17,7 @@ $bd_data=date("Y-m-d", strtotime ($data));
 
 ?>
 
-<html>
+<html lang="es">
 	<head>
 		<?php include 'head.php'; ?>
 		<link rel="stylesheet" type="text/css" href="coope.css" />

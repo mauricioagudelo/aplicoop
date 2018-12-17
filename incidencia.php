@@ -50,7 +50,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'POST') &&
     }
 ?>
 
-<html>
+<html lang="es">
 <head>
 <title>incidencias ::: la coope</title>
 <meta http-equiv="content-type" content="="text/ht; charset=UTF-8" >

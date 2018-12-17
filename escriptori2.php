@@ -321,7 +321,7 @@ while (list($from, $to, $sub, $tex, $datac, $vis) = mysql_fetch_row($result5)) {
 
 ?>
 
-<html>
+<html lang="es">
 <head>
     <title>aplicoop - escritorio</title>
     <?php include 'head.php'; ?>

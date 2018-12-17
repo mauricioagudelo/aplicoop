@@ -11,7 +11,7 @@ setcookie('lang', $lang);
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html>
+<html lang="es">
 <head>
 <title>
 Test for calendar.php

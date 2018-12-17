@@ -14,7 +14,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     include 'config/configuracio.php';
     ?>
 
-    <html>
+    <html lang="es">
     <head>
         <?php include 'head.php'; ?>
         <title>aplicoop - estadísticas de consumo</title>        

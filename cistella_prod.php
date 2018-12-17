@@ -92,7 +92,7 @@ $user = $_SESSION['user'];
 ///Inici html///
 ?>
 
-<html>
+<html lang="es">
 	<head>
 		<?php include 'head.php'; ?>						
 		<title>aplicoop - editar pedido / producto</title>		
