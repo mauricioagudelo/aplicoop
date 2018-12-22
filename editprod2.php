@@ -137,8 +137,7 @@ function dropdownlist(listindex)
 ?>
 		case "<?php echo $jtipus; ?>":
 		document.nouprod.subtipus.options[0]=new Option("elegeix subcategoria","");
-<?php>
-
+<?php
 		$query8= "SELECT subcategoria FROM subcategoria 
 		WHERE categoria='".$jtipus."' ORDER BY subcategoria";
 		$result8=mysql_query($query8);
