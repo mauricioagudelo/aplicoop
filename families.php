@@ -136,21 +136,23 @@ margin-bottom: 20px; padding-bottom: 20px;">
 		<tr class="cos_majus">
 		<td align="center" width="20%">nom</td>
 		<td align="center" width="30%">components</td>
-		<td align="center" width="15%">telefon</td>
-		<td align="center" width="35%">email</td> </tr>');
+		<td align="center" width="15%">telefono</td>
+    <td align="center" width="35%">email</td>
+    <td align="center" width="35%">email alt</td> </tr>');
 
-                $taula = "SELECT nom,components,tel1,email1 FROM usuaris " . $where . " ORDER BY nom";
+                $taula = "SELECT nom,components,tel1,email1,email2 FROM usuaris " . $where . " ORDER BY nom";
                 $result = mysql_query($taula);
                 if (!$result) {
                     die('Invalid query: ' . mysql_error());
                 }
 
-                while (list($nom, $components, $tel1, $email1) = mysql_fetch_row($result)) {
+                while (list($nom, $components, $tel1, $email1,$email2) = mysql_fetch_row($result)) {
                     echo "<tr class='cos'>
 		<td align='center'><a href='vis_user.php?id=" . $nom . "'>" . $nom . " </a></td>
 		<td align='center'>" . $components . "</td>
 		<td align='center'>" . $tel1 . "</td>
-		<td align='center'>" . $email1 . "</td>
+    <td align='center'>" . $email1 . "</td>
+    <td align='center'>" . $email2 . "</td>
 		</tr>";
                 }
 
