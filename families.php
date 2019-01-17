@@ -6,7 +6,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
     $user = $_SESSION['user'];
 
-    $pactiu = $_POST['actiu'];
+    $pactiu = isset($_POST['actiu']) ? $_POST['actiu'] : 'actiu';
     $pgrup = $_POST['grup'];
     $ptipus = $_POST['tipus'];
     $pkuota = $_POST['kuota'];
