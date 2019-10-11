@@ -50,7 +50,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     ?>
 
 
-    <html lang="es">
+    <html>
     <head>
         <?php include 'head.php'; ?>
         <title>aplicoop - editar producto</title>
@@ -357,7 +357,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             if ($que == 'edit') {
                 $query3 = "UPDATE productes SET nom='" . $pnom . "',unitat='" . $punitat . "',categoria='" . $pcat . "',
 	subcategoria='" . $psubcat . "',actiu='" . $pactiu . "',preusi='" . $ppreusi . "',iva='" . $piva . "',marge='" . $pmarge . "',
-	descompte='" . $pdescompte . "',labels='" . $plabels . "',notes='" . $pnotes . "'
+	descompte='" . $pdescompte . "',labels='" . $plabels . "',estoc='" . $pestoc ."',notes='" . $pnotes . "'
 	WHERE ref='" . $pref . "'";
                 mysql_query($query3) or die('Error, insert query3 failed');
                 die ("<div class='box'><p class='alert alert--info'>El producto " . $pref . "-" . $supernom . " ha cambiado los siguientes datos:</p>
@@ -375,6 +375,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 			<p class='cos2'>pvp: " . $ppvp . "</p>
 			<p class='cos2'>pvp con descuento: " . $ppvpdesc . "</p>
 			<p class='cos2'>comentarios: " . $pnotes . "</p>
+			<p class='cos2'>Stock: " . $pestoc . "</p>
             <p class='cos2'>etiquetas: " . $plabels . "</p></div>");
             }
 
@@ -615,7 +616,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 <label for="estoc" class="col-sm-2 control-label">Stock</label>
                                 <div class="col-sm-10">
                                     <input align="right" name="estoc" id="estoc" type="TEXT" maxlength="7"
-                                           size="5" value="<?php echo $estoc; ?>" readonly>
+                                           size="5" value="<?php echo $estoc; ?>" >
                                 </div>
                             </div>
                             <?php
