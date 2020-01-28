@@ -317,7 +317,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                     $labels_array = explode(',', $labels);
                                     $labels_html = '';
                                     for ($i=0; $i < sizeof($labels_array); $i++) {
-                                        if ($labels_array[$i] == " Novedad") {
+                                        if (trim($labels_array[$i]) == "Novedad") {
                                           $labels_html .= "<span class='product-label label label-warning'>" . $labels_array[$i] . "</span>";
                                         }
                                         else {
