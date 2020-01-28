@@ -192,7 +192,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     ?>
                     <!-- Etiquetas -->
                     <div class="well row" style="margin-left: 0; margin-right: 0;">
-                        
+
                         <a style="color: inherit;" href="#etiquetas" data-toggle="collapse"><h2 style="border-bottom: 8px solid #FF6873;">Etiquetas <span class="glyphicon glyphicon-plus"></span></h2></a>
                         <div id="etiquetas" class="panel-collapse collapse">
                             <div class="col-md-4" id="columna-uno">
@@ -242,7 +242,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 while (list($subcate) = mysql_fetch_row($ressubcat)) {
                                     print ('<ul class="accordion">
                                         <li class="accordion-item">
-                                        
+
                                         <li class="col-lg-12">
                                         <input type="checkbox"  class="accordion-check" checked>
                                         <i class="accordion-icon"></i>
@@ -316,9 +316,13 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                     }
                                     $labels_array = explode(',', $labels);
                                     $labels_html = '';
-                                    for ($i=0; $i < sizeof($labels_array); $i++) { 
-                                            # code...
-                                        $labels_html .= "<span class='product-label label label-success'>" . $labels_array[$i] . "</span>";
+                                    for ($i=0; $i < sizeof($labels_array); $i++) {
+                                        if ($labels_array[$i] == " Novedad") {
+                                          $labels_html .= "<span class='product-label label label-warning'>" . $labels_array[$i] . "</span>";
+                                        }
+                                        else {
+                                          $labels_html .= "<span class='product-label label label-success'>" . $labels_array[$i] . "</span>";
+                                        }
                                     }
                                     $prod = htmlentities($nomprod, null, 'utf-8');
                                     $prodtext = str_replace("&nbsp;", " ", $prod);
@@ -393,7 +397,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                     ¡No has introducido cantidad a ningun producto!
                     </p>';
 
-                    die ('<p class="u-text-center"><a class="button" href="cmda2.php?id=' . $proces . '&id4=create" 
+                    die ('<p class="u-text-center"><a class="button" href="cmda2.php?id=' . $proces . '&id4=create"
                         title="Volver al pedido">
                         Volver al pedido  <i class="fa fa-undo" aria-hidden="true"></i></a></p>');
                 } //////////////////
@@ -443,7 +447,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
                     //comprovació de que no es generen dues comandes alhora //
                     $sel = "SELECT numero
-                    FROM comanda 
+                    FROM comanda
                     WHERE usuari='$user' AND proces='$proces' AND grup='$grup' AND data='$bd_data'";
                     $result = mysql_query($sel);
                     if (!$result) {
@@ -460,7 +464,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                           Ya ha creado un pedido para un proceso ' . $proces . '-' . $grup . ' con fecha ' . $data . '.
                           </p>
                           <p class="u-text-center">
-                          <a class="button" href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis" 
+                          <a class="button" href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis"
                           title="editar la comanda actual">
                           editar la comanda actual</a>
                           </p>');
