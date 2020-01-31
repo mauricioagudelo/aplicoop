@@ -1,8 +1,20 @@
-var gulp = require('gulp');
+const gulp = require("gulp");
+const { series } = require('gulp');
+const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
 
+function style() {
+  return gulp.src('./styles/main.scss')
+            .pipe(sourcemaps.init())
+            .pipe(sass().on('error', sass.logError))
+            .pipe(sourcemaps.write('.'))
+            .pipe(gulp.dest('./styles'));
+}
 
-require('./gulp/tasks/sass.js')(gulp);
-require('./gulp/tasks/watch.js')(gulp);
+function watch(){
+    gulp.watch('./styles/**/*.scss', style)
+}
 
-gulp.task('default', ['watch']);
-
+exports.style = style;
+exports.watch = watch;
+exports.default = series(style, watch);
