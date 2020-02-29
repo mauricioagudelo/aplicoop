@@ -129,8 +129,9 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     SELECT DISTINCT us.nom
     FROM usuaris AS us
     JOIN comanda ON us.nom=comanda.usuari
-    WHERE year(comanda.data) = " . $pyear . " AND MONTH(comanda.data) = " . $pmes . "
+    WHERE year(comanda.data2) = " . $pyear . " AND MONTH(comanda.data2) = " . $pmes . "
   )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 1 AND usuaris.fechaalta <='" . $fecha1 . "')";
+  echo $sel;
   $result = mysql_query($sel);
   if (!$result) {
     die('Invalid query: ' . mysql_error());
