@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 if ($_SESSION['image_is_logged_in'] == 'true') {
@@ -18,7 +18,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
         $nextmonth = $pmes+1;
         $pnextyear = $pyear;
     }
-    
+
 
     $fecha1 = $pnextyear . "-" . $nextmonth . "-01";
 
@@ -85,13 +85,13 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 SELECT DISTINCT us.nom
                 FROM usuaris AS us
                 JOIN comanda ON us.nom=comanda.usuari
-                WHERE year(comanda.data) = " . $pyear . " AND MONTH(comanda.data) = " . $pmes . "
+                WHERE year(comanda.data2) = " . $pyear . " AND MONTH(comanda.data2) = " . $pmes . "
             )  AND usuaris.tipus2 = 'actiu' AND usuaris.domiciliacion = 1 AND usuaris.fechaalta <='" . $fecha1 . "'";
             $result = mysql_query($query);
             if (!$result) {
             	die('Invalid query: ' . mysql_error());
             }
-            
+
             while (list($socio, $kuota) = mysql_fetch_row($result)) {
             	echo $socio . " " . $kuota . "<br>";
             	$query2 = "INSERT INTO moneder
