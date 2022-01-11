@@ -3,3 +3,4 @@ config/configuracio.php
 node_modules/
 .vscode
 download/
+.vagrant/
