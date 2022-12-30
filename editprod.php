@@ -568,16 +568,19 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                     $sele1 = "";
                                     $sele2 = "";
                                     $sele3 = "";
+                                    $sele4 = "";
                                     if ($iva == 0) $sele0 = "selected";
                                     if ($iva == 0.21) $sele1 = "selected";
                                     if ($iva == 0.10) $sele2 = "selected";
-                                    if ($iva == 0.04) $sele3 = "selected";
+                                    if ($iva == 0.05) $sele3 = "selected";
+                                    if ($iva == 0.04) $sele4 = "selected";
                                     ?>
 
                                     <option value="0" <?php echo $sele0; ?>>sin IVA</option>
                                     <option value="0.21" <?php echo $sele1; ?>>21%</option>
                                     <option value="0.10" <?php echo $sele2; ?>>10%</option>
-                                    <option value="0.04" <?php echo $sele3; ?>>4%</option>
+                                    <option value="0.05" <?php echo $sele3; ?>>5%</option>
+                                    <option value="0.04" <?php echo $sele4; ?>>4%</option>
                                 </SELECT>
                             </div>
                         </div>
