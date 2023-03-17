@@ -222,7 +222,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         <ul class="accordion">
 
                             <?php
-                            $sel = "SELECT categoria FROM proces_linia WHERE proces='$proces' AND grup='$grup' AND actiu='activat' ORDER BY ordre";
+                            $sel = "SELECT categoria FROM proces_linia WHERE proces='$proces' AND grup='$grup' AND actiu = 'activat'";
                             $result = mysql_query($sel);
                             if (!$result) {
                                 die('Invalid query: ' . mysql_error());
@@ -234,7 +234,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                     <i class="accordion-icon"></i>
                                     <h2 class="accordion-title box-subtitle">' . $cat . '</h2>');
                                 //added
-                                $selectsubcategorias = "SELECT subcategoria FROM subcategoria WHERE categoria='$cat'";
+                                $selectsubcategorias = "SELECT subcategoria FROM subcategoria WHERE categoria='$cat' AND actiu = 'activada'";
                                 $ressubcat = mysql_query($selectsubcategorias);
                                 if (!$ressubcat) {
                                     die('Invalid querysubcat: '  . mysql_error());
