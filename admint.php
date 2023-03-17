@@ -14,7 +14,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
 ///sólo entramos si somos "super"////
 
-    if ($priv == 'super') {
+    if ($priv == 'super' or $priv == 'cist') {
 
         if ($priv != 'user') {
             $h1 = "";
