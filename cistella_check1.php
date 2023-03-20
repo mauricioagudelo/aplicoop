@@ -229,7 +229,7 @@ else
 
 <p class="u-text-center">
 <button class="button button--animated button--white" name="fact" type="button" onClick="javascript:window.location = 'cistella_check2.php?id=<?php echo $gproces.'&id2='.$ggrup.'&id3='.$gbd_data; ?>';">Facturas</button>
-<button class="button button--animated button--white" name="sortir" type="button"  onClick="javascript: history.go(-1);">Atrás <i class="fa fa-undo" aria-hidden="true"></i></button>
+
 </p>
 </div>
 </div>
