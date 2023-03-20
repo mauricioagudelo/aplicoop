@@ -195,7 +195,7 @@ if ($_SESSION['image_is_logged_in'] == 'true' )
 	}
 	else
 	{
-		$button='<button class="button button button--save button--animated" name="Gcodi" type="button"  onClick="confirma()">Siguiente paso <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button>';
+		$button='<button class="button button button--save button--animated" name="Gcodi" type="button"  onClick="confirma()">Facturar Cistella <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button>';
 		$sty="";
 		$nouproducte='<div class="u-cf"><button class="button button--animated u-mb-1 pull-right " type="button" 
 		onClick="javascript:window.location = \'cistella_mes.php?id3='.$gdata.'&id5='.$gvis.'&id6='.$gproces.'&id7='.$ggrup.'\'">Añadir nuevo producto <i class="fa fa-plus" aria-hidden="true"></i></button></div>';
