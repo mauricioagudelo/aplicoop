@@ -79,7 +79,7 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
 <div class="login-container page">
 
     <div class="u-text-center u-mb-3">
-        <img class="img img--responsive" src="imatges/logo_menu.png" title="applicop">
+        <img class="img img--responsive" <?php echo 'src="'.$logo_portada.'"' ?> title="applicop">
         <h1 class="login-title">APLICOOP</h1>
     </div>
 
