@@ -207,7 +207,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 <div><p><span class="product-label label label-success">km1000</span> &#8594; +1000 km</p></div>
                             </div>
                             <div class="col-md-4" id="columna-dos">
-                                <div><p><span class="product-label label label-success">Com Jus</span> &#8594; Comercio Justo</p></div>
+                                <div><p><span class="product-label label label-success">Com. Justo</span> &#8594; Comercio Justo</p></div>
                             </div>
                         </div>
                     </div>
