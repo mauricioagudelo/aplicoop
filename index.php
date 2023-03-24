@@ -59,11 +59,11 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
             exit;
 
         } else {
-            $errorMessage = 'Lo sentimos, el usuario y/o password son err&oacute;neos. Prueba otra vez.';
+            $errorMessage = 'Ho sentim, el nom de la fam&iacute;lia o la clau de pas son err&oacute;nies. Prova altra vegada.';
             include 'config/disconect.php';
         }
     } else {
-        $errorMessage = 'Lo sentimos, el captcha no es correcto. Prueba otra vez.';
+        $errorMessage = 'Ho sentim, el numero no &eacute;s correcte. Prova altra vegada.';
     }
 }
 
@@ -79,7 +79,7 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
 <div class="login-container page">
 
     <div class="u-text-center u-mb-3">
-        <img class="img img--responsive" src="imatges/logo_menu.png" title="applicop">
+        <img class="img img--responsive" <?php echo 'src="'.$logo_portada.'"' ?> title="applicop">
         <h1 class="login-title">APLICOOP</h1>
     </div>
 
@@ -88,17 +88,17 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
         <div class="box">
 
             <div class="form-group">
-                <label for="txtUserId">Usuario</label>
+                <label for="txtUserId">Nom fam&iacute;lia</label>
                 <input type="text" id="txtUserId" name="txtUserId" class="form-control">
             </div>
 
             <div class="form-group">
-                <label for="txtPassword">Password</label>
+                <label for="txtPassword">Clau de pas</label>
                 <input type="password" id="txtPassword" name="txtPassword" class="form-control">
             </div>
 
             <div class="form-group">
-                <label for="txtNumber">Captcha</label>
+                <label for="txtNumber">N&uacute;mero</label>
                 <input type="number" id="txtNumber" name="txtNumber" class="form-control" autocomplete="off">
                 <div class="u-text-center u-mt-1">
                     <img class="login-captcha" src="randomImage.php">
@@ -126,7 +126,7 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
     </form>
 
     <p class="u-text-center u-text-smaller u-mt-2">
-        Si tienes cualquier problema notif&iacute;calo <a href="incidencia.php"  class="link link--highlight" target="_blank">aqu&iacute;</a>
+        per qualsevol incid&eacute;ncia clica <a href="incidencia.php"  class="link link--highlight" target="_blank">aqu&iacute;</a>
     </p>
 
 </div>

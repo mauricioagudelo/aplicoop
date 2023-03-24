@@ -207,7 +207,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                 <div><p><span class="product-label label label-success">km1000</span> &#8594; +1000 km</p></div>
                             </div>
                             <div class="col-md-4" id="columna-dos">
-                                <div><p><span class="product-label label label-success">BiMer</span> &#8594; Bidezko Merkataritza/Comercio Justo</p></div>
+                                <div><p><span class="product-label label label-success">Com. Justo</span> &#8594; Comercio Justo</p></div>
                             </div>
                         </div>
                     </div>
@@ -222,7 +222,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                         <ul class="accordion">
 
                             <?php
-                            $sel = "SELECT categoria FROM proces_linia WHERE proces='$proces' AND grup='$grup' AND actiu='activat' ORDER BY ordre";
+                            $sel = "SELECT categoria FROM proces_linia WHERE proces='$proces' AND grup='$grup' AND actiu = 'activat'";
                             $result = mysql_query($sel);
                             if (!$result) {
                                 die('Invalid query: ' . mysql_error());
@@ -234,7 +234,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                                     <i class="accordion-icon"></i>
                                     <h2 class="accordion-title box-subtitle">' . $cat . '</h2>');
                                 //added
-                                $selectsubcategorias = "SELECT subcategoria FROM subcategoria WHERE categoria='$cat'";
+                                $selectsubcategorias = "SELECT subcategoria FROM subcategoria WHERE categoria='$cat' AND actiu = 'activada'";
                                 $ressubcat = mysql_query($selectsubcategorias);
                                 if (!$ressubcat) {
                                     die('Invalid querysubcat: '  . mysql_error());

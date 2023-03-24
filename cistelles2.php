@@ -47,7 +47,7 @@ $user = $_SESSION['user'];
 	else 
 	{
 		$readonly="";
-		$button='<button class="button button--save button--animated" name="Gcodi" type="button" value="PAS SEGÜENT" onClick="confirma()">Siguiente paso <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button>';
+		$button='<button class="button button--save button--animated" name="Gcodi" type="button" value="PAS SEGÜENT" onClick="confirma()">Facturar Cistella <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button>';
 		$sty="";
 		$intronovafam='<button class="button button--save button--animated"" 
 		onClick="javascript:window.location = \'cistella_mes.php?id3='.$gdata.'&id5='.$gvis.'&id6='.$gproces.'&id7='.$ggrup.'&id8=1\'">Nueva familia <i class="fa fa-plus" aria-hidden="true"></i></button>';

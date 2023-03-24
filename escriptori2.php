@@ -340,7 +340,7 @@ while (list($from, $to, $sub, $tex, $datac, $vis) = mysql_fetch_row($result5)) {
         <div class="container">
             <div class="desktop-wrapper">
                 <div class="box">
-                    <h2 class="box-title">Pedido</h2>
+                    <h2 class="box-title">Processos de comanda oberts</h2>
                     <div>
                         <?php echo $nota1; ?>
                         <?php echo $nota12; ?>
@@ -348,7 +348,7 @@ while (list($from, $to, $sub, $tex, $datac, $vis) = mysql_fetch_row($result5)) {
                     </div>
                 </div>
                 <div class="box">
-                    <h2 class="box-title clearfix">Monedero <span
+                    <h2 class="box-title clearfix">Moneder <span
                         class="pull-right" <?php echo $style . ">** " . $moneder; ?> **</span></h2>
 
                         <h3 class="u-mb-1 u-mt-1">
@@ -366,7 +366,7 @@ while (list($from, $to, $sub, $tex, $datac, $vis) = mysql_fetch_row($result5)) {
                         </div>
                     </div>
                     <div class="box">
-                        <h2 class="box-title">Correos</h2>
+                        <h2 class="box-title">Correus</h2>
                         <div id="correu">
                             <?php echo $correu_linia; ?>
                         </div>

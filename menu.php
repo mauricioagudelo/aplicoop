@@ -30,25 +30,25 @@ $superuser = strtoupper($_SESSION['user']);
         <div id="menu" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="escriptori2.php">Inicio</a>
+                    <a href="escriptori2.php">Inici</a>
                 </li>
                 <li>
-                    <a href="comandes.php?id3=<?php echo $user;?>">mis pedidos</a>
+                    <a href="comandes.php?id3=<?php echo $user;?>">Les meves comandes</a>
                 </li>
                 <li>
-                    <a href="vis_user.php?id=<?php echo $user;?>">mis datos</a>
+                    <a href="vis_user.php?id=<?php echo $user;?>">Les meves dades</a>
                 </li>
                 <li>
-                    <a href="comptes.php?id3=<?php echo $user;?>">mis cuentas</a>
+                    <a href="comptes.php?id3=<?php echo $user;?>">Els meus comptes</a>
                 </li>
                 <li>
-                    <a href="admint.php">administrar</a>
+                    <a href="admint.php">Administració</a>
                 </li>
                 <li>
-                    <a href="ajuda.php">ayuda</a>
+                    <a href="ajuda.php">Ajuda</a>
                 </li>
                 <li>
-                    <a href="logout.php">salir</a>
+                    <a href="logout.php">Sortir</a>
                 </li>
 
             </ul>

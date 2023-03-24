@@ -14,7 +14,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
 ///sólo entramos si somos "super"////
 
-    if ($priv == 'super') {
+    if ($priv == 'super' or $priv == 'cist') {
 
         if ($priv != 'user') {
             $h1 = "";
@@ -48,89 +48,86 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
         <?php include 'menu.php'; ?>
         <div class="page">
             <div class="container">
-                <h1>Administración</h1>
+                <h1>Administració</h1>
 
                 <div class="box">
 
                     <div class="row">
                         <div class="col-md-4">
-                            <h2 class="box-subtitle">Pedidos</h2>
+                            <h2 class="box-subtitle">Comandes</h2>
                             <ul type="circle">
-                                <li><a class="link" href='grups_comandes.php'>Grupos de pedidos y cestas</a></li>
-                                <li><a class="link" href='comandes.php'>Lista de pedidos y facturas</a></li>
-                                <li><a class="link" <?php echo $h5; ?>>Devoluciones y facturas fuera de proceso</a></li>
+                                <li><a class="link" href='grups_comandes.php'>Grups de comandes i cistelles</a></li>
+                                <li><a class="link" href='comandes.php'>Llista de comandes i factures</a></li>
+                                <li><a class="link" <?php echo $h5; ?>>Devolucions i factures fora procés</a></li>
                             </ul>
 
-                            <h2 class="box-subtitle">Socios/as-Familias</h2>
+                            <h2 class="box-subtitle">Famílies</h2>
                             <ul type="circle">
-                                <li><a class="link" href='families.php'>Lista de Socios/as</a></li>
-                                <li><a class="link" <?php echo $h2; ?>>Crear y editar Socios/as</a></li>
+                                <li><a class="link" href='families.php'>Llista famílies/as</a></li>
+                                <li><a class="link" <?php echo $h2; ?>>Crear i editar famílies</a></li>
                             </ul>
 
-                            <h2 class="box-subtitle">Comunicaciones</h2>
+                            <h2 class="box-subtitle">Comunicacions</h2>
                             <ul type="circle">
-                                <li><a class="link" href='notes.php'>Introducir notas en el escritorio</a></li>
-                                <li><a class="link" href='cistella_incidencia.php'>Comunicaci&oacute;n de incidencias</a>
+                                <li><a class="link" href='notes.php'>Introduir notes a l'escriptori</a></li>
+                                <li><a class="link" href='cistella_incidencia.php'>Comunicació incidències</a>
                                 </li>
                             </ul>
 
-                            <h2 class="box-subtitle">Monedero</h2>
+                            <h2 class="box-subtitle">Moneder</h2>
                             <ul type="circle">
-                                <li><a class="link" <?php echo $h4; ?>>Introducir línea</a></li>
-                                <li><a class="link" href="comptes.php">Historia de movimientos</a></li>
-                                <li><a class="link" href="moneder_usuari.php">Lista monedero de socios/as</a></li>
+                                <li><a class="link" <?php echo $h4; ?>>Introduir línia</a></li>
+                                <li><a class="link" href="comptes.php">Història moviments</a></li>
+                                <li><a class="link" href="moneder_usuari.php">Llista moneder famílies</a></li>
                             </ul>
                         </div>
                         <div class="col-md-4">
-                            <h2 class="box-subtitle">Procesos (de pedido)</h2>
+                            <h2 class="box-subtitle">Processos</h2>
                             <ul type="circle">
-                                <li><a class="link" href='editprocessos.php'>Crear, editar, eliminar procesos (de
-                                        pedido)</a></li>
-                                <li><a class="link" href='associar.php'>Asociar procesos, grupos y categor&iacute;as</a>
+                                <li><a class="link" href='editprocessos.php'>Crear, editar, eliminar processos</a></li>
+                                <li><a class="link" href='associar.php'>Associar processos, grups i categories</a>
                                 </li>
                             </ul>
-                            <h2 class="box-subtitle">Grupos</h2>
+                            <h2 class="box-subtitle">Grups</h2>
                             <ul type="circle">
-                                <li><a class="link" href='editgrups.php'>Crear, editar, eliminar grupos</a></li>
+                                <li><a class="link" href='editgrups.php'>Crear, editar, eliminar grups</a></li>
                             </ul>
-                            <h2 class="box-subtitle">Categor&iacute;as y subcategor&iacute;as</h2>
+                            <h2 class="box-subtitle">Categories i subcategories</h2>
                             <ul type="circle">
-                                <li><a class="link" href='categories.php'>Crear, editar, eliminar categor&iacute;as y
-                                        subcategor&iacute;as</a></li>
+                                <li><a class="link" href='categories.php'>Crear, editar, eliminar categories i subcategories</a></li>
                             </ul>
-                            <h2 class="box-subtitle">Estad&iacute;stica</h2>
+                            <h2 class="box-subtitle">Estadística</h2>
                             <ul type="circle">
-                                <li><a class="link" href='estat_consum.php'>Estad&iacute;stica de consumo</a></li>
-                                <li><a class="link" href='estat_iva.php'>Consumo IVA</a></li>
-                                <li><a class="link" href='estat_iva_prov.php'>Consumo IVA (prov.)</a></li>
+                                <li><a class="link" href='estat_consum.php'>Estadística consum</a></li>
+                                <li><a class="link" href='estat_iva.php'>Consum IVA</a></li>
+                                <li><a class="link" href='estat_iva_prov.php'>Consum IVA (prov.)</a></li>
                             </ul>
-                            <h2 class="box-subtitle">Econom&iacute;a Kidekoop</h2>
+                            <h2 class="box-subtitle">Economia Kidekoop</h2>
                             <ul type="circle">
-                                <li><a class="link" href='kidekoop.php'>Cierre de Més</a></li>
-                                <li><a class="link" href='balances_socios.php'>Balances de Socios</a></li>
+                                <li><a class="link" href='kidekoop.php'>Tancament del mes</a></li>
+                                <li><a class="link" href='balances_socios.php'>Balanços de Socis</a></li>
                             </ul>
                         </div>
                         <div class="col-md-4">
-                            <h2 class="box-subtitle">Productos</h2>
+                            <h2 class="box-subtitle">Productes</h2>
                             <ul type="circle">
-                                <li><a class="link" href='baixa_productes.php'>Activar/desactivar productos</a></li>
-                                <li><a class="link" href='productes.php'>Crear, editar, eliminar productos</a></li>
-                                <li><a class="link" href='canvi_massiu_productes.php'>Cambiar precios, IVA y margen en
-                                        listado</a></li>
+                                <li><a class="link" href='baixa_productes.php'>Activar/desactivar productes</a></li>
+                                <li><a class="link" href='productes.php'>Crear, editar, eliminar productes</a></li>
+                                <li><a class="link" href='canvi_massiu_productes.php'>Canviar preus, iva i marge en llistat</a></li>
                             </ul>
-                            <h2 class="box-subtitle">Proveedores</h2>
+                            <h2 class="box-subtitle">Proveïdores</h2>
                             <ul type="circle">
-                                <li><a class="link" href='proveidores.php'>Crear, editar, eliminar proveedores</a></li>
+                                <li><a class="link" href='proveidores.php'>Crear, editar, eliminar proveïdores</a></li>
 
                             </ul>
-                            <h2 class="box-subtitle">Albaranes</h2>
+                            <h2 class="box-subtitle">Albarans</h2>
                             <ul type="circle">
-                                <li><a class="link" href='albarans.php'>Crear, editar, eliminar albaranes</a></li>
+                                <li><a class="link" href='albarans.php'>Crear, editar, eliminar albarans</a></li>
                             </ul>
 
-                            <h2 class="box-subtitle">Stock</h2>
+                            <h2 class="box-subtitle">Estoc</h2>
                             <ul type="circle">
-                                <li><a class="link" href='inventari2.php'>Ver stock actual</a></li>
+                                <li><a class="link" href='inventari2.php'>Veure estoc actual</a></li>
                             </ul>
                         </div>
                     </div>
