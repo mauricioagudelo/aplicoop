@@ -216,17 +216,19 @@ if ($_SESSION['image_is_logged_in'] == 'true' )
 <div class="page">
     <div class="container">
 	<div class="u-cf">
-		<h1 class="pull-left"><?php echo $link_cap; ?></h1>
-		<div class="pull-right u-mt-1 u-mb-1">
-			<button class="button button--animated"  type="button" 
+		<h1 class="pull-left"><?php echo $link_cap; ?></h1> 
+			<button class="button button--animated u-mb-1 pull-right "  type="button" 
 onClick="javascript:window.location = 'cistelles2.php?id2=<?php echo $gdata.'&id3='.$gproces.'&id4='.$ggrup.'&id5='.$gvis; ?>'">Pedidos por familia</button>
-  		</div>
-	</div>
-
- 
 
 
 <?php echo $nouproducte; ?>
+
+<?php //Botón para acceder a “createcsv_perma.php” que permite descargarse la lista de productos con diferencias entre “cistella” y “quantitat”.
+$button_perma='<button class="button  button-- button--animated pull-right" onClick="javascript:window.location = \'createcsv_perma.php?id='.$gbd_data.'&id2='.$gproces.'&id3='.$ggrup.'&id4=2\'">CSV permanencia<i class="fa fa-table" aria-hidden="true"></i></button>'; ?>
+
+<?php echo $button_perma; ?>
+
+</div>
 
 <?php echo $nota; ?>
 
