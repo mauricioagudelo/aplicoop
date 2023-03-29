@@ -169,10 +169,10 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                             <td width="30%" class="u-text-semibold">Producto</td>
                             <td width="10%" class="u-text-semibold">Proveedor</td>
                             <td width="10%" class="u-text-semibold">Categoría</td>                            
-                            <td width="5%" class="u-text-semibold u-text-right">Consumo</td>
-                            <td width="5%" class="u-text-semibold u-text-right">Gasto</td>
-                            <td width="20%" class="u-text-semibold u-text-right">Inferior a</td>
-                            <td width="20%" class="u-text-semibold u-text-right">Superior a</td>
+                            <td width="10%" class="u-text-semibold u-text-right">Consumo</td>
+                            <td width="10%" class="u-text-semibold u-text-right">Gasto</td>
+                            <td width="15%" class="u-text-semibold u-text-right">Inferior a</td>
+                            <td width="15%" class="u-text-semibold u-text-right">Superior a</td>
                         </tr>') ;     
 
         $sel = "SELECT cl.ref, pr.nom, pr.proveidora, pr.unitat, pr.categoria, pr.subcategoria,
