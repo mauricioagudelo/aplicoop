@@ -5,3 +5,4 @@ node_modules/
 download/
 .vagrant/
 BD/
+.DS_Store
