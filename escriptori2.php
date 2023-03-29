@@ -143,11 +143,11 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             if ($numcmda1 != "") {
                 $nota11 = $proces . ': tens la comanda numero ' . $numcmda1 . '
                 <div><a class="button--save button--animated  button--save  u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis"
-                title="Editar pedido">Editar <i class="fa fa-pencil" aria-hidden="true"></i></a></div> Finaliza el ' . $ver_dataf . ' (incluido).';
+                title="Editar pedido">Editar <i class="fa fa-pencil" aria-hidden="true"></i></a></div> Finalitza el ' . $ver_dataf . ' (incluido).';
             } else {
                 $nota11 = $proces . ': fins ' . $ver_dataf . ' (inclòs).
                 <div><a class="button--save button--animated  button--save  u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id4=create"
-                title="Nuevo pedido">Nuevo pedido <i class="fa fa-plus-circle" aria-hidden="true"></i></a></div>';
+                title="Nuevo pedido">Nova comanda <i class="fa fa-plus-circle" aria-hidden="true"></i></a></div>';
             }
             $nota1 .= ' <div class="u-text-center">' . $nota11 . '</div> ';
         }
@@ -207,9 +207,9 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             $date_difference = date_diff(date_create(date('Y-m-d')),date_create($ver_diare));
 
             if ($numcmda1 != "") {
-                $nota11 = $proces . ': Tienes el pedido con número ' . $numcmda1 . ' para recoger el ' . $ver_diare . '.
+                $nota11 = $proces . ': Tens la comanda amb número ' . $numcmda1 . ' per recogir el ' . $ver_diare . '.
                 <div><a class="button button--save button--animated  button--save  u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id2=' . $numcmda1 . '&id4=vis"
-                title="Editar este pedido">Editar <i class="fa fa-pencil" aria-hidden="true"></i></a></div> Finaliza el ' . $ver_diats;
+                title="Editar este pedido">Editar <i class="fa fa-pencil" aria-hidden="true"></i></a></div> Finalitza el ' . $ver_diats;
             } else {
                 $select_para_contador = "SELECT COUNT(*) FROM comanda WHERE proces='$proces' AND data='$bd_diare'";
                 $result_contador = mysql_query($select_para_contador);
@@ -217,8 +217,8 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 //printf($contador);
 
                 $proces_name = explode(" ", $proces);
-                $nota11 = $proces . ': abierto hasta el ' . $dayNames[date('l', strtotime($ver_diats))] .' '. $ver_diats . ' <span style="text-decoration:underline;">' . $contador . ' pedidos registrados.</span>' . '<div><a class="button button--animated button--save u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id4=create" onclick="return confirm_alert(this,'.$date_difference->d.',\''.$proces_name[0].'\')"; 
-                title="Nuevo pedido">Nuevo pedido <i class="fa fa-plus-circle" aria-hidden="true"></i></a></div>';
+                $nota11 = $proces . ': obert fins el ' . $dayNames[date('l', strtotime($ver_diats))] .' '. $ver_diats . ' <span style="text-decoration:underline;">' . $contador . ' comandes registrades.</span>' . '<div><a class="button button--animated button--save u-mt-2 u-mb-1" href="cmda2.php?id=' . $proces . '&id4=create" onclick="return confirm_alert(this,'.$date_difference->d.',\''.$proces_name[0].'\')"; 
+                title="Nuevo pedido">Nova comanda <i class="fa fa-plus-circle" aria-hidden="true"></i></a></div>';
             }
             $nota1 .= ' <div class="u-text-center">' . $nota11 . '</div>';
         }
@@ -312,7 +312,7 @@ if (!$result5) {
 }
 while (list($from, $to, $sub, $tex, $datac, $vis) = mysql_fetch_row($result5)) {
 
-    $correu_linia .= '<div class="correu_f1"><SPAN style="font-weight: bold;"> Gaia: </span>' . $sub . '<span style="font-weight: bold;"> Data: </span>' . $datac . '</div>
+    $correu_linia .= '<div class="correu_f1"><SPAN style="font-weight: bold;"> Tema: </span>' . $sub . '<span style="font-weight: bold;"> Data: </span>' . $datac . '</div>
     <div class="correu_f2">' . $tex . '</div>';
 }
 
@@ -328,7 +328,7 @@ while (list($from, $to, $sub, $tex, $datac, $vis) = mysql_fetch_row($result5)) {
     <script type="text/javascript">
         function confirm_alert(node,datediff,proces) {
             if(datediff > 7)
-                return confirm("El pedido " + proces + " de esta semana ya esta cerrado. Si realizas tu pedido ahora se registrará para la semana siguiente. ¿Estás de acuerdo?");
+                return confirm("La comanda " + proces + " de aquesta setmana ja està tancada. Si realitzes la teva comanda ara es registrarà per a la setmana següent. Estàs d'acord?");
         }
     </script>
 </head>
@@ -352,7 +352,7 @@ while (list($from, $to, $sub, $tex, $datac, $vis) = mysql_fetch_row($result5)) {
                         class="pull-right" <?php echo $style . ">** " . $moneder; ?> **</span></h2>
 
                         <h3 class="u-mb-1 u-mt-1">
-                            &Uacute;ltimos movimientos contabilizados
+                            Darrers moviments comptabilitzats
                         </h3>
                         <table class="table table-striped"><?php echo $last; ?></table>
 
