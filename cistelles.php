@@ -324,6 +324,7 @@ $button_perma='<button class="button  button-- button--animated pull-right" onCl
 		echo "<tr  class='u-text-semibold'><td width='60%'>Producto</td>";
 		echo "<td width='20%'  class='u-text-semibold  u-text-center'>Total pedido</td>";
 		echo "<td width='20%'  class='u-text-semibold  u-text-center'>Total cesta</td>";
+		echo "<td  class='u-text-semibold  u-text-center'>Modificar</td>";
 		echo "</tr>";
 
 		while (list($prodref,$nom_prod,$nom_prov,$uni,$t,$n,$d,$sum,$csum)=mysql_fetch_row($result2))
