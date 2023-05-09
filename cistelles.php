@@ -260,6 +260,11 @@ if(isset($_POST['btn1'])) { //Pone a cero todos los productos de la comanda abie
 </form>
 </div>
 -->
+<?php //Botón para acceder a “createcsv_prod.php” que permite descargarse la lista de productos activos en la comanda.
+$button_productes='<button class="button  button-- button--animated pull-right" onClick="javascript:window.location = \'createcsv_prod.php?id='.$gbd_data.'&id2='.$gproces.'&id3='.$ggrup.'&id4=2\'">CSV productes<i class="fa fa-table" aria-hidden="true"></i></button>'; ?>
+
+<?php echo $button_productes; ?>
+
 <?php //Botón para acceder a “createcsv_perma.php” que permite descargarse la lista de productos con diferencias entre “cistella” y “quantitat”.
 $button_perma='<button class="button  button-- button--animated pull-right" onClick="javascript:window.location = \'createcsv_perma.php?id='.$gbd_data.'&id2='.$gproces.'&id3='.$ggrup.'&id4=2\'">CSV permanencia<i class="fa fa-table" aria-hidden="true"></i></button>'; ?>
 
