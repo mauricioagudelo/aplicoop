@@ -576,7 +576,10 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 </div>
 
                 <div class="col-md-8 u-text-right u-mb-1">
-                    <span style="color: grey;">Pedido nº: </span><span class="u-text-semibold"><?php echo $numcmda; ?></span><br/>
+                    <h1>COMANDA <br>
+                        <span style="font-size: medium;">Esto es lo pedido, no la factura</span>
+                    </h1>
+                    <span style="color: grey;">Comanda nº: </span><span class="u-text-semibold"><?php echo $numcmda; ?></span><br/>
                     <span style="color: grey;">Familia: </span><span class="u-text-semibold"><?php echo $superfam; ?></span><br/>
                     <span style="color: grey;">Fecha <?php echo $title1; ?>: </span><span class="u-text-semibold"><?php echo $data; ?></span>
                 </div>
@@ -664,7 +667,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
                 </table>
             </div>
             <p class="alert alert--info">
-                Pedido realizado el <?php echo $ver_datase; ?> con número de sessión <?php echo $sessionid; ?>.</br>
+                Comanda realizada el <?php echo $ver_datase; ?> con número de sessión <?php echo $sessionid; ?>.</br>
                 (*) Precio de venta aproximado (último precio actualizado). Incluye IVA.
             </p>
         </div>
