@@ -32,7 +32,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
     <html lang="es">
     <head>
         <?php include 'head.php'; ?>
-        <title>aplicoop - pedidos</title>
+        <title>aplicoop - Comandes</title>
     </head>
 
     <body>
@@ -41,13 +41,13 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
 
         <?php
         if ($gfam != "") {
-            $title1 = 'Mis Pedidos';
-            $cap = 'Mis Pedidos';
+            $title1 = 'Les meves comandes';
+            $cap = 'Les meves comandes';
             $cap_link = 'comandes.php?id3=' . $user;
             $pfam = $gfam;
         } else {
-            $title1 = 'Listado de Pedidos';
-            $cap = 'Listado de Pedidos';
+            $title1 = 'Llistat de comandes';
+            $cap = 'Llistat de comandes';
             $cap_link = 'comandes.php';
         }
         ?>

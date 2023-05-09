@@ -105,24 +105,21 @@ if ($_SESSION['image_is_logged_in'] == 'true' OR ($_GET['id'] != "" AND strlen($
 		</div>
 	</div>
 
-			<div class="row">
-				<div class="col-md-4 u-text-center u-mb-1">
-					<img id="fig" class="img--responsive" style="height:85px;" src="<?php echo $logo_factura; ?>">
-					<p>Kidekoop Elkartea
-					CIF: G95749321<br>
-					C/ Urazurrutia 26
-					48003 BILBAO<p>
-				</div>
-				<div class="col-md-8 u-text-right u-mb-1">
-					<span style="color: grey;">Factura nº: </span><span class="u-text-semibold"><?php echo $numfact; ?></span><br/>
-					<span style="color: grey;">Fecha: </span><span class="u-text-semibold"><?php echo $ver_data2; ?></span><br/>
-					<span style="color: grey;">Familia: </span><span class="u-text-semibold"><?php echo $nomf; ?></span><br/>
-					<span style="color: grey;">Dirección: </span><span class="u-text-semibold"><?php echo $adressf; ?></span><br/>
-					<span style="color: grey;">NIF: </span><span class="u-text-semibold"><?php echo $niff; ?></span><br/>
-
-
-				</div>
+		<div class="row">
+			<div class="col-md-4 u-text-center u-mb-1">
+				<img id="fig" class="img--responsive" style="height:85px;" src="<?php echo $logo_factura; ?>">
+				<p>Coop Posant en Comu scc<br> CIF: F6665587<br>
+				Carrer Hortes 10, baixos, 08004<br> Barcelona<p>
 			</div>
+			<div class="col-md-8 u-text-right u-mb-1">
+				<h1>FACTURA</h1>
+				<span style="color: grey;">Factura nº: </span><span class="u-text-semibold"><?php echo $numfact; ?></span><br/>
+				<span style="color: grey;">Fecha: </span><span class="u-text-semibold"><?php echo $ver_data2; ?></span><br/>
+				<span style="color: grey;">Familia: </span><span class="u-text-semibold"><?php echo $nomf; ?></span><br/>
+				<span style="color: grey;">Dirección: </span><span class="u-text-semibold"><?php echo $adressf; ?></span><br/>
+				<span style="color: grey;">NIF: </span><span class="u-text-semibold"><?php echo $niff; ?></span><br/>
+			</div>
+		</div>
 
 			
 			<div class="cf u-mt-2 table-responsive u-width-100">
