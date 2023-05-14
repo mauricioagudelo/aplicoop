@@ -222,6 +222,23 @@ onClick="javascript:window.location = 'cistelles2.php?id2=<?php echo $gdata.'&id
 
 
 <?php echo $nouproducte; ?>
+
+<?php
+//Botones para modificar las variables del producto con referencia $prodref de la comanda abierta.
+if(isset($_POST['btn0'])) { //Copia los valores del producto seleccionado, las variables "cistella" se igualan con "quantitat"
+	$prodref_post0 = $_POST['productref'];
+	$query8= "UPDATE comanda AS c, comanda_linia AS cl, categoria AS cat, productes AS pr SET cl.cistella = cl.quantitat, cl.preu = pr.preusi*(1+pr.marge), cl.iva = pr.iva, cl.descompte = pr.descompte, pr.estoc = IF(cat.estoc = 'si', pr.estoc+cl.cistella-cl.quantitat, 0.000) WHERE cl.ref = '$prodref_post0' AND cl.numero = c.numero AND c.data='$gbd_data' AND pr.ref = cl.ref AND cat.tipus = pr.categoria";
+	mysql_query($query8) or die('Error, insert query8 failed');
+	$nota="<div class='alert alert--info u-mb-1'>S'han modificat correctament les cistelles del producte</div>";
+}
+if(isset($_POST['btn1'])) { //Pone a cero los valores del producto seleccionado
+	$prodref_post1 = $_POST['productref'];
+	$query9= "UPDATE comanda AS c, comanda_linia AS cl, categoria AS cat, productes AS pr SET cl.cistella = 0.000, cl.preu = 0.00, cl.iva = 0.00, cl.descompte = 0.000, pr.estoc = IF(cat.estoc = 'si', pr.estoc+cl.cistella, 0.000) WHERE cl.ref = '$prodref_post1' AND cl.numero = c.numero AND c.data='$gbd_data' AND pr.ref = cl.ref AND cat.tipus = pr.categoria";
+	mysql_query($query9) or die('Error, insert query9 failed');
+	$nota="<div class='alert alert--info u-mb-1'>S'ha posat a zero les cistelles del producte</div>";
+}
+?>
+                 
 <?php //Botón para acceder a “createcsv_prod.php” que permite descargarse la lista de productos activos en la comanda.
 $button_productes='<button class="button  button-- button--animated pull-right" onClick="javascript:window.location = \'createcsv_prod.php?id='.$gbd_data.'&id2='.$gproces.'&id3='.$ggrup.'&id4=2\'">CSV productes<i class="fa fa-table" aria-hidden="true"></i></button>'; ?>
 
@@ -296,6 +313,9 @@ if ($gvis!=0) {
 		echo "<tr  class='u-text-semibold'><td width='60%'>Producto</td>";
 		echo "<td width='20%'  class='u-text-semibold  u-text-center'>Total pedido</td>";
 		echo "<td width='20%'  class='u-text-semibold  u-text-center'>Total cesta</td>";
+		if ($gvis!=0) { //Añade la columna "Modificar" cuando se puede editar la commanda
+			echo "<td  class='u-text-semibold  u-text-center'>Modificar</td>";
+		}
 		echo "</tr>";
 
 		while (list($prodref,$nom_prod,$nom_prov,$uni,$t,$n,$d,$sum,$csum)=mysql_fetch_row($result2))
@@ -327,6 +347,26 @@ if ($gvis!=0) {
 				<td><?php echo $link; ?></td>
 				<td align="center" class="<?php echo $estil; ?>"><?php echo $suma; ?> <?php echo $uni; ?></td>
 				<td align="center" class="<?php echo $estil; ?>"><?php echo $csuma; ?> <?php echo $uni; ?></td>
+				<?php
+				//Formulario que contiene los botones btn0 y btn1 para modificar las variables del producto con referencia $prodref de comanda abierta.
+				//Comenta el formulario cuando se ha cerrado la comanda
+				if ($gvis==0) {
+					echo "<!--";
+				} 
+				?>
+				<form method="post">
+					<td align="center">
+						<input type="hidden" name="productref" value="<?php echo $prodref; ?>">
+						<input type="submit" name="btn0" value="=" onclick="return confirm('Es procedeix a assignar els valors de comanda a la cistella en el producte seleccionat \nAceptar: MODIFICA cistelles \nCancelar: NO MODIFICA cistelles');"/> 
+						<input type="submit" name="btn1" value="0" onclick="return confirm('Es procedeix a posar a zero la cistella del producte seleccionat \nAceptar: MODIFICA cistelles \nCancelar: NO MODIFICA cistelles'); <?php echo $gvis; ?>"/>	
+					</td>
+				</form>
+				<?php
+				//Cierre commentario
+				if ($gvis==0) {
+					echo "-->";
+				} 
+				?>
 			</tr>
 
 			<?php
