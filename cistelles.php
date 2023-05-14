@@ -222,6 +222,7 @@ onClick="javascript:window.location = 'cistelles2.php?id2=<?php echo $gdata.'&id
 
 
 <?php echo $nouproducte; ?>
+
 <?php
 //Botones para modificar las variables del producto con referencia $prodref de la comanda abierta.
 if(isset($_POST['btn0'])) { //Copia los valores del producto seleccionado, las variables "cistella" se igualan con "quantitat"
@@ -237,11 +238,21 @@ if(isset($_POST['btn1'])) { //Pone a cero los valores del producto seleccionado
 	$nota="<div class='alert alert--info u-mb-1'>S'ha posat a zero les cistelles del producte</div>";
 }
 ?>
-	
+                 
+<?php //Botón para acceder a “createcsv_prod.php” que permite descargarse la lista de productos activos en la comanda.
+$button_productes='<button class="button  button-- button--animated pull-right" onClick="javascript:window.location = \'createcsv_prod.php?id='.$gbd_data.'&id2='.$gproces.'&id3='.$ggrup.'&id4=2\'">CSV productes<i class="fa fa-table" aria-hidden="true"></i></button>'; ?>
+
 <?php //Botón para acceder a “createcsv_perma.php” que permite descargarse la lista de productos con diferencias entre “cistella” y “quantitat”.
 $button_perma='<button class="button  button-- button--animated pull-right" onClick="javascript:window.location = \'createcsv_perma.php?id='.$gbd_data.'&id2='.$gproces.'&id3='.$ggrup.'&id4=2\'">CSV permanencia<i class="fa fa-table" aria-hidden="true"></i></button>'; ?>
 
-<?php echo $button_perma; ?>
+<?php //echo $button_perma; ?>
+		
+<?php //Muestra solo los botones cuando la comanda esta abierta
+if ($gvis!=0) {
+	echo $button_productes;
+	echo $button_perma;
+}
+?>
 
 </div>
 
