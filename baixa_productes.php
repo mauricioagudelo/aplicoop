@@ -164,9 +164,9 @@ WHERE categoria='" . $pcat . "' ORDER BY subcategoria";
                     $title = "Ordenación alfabética de productos";
                 }
 
-                print ('<p class="alert alert--info">' . $title . '</p>');
+                print ('<p class="alert alert--info">' . $title . '<br/> Para activar o desactivar productos pulsa el botón correspondiente y se aplicará automáticamente.<br/> Puedes buscar productos por categoría y / o por proveedor.<br/> Por defecto aparecen todos los productos ordenados por orden alfabético.<br/>' . '</p>');
 
-                print('<div style="overflow: auto; height: 40vh;">');
+                //print('<div style="overflow: auto; height: 40vh;">');
                 print('<table class="table table-striped table-bordered" >');
 
                 print('<tr class="cos_majus">
@@ -199,12 +199,12 @@ WHERE categoria='" . $pcat . "' ORDER BY subcategoria";
                             <label>
                                 si&nbsp;<input type="radio" name="actiu<?php echo $k; ?>" value="actiu"
                                     id="actiu<?php echo $k; ?>" <?php echo $checked1; ?>
-                                    onClick="javascript:window.location = 'baixa_productes.php?id=<?php echo $ref; ?>&id3=actiu&id4=<?php echo $pcat; ?>&id5=<?php echo $psubcat; ?>&id6=<?php echo $pprov; ?>';">
+                                    onClick="history.pushState({}, '', 'baixa_productes.php?id=<?php echo $ref; ?>&id3=actiu&id4=<?php echo $pcat; ?>&id5=<?php echo $psubcat; ?>&id6=<?php echo $pprov; ?>'); javascript:window.location.reload();">
                             </label>
                             <label class="u-ml-1">                                    
                                 no&nbsp;<input type="radio" name="actiu<?php echo $k; ?>" value="baixa"
                                     id="actiu<?php echo $k; ?>" <?php echo $checked2; ?>
-                                    onClick="javascript:window.location = 'baixa_productes.php?id=<?php echo $ref; ?>&id3=baixa&id4=<?php echo $pcat; ?>&id5=<?php echo $psubcat; ?>&id6=<?php echo $pprov; ?>';">
+                                    onClick="history.pushState({}, '', 'baixa_productes.php?id=<?php echo $ref; ?>&id3=baixa&id4=<?php echo $pcat; ?>&id5=<?php echo $psubcat; ?>&id6=<?php echo $pprov; ?>'); javascript:window.location.reload();">
                                 </label>
                         </td>
                     </tr>
@@ -214,7 +214,7 @@ WHERE categoria='" . $pcat . "' ORDER BY subcategoria";
                     $k++;
                    
                 }
-                print ('</table></div>');
+                print ('</table>'); //</div>
 
                 ?>
                 <p class="alert alert--info" >
