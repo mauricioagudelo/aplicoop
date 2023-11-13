@@ -227,7 +227,27 @@ onClick="javascript:window.location = 'cistelles2.php?id2=<?php echo $gdata.'&id
 //Botones para modificar las variables del producto con referencia $prodref de la comanda abierta.
 if(isset($_POST['btn0'])) { //Copia los valores del producto seleccionado, las variables "cistella" se igualan con "quantitat"
 	$prodref_post0 = $_POST['productref'];
-	$query8= "UPDATE comanda AS c, comanda_linia AS cl, categoria AS cat, productes AS pr SET cl.cistella = cl.quantitat, cl.preu = pr.preusi*(1+pr.marge), cl.iva = pr.iva, cl.descompte = pr.descompte, pr.estoc = IF(cat.estoc = 'si', pr.estoc+cl.cistella-cl.quantitat, 0.000) WHERE cl.ref = '$prodref_post0' AND cl.numero = c.numero AND c.data='$gbd_data' AND pr.ref = cl.ref AND cat.tipus = pr.categoria";
+	$query8= "UPDATE comanda AS c, 
+					 comanda_linia AS cl, 
+					 categoria AS cat, 
+					 productes AS pr 
+					 SET cl.cistella = cl.quantitat, 
+					 cl.preu = pr.preusi*(1+pr.marge), 
+					 cl.iva = pr.iva, 
+					 cl.descompte = pr.descompte, 
+					 pr.estoc = IF(cat.estoc = 'si', pr.estoc-cl.quantitat, 0.000) 
+					 WHERE 
+					 cl.ref = '$prodref_post0' 
+					 AND 
+					 cl.numero = c.numero 
+					 AND 
+					 c.data='$gbd_data' 
+					 AND 
+					 pr.ref = cl.ref 
+					 AND 
+					 cat.tipus = pr.categoria";
+
+
 	mysql_query($query8) or die('Error, insert query8 failed');
 	$nota="<div class='alert alert--info u-mb-1'>S'han modificat correctament les cistelles del producte</div>";
 }
