@@ -38,7 +38,7 @@ if ($_SESSION['image_is_logged_in'] == 'true') {
             <div class="u-cf">
                 <h1 class="pull-left"> Ver familia <?php echo $nom; ?> </h1>
                 <?php
-                if ($nom == $user && $tip == "super") {
+                if ($nom == $user) {
 
                     ?>
                     <div class="pull-right u-mt-1 u-mb-1">

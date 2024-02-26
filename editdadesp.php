@@ -164,13 +164,12 @@ FROM usuaris WHERE nom='$nom'";
                         </div>
                     </div>
 
-
                     <div class="form-group">
                         <label for="tipus<?php echo $new; ?>" class="col-sm-3 control-label">Tipo de usuario
                             (permisos)</label>
                         <div class="col-sm-9">
                             <SELECT name="tipus<?php echo $new; ?>" id="tipus<?php echo $new; ?>" size="1"
-                                    maxlength="10">
+                                    maxlength="10" <?php echo ($nom == $user && $tip == "super") ? "" : "disabled"; ?>>
                                 <?php
                                 if ($tip == 'user') {
                                     $checked3 = 'selected';
