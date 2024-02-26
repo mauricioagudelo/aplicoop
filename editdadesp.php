@@ -118,7 +118,7 @@ FROM usuaris WHERE nom='$nom'";
                         <label for="tip2<?php echo $new; ?>" class="col-sm-3 control-label">Activo/Baja</label>
                         <div class="col-sm-9">
                             <SELECT name="tip2<?php echo $new; ?>" id="tip2<?php echo $new; ?>" size="1"
-                                    maxlength="5">
+                                    maxlength="5" <?php echo ($nom == $user && $tip == "super") ? "" : "disabled"; ?>>
 
                                 <?php
                                 if ($tip2 == 'actiu') {
@@ -141,7 +141,7 @@ FROM usuaris WHERE nom='$nom'";
                     <div class="form-group">
                         <label for="dia<?php echo $new; ?>" class="col-sm-3 control-label">Grupo</label>
                         <div class="col-sm-9">
-                            <SELECT name="dia<?php echo $new; ?>" id="dia<?php echo $new; ?>">
+                            <SELECT name="dia<?php echo $new; ?>" id="dia<?php echo $new; ?>" <?php echo ($nom == $user && $tip == "super") ? "" : "disabled"; ?>>
 
                                 <?php
                                 $select3 = "SELECT nom FROM grups ORDER BY nom";
@@ -294,7 +294,7 @@ FROM usuaris WHERE nom='$nom'";
                     <div class="form-group">
                         <label for="fechaalta" class="col-sm-3 control-label">Fecha de Alta</label>
                         <div class="col-sm-9">
-                            <input type="text" name="fechaalta" value="<?php echo $fechaalta; ?>">
+                            <input type="text" name="fechaalta" value="<?php echo $fechaalta; ?>" <?php echo ($nom == $user && $tip == "super") ? "" : "disabled"; ?>>
                         </div>
                     </div>
                     <hr class="box-separator"/>
