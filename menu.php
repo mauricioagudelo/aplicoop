@@ -15,7 +15,7 @@ $superuser = strtoupper($_SESSION['user']);
                 <span class="icon-bar"></span>
             </button>
             <a href="escriptori2.php" class="navbar-logo pull-left">
-                <img  src="imatges/logo_menu.png" title="applicop">
+                <img <?php echo 'src="'.$logo_menu.'"' ?> title="applicop">
             </a>
             <div class="navbar-info visible-lg-inline-block  pull-left">
                 <div class="navbar-family"><?php echo $superuser; ?></div>

@@ -80,7 +80,7 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
 
     <div class="u-text-center u-mb-3">
         <img class="img img--responsive" <?php echo 'src="'.$logo_portada.'"' ?> title="applicop">
-        <h1 class="login-title">APLICOOP</h1>
+        <h1 class="login-title"><?php echo $nombre_portada ?></h1>
     </div>
 
     <form action="" method="post" name="frmLogin" id="frmLogin">
