@@ -14,6 +14,12 @@ mysql_select_db($dbname);
 //////////////////////////////////////////////////////////
 // Aquí van els elements de configuració de cada coope ///
 //////////////////////////////////////////////////////////
+
+//Indicar si se desea que la web sea indexada por los buscadores
+$index_buscadores='index, follow'; // No indexar = 'noindex, nofollow' / Indexar = 'index, follow'
+
+$nombre_portada='APLICOOP TEST'; //Texto que apreix a la portada
+
 // Canviar les imatge actuals per l'enllaç a les vostres imatges
 $logo_portada='imatges/logo.jpg'; //Imatge que apreix a la portada
 $logo_menu='imatges/logo_menu.jpg'; // Imatge que apareix al menu (una vegada hem iniciat sessió)
