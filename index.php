@@ -71,6 +71,7 @@ if (isset($_POST['txtUserId']) && isset($_POST['txtPassword'])) {
 
 <html lang="es">
 <head>
+    <meta name="robots" <?php echo 'content="'.$index_buscadores.'"' ?>>
     <title>aplicoop - login</title>
     <?php include 'head.php'; ?>
 </head>
