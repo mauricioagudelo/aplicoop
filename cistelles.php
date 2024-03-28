@@ -21,6 +21,9 @@ if ($_SESSION['image_is_logged_in'] == 'true' )
 	}
 	////
 	
+	// Activar o desactivar los botones para el reparto ágil en la cistella
+	$btnsRepartoActivos = FALSE;
+
 	list($mdiatdx, $mestdx, $anytdx ) = explode("-", $gdata);
 	$gbd_data=$anytdx."-".$mestdx."-".$mdiatdx;
 
@@ -313,7 +316,7 @@ if ($gvis!=0) {
 		echo "<tr  class='u-text-semibold'><td width='60%'>Producto</td>";
 		echo "<td width='20%'  class='u-text-semibold  u-text-center'>Total pedido</td>";
 		echo "<td width='20%'  class='u-text-semibold  u-text-center'>Total cesta</td>";
-		if ($gvis!=0) { //Añade la columna "Modificar" cuando se puede editar la commanda
+		if ($gvis!=0 && $btnsRepartoActivos == TRUE ) { //Añade la columna "Modificar" cuando se puede editar la commanda
 			echo "<td  class='u-text-semibold  u-text-center'>Modificar</td>";
 		}
 		echo "</tr>";
@@ -350,7 +353,7 @@ if ($gvis!=0) {
 				<?php
 				//Formulario que contiene los botones btn0 y btn1 para modificar las variables del producto con referencia $prodref de comanda abierta.
 				//Comenta el formulario cuando se ha cerrado la comanda
-				if ($gvis==0) {
+				if ($gvis==0 || $btnsRepartoActivos == FALSE) {
 					echo "<!--";
 				} 
 				?>
@@ -363,7 +366,7 @@ if ($gvis!=0) {
 				</form>
 				<?php
 				//Cierre commentario
-				if ($gvis==0) {
+				if ($gvis==0 || $btnsRepartoActivos == FALSE) {
 					echo "-->";
 				} 
 				?>
