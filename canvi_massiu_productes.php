@@ -399,11 +399,13 @@ margin-bottom: 20px; padding-bottom: 20px;">
                                 $sele2 = "";
                                 $sele3 = "";
                                 $sele4 = "";
+                                $sele5 = "";
                                 if ($iva == 0) $sele0 = "selected";
                                 if ($iva == 0.21) $sele1 = "selected";
                                 if ($iva == 0.10) $sele2 = "selected";
                                 if ($iva == 0.05) $sele3 = "selected";
                                 if ($iva == 0.04) $sele4 = "selected";
+                                if ($iva == 0.02) $sele5 = "selected";
                                 ?>
 
                                 <option value="0" <?php echo $sele0; ?>>sense iva</option>
@@ -411,6 +413,7 @@ margin-bottom: 20px; padding-bottom: 20px;">
                                 <option value="0.10" <?php echo $sele2; ?>>10%</option>
                                 <option value="0.05" <?php echo $sele3; ?>>5%</option>
                                 <option value="0.04" <?php echo $sele4; ?>>4%</option>
+                                <option value="0.02" <?php echo $sele5; ?>>2%</option>
                             </SELECT>
                             <input type=hidden name="ivaprevi[]" id="ivaprevi<?php echo $id; ?>"
                                    value="<?php echo $iva; ?>">
