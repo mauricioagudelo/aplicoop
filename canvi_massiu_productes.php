@@ -399,6 +399,7 @@ margin-bottom: 20px; padding-bottom: 20px;">
                                 $sele2 = "";
                                 $sele3 = "";
                                 $sele4 = "";
+                                $sele5 = "";
                                 if ($iva == 0) $sele0 = "selected";
                                 if ($iva == 0.21) $sele1 = "selected";
                                 if ($iva == 0.10) $sele2 = "selected";
