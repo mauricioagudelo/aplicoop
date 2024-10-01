@@ -412,7 +412,7 @@ margin-bottom: 20px; padding-bottom: 20px;">
                                 <option value="0.10" <?php echo $sele2; ?>>10%</option>
                                 <option value="0.05" <?php echo $sele3; ?>>5%</option>
                                 <option value="0.04" <?php echo $sele4; ?>>4%</option>
-                                <option value="0.02" <?php echo $sele4; ?>>2%</option>
+                                <option value="0.02" <?php echo $sele5; ?>>2%</option>
                             </SELECT>
                             <input type=hidden name="ivaprevi[]" id="ivaprevi<?php echo $id; ?>"
                                    value="<?php echo $iva; ?>">
