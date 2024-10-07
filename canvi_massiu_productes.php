@@ -413,7 +413,7 @@ margin-bottom: 20px; padding-bottom: 20px;">
                                 <option value="0" <?php echo $sele0; ?>>sense iva</option>
                                 <option value="0.21" <?php echo $sele1; ?>>21%</option>
                                 <option value="0.10" <?php echo $sele2; ?>>10%</option>
-                                <option value="0.05" <?php echo $sele3; ?>>7,5%</option>
+                                <option value="0.075" <?php echo $sele3; ?>>7,5%</option>
                                 <option value="0.05" <?php echo $sele4; ?>>5%</option>
                                 <option value="0.04" <?php echo $sele5; ?>>4%</option>
                                 <option value="0.02" <?php echo $sele6; ?>>2%</option>
