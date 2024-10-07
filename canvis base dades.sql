@@ -52,3 +52,6 @@ ALTER TABLE `usuaris` ADD `fechaalta` DATE NOT NULL AFTER `domiciliacion`;
 ALTER TABLE `productes` ADD `labels` VARCHAR(80) NULL DEFAULT NULL AFTER `estoc`; 
 ----
 
+-- LA SECA
+-- Change the IVA field type and length from FLOAT to DECIMAL. Doing this will allow you to save IVA values like 7.5%. 
+ALTER TABLE productes MODIFY COLUMN iva DECIMAL(3,4);
